@@ -1332,8 +1332,8 @@ export default function App() {
 
           {authMode === 'signup' && (
             <>
-              <p style={{fontSize:14, fontWeight:700, color:T.purple, marginBottom:12}}>👨‍👩‍👧 새 가족 만들기 (부모)</p>
-              <input placeholder="가족 이름 (예: 김씨 가정)" value={authName} onChange={e=>setAuthName(e.target.value)} style={inputStyle}/>
+              <p style={{fontSize:14, fontWeight:700, color:T.purple, marginBottom:12}}>👨‍👩‍👧 새 가족 계정 만들기 (부모)</p>
+              <input placeholder="이름 (예: 홍길동 / John Smith)" value={authName} onChange={e=>setAuthName(e.target.value)} style={inputStyle}/>
               <input placeholder="이메일" value={authEmail} onChange={e=>setAuthEmail(e.target.value)} style={inputStyle}/>
               <input placeholder="비밀번호" type="password" value={authPassword} onChange={e=>setAuthPassword(e.target.value)} style={inputStyle}/>
               <button onClick={handleSignup} style={{width:'100%', padding:'13px', background:T.purple, border:'none', borderRadius:T.rSm, color:'white', fontSize:15, fontWeight:700, cursor:'pointer', marginBottom:12}}>가족 만들기</button>
