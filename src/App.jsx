@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 // ── 언어 문자열 객체 ──────────────────────────────────────────────
 const STRINGS = {
