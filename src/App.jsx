@@ -1059,7 +1059,7 @@ const SAMPLES_3M = [
 // ── 공통 UI 컴포넌트 ──────────────────────────────────────────
 
 const Tag = ({children, color=T.green}) => (
-  <p style={{fontSize:13, letterSpacing:'0.12em', textTransform:'uppercase', color, fontWeight:700, marginBottom:6}}>{children}</p>
+  <p style={{fontSize:15, letterSpacing:'0.12em', textTransform:'uppercase', color, fontWeight:700, marginBottom:6}}>{children}</p>
 );
 
 const Card = ({children, style={}, onClick}) => (
@@ -1074,13 +1074,13 @@ const Btn = ({children, onClick, color=T.purple, outline=false, disabled=false, 
     background: outline ? 'transparent' : disabled ? '#C8C0B8' : color,
     color: outline ? color : '#fff',
     border: outline ? `2px solid ${color}` : 'none',
-    fontSize:16, fontWeight:700, cursor: disabled?'not-allowed':'pointer',
+    fontSize:18, fontWeight:700, cursor: disabled?'not-allowed':'pointer',
     letterSpacing:'-0.01em', ...style
   }}>{children}</button>
 );
 
 const BackBtn = ({onClick, lang=''}) => (
-  <button onClick={onClick} style={{background:'none', border:'none', color:T.sub, fontSize:14, cursor:'pointer', padding:'0 0 14px', display:'flex', alignItems:'center', gap:4, fontWeight:500}}>
+  <button onClick={onClick} style={{background:'none', border:'none', color:T.sub, fontSize:16, cursor:'pointer', padding:'0 0 14px', display:'flex', alignItems:'center', gap:4, fontWeight:500}}>
     {lang==='en' ? '← Back' : '← 뒤로'}
   </button>
 );
@@ -1094,7 +1094,7 @@ const ProgressBar = ({pct, color=T.purple}) => (
 // 집 도면 시각화
 const HouseMap = ({selected, lang=''}) => (
   <div style={{background:T.cardAlt, borderRadius:T.r, padding:'16px 12px', marginBottom:16, border:`1px solid ${T.border}`}}>
-    <p style={{fontSize:13, color:T.hint, textAlign:'center', marginBottom:12, letterSpacing:'0.08em', textTransform:'uppercase'}}>{lang==='en' ? 'Floor Plan' : '우리 집 도면'}</p>
+    <p style={{fontSize:15, color:T.hint, textAlign:'center', marginBottom:12, letterSpacing:'0.08em', textTransform:'uppercase'}}>{lang==='en' ? 'Floor Plan' : '우리 집 도면'}</p>
     <div style={{display:'flex', alignItems:'center', justifyContent:'center', gap:0}}>
       {ROOMS.map((r,i) => {
         const rs = ROOM_STYLE[r.id];
@@ -1108,8 +1108,8 @@ const HouseMap = ({selected, lang=''}) => (
               display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:3,
               transition:'all 0.2s',
             }}>
-              <span style={{fontSize:20, filter: sel ? 'none' : 'grayscale(1) opacity(0.4)'}}>{r.icon}</span>
-              <p style={{fontSize:10, fontWeight:700, color: sel ? rs.color : T.hint, letterSpacing:'-0.01em'}}>{lang==='en' ? r.nameEn.replace(' Room','') : r.name.replace('의 방','')}</p>
+              <span style={{fontSize:22, filter: sel ? 'none' : 'grayscale(1) opacity(0.4)'}}>{r.icon}</span>
+              <p style={{fontSize:13, fontWeight:700, color: sel ? rs.color : T.hint, letterSpacing:'-0.01em'}}>{lang==='en' ? r.nameEn.replace(' Room','') : r.name.replace('의 방','')}</p>
             </div>
             {i < ROOMS.length-1 && (
               <div style={{display:'flex', alignItems:'center', margin:'0 2px'}}>
@@ -1127,7 +1127,7 @@ const HouseMap = ({selected, lang=''}) => (
       })}
     </div>
     {selected.size > 0 && (
-      <p style={{textAlign:'center', fontSize:13, color:T.sub, marginTop:10, fontWeight:600}}>
+      <p style={{textAlign:'center', fontSize:15, color:T.sub, marginTop:10, fontWeight:600}}>
         {lang==='en'
           ? `${selected.size} room${selected.size>1?'s':''} · ${ROOMS.filter(r=>selected.has(r.id)).map(r=>r.nameEn.replace(' Room','')).join('→')}`
           : `${selected.size}개의 방 · ${ROOMS.filter(r=>selected.has(r.id)).map(r=>r.name.replace('의 방','')).join('→')}`
@@ -1194,8 +1194,8 @@ export default function App() {
       {lang && (
         <div style={{position:'fixed', top:12, right:16, zIndex:999}}>
           <button onClick={()=>setLang(lang==='ko'?'en':'ko')}
-            style={{background:'white', border:`1.5px solid ${T.border}`, borderRadius:99, padding:'5px 12px', fontSize:13, fontWeight:700, color:T.purple, cursor:'pointer', boxShadow:T.shadowSm, display:'flex', alignItems:'center', gap:6}}>
-            <span style={{fontSize:15}}>{lang==='ko'?'🇰🇷':'🇺🇸'}</span>
+            style={{background:'white', border:`1.5px solid ${T.border}`, borderRadius:99, padding:'5px 12px', fontSize:15, fontWeight:700, color:T.purple, cursor:'pointer', boxShadow:T.shadowSm, display:'flex', alignItems:'center', gap:6}}>
+            <span style={{fontSize:17}}>{lang==='ko'?'🇰🇷':'🇺🇸'}</span>
             <span>{lang==='ko'?'KO':'EN'}</span>
           </button>
         </div>
@@ -1227,28 +1227,28 @@ export default function App() {
     if(!lang) return wrap(
       <div style={{textAlign:'center', paddingTop:60}}>
         <div style={{fontSize:64, marginBottom:20}}>🏠</div>
-        <p style={{fontSize:22, fontWeight:800, color:T.text, marginBottom:8}}>{s_.splashTag}</p>
-        <p style={{fontSize:22, fontWeight:800, color:T.text, marginBottom:32}}>Family Worship Coaching</p>
-        <p style={{fontSize:15, color:T.sub, marginBottom:40, lineHeight:1.8}}>언어를 선택하세요<br/>Please select your language</p>
+        <p style={{fontSize:24, fontWeight:800, color:T.text, marginBottom:8}}>{s_.splashTag}</p>
+        <p style={{fontSize:24, fontWeight:800, color:T.text, marginBottom:32}}>Family Worship Coaching</p>
+        <p style={{fontSize:17, color:T.sub, marginBottom:40, lineHeight:1.8}}>언어를 선택하세요<br/>Please select your language</p>
         <div style={{display:'flex', flexDirection:'column', gap:14}}>
           <button onClick={()=>setLang('ko')}
             style={{padding:'18px', background:'white', border:`2px solid ${T.purpleBorder}`, borderRadius:T.r, cursor:'pointer', display:'flex', alignItems:'center', gap:16, boxShadow:T.shadowSm}}>
             <span style={{fontSize:36}}>🇰🇷</span>
             <div style={{textAlign:'left'}}>
-              <p style={{fontSize:18, fontWeight:800, color:T.text}}>한국어</p>
-              <p style={{fontSize:14, color:T.sub}}>Korean</p>
+              <p style={{fontSize:22, fontWeight:800, color:T.text}}>한국어</p>
+              <p style={{fontSize:16, color:T.sub}}>Korean</p>
             </div>
           </button>
           <button onClick={()=>setLang('en')}
             style={{padding:'18px', background:'white', border:`2px solid ${T.border}`, borderRadius:T.r, cursor:'pointer', display:'flex', alignItems:'center', gap:16, boxShadow:T.shadowSm}}>
             <span style={{fontSize:36}}>🇺🇸</span>
             <div style={{textAlign:'left'}}>
-              <p style={{fontSize:18, fontWeight:800, color:T.text}}>English</p>
-              <p style={{fontSize:14, color:T.sub}}>영어</p>
+              <p style={{fontSize:22, fontWeight:800, color:T.text}}>English</p>
+              <p style={{fontSize:16, color:T.sub}}>영어</p>
             </div>
           </button>
         </div>
-        <p style={{fontSize:13, color:T.hint, marginTop:28, lineHeight:1.7}}>언제든지 상단 버튼으로 언어를 바꿀 수 있어요<br/>You can change language anytime at the top</p>
+        <p style={{fontSize:15, color:T.hint, marginTop:28, lineHeight:1.7}}>언제든지 상단 버튼으로 언어를 바꿀 수 있어요<br/>You can change language anytime at the top</p>
       </div>
     );
     const ONBOARDING = [
@@ -1280,7 +1280,7 @@ export default function App() {
       <div style={{textAlign:'center', paddingTop:24}}>
         <style>{`@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&display=swap');`}</style>
         <div style={{fontSize:72, marginBottom:16}}>🏠</div>
-        <p style={{fontSize:14, fontWeight:700, letterSpacing:'0.12em', color:T.green, marginBottom:12}}>{t('가정예배 코칭','Family Worship Coaching')}</p>
+        <p style={{fontSize:16, fontWeight:700, letterSpacing:'0.12em', color:T.green, marginBottom:12}}>{t('가정예배 코칭','Family Worship Coaching')}</p>
         <h1 style={{
           fontFamily:"'Noto Serif KR', serif",
           fontSize:34, fontWeight:700, color:T.text,
@@ -1289,7 +1289,7 @@ export default function App() {
         }}>
           {lang==='en' ? (worshipName ? <>{worshipName}<br/>Worship House</> : <>Our Family<br/>Worship House</>) : <>{worshipName ? `${worshipName} 예배의 집` : '우리 가정 예배의 집'}</>}
         </h1>
-        <p style={{fontSize:14, color:T.sub, lineHeight:1.9, marginBottom:32, wordBreak:'keep-all'}}>
+        <p style={{fontSize:16, color:T.sub, lineHeight:1.9, marginBottom:32, wordBreak:'keep-all'}}>
           {t('가정예배는','Family worship is')}<br/>
           {t('대화와 질문으로 하나님을 만나는','a joyful celebration of meeting God')}<br/>
           {t('행복한 축제입니다.','through conversation and questions.')}<br/><br/>
@@ -1318,23 +1318,23 @@ export default function App() {
           </div>
           <div style={{background:'white', borderRadius:'28px 28px 0 0', padding:'28px 24px 40px', boxShadow:'0 -6px 32px rgba(0,0,0,0.08)'}}>
             <div style={{display:'inline-flex', alignItems:'center', background:card.bg, border:`1.5px solid ${card.border}`, borderRadius:99, padding:'6px 16px', marginBottom:16}}>
-              <p style={{fontSize:14, color:card.color, fontWeight:700, letterSpacing:'0.06em'}}>{card.label}</p>
+              <p style={{fontSize:16, color:card.color, fontWeight:700, letterSpacing:'0.06em'}}>{card.label}</p>
             </div>
-            <p style={{fontFamily:"'Noto Serif KR', serif", fontSize:22, fontWeight:700, color:'#1a1a1a', lineHeight:1.55, marginBottom:16}}>{card.title}</p>
-            <p style={{fontSize:17, color:'#555', lineHeight:1.9, marginBottom:28, whiteSpace:'pre-line'}}>{card.body}</p>
+            <p style={{fontFamily:"'Noto Serif KR', serif", fontSize:24, fontWeight:700, color:'#1a1a1a', lineHeight:1.55, marginBottom:16}}>{card.title}</p>
+            <p style={{fontSize:19, color:'#555', lineHeight:1.9, marginBottom:28, whiteSpace:'pre-line'}}>{card.body}</p>
             {isLast ? (
               <button onClick={()=>{ setOnboardingDone(true); go('diag'); }}
-                style={{width:'100%', padding:'17px', background:card.color, border:'none', borderRadius:99, fontSize:16, color:'white', cursor:'pointer', fontWeight:700}}>
+                style={{width:'100%', padding:'17px', background:card.color, border:'none', borderRadius:99, fontSize:18, color:'white', cursor:'pointer', fontWeight:700}}>
                 {t('우리 가정 현실 진단하기 →','Diagnose Our Family →')}
               </button>
             ) : (
               <div style={{display:'flex', gap:10}}>
                 <button onClick={()=>setOnboardingDone(true)}
-                  style={{flex:1, padding:'16px', background:'none', border:'1.5px solid rgba(0,0,0,0.12)', borderRadius:99, fontSize:14, color:'#aaa', cursor:'pointer', fontWeight:600}}>
+                  style={{flex:1, padding:'16px', background:'none', border:'1.5px solid rgba(0,0,0,0.12)', borderRadius:99, fontSize:16, color:'#aaa', cursor:'pointer', fontWeight:600}}>
                   {t('건너뛰기','Skip')}
                 </button>
                 <button onClick={()=>setOnboardingStep(s=>s+1)}
-                  style={{flex:2, padding:'16px', background:card.color, border:'none', borderRadius:99, fontSize:15, color:'white', cursor:'pointer', fontWeight:700}}>
+                  style={{flex:2, padding:'16px', background:card.color, border:'none', borderRadius:99, fontSize:17, color:'white', cursor:'pointer', fontWeight:700}}>
                   {t('다음 →','Next →')}
                 </button>
               </div>
@@ -1350,24 +1350,24 @@ export default function App() {
         <style>{`@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&display=swap');`}</style>
         <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:4, paddingRight:72}}>
           <button onClick={()=>{ setOnboardingStep(-1); setOnboardingDone(false); }}
-            style={{background:'none', border:'none', fontSize:13, color:T.hint, cursor:'pointer'}}>
+            style={{background:'none', border:'none', fontSize:15, color:T.hint, cursor:'pointer'}}>
             {t('처음 설명 다시 보기','View Intro Again')}
           </button>
-          <button onClick={()=>go('about')} style={{background:'none', border:'none', fontSize:13, color:T.green, cursor:'pointer', fontWeight:600}}>
+          <button onClick={()=>go('about')} style={{background:'none', border:'none', fontSize:15, color:T.green, cursor:'pointer', fontWeight:600}}>
             {t('이 앱을 만든 이유? →','Why This App? →')}
           </button>
         </div>
 
         {worshipName && (
           <div style={{background:T.purpleBg, border:`1px solid ${T.purpleBorder}`, borderRadius:T.rSm, padding:'10px 14px', marginBottom:14, display:'flex', alignItems:'center', gap:8}}>
-            <span style={{fontSize:16}}>🏠</span>
-            <p style={{fontSize:14, color:T.purple, fontWeight:700}}>{t('환영합니다','Welcome back')}</p>
+            <span style={{fontSize:18}}>🏠</span>
+            <p style={{fontSize:16, color:T.purple, fontWeight:700}}>{t('환영합니다','Welcome back')}</p>
           </div>
         )}
 
         <div style={{textAlign:'center', paddingTop:16, paddingBottom:8}}>
           <div style={{fontSize:64, lineHeight:1, marginBottom:14}}>🏠</div>
-          <p style={{fontSize:15, fontWeight:700, letterSpacing:'0.1em', color:T.green, marginBottom:14}}>{s_.splashTag}</p>
+          <p style={{fontSize:17, fontWeight:700, letterSpacing:'0.1em', color:T.green, marginBottom:14}}>{s_.splashTag}</p>
           <h1 style={{
             fontFamily:"'Noto Serif KR', 'Georgia', serif",
             fontSize:36, fontWeight:700, color:T.text,
@@ -1376,7 +1376,7 @@ export default function App() {
           }}>
             {lang==='en' ? (worshipName ? <>{worshipName}<br/>Worship House</> : <>Our Family<br/>Worship House</>) : <>{worshipName ? `${worshipName} 예배의 집` : '우리 가정 예배의 집'}</>}
           </h1>
-          <p style={{fontSize:15, color:T.sub, lineHeight:1.8, marginBottom:24}}>
+          <p style={{fontSize:17, color:T.sub, lineHeight:1.8, marginBottom:24}}>
             {t('대화식 가정예배는 정답을 맞히는 시간이 아닙니다.','Dialogic family worship is not about getting the right answer.')}<br/>
             {t('가족이 하나님 앞에서 함께 말하고, 듣고, 자라는 시간입니다.','It\'s a time for your family to speak, listen, and grow together before God.')}<br/><br/>
             {t('대화가 서툴러도, 관계가 어색해도','Even if conversations feel awkward,')}<br/>
@@ -1395,7 +1395,7 @@ export default function App() {
             </div>
             <div style={{marginTop:14, textAlign:'center'}}>
               <button onClick={()=>go('rooms')}
-                style={{background:'none', border:'none', fontSize:13, color:T.hint, cursor:'pointer', textDecoration:'underline', textUnderlineOffset:3}}>
+                style={{background:'none', border:'none', fontSize:15, color:T.hint, cursor:'pointer', textDecoration:'underline', textUnderlineOffset:3}}>
                 {t('예배의 방 다시 꾸미기','Redesign Worship Rooms')}
               </button>
             </div>
@@ -1433,17 +1433,17 @@ export default function App() {
       <div>
         <BackBtn onClick={()=>go('welcome')} lang={lang}/>
         <Tag>제작 의도</Tag>
-        <h1 style={{fontSize:25, fontWeight:800, color:T.text, lineHeight:1.3, letterSpacing:'-0.03em', marginBottom:20}}>"모든 가정을 대화가 흐르는 성소(聖所)로"</h1>
+        <h1 style={{fontSize:27, fontWeight:800, color:T.text, lineHeight:1.3, letterSpacing:'-0.03em', marginBottom:20}}>"모든 가정을 대화가 흐르는 성소(聖所)로"</h1>
       </div>
     );
 
     const Footer = () => (
       <div>
         <div style={{background:T.greenBg, border:`1px solid ${T.greenBorder}`, borderRadius:T.rSm, padding:'18px', marginBottom:18, textAlign:'center'}}>
-          <p style={{fontSize:16, color:T.green, fontWeight:700, lineHeight:1.9}}>"지금, 이 앱과 함께 우리 가정을 대화의 천국으로 만들어보세요!"</p>
+          <p style={{fontSize:18, color:T.green, fontWeight:700, lineHeight:1.9}}>"지금, 이 앱과 함께 우리 가정을 대화의 천국으로 만들어보세요!"</p>
         </div>
-        <p style={{fontSize:14, color:T.hint, textAlign:'right', marginTop:8}}>— 듀엣 좋은씨앗, 예배사역연구소 소장 이유정</p>
-        <p style={{fontSize:13, color:T.hint, textAlign:'right', marginTop:4}}>*이 앱은 이유정 저 《대화식 가정예배》를 기반으로 설계되었습니다.</p>
+        <p style={{fontSize:16, color:T.hint, textAlign:'right', marginTop:8}}>— 듀엣 좋은씨앗, 예배사역연구소 소장 이유정</p>
+        <p style={{fontSize:15, color:T.hint, textAlign:'right', marginTop:4}}>*이 앱은 이유정 저 《대화식 가정예배》를 기반으로 설계되었습니다.</p>
         <div style={{marginTop:16}}><Btn onClick={()=>go('welcome')} outline color={T.purple}>{t('← 처음으로 돌아가기','← Back to Home')}</Btn></div>
         {/* 초기화 — About 맨 아래 숨김 */}
         <div style={{marginTop:40, textAlign:'center'}}>
@@ -1454,7 +1454,7 @@ export default function App() {
               setDebrief({}); setSeriesConfirmed(null); setExpandedSeries(null);
               setOnboardingDone(false); setOnboardingStep(-1); setLang('');
             }
-          }} style={{background:'none', border:'none', fontSize:11, color:T.hint, cursor:'pointer', opacity:0.4}}>
+          }} style={{background:'none', border:'none', fontSize:13, color:T.hint, cursor:'pointer', opacity:0.4}}>
             {t('앱 초기화','Reset App')}
           </button>
         </div>
@@ -1466,7 +1466,7 @@ export default function App() {
     return wrap(
       <div>
         <Header/>
-        <div style={{fontSize:15, color:T.text, lineHeight:2.0}}>
+        <div style={{fontSize:17, color:T.text, lineHeight:2.0}}>
           <p style={{marginBottom:16}}>건강한 교회에서 목회하는 후배 목사가 부탁을 했습니다. "책은 좋은데, 성도들에게는 구체적인 툴이 필요해요." 그래서 대화식 예배 경험이 없는 가정들을 위해 이 앱을 만들었습니다.</p>
           <p style={{marginBottom:20}}>가정예배는 단순한 종교 의식이 아닙니다. 가장 치열한 삶의 예배 현장인 가정에서 대화와 나눔, 경청과 배려, 사귐과 소통 자체가 예배입니다.</p>
           <p style={{marginBottom:16, fontWeight:700, color:T.purple}}>이 앱은 5가지 가치 회복을 목표로 합니다.</p>
@@ -1477,29 +1477,29 @@ export default function App() {
                 <div style={{display:'flex', justifyContent:'space-between', alignItems:'center'}}>
                   <div style={{display:'flex', alignItems:'center', gap:10}}>
                     <div style={{width:24, height:24, borderRadius:'50%', background: openItems[i] ? T.purple : T.border, display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0}}>
-                      <span style={{color:'#fff', fontSize:12, fontWeight:800}}>{item.num}</span>
+                      <span style={{color:'#fff', fontSize:14, fontWeight:800}}>{item.num}</span>
                     </div>
-                    <p style={{fontSize:15, fontWeight:800, color: openItems[i] ? T.purple : T.text}}>{item.title}</p>
+                    <p style={{fontSize:17, fontWeight:800, color: openItems[i] ? T.purple : T.text}}>{item.title}</p>
                   </div>
-                  <span style={{fontSize:13, color:T.hint}}>{openItems[i] ? '▲' : '▼'}</span>
+                  <span style={{fontSize:15, color:T.hint}}>{openItems[i] ? '▲' : '▼'}</span>
                 </div>
                 {openItems[i] && (
                   <div>
-                    <p style={{fontSize:14, color:T.text, lineHeight:1.9, marginTop:10, paddingLeft:34}}>{item.desc}</p>
+                    <p style={{fontSize:16, color:T.text, lineHeight:1.9, marginTop:10, paddingLeft:34}}>{item.desc}</p>
                     {i === 4 && (
                       <div style={{marginTop:12, paddingLeft:34}}>
-                        <button onClick={(e)=>{e.stopPropagation(); toggleItem('seven');}} style={{background:'none', border:`1px solid ${T.purpleBorder}`, borderRadius:T.rSm, padding:'8px 14px', fontSize:13, fontWeight:700, color:T.purple, cursor:'pointer', width:'100%', textAlign:'left'}}>
+                        <button onClick={(e)=>{e.stopPropagation(); toggleItem('seven');}} style={{background:'none', border:`1px solid ${T.purpleBorder}`, borderRadius:T.rSm, padding:'8px 14px', fontSize:15, fontWeight:700, color:T.purple, cursor:'pointer', width:'100%', textAlign:'left'}}>
                           7가지 본질적 문화 {openItems['seven'] ? '▲' : '▼'}
                         </button>
                         {openItems['seven'] && (
                           <div style={{marginTop:8}}>
                             {SEVEN.map(([k,v],si)=>(
                               <div key={si} style={{display:'flex', gap:8, paddingBottom:7, marginBottom:7, borderBottom: si<6 ? `1px solid ${T.purpleBorder}` : 'none'}}>
-                                <span style={{fontSize:14, fontWeight:700, color:T.purple, flexShrink:0}}>· {k}:</span>
-                                <span style={{fontSize:14, color:T.text, lineHeight:1.85}}>{v}</span>
+                                <span style={{fontSize:16, fontWeight:700, color:T.purple, flexShrink:0}}>· {k}:</span>
+                                <span style={{fontSize:16, color:T.text, lineHeight:1.85}}>{v}</span>
                               </div>
                             ))}
-                            <p style={{fontSize:13, color:T.sub, marginTop:8}}>*추천도서: 이성준 저 《리얼 하브루타》</p>
+                            <p style={{fontSize:15, color:T.sub, marginTop:8}}>*추천도서: 이성준 저 《리얼 하브루타》</p>
                           </div>
                         )}
                       </div>
@@ -1521,23 +1521,23 @@ export default function App() {
       <ProgressBar pct={20} color={T.purple}/>
       <BackBtn onClick={()=>go('welcome')} lang={lang}/>
       <Tag>{t('1단계 · 우리 가정 현실','Step 1 · Our Family Reality')}</Tag>
-      <h2 style={{fontSize:25, fontWeight:800, color:T.text, lineHeight:1.3, letterSpacing:'-0.03em', marginBottom:4}}>{s_.diagTitle.split('\n')[0]}<br/>{s_.diagTitle.split('\n')[1]}</h2>
-      <p style={{fontSize:14, color:T.sub, marginBottom:18, lineHeight:1.75}}>{s_.diagSub}</p>
+      <h2 style={{fontSize:27, fontWeight:800, color:T.text, lineHeight:1.3, letterSpacing:'-0.03em', marginBottom:4}}>{s_.diagTitle.split('\n')[0]}<br/>{s_.diagTitle.split('\n')[1]}</h2>
+      <p style={{fontSize:16, color:T.sub, marginBottom:18, lineHeight:1.75}}>{s_.diagSub}</p>
       {DIAGNOSES.map(d => (
         <div key={d.id} onClick={()=>{setSelectedDiag(d.id); setRecommend(d.recommend);}}
           style={{background:T.card, borderRadius:T.r, boxShadow: selectedDiag===d.id ? `0 0 0 2.5px ${T.purple}` : T.shadowSm, padding:'16px 18px', marginBottom:10, cursor:'pointer', display:'flex', alignItems:'center', gap:12, transition:'box-shadow 0.15s'}}>
-          <span style={{fontSize:23, flexShrink:0}}>{d.icon}</span>
+          <span style={{fontSize:25, flexShrink:0}}>{d.icon}</span>
           <div>
-            <p style={{fontSize:15, fontWeight:700, color: selectedDiag===d.id ? T.purple : T.text, marginBottom:2}}>{lang==='en' ? d.labelEn : d.label}</p>
-            <p style={{fontSize:13, color:T.sub}}>{lang==='en' ? d.subEn : d.sub}</p>
+            <p style={{fontSize:17, fontWeight:700, color: selectedDiag===d.id ? T.purple : T.text, marginBottom:2}}>{lang==='en' ? d.labelEn : d.label}</p>
+            <p style={{fontSize:15, color:T.sub}}>{lang==='en' ? d.subEn : d.sub}</p>
           </div>
-          {selectedDiag===d.id && <div style={{marginLeft:'auto', width:20, height:20, borderRadius:'50%', background:T.purple, display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0}}><span style={{color:'#fff', fontSize:10}}>✓</span></div>}
+          {selectedDiag===d.id && <div style={{marginLeft:'auto', width:20, height:20, borderRadius:'50%', background:T.purple, display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0}}><span style={{color:'#fff', fontSize:13}}>✓</span></div>}
         </div>
       ))}
       {recommend && (
         <div style={{background:T.purpleBg, borderRadius:T.rSm, padding:'12px 14px', marginBottom:14, display:'flex', gap:8, alignItems:'flex-start'}}>
-          <span style={{fontSize:15, flexShrink:0}}>💡</span>
-          <p style={{fontSize:14, color:T.purple, lineHeight:1.75}}>{lang==='en' && selectedDiag ? (DIAGNOSES.find(d=>d.id===selectedDiag)?.recommendEn||recommend) : recommend}</p>
+          <span style={{fontSize:17, flexShrink:0}}>💡</span>
+          <p style={{fontSize:16, color:T.purple, lineHeight:1.75}}>{lang==='en' && selectedDiag ? (DIAGNOSES.find(d=>d.id===selectedDiag)?.recommendEn||recommend) : recommend}</p>
         </div>
       )}
       <Btn onClick={()=>go('age')} disabled={!selectedDiag} color={T.purple}>{t('다음 단계로 →','Next Step →')}</Btn>
@@ -1550,12 +1550,12 @@ export default function App() {
       <ProgressBar pct={40} color={T.purple}/>
       <BackBtn onClick={()=>go('diag')} lang={lang}/>
       <Tag>{t('2단계 · 우리 가정 구성','Step 2 · Family Makeup')}</Tag>
-      <h2 style={{fontSize:25, fontWeight:800, color:T.text, lineHeight:1.3, letterSpacing:'-0.03em', marginBottom:4}}>{t('자녀의',"Your Child's")}<br/>{t('연령대는?','Age Group?')}</h2>
-      <p style={{fontSize:14, color:T.sub, marginBottom:12, lineHeight:1.75}}>
+      <h2 style={{fontSize:27, fontWeight:800, color:T.text, lineHeight:1.3, letterSpacing:'-0.03em', marginBottom:4}}>{t('자녀의',"Your Child's")}<br/>{t('연령대는?','Age Group?')}</h2>
+      <p style={{fontSize:16, color:T.sub, marginBottom:12, lineHeight:1.75}}>
         {t('선택한 구성에 맞게','Questions and activities will be')}<strong style={{color:T.purple}}>{t(' 질문과 활동이 자동으로 맞춤 표시',' automatically customized')}</strong>{t('됩니다.','')}
       </p>
       <div style={{background:T.purpleBg, border:`1px solid ${T.purpleBorder}`, borderRadius:T.rSm, padding:'12px 14px', marginBottom:16}}>
-        <p style={{fontSize:13, color:T.purple, lineHeight:1.85}}>💡 {t('자녀가 2명 이상이고 연령대가 다양한 경우, 가능하면 낮은 연령대 — 즉 막내 또는 둘째 아이 수준에 맞게 선택하는 것이 좋습니다.','If you have 2 or more children of different ages, it\'s best to select based on the youngest child\'s age group.')}</p>
+        <p style={{fontSize:15, color:T.purple, lineHeight:1.85}}>💡 {t('자녀가 2명 이상이고 연령대가 다양한 경우, 가능하면 낮은 연령대 — 즉 막내 또는 둘째 아이 수준에 맞게 선택하는 것이 좋습니다.','If you have 2 or more children of different ages, it\'s best to select based on the youngest child\'s age group.')}</p>
       </div>
       {AGE_GROUPS.map((ag) => (
         <div key={ag.id} onClick={()=>setAgeGroup(ag.id)}
@@ -1564,17 +1564,17 @@ export default function App() {
             {ag.icon}
           </div>
           <div style={{flex:1}}>
-            <p style={{fontSize:15, fontWeight:700, color: ageGroup===ag.id ? T.purple : T.text, marginBottom:2}}>{lang==='en' ? ag.labelEn : ag.label}</p>
-            <p style={{fontSize:13, color:T.hint}}>{lang==='en' ? ag.descEn : ag.desc}</p>
+            <p style={{fontSize:17, fontWeight:700, color: ageGroup===ag.id ? T.purple : T.text, marginBottom:2}}>{lang==='en' ? ag.labelEn : ag.label}</p>
+            <p style={{fontSize:15, color:T.hint}}>{lang==='en' ? ag.descEn : ag.desc}</p>
           </div>
-          {ageGroup===ag.id && <div style={{width:22, height:22, borderRadius:'50%', background:T.purple, display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0}}><span style={{color:'#fff', fontSize:11}}>✓</span></div>}
+          {ageGroup===ag.id && <div style={{width:22, height:22, borderRadius:'50%', background:T.purple, display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0}}><span style={{color:'#fff', fontSize:13}}>✓</span></div>}
         </div>
       ))}
       <div style={{marginTop:4}}>
         <Btn onClick={()=>go('rooms')} disabled={!ageGroup} color={T.purple}>{t('우리 가정 예배 집 제안받기 →','Design Our Worship House →')}</Btn>
       </div>
       <div style={{marginTop:8, textAlign:'center'}}>
-        <button onClick={()=>go('rooms')} style={{background:'none', border:'none', fontSize:13, color:T.hint, cursor:'pointer', textDecoration:'underline', textUnderlineOffset:3}}>
+        <button onClick={()=>go('rooms')} style={{background:'none', border:'none', fontSize:15, color:T.hint, cursor:'pointer', textDecoration:'underline', textUnderlineOffset:3}}>
           {t('연령대 없이 진행하기','Continue without selecting')}
         </button>
       </div>
@@ -1600,8 +1600,8 @@ export default function App() {
       <ProgressBar pct={60} color={T.purple}/>
       <BackBtn onClick={()=>go('age')} lang={lang}/>
       <Tag>{t('3단계 · 예배의 집 설계','Step 3 · Design Worship House')}</Tag>
-      <h2 style={{fontSize:25, fontWeight:800, color:T.text, lineHeight:1.3, letterSpacing:'-0.03em', marginBottom:4}}>{t('몇 개의 방을','How many rooms')}<br/>{t('열까요?','will you open?')}</h2>
-      <p style={{fontSize:14, color:T.sub, marginBottom:16, lineHeight:1.85}}>
+      <h2 style={{fontSize:27, fontWeight:800, color:T.text, lineHeight:1.3, letterSpacing:'-0.03em', marginBottom:4}}>{t('몇 개의 방을','How many rooms')}<br/>{t('열까요?','will you open?')}</h2>
+      <p style={{fontSize:16, color:T.sub, marginBottom:16, lineHeight:1.85}}>
         {t('4개의 방은 친구와의 만남과 비슷해요. 만나서 대화하고 공감하고 헤어져요.','The 4 rooms are like meeting a friend — gather, talk, connect, and part ways.')}<br/>
         <strong style={{color:T.purple}}>{t('만남의 방을 지나야 말씀의 방','You must pass through the Gathering Room to enter the Word Room')}</strong>{t(', ','​')}<strong style={{color:T.purple}}>{t('그 다음 반응의 방','then the Response Room')}</strong>{t('으로 들어갈 수 있어요.','.') }<br/>
         {t('이 순서는 하나님과 더 깊은 교제로 들어가는 과정이에요.','This order is the journey into deeper fellowship with God.')}
@@ -1613,10 +1613,10 @@ export default function App() {
         if(!diag) return null;
         return (
           <div style={{background:T.purpleBg, border:`1px solid ${T.purpleBorder}`, borderRadius:T.rSm, padding:'12px 14px', marginBottom:16, display:'flex', gap:10, alignItems:'flex-start'}}>
-            <span style={{fontSize:18, flexShrink:0}}>{diag.icon}</span>
+            <span style={{fontSize:22, flexShrink:0}}>{diag.icon}</span>
             <div>
-              <p style={{fontSize:12, color:T.purple, fontWeight:700, marginBottom:4, letterSpacing:'0.05em'}}>{lang==='en' ? diag.labelEn : diag.label}</p>
-              <p style={{fontSize:13, color:T.purple, lineHeight:1.8}}>{lang==='en' ? diag.recommendEn : diag.recommend}</p>
+              <p style={{fontSize:14, color:T.purple, fontWeight:700, marginBottom:4, letterSpacing:'0.05em'}}>{lang==='en' ? diag.labelEn : diag.label}</p>
+              <p style={{fontSize:15, color:T.purple, lineHeight:1.8}}>{lang==='en' ? diag.recommendEn : diag.recommend}</p>
             </div>
           </div>
         );
@@ -1631,18 +1631,18 @@ export default function App() {
           <div key={r.id}
             onClick={()=>{ if(!locked) toggleRoom(r.id); }}
             style={{background:T.card, borderRadius:T.r, boxShadow: sel ? `0 0 0 2.5px ${rs.color}` : T.shadowSm, padding:'16px 18px', marginBottom:10, cursor: locked ? 'not-allowed' : 'pointer', display:'flex', alignItems:'center', gap:12, transition:'box-shadow 0.15s', opacity: locked ? 0.45 : 1}}>
-            <div style={{width:44, height:44, borderRadius:12, background: sel ? rs.bg : T.cardAlt, border:`1.5px solid ${sel ? rs.border : T.border}`, display:'flex', alignItems:'center', justifyContent:'center', fontSize:20, flexShrink:0}}>
+            <div style={{width:44, height:44, borderRadius:12, background: sel ? rs.bg : T.cardAlt, border:`1.5px solid ${sel ? rs.border : T.border}`, display:'flex', alignItems:'center', justifyContent:'center', fontSize:22, flexShrink:0}}>
               {locked ? '🔒' : r.icon}
             </div>
             <div style={{flex:1}}>
-              <p style={{fontSize:15, fontWeight:700, color: sel ? rs.color : locked ? T.hint : T.text, marginBottom:2}}>{lang==='en' ? r.nameEn : r.name}</p>
-              <p style={{fontSize:13, color:T.hint}}>{locked ? LOCK_MSG[r.id] : (lang==='en' ? r.subEn : r.sub)}</p>
+              <p style={{fontSize:17, fontWeight:700, color: sel ? rs.color : locked ? T.hint : T.text, marginBottom:2}}>{lang==='en' ? r.nameEn : r.name}</p>
+              <p style={{fontSize:15, color:T.hint}}>{locked ? LOCK_MSG[r.id] : (lang==='en' ? r.subEn : r.sub)}</p>
             </div>
-            {sel && !locked && <div style={{width:22, height:22, borderRadius:'50%', background:rs.color, display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0}}><span style={{color:'#fff', fontSize:11}}>✓</span></div>}
+            {sel && !locked && <div style={{width:22, height:22, borderRadius:'50%', background:rs.color, display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0}}><span style={{color:'#fff', fontSize:13}}>✓</span></div>}
           </div>
         );
       })}
-      <p style={{fontSize:13, color:T.hint, lineHeight:1.5, marginBottom:16, textAlign:'center'}}>{t('이 방은 언제든 더하거나 뺄 수 있습니다.','You can add or remove rooms anytime.')}</p>
+      <p style={{fontSize:15, color:T.hint, lineHeight:1.5, marginBottom:16, textAlign:'center'}}>{t('이 방은 언제든 더하거나 뺄 수 있습니다.','You can add or remove rooms anytime.')}</p>
       <Btn onClick={()=>go('elements')} disabled={selectedRooms.size===0} color={T.purple}>{t('방 안을 채워보세요 →','Fill the Rooms →')}</Btn>
     </div>
   );}
@@ -1654,8 +1654,8 @@ export default function App() {
       <ProgressBar pct={75} color={T.purple}/>
       <BackBtn onClick={()=>go('rooms')} lang={lang}/>
       <Tag>{t('4단계 · 예배의 방 구성','Step 4 · Worship Room Setup')}</Tag>
-      <h2 style={{fontSize:25, fontWeight:800, color:T.text, lineHeight:1.3, letterSpacing:'-0.03em', marginBottom:4}}>{t('예배의 방','Decorate Your')}<br/>{t('꾸미기','Worship Rooms')}</h2>
-      <p style={{fontSize:14, color:T.sub, marginBottom:16, lineHeight:1.75}}>{t('각 방에서 하고 싶은 것을 골라보세요.','Choose what you want to do in each room.')}<br/>{t('ⓘ를 누르면 각 요소의 의미를 볼 수 있어요.','Tap ⓘ to learn more about each element.')}</p>
+      <h2 style={{fontSize:27, fontWeight:800, color:T.text, lineHeight:1.3, letterSpacing:'-0.03em', marginBottom:4}}>{t('예배의 방','Decorate Your')}<br/>{t('꾸미기','Worship Rooms')}</h2>
+      <p style={{fontSize:16, color:T.sub, marginBottom:16, lineHeight:1.75}}>{t('각 방에서 하고 싶은 것을 골라보세요.','Choose what you want to do in each room.')}<br/>{t('ⓘ를 누르면 각 요소의 의미를 볼 수 있어요.','Tap ⓘ to learn more about each element.')}</p>
 
       <HouseMap selected={selectedRooms} lang={lang}/>
 
@@ -1734,16 +1734,16 @@ export default function App() {
         return (
           <div style={{background:T.purpleBg, border:`1px solid ${T.purpleBorder}`, borderRadius:T.rSm, padding:'12px 14px', marginBottom:16}}>
             <div style={{display:'flex', gap:10, alignItems:'flex-start'}}>
-              <span style={{fontSize:18, flexShrink:0}}>{ag.icon}</span>
+              <span style={{fontSize:22, flexShrink:0}}>{ag.icon}</span>
               <div style={{flex:1}}>
-                <p style={{fontSize:12, color:T.purple, fontWeight:700, marginBottom:4, letterSpacing:'0.05em'}}>{lang==='en' ? ag.labelEn : ag.label}</p>
-                <p style={{fontSize:13, color:T.purple, lineHeight:1.8}}>{displayMsg}</p>
+                <p style={{fontSize:14, color:T.purple, fontWeight:700, marginBottom:4, letterSpacing:'0.05em'}}>{lang==='en' ? ag.labelEn : ag.label}</p>
+                <p style={{fontSize:15, color:T.purple, lineHeight:1.8}}>{displayMsg}</p>
                 {hasExpand && showMore && (
-                  <p style={{fontSize:13, color:T.purple, lineHeight:1.85, marginTop:8, whiteSpace:'pre-line'}}>{fullMsg}</p>
+                  <p style={{fontSize:15, color:T.purple, lineHeight:1.85, marginTop:8, whiteSpace:'pre-line'}}>{fullMsg}</p>
                 )}
                 {hasExpand && (
                   <button onClick={()=>setShowMore(p=>!p)}
-                    style={{background:'none', border:'none', fontSize:12, color:T.purple, fontWeight:700, cursor:'pointer', marginTop:6, padding:0, textDecoration:'underline', textUnderlineOffset:3}}>
+                    style={{background:'none', border:'none', fontSize:14, color:T.purple, fontWeight:700, cursor:'pointer', marginTop:6, padding:0, textDecoration:'underline', textUnderlineOffset:3}}>
                     {showMore ? t('접기 ▲','Collapse ▲') : t('더 보기 ▼','Read more ▼')}
                   </button>
                 )}
@@ -1760,9 +1760,9 @@ export default function App() {
         return (
           <div key={r.id} style={{background:rs.bg, border:`1.5px solid ${rs.border}`, borderRadius:T.r, padding:'16px 18px', marginBottom:14}}>
             <div style={{display:'flex', alignItems:'center', gap:8, marginBottom:12}}>
-              <span style={{fontSize:18}}>{r.icon}</span>
-              <p style={{fontSize:15, fontWeight:700, color:rs.color}}>{lang==='en' ? r.nameEn : r.name}</p>
-              {selCount>0 && <span style={{fontSize:13, background:rs.color, color:'#fff', borderRadius:T.rFull, padding:'2px 8px', fontWeight:700, marginLeft:'auto'}}>{selCount}{t('개 선택됨',' selected')}</span>}
+              <span style={{fontSize:22}}>{r.icon}</span>
+              <p style={{fontSize:17, fontWeight:700, color:rs.color}}>{lang==='en' ? r.nameEn : r.name}</p>
+              {selCount>0 && <span style={{fontSize:15, background:rs.color, color:'#fff', borderRadius:T.rFull, padding:'2px 8px', fontWeight:700, marginLeft:'auto'}}>{selCount}{t('개 선택됨',' selected')}</span>}
             </div>
             <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:8}}>
               {ELEMENTS[r.id].map(e => {
@@ -1772,19 +1772,19 @@ export default function App() {
                   <div key={e.id} style={{gridColumn: isOpen ? 'span 2' : 'span 1'}}>
                     <div onClick={()=>toggleElem(r.id, e.id)}
                       style={{background: sel ? T.card : 'rgba(255,255,255,0.6)', border:`1.5px solid ${sel ? rs.color : 'rgba(255,255,255,0.8)'}`, borderRadius:T.rSm, padding:'12px 14px', cursor:'pointer', position:'relative', boxShadow: sel ? T.shadowSm : 'none'}}>
-                      {sel && <div style={{position:'absolute', top:6, right:6, width:16, height:16, borderRadius:'50%', background:rs.color, display:'flex', alignItems:'center', justifyContent:'center'}}><span style={{color:'#fff', fontSize:9}}>✓</span></div>}
-                      <p style={{fontSize:14, fontWeight:700, color: sel ? rs.color : T.text, marginBottom:2, paddingRight:18}}>{lang==='en' ? (e.nameEn||e.name) : e.name}</p>
-                      <p style={{fontSize:13, color:T.sub, lineHeight:1.4}}>{lang==='en' ? ((e.defEn||e.def).length>22 ? (e.defEn||e.def).slice(0,22)+'…' : (e.defEn||e.def)) : (e.def.length>22 ? e.def.slice(0,22)+'…' : e.def)}</p>
+                      {sel && <div style={{position:'absolute', top:6, right:6, width:16, height:16, borderRadius:'50%', background:rs.color, display:'flex', alignItems:'center', justifyContent:'center'}}><span style={{color:'#fff', fontSize:12}}>✓</span></div>}
+                      <p style={{fontSize:16, fontWeight:700, color: sel ? rs.color : T.text, marginBottom:2, paddingRight:18}}>{lang==='en' ? (e.nameEn||e.name) : e.name}</p>
+                      <p style={{fontSize:15, color:T.sub, lineHeight:1.4}}>{lang==='en' ? ((e.defEn||e.def).length>22 ? (e.defEn||e.def).slice(0,22)+'…' : (e.defEn||e.def)) : (e.def.length>22 ? e.def.slice(0,22)+'…' : e.def)}</p>
                       <button onClick={ev=>{ev.stopPropagation(); setOpenInfo(isOpen?null:r.id+'-'+e.id);}}
-                        style={{position:'absolute', bottom:6, right:6, background:'none', border:`1px solid ${rs.color}40`, width:16, height:16, borderRadius:'50%', fontSize:10, cursor:'pointer', color:rs.color, display:'flex', alignItems:'center', justifyContent:'center'}}>i</button>
+                        style={{position:'absolute', bottom:6, right:6, background:'none', border:`1px solid ${rs.color}40`, width:16, height:16, borderRadius:'50%', fontSize:13, cursor:'pointer', color:rs.color, display:'flex', alignItems:'center', justifyContent:'center'}}>i</button>
                     </div>
                     {isOpen && (
                       <div style={{background:T.card, borderRadius:T.rSm, padding:'12px', marginTop:6, boxShadow:T.shadowSm}}>
-                        <p style={{fontSize:14, fontWeight:700, color:T.text, marginBottom:4}}>{lang==='en' ? (e.nameEn||e.name) : e.name}</p>
-                        <p style={{fontSize:13, color:T.sub, lineHeight:1.75, marginBottom:6}}>{lang==='en' ? (e.defEn||e.def) : e.def}</p>
-                        <p style={{fontSize:11, letterSpacing:'0.08em', textTransform:'uppercase', color:T.hint, marginBottom:4}}>{t('왜 하는가?','Why do this?')}</p>
-                        <p style={{fontSize:13, color:T.sub, lineHeight:1.75}}>{lang==='en' ? (e.whyEn||e.why) : e.why}</p>
-                        {e.tip && <div style={{fontSize:13, color:rs.color, background:rs.bg, borderLeft:`2px solid ${rs.color}`, padding:'6px 10px', borderRadius:`0 ${T.rSm} ${T.rSm} 0`, marginTop:8, lineHeight:1.7}}>{t('팁:','Tip:')} {lang==='en' ? (e.tipEn||e.tip) : e.tip}</div>}
+                        <p style={{fontSize:16, fontWeight:700, color:T.text, marginBottom:4}}>{lang==='en' ? (e.nameEn||e.name) : e.name}</p>
+                        <p style={{fontSize:15, color:T.sub, lineHeight:1.75, marginBottom:6}}>{lang==='en' ? (e.defEn||e.def) : e.def}</p>
+                        <p style={{fontSize:13, letterSpacing:'0.08em', textTransform:'uppercase', color:T.hint, marginBottom:4}}>{t('왜 하는가?','Why do this?')}</p>
+                        <p style={{fontSize:15, color:T.sub, lineHeight:1.75}}>{lang==='en' ? (e.whyEn||e.why) : e.why}</p>
+                        {e.tip && <div style={{fontSize:15, color:rs.color, background:rs.bg, borderLeft:`2px solid ${rs.color}`, padding:'6px 10px', borderRadius:`0 ${T.rSm} ${T.rSm} 0`, marginTop:8, lineHeight:1.7}}>{t('팁:','Tip:')} {lang==='en' ? (e.tipEn||e.tip) : e.tip}</div>}
                       </div>
                     )}
                   </div>
@@ -1794,7 +1794,7 @@ export default function App() {
           </div>
         );
       })}
-      <p style={{fontSize:13, color:T.hint, textAlign:'center', marginBottom:14}}>{t('아무것도 선택 안 해도 됩니다. 나중에 언제든 수정할 수 있어요.','Nothing needs to be selected. You can edit anytime later.')}</p>
+      <p style={{fontSize:15, color:T.hint, textAlign:'center', marginBottom:14}}>{t('아무것도 선택 안 해도 됩니다. 나중에 언제든 수정할 수 있어요.','Nothing needs to be selected. You can edit anytime later.')}</p>
       <Btn onClick={()=>go('routine')} color={T.purple}>{t('예배 리듬 설정하기 →','Set Worship Rhythm →')}</Btn>
     </div>
   );
@@ -1805,9 +1805,9 @@ export default function App() {
       <ProgressBar pct={90} color={T.purple}/>
       <BackBtn onClick={()=>go('elements')} lang={lang}/>
       <Tag>{t('5단계 · 가족의 동의 구하기','Step 5 · Get Family Agreement')}</Tag>
-      <h2 style={{fontSize:25, fontWeight:800, color:T.text, lineHeight:1.3, letterSpacing:'-0.03em', marginBottom:4}}>{t('언제, 어디서','When and Where')}<br/>{t('예배할까요?','Will You Worship?')}</h2>
+      <h2 style={{fontSize:27, fontWeight:800, color:T.text, lineHeight:1.3, letterSpacing:'-0.03em', marginBottom:4}}>{t('언제, 어디서','When and Where')}<br/>{t('예배할까요?','Will You Worship?')}</h2>
       <Card style={{background:T.purpleBg, boxShadow:'none', border:`1px solid ${T.purpleBorder}`, marginBottom:16}}>
-        <p style={{fontSize:14, color:T.sub, lineHeight:1.85}}>{t('우리 가정에 맞는 때와 장소가 가장 좋은 리듬입니다.','The time and place that fits your family is the best rhythm.')}<br/>{t('가족이 모두 동의할 때까지 기다립니다.','Wait until everyone agrees.')}{' '}<strong style={{color:T.purple}}>{t('부부 또는 자녀의 의견을 서로 존중하는 것부터 가정예배의 시작입니다.','Respecting each other\'s opinions is where family worship begins.')}</strong></p>
+        <p style={{fontSize:16, color:T.sub, lineHeight:1.85}}>{t('우리 가정에 맞는 때와 장소가 가장 좋은 리듬입니다.','The time and place that fits your family is the best rhythm.')}<br/>{t('가족이 모두 동의할 때까지 기다립니다.','Wait until everyone agrees.')}{' '}<strong style={{color:T.purple}}>{t('부부 또는 자녀의 의견을 서로 존중하는 것부터 가정예배의 시작입니다.','Respecting each other\'s opinions is where family worship begins.')}</strong></p>
       </Card>
 
       {/* 이름 */}
@@ -1819,23 +1819,23 @@ export default function App() {
         <div key={item.key}>
           <div onClick={()=>setOpenRoutine(openRoutine===item.key?null:item.key)}
             style={{background:T.card, borderRadius:T.r, boxShadow: openRoutine===item.key ? `0 0 0 2px ${T.purple}` : T.shadowSm, padding:'16px 18px', marginBottom: openRoutine===item.key ? 0 : 10, cursor:'pointer', display:'flex', alignItems:'center', gap:12, borderBottomLeftRadius: openRoutine===item.key ? 0 : T.r, borderBottomRightRadius: openRoutine===item.key ? 0 : T.r}}>
-            <span style={{fontSize:20, flexShrink:0}}>{item.icon}</span>
+            <span style={{fontSize:22, flexShrink:0}}>{item.icon}</span>
             <div style={{flex:1}}>
-              <p style={{fontSize:15, fontWeight:700, color:T.text, marginBottom:2}}>{item.title}</p>
-              <p style={{fontSize:13, color: item.key==='covenant'&&routineChecks.covenant ? T.green : T.sub}}>{item.sub}</p>
+              <p style={{fontSize:17, fontWeight:700, color:T.text, marginBottom:2}}>{item.title}</p>
+              <p style={{fontSize:15, color: item.key==='covenant'&&routineChecks.covenant ? T.green : T.sub}}>{item.sub}</p>
             </div>
-            <span style={{fontSize:22, color:T.hint, transform: openRoutine===item.key?'rotate(180deg)':'none', transition:'transform 0.2s'}}>▾</span>
+            <span style={{fontSize:24, color:T.hint, transform: openRoutine===item.key?'rotate(180deg)':'none', transition:'transform 0.2s'}}>▾</span>
           </div>
           {openRoutine===item.key && (
             <div style={{background:T.card, borderTop:`1px solid ${T.border}`, borderRadius:`0 0 ${T.r} ${T.r}`, padding:'16px 18px', marginBottom:10, boxShadow:T.shadowSm}}>
               {item.key==='name' && (
                 <div onClick={e=>e.stopPropagation()}>
-                  <p style={{fontSize:13, color:T.sub, marginBottom:8, lineHeight:1.7}}>{t('한 단어만 입력하세요. 이 단어는 메인 페이지에 반영됩니다.','Enter one word. It will appear on your main screen.')}</p>
+                  <p style={{fontSize:15, color:T.sub, marginBottom:8, lineHeight:1.7}}>{t('한 단어만 입력하세요. 이 단어는 메인 페이지에 반영됩니다.','Enter one word. It will appear on your main screen.')}</p>
                   <div style={{display:'flex', gap:8}}>
-                    <input style={{flex:1, padding:'12px 14px', fontSize:14, border:`1px solid ${T.border}`, borderRadius:T.rSm, fontFamily:'inherit', background:T.bg, color:T.text}} placeholder={t('예) 훈이 / 철수 / ONE / GLORY','e.g. Kim / Lee / Grace / Ivy / King')} value={inputName} onChange={e=>setInputName(e.target.value)}/>
-                    <button onClick={()=>{if(inputName.trim())setWorshipName(inputName.trim());}} style={{padding:'10px 14px', background:T.purple, color:'#fff', border:'none', borderRadius:T.rSm, fontSize:14, cursor:'pointer', fontWeight:600, whiteSpace:'nowrap'}}>{t('저장','Save')}</button>
+                    <input style={{flex:1, padding:'12px 14px', fontSize:16, border:`1px solid ${T.border}`, borderRadius:T.rSm, fontFamily:'inherit', background:T.bg, color:T.text}} placeholder={t('예) 훈이 / 철수 / ONE / GLORY','e.g. Kim / Lee / Grace / Ivy / King')} value={inputName} onChange={e=>setInputName(e.target.value)}/>
+                    <button onClick={()=>{if(inputName.trim())setWorshipName(inputName.trim());}} style={{padding:'10px 14px', background:T.purple, color:'#fff', border:'none', borderRadius:T.rSm, fontSize:16, cursor:'pointer', fontWeight:600, whiteSpace:'nowrap'}}>{t('저장','Save')}</button>
                   </div>
-                  {worshipName && <p style={{fontSize:13, color:T.green, marginTop:6}}>✓ "{worshipName}" {t('이 단어가','has been set as your')} "{worshipName} {t('예배의 집','Worship House')}" {t('으로 반영되었습니다.','.')}</p>}
+                  {worshipName && <p style={{fontSize:15, color:T.green, marginTop:6}}>✓ "{worshipName}" {t('이 단어가','has been set as your')} "{worshipName} {t('예배의 집','Worship House')}" {t('으로 반영되었습니다.','.')}</p>}
                 </div>
               )}
               {item.key==='schedule' && (
@@ -1845,57 +1845,57 @@ export default function App() {
                     ['time', t('시간 (예: 저녁 7시)','Time (e.g. 7:00 PM)')],
                     ['place', t('장소 (예: 거실 식탁)','Place (e.g. Living room table)')]
                   ].map(([k,ph])=>(
-                    <input key={k} style={{width:'100%', padding:'12px 14px', fontSize:14, border:`1px solid ${T.border}`, borderRadius:T.rSm, marginBottom:8, fontFamily:'inherit', background:T.bg, color:T.text, boxSizing:'border-box'}} placeholder={ph} value={routineChecks[k]||''} onChange={e=>setRoutineChecks(p=>({...p,[k]:e.target.value}))}/>
+                    <input key={k} style={{width:'100%', padding:'12px 14px', fontSize:16, border:`1px solid ${T.border}`, borderRadius:T.rSm, marginBottom:8, fontFamily:'inherit', background:T.bg, color:T.text, boxSizing:'border-box'}} placeholder={ph} value={routineChecks[k]||''} onChange={e=>setRoutineChecks(p=>({...p,[k]:e.target.value}))}/>
                   ))}
                   <div style={{display:'flex', alignItems:'center', gap:8, cursor:'pointer', marginTop:4}} onClick={()=>setRoutineChecks(p=>({...p,phones:!p.phones}))}>
                     <div style={{width:20, height:20, borderRadius:6, border: routineChecks.phones ? `2px solid ${T.purple}` : `1.5px solid ${T.borderMid}`, background: routineChecks.phones ? T.purple : 'transparent', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0}}>
-                      {routineChecks.phones && <span style={{color:'#fff', fontSize:11}}>✓</span>}
+                      {routineChecks.phones && <span style={{color:'#fff', fontSize:13}}>✓</span>}
                     </div>
-                    <p style={{fontSize:14, color:T.sub}}>{t('스마트폰·TV 끄기 — 가족 모두 동의','Turn off phones & TV — everyone agrees')}</p>
+                    <p style={{fontSize:16, color:T.sub}}>{t('스마트폰·TV 끄기 — 가족 모두 동의','Turn off phones & TV — everyone agrees')}</p>
                   </div>
                 </div>
               )}
               {item.key==='covenant' && (
                 <div onClick={e=>e.stopPropagation()}>
                   <div style={{border:`1.5px dashed ${T.purple}40`, borderRadius:T.rSm, padding:'20px 18px', background:T.purpleBg, marginBottom:12}}>
-                    <p style={{fontSize:17, fontWeight:800, textAlign:'center', marginBottom:14, color:T.text, letterSpacing:'-0.01em'}}>{t('서약서','Family Covenant')}</p>
-                    <p style={{fontSize:13, color:T.sub, lineHeight:1.8, marginBottom:14, textAlign:'center'}}>
+                    <p style={{fontSize:19, fontWeight:800, textAlign:'center', marginBottom:14, color:T.text, letterSpacing:'-0.01em'}}>{t('서약서','Family Covenant')}</p>
+                    <p style={{fontSize:15, color:T.sub, lineHeight:1.8, marginBottom:14, textAlign:'center'}}>
                       {t('우리 가족은 오늘부터 대화식 가정예배를','Our family commits to practicing')}<br/>{t('정기적으로 드리기를 다짐합니다.','dialogic family worship regularly.')}
                     </p>
                     <div style={{borderTop:`1px solid ${T.purpleBorder}`, borderBottom:`1px solid ${T.purpleBorder}`, padding:'12px 4px', marginBottom:14}}>
-                      <p style={{fontSize:13, color:T.text, lineHeight:2}}>
+                      <p style={{fontSize:15, color:T.text, lineHeight:2}}>
                         {t('하나, 우리는 매주','We will worship every')} <strong style={{color:T.purple}}>{routineChecks.day||'______'}</strong> {t('요일','')}{t(' ','  ')}<strong style={{color:T.purple}}>{routineChecks.time||'______'}</strong> {t('시에 가정예배를 드립니다.','')}<br/>
                         {t('하나, 이 시간에는 스마트폰, 컴퓨터, TV를 끕니다.','We will turn off phones, computers, and TV.')}<br/>
                         {t('하나, 서로 판단하지 않고, 경청하고 공감합니다.','We will listen without judgment and empathize.')}<br/>
                         {t('하나, 하나님을 더 알아가고 서로가 더 친밀해 집니다.','We will grow closer to God and to each other.')}
                       </p>
                     </div>
-                    <p style={{fontSize:13, color:T.sub, textAlign:'center', marginBottom:18}}>
+                    <p style={{fontSize:15, color:T.sub, textAlign:'center', marginBottom:18}}>
                       {t('위 내용대로 성실하게 참여하기를 약속합니다.','We promise to participate faithfully.')}
                     </p>
-                    <p style={{fontSize:13, color:T.hint, textAlign:'right', marginBottom:12}}>{t('날짜:','Date:')} _____________________</p>
-                    <p style={{fontSize:13, color:T.hint, textAlign:'center', marginBottom:6}}>{t('서명:','Signed:')} ________________ &nbsp;&nbsp; ________________</p>
-                    <p style={{fontSize:13, color:T.hint, textAlign:'center'}}>________________ &nbsp;&nbsp; ________________</p>
+                    <p style={{fontSize:15, color:T.hint, textAlign:'right', marginBottom:12}}>{t('날짜:','Date:')} _____________________</p>
+                    <p style={{fontSize:15, color:T.hint, textAlign:'center', marginBottom:6}}>{t('서명:','Signed:')} ________________ &nbsp;&nbsp; ________________</p>
+                    <p style={{fontSize:15, color:T.hint, textAlign:'center'}}>________________ &nbsp;&nbsp; ________________</p>
                   </div>
 
                   {/* 내보내기 — 텍스트 직접 선택 복사 */}
                   <div style={{marginBottom:12}}>
-                    <p style={{fontSize:12, color:T.hint, marginBottom:6}}>📋 {t('아래 텍스트를 길게 눌러 전체 선택 후 복사하세요','Long-press the text below to select all and copy')}</p>
+                    <p style={{fontSize:14, color:T.hint, marginBottom:6}}>📋 {t('아래 텍스트를 길게 눌러 전체 선택 후 복사하세요','Long-press the text below to select all and copy')}</p>
                     <textarea readOnly
                       value={lang==='en'
                         ? `Family Covenant\n\nOur family commits to practicing dialogic family worship regularly.\n\nWe will worship every ${routineChecks.day||'______'} at ${routineChecks.time||'______'}.\nWe will turn off phones, computers, and TV.\nWe will listen without judgment and empathize.\nWe will grow closer to God and to each other.\n\nWe promise to participate faithfully.\n\nDate: _____________________\n\nSigned: ________________   ________________\n        ________________   ________________`
                         : `서약서\n\n우리 가족은 오늘부터 대화식 가정예배를 정기적으로 드리기를 다짐합니다.\n\n하나, 우리는 매주 ${routineChecks.day||'______'} 요일 ${routineChecks.time||'______'} 시에 가정예배를 드립니다.\n하나, 이 시간에는 스마트폰, 컴퓨터, TV를 끕니다.\n하나, 서로 판단하지 않고, 경청하고 공감합니다.\n하나, 하나님을 더 알아가고 서로가 더 친밀해 집니다.\n\n위 내용대로 성실하게 참여하기를 약속합니다.\n\n날짜: _____________________\n\n서명: ________________   ________________\n       ________________   ________________`}
-                      style={{width:'100%', padding:'12px', fontSize:12, border:`1px solid ${T.purpleBorder}`, borderRadius:T.rSm, background:'white', color:T.text, lineHeight:1.8, resize:'none', height:200, boxSizing:'border-box', fontFamily:'inherit'}}
+                      style={{width:'100%', padding:'12px', fontSize:14, border:`1px solid ${T.purpleBorder}`, borderRadius:T.rSm, background:'white', color:T.text, lineHeight:1.8, resize:'none', height:200, boxSizing:'border-box', fontFamily:'inherit'}}
                       onFocus={e=>e.target.select()}
                     />
                   </div>
 
-                  <p style={{fontSize:13, color:T.sub, lineHeight:1.5, marginBottom:10}}>{t('서약서를 출력하여 가족 모두 사인한 후 거실에 걸어두세요.','Print the covenant, have everyone sign it, and hang it in your living room.')}</p>
+                  <p style={{fontSize:15, color:T.sub, lineHeight:1.5, marginBottom:10}}>{t('서약서를 출력하여 가족 모두 사인한 후 거실에 걸어두세요.','Print the covenant, have everyone sign it, and hang it in your living room.')}</p>
                   <div style={{display:'flex', alignItems:'center', gap:8, cursor:'pointer'}} onClick={()=>setRoutineChecks(p=>({...p,covenant:!p.covenant}))}>
                     <div style={{width:20, height:20, borderRadius:6, border: routineChecks.covenant ? `2px solid ${T.green}` : `1.5px solid ${T.borderMid}`, background: routineChecks.covenant ? T.green : 'transparent', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0}}>
-                      {routineChecks.covenant && <span style={{color:'#fff', fontSize:11}}>✓</span>}
+                      {routineChecks.covenant && <span style={{color:'#fff', fontSize:13}}>✓</span>}
                     </div>
-                    <p style={{fontSize:14, color:T.sub}}>{t('서약서를 출력하고 가족 모두 사인하여 액자에 넣어서 벽에 걸었습니다.','We printed, signed, framed, and posted our covenant on the wall.')}</p>
+                    <p style={{fontSize:16, color:T.sub}}>{t('서약서를 출력하고 가족 모두 사인하여 액자에 넣어서 벽에 걸었습니다.','We printed, signed, framed, and posted our covenant on the wall.')}</p>
                   </div>
                 </div>
               )}
@@ -1948,12 +1948,12 @@ export default function App() {
         <div key={key} style={{background:T.card, borderRadius:T.r, boxShadow:T.shadowSm, marginBottom:8, overflow:'hidden'}}>
           <div onClick={()=>setOpenElem(isOpen ? null : key)}
             style={{display:'flex', alignItems:'center', gap:12, padding:'16px 18px', cursor:'pointer'}}>
-            <div style={{width:36, height:36, borderRadius:10, background:rs.bg, border:`1.5px solid ${rs.border}`, display:'flex', alignItems:'center', justifyContent:'center', fontSize:18, flexShrink:0}}>💬</div>
+            <div style={{width:36, height:36, borderRadius:10, background:rs.bg, border:`1.5px solid ${rs.border}`, display:'flex', alignItems:'center', justifyContent:'center', fontSize:22, flexShrink:0}}>💬</div>
             <div style={{flex:1}}>
-              <p style={{fontSize:15, fontWeight:700, color:T.text}}>{lang==='en' ? (e.nameEn||e.name) : e.name}</p>
-              <p style={{fontSize:13, color:T.sub, marginTop:2}}>{lang==='en' ? (e.defEn||e.def) : e.def}</p>
+              <p style={{fontSize:17, fontWeight:700, color:T.text}}>{lang==='en' ? (e.nameEn||e.name) : e.name}</p>
+              <p style={{fontSize:15, color:T.sub, marginTop:2}}>{lang==='en' ? (e.defEn||e.def) : e.def}</p>
             </div>
-            <span style={{fontSize:22, color:T.hint, transform:isOpen?'rotate(180deg)':'none', transition:'transform 0.2s'}}>▾</span>
+            <span style={{fontSize:24, color:T.hint, transform:isOpen?'rotate(180deg)':'none', transition:'transform 0.2s'}}>▾</span>
           </div>
           {isOpen && (
             <div style={{borderTop:`1px solid ${T.border}`, padding:'12px 16px 16px'}}>
@@ -1961,8 +1961,8 @@ export default function App() {
                 <div>
                   {/* 본문 표시 */}
                   <div style={{background:rs.bg, border:`1px solid ${rs.border}`, borderRadius:T.rSm, padding:'12px 14px', marginBottom:12}}>
-                    <p style={{fontSize:11, color:rs.color, fontWeight:700, marginBottom:4}}>{lang==='en' ? (activeSeries?.titleEn||activeSeries?.title) : activeSeries?.title} · {t('','Week ')}{activeItem.week} · {convertRef(activeItem.ref, lang)}</p>
-                    <p style={{fontSize:13, color:T.sub, lineHeight:1.75}}>{s_.wordRoomSeries}</p>
+                    <p style={{fontSize:13, color:rs.color, fontWeight:700, marginBottom:4}}>{lang==='en' ? (activeSeries?.titleEn||activeSeries?.title) : activeSeries?.title} · {t('','Week ')}{activeItem.week} · {convertRef(activeItem.ref, lang)}</p>
+                    <p style={{fontSize:15, color:T.sub, lineHeight:1.75}}>{s_.wordRoomSeries}</p>
                   </div>
                   {/* 연령별 질문 또는 기본 질문 */}
                   {(() => {
@@ -1989,39 +1989,39 @@ export default function App() {
                       <div>
                         {hasAgeQ && (
                           <div style={{display:'flex', alignItems:'center', gap:8, marginBottom:10, background:T.purpleBg, border:`1px solid ${T.purpleBorder}`, borderRadius:T.rSm, padding:'8px 12px'}}>
-                            <span style={{fontSize:18}}>{AGE_GROUPS.find(a=>a.id===ag)?.icon}</span>
-                            <p style={{fontSize:13, color:T.purple, fontWeight:700}}>{lang==='en' ? AGE_GROUPS.find(a=>a.id===ag)?.labelEn : AGE_GROUPS.find(a=>a.id===ag)?.label} {t('맞춤 질문','Customized Questions')}</p>
+                            <span style={{fontSize:22}}>{AGE_GROUPS.find(a=>a.id===ag)?.icon}</span>
+                            <p style={{fontSize:15, color:T.purple, fontWeight:700}}>{lang==='en' ? AGE_GROUPS.find(a=>a.id===ag)?.labelEn : AGE_GROUPS.find(a=>a.id===ag)?.label} {t('맞춤 질문','Customized Questions')}</p>
                           </div>
                         )}
                         {!hasAgeQ && !ag && (
                           <div style={{marginBottom:10, background:T.amberBg, border:`1px solid ${T.amberBorder}`, borderRadius:T.rSm, padding:'8px 12px'}}>
-                            <p style={{fontSize:12, color:T.amber}}>💡 t('4단계에서 자녀 연령대를 선택하면 맞춤 질문이 표시됩니다.','Select your child\'s age in Step 4 to see customized questions.')</p>
+                            <p style={{fontSize:14, color:T.amber}}>💡 t('4단계에서 자녀 연령대를 선택하면 맞춤 질문이 표시됩니다.','Select your child\'s age in Step 4 to see customized questions.')</p>
                           </div>
                         )}
                         {questions.map((q,i)=>(
                           <div key={i} style={{marginBottom:12}}>
                             <div style={{background:q.bg, border:`1px solid ${q.border}`, borderRadius:T.rSm, padding:'12px 14px', marginBottom:6}}>
-                              <p style={{fontSize:13, fontWeight:700, color:q.color, marginBottom:6}}>{q.label}</p>
+                              <p style={{fontSize:15, fontWeight:700, color:q.color, marginBottom:6}}>{q.label}</p>
                               {q.qs.map((qs,j)=>(
                                 <div key={j} style={{display:'flex', gap:8, padding:'4px 0', alignItems:'flex-start'}}>
                                   <div style={{width:16, height:16, borderRadius:'50%', background:q.color, display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0, marginTop:1}}>
-                                    <span style={{color:'#fff', fontSize:8, fontWeight:700}}>Q</span>
+                                    <span style={{color:'#fff', fontSize:12, fontWeight:700}}>Q</span>
                                   </div>
-                                  <p style={{fontSize:13, color:T.text, lineHeight:1.7}}>{qs}</p>
+                                  <p style={{fontSize:15, color:T.text, lineHeight:1.7}}>{qs}</p>
                                 </div>
                               ))}
                             </div>
                             {/* 내 질문 — 각 섹션 아래 */}
                             <div style={{background:'white', border:`1px dashed ${q.border}`, borderRadius:T.rSm, padding:'8px 12px', display:'flex', alignItems:'center', gap:8}}>
-                              <span style={{fontSize:13, color:q.color, fontWeight:700, flexShrink:0}}>{t('✏️ 내 질문:','✏️ My Question:')}</span>
-                              <input placeholder={t('여기에 내 질문을 써보세요...','Write your own question here...')} style={{flex:1, border:'none', outline:'none', fontSize:13, color:T.text, background:'transparent', fontFamily:'inherit'}}/>
+                              <span style={{fontSize:15, color:q.color, fontWeight:700, flexShrink:0}}>{t('✏️ 내 질문:','✏️ My Question:')}</span>
+                              <input placeholder={t('여기에 내 질문을 써보세요...','Write your own question here...')} style={{flex:1, border:'none', outline:'none', fontSize:15, color:T.text, background:'transparent', fontFamily:'inherit'}}/>
                             </div>
                           </div>
                         ))}
                         {hasAgeQ && aq[ag].activity && (lang==='ko' || aq[ag].en_activity) && (
                           <div style={{background:'#FFF8E7', border:`1px solid #F5D78E`, borderRadius:T.rSm, padding:'12px 14px', marginBottom:8}}>
-                            <p style={{fontSize:13, fontWeight:700, color:'#B8860B', marginBottom:4}}>{t('🎨 연령별 활동','🎨 Age-Based Activity')}</p>
-                            <p style={{fontSize:13, color:T.text, lineHeight:1.7}}>{lang==='en' ? (aq[ag].en_activity||aq[ag].activity) : aq[ag].activity}</p>
+                            <p style={{fontSize:15, fontWeight:700, color:'#B8860B', marginBottom:4}}>{t('🎨 연령별 활동','🎨 Age-Based Activity')}</p>
+                            <p style={{fontSize:15, color:T.text, lineHeight:1.7}}>{lang==='en' ? (aq[ag].en_activity||aq[ag].activity) : aq[ag].activity}</p>
                           </div>
                         )}
                       </div>
@@ -2029,8 +2029,8 @@ export default function App() {
                   })()}
                   {/* 챌린지 — 연령별 우선, 없으면 기본 */}
                   <div style={{background:T.amberBg, border:`1px solid ${T.amberBorder}`, borderRadius:T.rSm, padding:'12px 14px', marginBottom:10}}>
-                    <p style={{fontSize:13, fontWeight:700, color:T.amber, marginBottom:4}}>{t('🎯 이번 주 챌린지','🎯 This Week\'s Challenge')}</p>
-                    <p style={{fontSize:13, color:T.text, lineHeight:1.7}}>
+                    <p style={{fontSize:15, fontWeight:700, color:T.amber, marginBottom:4}}>{t('🎯 이번 주 챌린지','🎯 This Week\'s Challenge')}</p>
+                    <p style={{fontSize:15, color:T.text, lineHeight:1.7}}>
                       {(() => {
                         const ag = ageGroup === 'adult' ? 'adult' : ageGroup;
                         const ageQ = activeItem.ageQuestions?.[ag];
@@ -2043,15 +2043,15 @@ export default function App() {
                   </div>
                   {/* 질문 가이드 버튼 */}
                   <button onClick={()=>setShowQGuide(true)}
-                    style={{width:'100%', padding:'9px', background:'white', border:`1.5px solid ${T.purpleBorder}`, borderRadius:T.rSm, fontSize:13, fontWeight:700, color:T.purple, cursor:'pointer'}}>
+                    style={{width:'100%', padding:'9px', background:'white', border:`1.5px solid ${T.purpleBorder}`, borderRadius:T.rSm, fontSize:15, fontWeight:700, color:T.purple, cursor:'pointer'}}>
                     {t('💡 질문 가이드 보기','💡 View Question Guide')}
                   </button>
                 </div>
               ) : (
                 <div style={{textAlign:'center', padding:'12px 0'}}>
-                  <p style={{fontSize:14, color:T.sub, marginBottom:12, lineHeight:1.75}}>{t('말씀 본문을 먼저 선택해주세요.','Please select a Scripture passage first.')}</p>
+                  <p style={{fontSize:16, color:T.sub, marginBottom:12, lineHeight:1.75}}>{t('말씀 본문을 먼저 선택해주세요.','Please select a Scripture passage first.')}</p>
                   <button onClick={()=>go('series')}
-                    style={{padding:'9px 20px', background:rs.bg, border:`1.5px solid ${rs.border}`, borderRadius:T.rFull, fontSize:13, fontWeight:700, color:rs.color, cursor:'pointer'}}>
+                    style={{padding:'9px 20px', background:rs.bg, border:`1.5px solid ${rs.border}`, borderRadius:T.rFull, fontSize:15, fontWeight:700, color:rs.color, cursor:'pointer'}}>
                     {t('말씀 선택하러 가기 →','Select Scripture →')}
                   </button>
                 </div>
@@ -2066,17 +2066,17 @@ export default function App() {
         <div key={key} style={{background:T.card, borderRadius:T.r, boxShadow:T.shadowSm, marginBottom:8, overflow:'hidden'}}>
           <div onClick={()=>setOpenElem(isOpen ? null : key)}
             style={{display:'flex', alignItems:'center', gap:12, padding:'16px 18px', cursor:'pointer'}}>
-            <div style={{width:36, height:36, borderRadius:10, background:rs.bg, border:`1.5px solid ${rs.border}`, display:'flex', alignItems:'center', justifyContent:'center', fontSize:18, flexShrink:0}}>🤝</div>
+            <div style={{width:36, height:36, borderRadius:10, background:rs.bg, border:`1.5px solid ${rs.border}`, display:'flex', alignItems:'center', justifyContent:'center', fontSize:22, flexShrink:0}}>🤝</div>
             <div style={{flex:1}}>
-              <p style={{fontSize:15, fontWeight:700, color:T.text}}>{lang==='en' ? (e.nameEn||e.name) : e.name}</p>
-              <p style={{fontSize:13, color:T.sub, marginTop:2}}>{lang==='en' ? (e.defEn||e.def) : e.def}</p>
+              <p style={{fontSize:17, fontWeight:700, color:T.text}}>{lang==='en' ? (e.nameEn||e.name) : e.name}</p>
+              <p style={{fontSize:15, color:T.sub, marginTop:2}}>{lang==='en' ? (e.defEn||e.def) : e.def}</p>
             </div>
-            <span style={{fontSize:22, color:T.hint, transform:isOpen?'rotate(180deg)':'none', transition:'transform 0.2s'}}>▾</span>
+            <span style={{fontSize:24, color:T.hint, transform:isOpen?'rotate(180deg)':'none', transition:'transform 0.2s'}}>▾</span>
           </div>
           {isOpen && (
             <div style={{borderTop:`1px solid ${T.border}`, padding:'12px 16px 16px'}}>
-              <p style={{fontSize:13, color:T.sub, lineHeight:1.7, marginBottom:10}}>{lang==='en' ? (e.whyEn||e.why) : e.why}</p>
-              <p style={{fontSize:13, fontWeight:700, color:rs.color, marginBottom:8}}>{t('오늘 데이트 체크리스트','Today\'s Date Checklist')}</p>
+              <p style={{fontSize:15, color:T.sub, lineHeight:1.7, marginBottom:10}}>{lang==='en' ? (e.whyEn||e.why) : e.why}</p>
+              <p style={{fontSize:15, fontWeight:700, color:rs.color, marginBottom:8}}>{t('오늘 데이트 체크리스트','Today\'s Date Checklist')}</p>
               {(lang==='en' ? [
                 'Did you discuss where your child wants to go?',
                 'Did you prepare 2-3 questions to ask?',
@@ -2092,11 +2092,11 @@ export default function App() {
               ]).map((item,k)=>(
                 <div key={k} style={{display:'flex', gap:8, padding:'5px 0', alignItems:'flex-start'}}>
                   <div style={{width:16, height:16, borderRadius:4, border:`1.5px solid ${rs.border}`, flexShrink:0, marginTop:1, background:'rgba(255,255,255,0.7)'}}/>
-                  <p style={{fontSize:13, color:T.text, lineHeight:1.7}}>{item}</p>
+                  <p style={{fontSize:15, color:T.text, lineHeight:1.7}}>{item}</p>
                 </div>
               ))}
               <div style={{marginTop:10, background:rs.bg, borderLeft:`2px solid ${rs.color}`, padding:'7px 10px', borderRadius:`0 ${T.rSm} ${T.rSm} 0`}}>
-                <p style={{fontSize:13, color:rs.color, lineHeight:1.75}}>💡 {t('오늘 목표는 관계입니다. 신앙 이야기는 꺼내지 않아도 됩니다.','Today\'s goal is relationship. You don\'t need to bring up faith.')}</p>
+                <p style={{fontSize:15, color:rs.color, lineHeight:1.75}}>💡 {t('오늘 목표는 관계입니다. 신앙 이야기는 꺼내지 않아도 됩니다.','Today\'s goal is relationship. You don\'t need to bring up faith.')}</p>
               </div>
             </div>
           )}
@@ -2108,21 +2108,21 @@ export default function App() {
         <div key={key} style={{background:T.card, borderRadius:T.r, boxShadow:T.shadowSm, marginBottom:8, overflow:'hidden'}}>
           <div onClick={()=>setOpenElem(isOpen ? null : key)}
             style={{display:'flex', alignItems:'center', gap:12, padding:'16px 18px', cursor:'pointer'}}>
-            <div style={{width:36, height:36, borderRadius:10, background:rs.bg, border:`1.5px solid ${rs.border}`, display:'flex', alignItems:'center', justifyContent:'center', fontSize:18, flexShrink:0}}>
+            <div style={{width:36, height:36, borderRadius:10, background:rs.bg, border:`1.5px solid ${rs.border}`, display:'flex', alignItems:'center', justifyContent:'center', fontSize:22, flexShrink:0}}>
               {e.id==='candle'?'🕯️':e.id==='bless'?'🙌':e.id==='meal'?'🍽️':e.id==='share'?'💬':e.id==='thanks'?'🙏':e.id==='give'?'💝':e.id==='read'?'📖':e.id==='meditate'?'🤫':e.id==='talk'?'🗣️':e.id==='debate'?'⚡':e.id==='snack'?'☕':e.id==='pray'?'🙏':e.id==='praise'?'🎵':e.id==='challenge'?'🎯':e.id==='issue'?'🌍':e.id==='send'?'✉️':'✨'}
             </div>
             <div style={{flex:1}}>
-              <p style={{fontSize:15, fontWeight:700, color:T.text}}>{lang==='en' ? (e.nameEn||e.name) : e.name}</p>
-              <p style={{fontSize:13, color:T.sub, marginTop:2}}>{lang==='en' ? (e.defEn||e.def) : e.def}</p>
+              <p style={{fontSize:17, fontWeight:700, color:T.text}}>{lang==='en' ? (e.nameEn||e.name) : e.name}</p>
+              <p style={{fontSize:15, color:T.sub, marginTop:2}}>{lang==='en' ? (e.defEn||e.def) : e.def}</p>
             </div>
-            <span style={{fontSize:22, color:T.hint, transform:isOpen?'rotate(180deg)':'none', transition:'transform 0.2s'}}>▾</span>
+            <span style={{fontSize:24, color:T.hint, transform:isOpen?'rotate(180deg)':'none', transition:'transform 0.2s'}}>▾</span>
           </div>
           {isOpen && (
             <div style={{borderTop:`1px solid ${T.border}`, padding:'12px 16px 14px'}}>
-              {e.why && <p style={{fontSize:13, color:T.sub, lineHeight:1.7, marginBottom:8}}><span style={{fontWeight:700, color:T.text}}>{t('왜 하는가? ','Why do this? ')}</span>{lang==='en' ? (e.whyEn||e.why) : e.why}</p>}
+              {e.why && <p style={{fontSize:15, color:T.sub, lineHeight:1.7, marginBottom:8}}><span style={{fontWeight:700, color:T.text}}>{t('왜 하는가? ','Why do this? ')}</span>{lang==='en' ? (e.whyEn||e.why) : e.why}</p>}
               {e.tip && (
                 <div style={{background:rs.bg, borderLeft:`2px solid ${rs.color}`, borderRadius:`0 ${T.rSm} ${T.rSm} 0`, padding:'7px 10px', marginBottom: e.blessings ? 12 : 0}}>
-                  <p style={{fontSize:13, color:rs.color, lineHeight:1.75}}>💡 {lang==='en' ? (e.tipEn||e.tip) : e.tip}</p>
+                  <p style={{fontSize:15, color:rs.color, lineHeight:1.75}}>💡 {lang==='en' ? (e.tipEn||e.tip) : e.tip}</p>
                 </div>
               )}
               {e.blessings && (
@@ -2130,23 +2130,23 @@ export default function App() {
                   {e.blessings.map((b, bi) => (
                     <div key={bi} style={{background:rs.bg, border:`1px solid ${rs.border}`, borderRadius:T.rSm, padding:'12px 14px', marginBottom:8}}>
                       <div style={{display:'flex', alignItems:'center', gap:6, marginBottom:6}}>
-                        <p style={{fontSize:13, fontWeight:700, color:rs.color}}>{lang==='en' ? b.labelEn : b.label}</p>
-                        {(lang==='en' ? b.refEn : b.ref) && <span style={{fontSize:11, color:rs.color, opacity:0.7, background:'rgba(255,255,255,0.6)', padding:'2px 8px', borderRadius:99}}>{lang==='en' ? b.refEn : b.ref}</span>}
+                        <p style={{fontSize:15, fontWeight:700, color:rs.color}}>{lang==='en' ? b.labelEn : b.label}</p>
+                        {(lang==='en' ? b.refEn : b.ref) && <span style={{fontSize:13, color:rs.color, opacity:0.7, background:'rgba(255,255,255,0.6)', padding:'2px 8px', borderRadius:99}}>{lang==='en' ? b.refEn : b.ref}</span>}
                       </div>
                       {lang==='en' ? (
                         <div>
                           {b.themes.map((theme, ti) => (
                             <div key={ti} style={{display:'flex', gap:8, padding:'3px 0', alignItems:'flex-start'}}>
-                              <span style={{color:rs.color, fontSize:12, flexShrink:0, marginTop:2}}>•</span>
-                              <p style={{fontSize:13, color:T.text, lineHeight:1.75}}>{theme}</p>
+                              <span style={{color:rs.color, fontSize:14, flexShrink:0, marginTop:2}}>•</span>
+                              <p style={{fontSize:15, color:T.text, lineHeight:1.75}}>{theme}</p>
                             </div>
                           ))}
-                          <p style={{fontSize:12, color:rs.color, fontStyle:'italic', marginTop:8, borderTop:`1px solid ${rs.border}`, paddingTop:8}}>
+                          <p style={{fontSize:14, color:rs.color, fontStyle:'italic', marginTop:8, borderTop:`1px solid ${rs.border}`, paddingTop:8}}>
                             Use these themes to speak your own blessing over them. ✨
                           </p>
                         </div>
                       ) : (
-                        <p style={{fontSize:13, color:T.text, lineHeight:1.85}}>{b.text}</p>
+                        <p style={{fontSize:15, color:T.text, lineHeight:1.85}}>{b.text}</p>
                       )}
                     </div>
                   ))}
@@ -2163,8 +2163,8 @@ export default function App() {
         {/* 언어 토글 */}
         <div style={{position:'fixed', top:12, right:16, zIndex:999}}>
           <button onClick={()=>setLang(lang==='ko'?'en':'ko')}
-            style={{background:'white', border:`1.5px solid ${T.border}`, borderRadius:99, padding:'6px 12px', fontSize:13, cursor:'pointer', display:'flex', alignItems:'center', gap:6, boxShadow:T.shadowSm}}>
-            <span style={{fontSize:15}}>{lang==='ko'?'🇰🇷':'🇺🇸'}</span>
+            style={{background:'white', border:`1.5px solid ${T.border}`, borderRadius:99, padding:'6px 12px', fontSize:15, cursor:'pointer', display:'flex', alignItems:'center', gap:6, boxShadow:T.shadowSm}}>
+            <span style={{fontSize:17}}>{lang==='ko'?'🇰🇷':'🇺🇸'}</span>
             <span>{lang==='ko'?'KO':'EN'}</span>
           </button>
         </div>
@@ -2173,35 +2173,35 @@ export default function App() {
           <div style={{position:'fixed', inset:0, background:'rgba(0,0,0,0.5)', zIndex:100, display:'flex', alignItems:'flex-end'}}>
             <div style={{background:T.bg, borderRadius:'20px 20px 0 0', padding:'20px 16px', width:'100%', maxHeight:'80vh', overflowY:'auto', boxSizing:'border-box'}}>
               <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:16}}>
-                <p style={{fontSize:17, fontWeight:800, color:T.text}}>{s_.questionGuideTitle}</p>
-                <button onClick={()=>setShowQGuide(false)} style={{background:'none', border:'none', fontSize:20, cursor:'pointer', color:T.sub}}>✕</button>
+                <p style={{fontSize:19, fontWeight:800, color:T.text}}>{s_.questionGuideTitle}</p>
+                <button onClick={()=>setShowQGuide(false)} style={{background:'none', border:'none', fontSize:22, cursor:'pointer', color:T.sub}}>✕</button>
               </div>
-              <p style={{fontSize:13, color:T.sub, marginBottom:14, lineHeight:1.75}}>{t('좋은 질문 하나가 긴 설명보다 더 깊이 남습니다.','One good question goes deeper than a long explanation.')}</p>
+              <p style={{fontSize:15, color:T.sub, marginBottom:14, lineHeight:1.75}}>{t('좋은 질문 하나가 긴 설명보다 더 깊이 남습니다.','One good question goes deeper than a long explanation.')}</p>
               {QGUIDE.map((q,i)=>(
                 <div key={i} style={{background:q.bg, border:`1px solid ${q.border}`, borderRadius:T.rSm, padding:'14px', marginBottom:10}}>
                   <div style={{display:'flex', alignItems:'center', gap:6, marginBottom:4}}>
-                    <span style={{fontSize:11, color:q.color, fontWeight:700, background:'rgba(255,255,255,0.6)', padding:'2px 8px', borderRadius:99}}>{q.label}</span>
+                    <span style={{fontSize:13, color:q.color, fontWeight:700, background:'rgba(255,255,255,0.6)', padding:'2px 8px', borderRadius:99}}>{q.label}</span>
                   </div>
                   <div style={{display:'flex', alignItems:'center', gap:6, marginBottom:6}}>
-                    <span style={{fontSize:14}}>{q.icon}</span>
-                    <p style={{fontSize:14, fontWeight:700, color:q.color}}>{q.type}</p>
+                    <span style={{fontSize:16}}>{q.icon}</span>
+                    <p style={{fontSize:16, fontWeight:700, color:q.color}}>{q.type}</p>
                   </div>
-                  <p style={{fontSize:13, color:q.color, fontWeight:700, marginBottom:4}}>{t('핵심:','Key:')} {q.core}</p>
-                  <p style={{fontSize:13, color:T.sub, marginBottom:8, lineHeight:1.75}}>{q.desc}</p>
+                  <p style={{fontSize:15, color:q.color, fontWeight:700, marginBottom:4}}>{t('핵심:','Key:')} {q.core}</p>
+                  <p style={{fontSize:15, color:T.sub, marginBottom:8, lineHeight:1.75}}>{q.desc}</p>
                   <div style={{borderTop:`1px solid ${q.border}`, paddingTop:8}}>
-                    <p style={{fontSize:12, color:q.color, fontWeight:700, marginBottom:4}}>{t('예시','Examples')}</p>
-                    {q.ex.map((ex,j)=><p key={j} style={{fontSize:13, color:T.text, padding:'2px 0 2px 10px', position:'relative', lineHeight:1.7}}><span style={{position:'absolute',left:0}}>·</span>{ex}</p>)}
+                    <p style={{fontSize:14, color:q.color, fontWeight:700, marginBottom:4}}>{t('예시','Examples')}</p>
+                    {q.ex.map((ex,j)=><p key={j} style={{fontSize:15, color:T.text, padding:'2px 0 2px 10px', position:'relative', lineHeight:1.7}}><span style={{position:'absolute',left:0}}>·</span>{ex}</p>)}
                   </div>
                 </div>
               ))}
               <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:8, marginTop:4, marginBottom:8}}>
                 <div style={{background:'#FEF2F1', border:'1px solid #FBBCB8', borderRadius:T.rSm, padding:'10px'}}>
-                  <p style={{fontSize:13, fontWeight:700, color:'#A32D2D', marginBottom:4}}>{s_.qgNoLabel}</p>
-                  {s_.qgNoItems.map((t,i)=><p key={i} style={{fontSize:13, color:'#791F1F', lineHeight:1.7}}>· {t}</p>)}
+                  <p style={{fontSize:15, fontWeight:700, color:'#A32D2D', marginBottom:4}}>{s_.qgNoLabel}</p>
+                  {s_.qgNoItems.map((t,i)=><p key={i} style={{fontSize:15, color:'#791F1F', lineHeight:1.7}}>· {t}</p>)}
                 </div>
                 <div style={{background:T.greenBg, border:`1px solid ${T.greenBorder}`, borderRadius:T.rSm, padding:'10px'}}>
-                  <p style={{fontSize:13, fontWeight:700, color:T.green, marginBottom:4}}>{s_.qgYesLabel}</p>
-                  {s_.qgYesItems.map((t,i)=><p key={i} style={{fontSize:13, color:T.teal, lineHeight:1.7}}>· {t}</p>)}
+                  <p style={{fontSize:15, fontWeight:700, color:T.green, marginBottom:4}}>{s_.qgYesLabel}</p>
+                  {s_.qgYesItems.map((t,i)=><p key={i} style={{fontSize:15, color:T.teal, lineHeight:1.7}}>· {t}</p>)}
                 </div>
               </div>
             </div>
@@ -2213,7 +2213,7 @@ export default function App() {
           {/* 헤더 */}
           <div style={{textAlign:'center', paddingTop:8, marginBottom:20}}>
             <div style={{fontSize:52, marginBottom:10}}>🏠</div>
-            <p style={{fontSize:13, color:T.green, fontWeight:700, letterSpacing:'0.06em', marginBottom:8}}>
+            <p style={{fontSize:15, color:T.green, fontWeight:700, letterSpacing:'0.06em', marginBottom:8}}>
               {(() => {
                 const now = new Date();
                 if(lang==='en') {
@@ -2226,8 +2226,8 @@ export default function App() {
               {lang==='en' ? (worshipName ? <>{worshipName} Family<br/>Worship House</> : <>Our Family<br/>Worship House</>) : <>{worshipName ? `${worshipName} 예배의 집` : '우리 가정 예배의 집'}</>}
             </h2>
             <div style={{background:T.greenBg, border:`1px solid ${T.greenBorder}`, borderRadius:T.r, padding:'16px 18px', textAlign:'center', marginBottom:20}}>
-              <p style={{fontSize:14, color:T.green, fontWeight:700, marginBottom:6}}>{t('완벽하지 않아도 됩니다.','It doesn\'t have to be perfect.')}</p>
-              <p style={{fontSize:13, color:T.teal, lineHeight:1.75}}>{t('오늘, 지금 이 모습 그대로 시작하면 됩니다.','Start today, just as you are.')}<br/>{t('세상에서 가장 작은 교회가','The smallest church in the world')}<br/>{t('지금 이 자리에서 시작됩니다.','begins right here.')}</p>
+              <p style={{fontSize:16, color:T.green, fontWeight:700, marginBottom:6}}>{t('완벽하지 않아도 됩니다.','It doesn\'t have to be perfect.')}</p>
+              <p style={{fontSize:15, color:T.teal, lineHeight:1.75}}>{t('오늘, 지금 이 모습 그대로 시작하면 됩니다.','Start today, just as you are.')}<br/>{t('세상에서 가장 작은 교회가','The smallest church in the world')}<br/>{t('지금 이 자리에서 시작됩니다.','begins right here.')}</p>
             </div>
           </div>
 
@@ -2241,11 +2241,11 @@ export default function App() {
             return (
               <div style={{marginBottom:20}}>
                 <div style={{display:'flex', alignItems:'center', gap:8, marginBottom:10}}>
-                  <span style={{fontSize:18}}>🚪</span>
-                  <p style={{fontSize:16, fontWeight:800, color:rs.color}}>{t('모임의 방','Gathering Room')}</p>
+                  <span style={{fontSize:22}}>🚪</span>
+                  <p style={{fontSize:18, fontWeight:800, color:rs.color}}>{t('모임의 방','Gathering Room')}</p>
                 </div>
                 {elems.map(e => <ElemCard key={e.id} roomId='gather' e={e} rs={rs}/>)}
-                {elems.length === 0 && <p style={{fontSize:13, color:T.hint, padding:'8px 0'}}>{t('선택된 요소가 없습니다.','No elements selected.')}</p>}
+                {elems.length === 0 && <p style={{fontSize:15, color:T.hint, padding:'8px 0'}}>{t('선택된 요소가 없습니다.','No elements selected.')}</p>}
               </div>
             );
           })()}
@@ -2257,33 +2257,33 @@ export default function App() {
             return (
               <div style={{marginBottom:20}}>
                 <div style={{display:'flex', alignItems:'center', gap:8, marginBottom:10}}>
-                  <span style={{fontSize:18}}>📖</span>
-                  <p style={{fontSize:16, fontWeight:800, color:rs.color}}>{s_.wordRoomTitle}</p>
+                  <span style={{fontSize:22}}>📖</span>
+                  <p style={{fontSize:18, fontWeight:800, color:rs.color}}>{s_.wordRoomTitle}</p>
                 </div>
                 {/* {t('말씀 선택하기','Select Scripture')} 카드 — 항상 첫 번째 */}
                 <div style={{background:T.card, borderRadius:T.r, boxShadow:T.shadowSm, marginBottom:8, overflow:'hidden'}}>
                   {activeItem ? (
                     <div style={{padding:'16px 18px'}}>
                       <div style={{display:'flex', alignItems:'center', gap:8, marginBottom:4}}>
-                        <p style={{fontSize:13, color:rs.color, fontWeight:700}}>{lang==='en' ? (activeSeries?.titleEn||activeSeries?.title) : activeSeries?.title} · {t('','Week ')}{activeItem.week}</p>
+                        <p style={{fontSize:15, color:rs.color, fontWeight:700}}>{lang==='en' ? (activeSeries?.titleEn||activeSeries?.title) : activeSeries?.title} · {t('','Week ')}{activeItem.week}</p>
                       </div>
-                      <p style={{fontSize:16, fontWeight:800, color:T.text, marginBottom:2}}>{lang==='en' ? (activeItem.titleEn||activeItem.title) : activeItem.title}</p>
-                      <p style={{fontSize:14, color:rs.color, fontWeight:600, marginBottom:8}}>{convertRef(activeItem.ref, lang)}</p>
-                      <p style={{fontSize:13, color:T.sub, marginBottom:10}}>{t('각자 성경책을 사용하세요','Use your own Bible')}</p>
+                      <p style={{fontSize:18, fontWeight:800, color:T.text, marginBottom:2}}>{lang==='en' ? (activeItem.titleEn||activeItem.title) : activeItem.title}</p>
+                      <p style={{fontSize:16, color:rs.color, fontWeight:600, marginBottom:8}}>{convertRef(activeItem.ref, lang)}</p>
+                      <p style={{fontSize:15, color:T.sub, marginBottom:10}}>{t('각자 성경책을 사용하세요','Use your own Bible')}</p>
                       <button onClick={()=>go('series')}
-                        style={{padding:'6px 14px', background:rs.bg, border:`1px solid ${rs.border}`, borderRadius:T.rFull, fontSize:13, fontWeight:700, color:rs.color, cursor:'pointer'}}>
+                        style={{padding:'6px 14px', background:rs.bg, border:`1px solid ${rs.border}`, borderRadius:T.rFull, fontSize:15, fontWeight:700, color:rs.color, cursor:'pointer'}}>
                         {t('말씀 변경하기','Change Scripture')}
                       </button>
                     </div>
                   ) : (
                     <div onClick={()=>go('series')}
                       style={{display:'flex', alignItems:'center', gap:12, padding:'16px 18px', cursor:'pointer', background:rs.bg, border:`1.5px dashed ${rs.border}`, borderRadius:T.r}}>
-                      <div style={{width:36, height:36, borderRadius:10, background:'white', border:`1.5px solid ${rs.border}`, display:'flex', alignItems:'center', justifyContent:'center', fontSize:18, flexShrink:0}}>📚</div>
+                      <div style={{width:36, height:36, borderRadius:10, background:'white', border:`1.5px solid ${rs.border}`, display:'flex', alignItems:'center', justifyContent:'center', fontSize:22, flexShrink:0}}>📚</div>
                       <div style={{flex:1}}>
-                        <p style={{fontSize:15, fontWeight:700, color:rs.color}}>{t('말씀 선택하기','Select Scripture')}</p>
-                        <p style={{fontSize:13, color:rs.color, opacity:0.8, marginTop:2}}>{t('시리즈 중 오늘 나눌 본문을 골라요','Choose today\'s passage from the series')}</p>
+                        <p style={{fontSize:17, fontWeight:700, color:rs.color}}>{t('말씀 선택하기','Select Scripture')}</p>
+                        <p style={{fontSize:15, color:rs.color, opacity:0.8, marginTop:2}}>{t('시리즈 중 오늘 나눌 본문을 골라요','Choose today\'s passage from the series')}</p>
                       </div>
-                      <span style={{fontSize:17, color:rs.color}}>›</span>
+                      <span style={{fontSize:19, color:rs.color}}>›</span>
                     </div>
                   )}
                 </div>
@@ -2299,8 +2299,8 @@ export default function App() {
             return (
               <div style={{marginBottom:20}}>
                 <div style={{display:'flex', alignItems:'center', gap:8, marginBottom:10}}>
-                  <span style={{fontSize:18}}>🙏</span>
-                  <p style={{fontSize:16, fontWeight:800, color:rs.color}}>{t('반응의 방','Response Room')}</p>
+                  <span style={{fontSize:22}}>🙏</span>
+                  <p style={{fontSize:18, fontWeight:800, color:rs.color}}>{t('반응의 방','Response Room')}</p>
                 </div>
                 {elems.map(e => <ElemCard key={e.id} roomId='response' e={e} rs={rs}/>)}
               </div>
@@ -2314,8 +2314,8 @@ export default function App() {
             return (
               <div style={{marginBottom:20}}>
                 <div style={{display:'flex', alignItems:'center', gap:8, marginBottom:10}}>
-                  <span style={{fontSize:18}}>🌍</span>
-                  <p style={{fontSize:16, fontWeight:800, color:rs.color}}>{t('보냄의 방','Sending Room')}</p>
+                  <span style={{fontSize:22}}>🌍</span>
+                  <p style={{fontSize:18, fontWeight:800, color:rs.color}}>{t('보냄의 방','Sending Room')}</p>
                 </div>
                 {elems.map(e => <ElemCard key={e.id} roomId='send' e={e} rs={rs}/>)}
               </div>
@@ -2336,7 +2336,7 @@ export default function App() {
       <div style={{display:'flex', flexWrap:'wrap', gap:6, marginTop:8}}>
         {opts.map(o => {
           const sel = debrief[k]===o;
-          return <button key={o} onClick={()=>pick(k,o)} style={{padding:'7px 14px', borderRadius:T.rFull, fontSize:13, fontWeight: sel?700:500, cursor:'pointer', border: sel?`2px solid ${color}`:`1px solid ${T.border}`, background: sel?bg:T.card, color: sel?color:T.sub, transition:'all 0.15s'}}>{o}</button>;
+          return <button key={o} onClick={()=>pick(k,o)} style={{padding:'7px 14px', borderRadius:T.rFull, fontSize:15, fontWeight: sel?700:500, cursor:'pointer', border: sel?`2px solid ${color}`:`1px solid ${T.border}`, background: sel?bg:T.card, color: sel?color:T.sub, transition:'all 0.15s'}}>{o}</button>;
         })}
       </div>
     );
@@ -2344,8 +2344,8 @@ export default function App() {
       <div>
         <BackBtn onClick={()=>go('worship')} lang={lang}/>
         <Tag>{t('예배 후 디브리핑','Post-Worship Reflection')}</Tag>
-        <h2 style={{fontSize:25, fontWeight:800, color:T.text, lineHeight:1.3, letterSpacing:'-0.03em', marginBottom:4}}>{s_.debriefTitle.split('\n')[0]}<br/>{s_.debriefTitle.split('\n')[1]}</h2>
-        <p style={{fontSize:14, color:T.sub, marginBottom:18, lineHeight:1.75}}>{t('매주 함께 돌아보며 우리 가정만의 예배를 다듬어 가세요.','Reflect together each week and refine your family worship.')}</p>
+        <h2 style={{fontSize:27, fontWeight:800, color:T.text, lineHeight:1.3, letterSpacing:'-0.03em', marginBottom:4}}>{s_.debriefTitle.split('\n')[0]}<br/>{s_.debriefTitle.split('\n')[1]}</h2>
+        <p style={{fontSize:16, color:T.sub, marginBottom:18, lineHeight:1.75}}>{t('매주 함께 돌아보며 우리 가정만의 예배를 다듬어 가세요.','Reflect together each week and refine your family worship.')}</p>
 
         {[
           {k:'mood', q:s_.debriefMoodTitle, opts:s_.debriefMoods, color:T.purple, bg:T.purpleBg, border:T.purpleBorder},
@@ -2355,14 +2355,14 @@ export default function App() {
           {k:'change', q:s_.debriefChangeTitle, opts:s_.debriefChangeOpts, color:T.purple, bg:T.purpleBg, border:T.purpleBorder},
         ].map(item=>(
           <Card key={item.k} style={{marginBottom:10}}>
-            <p style={{fontSize:14, fontWeight:700, color:T.text}}>{item.q}</p>
+            <p style={{fontSize:16, fontWeight:700, color:T.text}}>{item.q}</p>
             <Chips k={item.k} opts={item.opts} color={item.color} bg={item.bg} border={item.border}/>
             <input
               placeholder={t('또는 직접 입력해보세요...','Or type your own...')}
               value={debrief[item.k+'_text'] || ''}
               onChange={e => setDebrief(p => ({...p, [item.k+'_text']: e.target.value}))}
               style={{
-                width:'100%', marginTop:10, padding:'8px 12px', fontSize:13,
+                width:'100%', marginTop:10, padding:'8px 12px', fontSize:15,
                 border:`1px dashed ${T.borderMid}`, borderRadius:T.rSm,
                 fontFamily:'inherit', background:T.bg,
                 color: T.text, outline:'none', boxSizing:'border-box',
@@ -2372,13 +2372,13 @@ export default function App() {
         ))}
 
         <Card>
-          <p style={{fontSize:14, fontWeight:700, color:T.text, marginBottom:8}}>{t('오늘 예배에서 기억하고 싶은 한 마디','One thing to remember from today\'s worship')}</p>
-          <textarea style={{width:'100%', padding:'12px 14px', fontSize:14, border:`1px solid ${T.border}`, borderRadius:T.rSm, resize:'vertical', minHeight:60, fontFamily:'inherit', lineHeight:1.75, background:T.bg, color:T.text, boxSizing:'border-box'}}
+          <p style={{fontSize:16, fontWeight:700, color:T.text, marginBottom:8}}>{t('오늘 예배에서 기억하고 싶은 한 마디','One thing to remember from today\'s worship')}</p>
+          <textarea style={{width:'100%', padding:'12px 14px', fontSize:16, border:`1px solid ${T.border}`, borderRadius:T.rSm, resize:'vertical', minHeight:60, fontFamily:'inherit', lineHeight:1.75, background:T.bg, color:T.text, boxSizing:'border-box'}}
             placeholder={t('예) 아이가 처음으로 스스로 질문했어요','e.g. Our child asked their own question for the first time')} value={debrief.memo||''} onChange={e=>setDebrief(p=>({...p,memo:e.target.value}))}/>
         </Card>
 
         <div style={{background:T.greenBg, borderRadius:T.rSm, padding:'12px 14px', marginBottom:20}}>
-          <p style={{fontSize:13, color:T.green, lineHeight:1.7}}>{t('완벽한 예배보다 매주 조금씩 우리 가정에 맞게 다듬어 가는 것이 중요합니다. 이것이 살아있는 예배입니다.','More important than perfect worship is gradually refining it each week to fit your family. This is living worship.')}</p>
+          <p style={{fontSize:15, color:T.green, lineHeight:1.7}}>{t('완벽한 예배보다 매주 조금씩 우리 가정에 맞게 다듬어 가는 것이 중요합니다. 이것이 살아있는 예배입니다.','More important than perfect worship is gradually refining it each week to fit your family. This is living worship.')}</p>
         </div>
         <Btn onClick={async ()=>{
           // 일지 저장
@@ -2425,16 +2425,16 @@ export default function App() {
       return wrap(
         <div style={{textAlign:'center', padding:'20px 0'}}>
           <div style={{fontSize:56, marginBottom:16}}>{s?.icon}</div>
-          <p style={{fontSize:14, color:T.sub, marginBottom:6}}>{lang==='en' ? (s?.titleEn||s?.title) : s?.title} · {t('','Week ')}{seriesConfirmed.week}</p>
-          <h2 style={{fontSize:23, fontWeight:800, color:T.text, marginBottom:8, lineHeight:1.4}}>{lang==='en' ? (item?.titleEn||item?.title) : item?.title}</h2>
-          <p style={{fontSize:14, color:T.sub, marginBottom:20, lineHeight:1.7}}>
+          <p style={{fontSize:16, color:T.sub, marginBottom:6}}>{lang==='en' ? (s?.titleEn||s?.title) : s?.title} · {t('','Week ')}{seriesConfirmed.week}</p>
+          <h2 style={{fontSize:25, fontWeight:800, color:T.text, marginBottom:8, lineHeight:1.4}}>{lang==='en' ? (item?.titleEn||item?.title) : item?.title}</h2>
+          <p style={{fontSize:16, color:T.sub, marginBottom:20, lineHeight:1.7}}>
             {t('향후','Over the next')} <strong style={{color:s?.color}}>{s?.weeks - seriesConfirmed.week + 1}{t('주 동안','weeks,')}</strong><br/>
             {lang==='en' ? (s?.titleEn||s?.title) : s?.title} {t('시리즈 본문으로','series')}<br/>
             {s_.seriesRemaining3}
           </p>
           <div style={{background:s?.bg, border:`1px solid ${s?.border}`, borderRadius:T.r, padding:'12px 14px', marginBottom:24, textAlign:'left'}}>
-            <p style={{fontSize:13, fontWeight:700, color:s?.color, marginBottom:4}}>{convertRef(item?.ref, lang)}</p>
-            <p style={{fontSize:13, color:T.sub, lineHeight:1.75}}>{s_.wordRoomSeries}</p>
+            <p style={{fontSize:15, fontWeight:700, color:s?.color, marginBottom:4}}>{convertRef(item?.ref, lang)}</p>
+            <p style={{fontSize:15, color:T.sub, lineHeight:1.75}}>{s_.wordRoomSeries}</p>
           </div>
           <Btn onClick={()=>{
             // 유저가 선택한 주차 그대로 저장 (덮어쓰기)
@@ -2452,33 +2452,33 @@ export default function App() {
       <div>
         <BackBtn onClick={()=>go('worship')} lang={lang}/>
         <Tag>{t('주제별 시리즈','Topic Series')}</Tag>
-        <h2 style={{fontSize:23, fontWeight:800, color:T.text, letterSpacing:'-0.03em', marginBottom:6}}>{s_.seriesTitle.split('\n')[0]}<br/>{s_.seriesTitle.split('\n')[1]}</h2>
-        <p style={{fontSize:14, color:T.sub, marginBottom:20, lineHeight:1.75}}>{t('시리즈를 선택하고 오늘 시작할 주차를 고르세요.','Select a series and choose the week to start today.')}</p>
+        <h2 style={{fontSize:25, fontWeight:800, color:T.text, letterSpacing:'-0.03em', marginBottom:6}}>{s_.seriesTitle.split('\n')[0]}<br/>{s_.seriesTitle.split('\n')[1]}</h2>
+        <p style={{fontSize:16, color:T.sub, marginBottom:20, lineHeight:1.75}}>{t('시리즈를 선택하고 오늘 시작할 주차를 고르세요.','Select a series and choose the week to start today.')}</p>
         {SERIES_DB.map(s => {
           const isExpanded = expandedSeries === s.id;
           return (
             <div key={s.id} style={{marginBottom:10}}>
               <div onClick={()=>setExpandedSeries(isExpanded ? null : s.id)}
                 style={{background:isExpanded ? s.bg : T.card, border:`1.5px solid ${isExpanded ? s.border : T.border}`, borderRadius:T.r, padding:'16px 18px', cursor:'pointer', display:'flex', alignItems:'center', gap:12}}>
-                <div style={{width:44, height:44, borderRadius:12, background:s.color, display:'flex', alignItems:'center', justifyContent:'center', fontSize:23, flexShrink:0}}>{s.icon}</div>
+                <div style={{width:44, height:44, borderRadius:12, background:s.color, display:'flex', alignItems:'center', justifyContent:'center', fontSize:25, flexShrink:0}}>{s.icon}</div>
                 <div style={{flex:1}}>
                   <div style={{display:'flex', alignItems:'center', gap:8, marginBottom:3}}>
-                    <p style={{fontSize:15, fontWeight:800, color:T.text}}>{lang==='en' ? (s.titleEn||s.title) : s.title}</p>
-                    <span style={{fontSize:13, background:`${s.color}22`, color:s.color, padding:'2px 8px', borderRadius:T.rFull, fontWeight:700}}>{s.weeks} {t('주','Weeks')}</span>
+                    <p style={{fontSize:17, fontWeight:800, color:T.text}}>{lang==='en' ? (s.titleEn||s.title) : s.title}</p>
+                    <span style={{fontSize:15, background:`${s.color}22`, color:s.color, padding:'2px 8px', borderRadius:T.rFull, fontWeight:700}}>{s.weeks} {t('주','Weeks')}</span>
                   </div>
-                  <p style={{fontSize:13, color:T.sub, lineHeight:1.4}}>{lang==='en' ? (s.descEn||s.desc) : s.desc}</p>
+                  <p style={{fontSize:15, color:T.sub, lineHeight:1.4}}>{lang==='en' ? (s.descEn||s.desc) : s.desc}</p>
                 </div>
-                <span style={{fontSize:15, color:s.color, transform:isExpanded?'rotate(90deg)':'none', transition:'transform 0.2s', flexShrink:0}}>›</span>
+                <span style={{fontSize:17, color:s.color, transform:isExpanded?'rotate(90deg)':'none', transition:'transform 0.2s', flexShrink:0}}>›</span>
               </div>
               {isExpanded && (
                 <div style={{background:s.bg, border:`1px solid ${s.border}`, borderTop:'none', borderRadius:`0 0 ${T.r} ${T.r}`, padding:'12px 14px'}}>
-                  <p style={{fontSize:13, color:s.color, fontWeight:700, marginBottom:10}}>{s_.seriesSub}</p>
+                  <p style={{fontSize:15, color:s.color, fontWeight:700, marginBottom:10}}>{s_.seriesSub}</p>
                   <div style={{display:'grid', gridTemplateColumns:'repeat(4, 1fr)', gap:6}}>
                     {s.items.map(item => (
                       <button key={item.week} onClick={()=>setSeriesConfirmed({seriesId:s.id, week:item.week})}
                         style={{padding:'8px 4px', background:'white', border:`1.5px solid ${s.border}`, borderRadius:T.rSm, cursor:'pointer', textAlign:'center'}}>
-                        <p style={{fontSize:14, fontWeight:800, color:s.color}}>{t('','Week ')}{item.week}</p>
-                        <p style={{fontSize:10, color:T.sub, lineHeight:1.3, marginTop:2}}>{lang==='en' ? (item.titleEn||item.title).slice(0,8)+'…' : (item.title.length > 5 ? item.title.slice(0,5)+'…' : item.title)}</p>
+                        <p style={{fontSize:16, fontWeight:800, color:s.color}}>{t('','Week ')}{item.week}</p>
+                        <p style={{fontSize:13, color:T.sub, lineHeight:1.3, marginTop:2}}>{lang==='en' ? (item.titleEn||item.title).slice(0,8)+'…' : (item.title.length > 5 ? item.title.slice(0,5)+'…' : item.title)}</p>
                       </button>
                     ))}
                   </div>
@@ -2488,7 +2488,7 @@ export default function App() {
           );
         })}
         <div style={{marginTop:8, padding:'12px 14px', background:T.cardAlt, borderRadius:T.rSm, border:`1px dashed ${T.border}`}}>
-          <p style={{fontSize:13, color:T.hint, lineHeight:1.75, textAlign:'center'}}>✦ {t('시리즈는 계속 추가됩니다','More series coming soon')}</p>
+          <p style={{fontSize:15, color:T.hint, lineHeight:1.75, textAlign:'center'}}>✦ {t('시리즈는 계속 추가됩니다','More series coming soon')}</p>
         </div>
       </div>
     );
@@ -2502,25 +2502,25 @@ export default function App() {
       <div>
         <BackBtn onClick={()=>go('series')} lang={lang}/>
         <div style={{display:'flex', alignItems:'center', gap:10, marginBottom:6}}>
-          <div style={{width:36, height:36, borderRadius:10, background:series.color, display:'flex', alignItems:'center', justifyContent:'center', fontSize:20}}>{series.icon}</div>
+          <div style={{width:36, height:36, borderRadius:10, background:series.color, display:'flex', alignItems:'center', justifyContent:'center', fontSize:22}}>{series.icon}</div>
           <div>
             <Tag color={series.color}>{series.title}</Tag>
           </div>
         </div>
-        <h2 style={{fontSize:23, fontWeight:800, color:T.text, letterSpacing:'-0.03em', marginBottom:6}}>{series.title}</h2>
-        <p style={{fontSize:14, color:T.sub, marginBottom:20, lineHeight:1.75}}>{series.desc}</p>
+        <h2 style={{fontSize:25, fontWeight:800, color:T.text, letterSpacing:'-0.03em', marginBottom:6}}>{series.title}</h2>
+        <p style={{fontSize:16, color:T.sub, marginBottom:20, lineHeight:1.75}}>{series.desc}</p>
         {series.items.map((item, i) => (
           <div key={i}
             onClick={()=>{ setSelectedScripture({ seriesId: series.id, week: item.week }); go('scripture'); }}
             style={{background:T.card, borderRadius:T.r, boxShadow:T.shadowSm, padding:'16px 18px', marginBottom:8, cursor:'pointer', display:'flex', alignItems:'center', gap:12}}>
             <div style={{width:32, height:32, borderRadius:8, background:series.bg, border:`1.5px solid ${series.border}`, display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0}}>
-              <span style={{fontSize:13, fontWeight:800, color:series.color}}>{item.week}</span>
+              <span style={{fontSize:15, fontWeight:800, color:series.color}}>{item.week}</span>
             </div>
             <div style={{flex:1}}>
-              <p style={{fontSize:14, fontWeight:700, color:T.text, marginBottom:2}}>{item.title}</p>
-              <p style={{fontSize:13, color:series.color, fontWeight:600}}>{convertRef(item.ref, lang)}</p>
+              <p style={{fontSize:16, fontWeight:700, color:T.text, marginBottom:2}}>{item.title}</p>
+              <p style={{fontSize:15, color:series.color, fontWeight:600}}>{convertRef(item.ref, lang)}</p>
             </div>
-            <span style={{fontSize:15, color:T.hint}}>›</span>
+            <span style={{fontSize:17, color:T.hint}}>›</span>
           </div>
         ))}
       </div>
@@ -2538,16 +2538,16 @@ export default function App() {
       <div>
         <BackBtn onClick={()=>go('scripture_list')} lang={lang}/>
         <div style={{display:'flex', alignItems:'center', gap:8, marginBottom:12}}>
-          <span style={{fontSize:18}}>{series.icon}</span>
-          <p style={{fontSize:13, color:series.color, fontWeight:700}}>{series.title} · {item.week}주차</p>
+          <span style={{fontSize:22}}>{series.icon}</span>
+          <p style={{fontSize:15, color:series.color, fontWeight:700}}>{series.title} · {item.week}주차</p>
         </div>
-        <h2 style={{fontSize:23, fontWeight:800, color:T.text, letterSpacing:'-0.03em', marginBottom:4}}>{item.title}</h2>
-        <p style={{fontSize:14, color:series.color, fontWeight:700, marginBottom:16}}>{convertRef(item.ref, lang)}</p>
+        <h2 style={{fontSize:25, fontWeight:800, color:T.text, letterSpacing:'-0.03em', marginBottom:4}}>{item.title}</h2>
+        <p style={{fontSize:16, color:series.color, fontWeight:700, marginBottom:16}}>{convertRef(item.ref, lang)}</p>
 
         {/* 말씀 카드 */}
         <div style={{background:rs.bg, border:`1.5px solid ${rs.border}`, borderRadius:T.r, padding:'16px', marginBottom:20}}>
-          <p style={{fontSize:13, color:rs.color, fontWeight:700, letterSpacing:'0.08em', marginBottom:8}}>오늘의 말씀</p>
-          <p style={{fontSize:13, color:T.sub, lineHeight:1.75}}>각자 성경책을 사용하세요</p>
+          <p style={{fontSize:15, color:rs.color, fontWeight:700, letterSpacing:'0.08em', marginBottom:8}}>오늘의 말씀</p>
+          <p style={{fontSize:15, color:T.sub, lineHeight:1.75}}>각자 성경책을 사용하세요</p>
         </div>
 
         {/* 3가지 질문 */}
@@ -2558,18 +2558,18 @@ export default function App() {
         ].map((q, i) => (
           <div key={i} style={{background:q.bg, border:`1.5px solid ${q.border}`, borderRadius:T.r, padding:'16px 18px', marginBottom:10}}>
             <div style={{display:'flex', alignItems:'center', gap:6, marginBottom:10}}>
-              <span style={{fontSize:16}}>{q.icon}</span>
+              <span style={{fontSize:18}}>{q.icon}</span>
               <div>
-                <p style={{fontSize:11, color:q.color, fontWeight:700, letterSpacing:'0.08em'}}>{q.type}</p>
-                <p style={{fontSize:14, fontWeight:700, color:T.text}}>{q.label}</p>
+                <p style={{fontSize:13, color:q.color, fontWeight:700, letterSpacing:'0.08em'}}>{q.type}</p>
+                <p style={{fontSize:16, fontWeight:700, color:T.text}}>{q.label}</p>
               </div>
             </div>
             {q.qs.map((qs, j) => (
               <div key={j} style={{display:'flex', gap:8, padding:'6px 0', borderTop:`1px solid ${q.border}`, alignItems:'flex-start'}}>
                 <div style={{width:18, height:18, borderRadius:'50%', background:q.color, display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0, marginTop:1}}>
-                  <span style={{color:'#fff', fontSize:10, fontWeight:700}}>Q</span>
+                  <span style={{color:'#fff', fontSize:13, fontWeight:700}}>Q</span>
                 </div>
-                <p style={{fontSize:13, color:T.text, lineHeight:1.75}}>{qs}</p>
+                <p style={{fontSize:15, color:T.text, lineHeight:1.75}}>{qs}</p>
               </div>
             ))}
           </div>
@@ -2578,23 +2578,23 @@ export default function App() {
         {/* 챌린지 */}
         <div style={{background:T.amberBg, border:`1.5px solid ${T.amberBorder}`, borderRadius:T.r, padding:'16px 18px', marginBottom:20}}>
           <div style={{display:'flex', alignItems:'center', gap:6, marginBottom:8}}>
-            <span style={{fontSize:16}}>🎯</span>
-            <p style={{fontSize:14, fontWeight:700, color:T.amber}}>이번 주 챌린지</p>
+            <span style={{fontSize:18}}>🎯</span>
+            <p style={{fontSize:16, fontWeight:700, color:T.amber}}>이번 주 챌린지</p>
           </div>
-          <p style={{fontSize:14, color:T.text, lineHeight:1.75}}>{item.challenge}</p>
+          <p style={{fontSize:16, color:T.text, lineHeight:1.75}}>{item.challenge}</p>
         </div>
 
         {/* 이전 / 다음 주 이동 */}
         <div style={{display:'flex', gap:8, marginBottom:8}}>
           {item.week > 1 && (
             <button onClick={()=>setSelectedScripture({seriesId:series.id, week:item.week-1})}
-              style={{flex:1, padding:'10px', background:T.card, border:`1px solid ${T.border}`, borderRadius:T.rSm, fontSize:13, fontWeight:600, color:T.sub, cursor:'pointer'}}>
+              style={{flex:1, padding:'10px', background:T.card, border:`1px solid ${T.border}`, borderRadius:T.rSm, fontSize:15, fontWeight:600, color:T.sub, cursor:'pointer'}}>
               ← 이전 주
             </button>
           )}
           {item.week < series.items.length && (
             <button onClick={()=>setSelectedScripture({seriesId:series.id, week:item.week+1})}
-              style={{flex:1, padding:'10px', background:rs.bg, border:`1px solid ${rs.border}`, borderRadius:T.rSm, fontSize:13, fontWeight:700, color:rs.color, cursor:'pointer'}}>
+              style={{flex:1, padding:'10px', background:rs.bg, border:`1px solid ${rs.border}`, borderRadius:T.rSm, fontSize:15, fontWeight:700, color:rs.color, cursor:'pointer'}}>
               다음 주 →
             </button>
           )}
@@ -2619,19 +2619,19 @@ export default function App() {
       <div>
         <BackBtn onClick={()=>go('worship')} lang={lang}/>
         <Tag>3개월 예배 샘플</Tag>
-        <h2 style={{fontSize:25, fontWeight:800, color:T.text, lineHeight:1.3, letterSpacing:'-0.03em', marginBottom:14}}>3개월 예배 콘텐츠</h2>
+        <h2 style={{fontSize:27, fontWeight:800, color:T.text, lineHeight:1.3, letterSpacing:'-0.03em', marginBottom:14}}>3개월 예배 콘텐츠</h2>
 
         <div style={{background:lvl.bg, border:`1.5px solid ${lvl.border}`, borderRadius:T.r, padding:'12px 14px', marginBottom:16, display:'flex', gap:10, alignItems:'flex-start'}}>
           <div style={{width:8, height:8, borderRadius:'50%', background:lvl.color, flexShrink:0, marginTop:5}}/>
           <div>
-            <p style={{fontSize:13, fontWeight:700, color:lvl.color, marginBottom:3}}>{lvl.label}</p>
-            <p style={{fontSize:13, color:lvl.color, opacity:0.85, lineHeight:1.7}}>{lvl.desc}</p>
+            <p style={{fontSize:15, fontWeight:700, color:lvl.color, marginBottom:3}}>{lvl.label}</p>
+            <p style={{fontSize:15, color:lvl.color, opacity:0.85, lineHeight:1.7}}>{lvl.desc}</p>
           </div>
         </div>
 
         <div style={{display:'flex', gap:6, marginBottom:16}}>
           {[1,2,3].map(m=>(
-            <button key={m} onClick={()=>setSampleMonth(m)} style={{flex:1, padding:'9px 0', borderRadius:T.rFull, border: sampleMonth===m ? `2px solid ${lvl.color}` : `1px solid ${T.border}`, background: sampleMonth===m ? lvl.bg : T.card, color: sampleMonth===m ? lvl.color : T.sub, fontSize:14, fontWeight: sampleMonth===m ? 700 : 500, cursor:'pointer'}}>
+            <button key={m} onClick={()=>setSampleMonth(m)} style={{flex:1, padding:'9px 0', borderRadius:T.rFull, border: sampleMonth===m ? `2px solid ${lvl.color}` : `1px solid ${T.border}`, background: sampleMonth===m ? lvl.bg : T.card, color: sampleMonth===m ? lvl.color : T.sub, fontSize:16, fontWeight: sampleMonth===m ? 700 : 500, cursor:'pointer'}}>
               {m}월차
             </button>
           ))}
@@ -2641,22 +2641,22 @@ export default function App() {
           <Card key={s.week} style={{marginBottom:14}}>
             <div style={{display:'flex', justifyContent:'space-between', alignItems:'flex-start', marginBottom:8}}>
               <div>
-                <p style={{fontSize:13, color:lvl.color, fontWeight:700}}>{s.month}월 {s.week-(s.month-1)*4}주차</p>
-                <p style={{fontSize:17, fontWeight:800, color:T.text, marginTop:2}}>📖 {s.title}</p>
+                <p style={{fontSize:15, color:lvl.color, fontWeight:700}}>{s.month}월 {s.week-(s.month-1)*4}주차</p>
+                <p style={{fontSize:19, fontWeight:800, color:T.text, marginTop:2}}>📖 {s.title}</p>
               </div>
-              <span style={{fontSize:13, color:T.sub, background:T.cardAlt, border:`1px solid ${T.border}`, padding:'3px 8px', borderRadius:T.rFull, flexShrink:0}}>{convertRef(s.ref, lang)}</span>
+              <span style={{fontSize:15, color:T.sub, background:T.cardAlt, border:`1px solid ${T.border}`, padding:'3px 8px', borderRadius:T.rFull, flexShrink:0}}>{convertRef(s.ref, lang)}</span>
             </div>
             <div style={{background:lvl.bg, borderRadius:T.rSm, padding:'12px 14px', marginBottom:12}}>
-              <p style={{fontSize:13, color:T.sub, lineHeight:1.75}}>각자 성경책을 사용하세요</p>
+              <p style={{fontSize:15, color:T.sub, lineHeight:1.75}}>각자 성경책을 사용하세요</p>
             </div>
 
             {level==='gather' ? (
               <div>
-                <p style={{fontSize:11, letterSpacing:'0.1em', textTransform:'uppercase', color:T.hint, marginBottom:8}}>대화 질문</p>
+                <p style={{fontSize:13, letterSpacing:'0.1em', textTransform:'uppercase', color:T.hint, marginBottom:8}}>대화 질문</p>
                 {s.gatherQ.map((q,i)=>(
                   <div key={i} style={{display:'flex', gap:8, padding:'6px 0', borderBottom: i<s.gatherQ.length-1 ? `1px solid ${T.border}` : 'none', alignItems:'flex-start'}}>
-                    <span style={{fontSize:13, color:T.green, fontWeight:700, flexShrink:0, marginTop:2}}>Q{i+1}</span>
-                    <p style={{fontSize:14, color:T.sub, lineHeight:1.7}}>{q}</p>
+                    <span style={{fontSize:15, color:T.green, fontWeight:700, flexShrink:0, marginTop:2}}>Q{i+1}</span>
+                    <p style={{fontSize:16, color:T.sub, lineHeight:1.7}}>{q}</p>
                   </div>
                 ))}
               </div>
@@ -2670,18 +2670,18 @@ export default function App() {
                   <div key={qt.key} style={{marginBottom:12}}>
                     <div style={{display:'flex', alignItems:'center', gap:5, marginBottom:6}}>
                       <div style={{width:6, height:6, borderRadius:'50%', background:qt.color}}/>
-                      <p style={{fontSize:13, fontWeight:700, color:qt.color}}>{qt.label}</p>
-                      <p style={{fontSize:11, color:qt.color, opacity:0.7}}>{qt.sub}</p>
+                      <p style={{fontSize:15, fontWeight:700, color:qt.color}}>{qt.label}</p>
+                      <p style={{fontSize:13, color:qt.color, opacity:0.7}}>{qt.sub}</p>
                     </div>
                     {s[qt.key].map((q,i)=>(
                       <div key={i} style={{display:'flex', gap:8, padding:'5px 0', borderBottom:`1px solid ${T.border}`, alignItems:'flex-start'}}>
-                        <span style={{fontSize:13, color:qt.color, fontWeight:700, flexShrink:0, marginTop:2}}>Q{i+1}</span>
-                        <p style={{fontSize:13, color:T.sub, lineHeight:1.5, flex:1}}>{q}</p>
+                        <span style={{fontSize:15, color:qt.color, fontWeight:700, flexShrink:0, marginTop:2}}>Q{i+1}</span>
+                        <p style={{fontSize:15, color:T.sub, lineHeight:1.5, flex:1}}>{q}</p>
                       </div>
                     ))}
                     <div style={{display:'flex', gap:8, padding:'6px 0', alignItems:'center'}}>
-                      <span style={{fontSize:13, color:qt.color, flexShrink:0}}>✏</span>
-                      <input placeholder="나의 질문은 __________" style={{flex:1, border:'none', borderBottom:`1.5px dashed ${qt.color}50`, padding:'4px 0', fontSize:13, background:'transparent', color:T.text, outline:'none', fontFamily:'inherit'}}/>
+                      <span style={{fontSize:15, color:qt.color, flexShrink:0}}>✏</span>
+                      <input placeholder="나의 질문은 __________" style={{flex:1, border:'none', borderBottom:`1.5px dashed ${qt.color}50`, padding:'4px 0', fontSize:15, background:'transparent', color:T.text, outline:'none', fontFamily:'inherit'}}/>
                     </div>
                   </div>
                 ))}
@@ -2689,8 +2689,8 @@ export default function App() {
             )}
 
             <div style={{marginTop:4, background:T.cardAlt, borderRadius:T.rSm, padding:'12px 14px', display:'flex', gap:6, alignItems:'flex-start'}}>
-              <span style={{fontSize:14, flexShrink:0}}>🎯</span>
-              <p style={{fontSize:13, color:T.sub, lineHeight:1.7}}><strong style={{fontWeight:700, color:T.text}}>{s_.samplesChallenge}:</strong> {s.challenge}</p>
+              <span style={{fontSize:16, flexShrink:0}}>🎯</span>
+              <p style={{fontSize:15, color:T.sub, lineHeight:1.7}}><strong style={{fontWeight:700, color:T.text}}>{s_.samplesChallenge}:</strong> {s.challenge}</p>
             </div>
           </Card>
         ))}
@@ -2707,8 +2707,8 @@ export default function App() {
       <div>
         <BackBtn onClick={()=>go('welcome')} lang={lang}/>
         <Tag>{t('예배 일지','Worship Journal')}</Tag>
-        <h2 style={{fontSize:25, fontWeight:800, color:T.text, lineHeight:1.3, letterSpacing:'-0.03em', marginBottom:4}}>{t('우리 가정','Our Family')}<br/>{t('예배의 역사','Worship History')}</h2>
-        <p style={{fontSize:14, color:T.sub, marginBottom:20, lineHeight:1.75}}>
+        <h2 style={{fontSize:27, fontWeight:800, color:T.text, lineHeight:1.3, letterSpacing:'-0.03em', marginBottom:4}}>{t('우리 가정','Our Family')}<br/>{t('예배의 역사','Worship History')}</h2>
+        <p style={{fontSize:16, color:T.sub, marginBottom:20, lineHeight:1.75}}>
           {lang==='en'
             ? <>{s_.logTotal1} <strong style={{color:T.green}}>{worshipLog.length}</strong> {s_.logTotal2}</>
             : <>{s_.logTotal1} <strong style={{color:T.green}}>{worshipLog.length}회</strong>{s_.logTotal2}</>
@@ -2718,22 +2718,22 @@ export default function App() {
         {worshipLog.length === 0 ? (
           <div style={{textAlign:'center', padding:'40px 0', color:T.hint}}>
             <div style={{fontSize:48, marginBottom:12}}>📔</div>
-            <p style={{fontSize:14}}>{t('아직 기록된 예배가 없습니다.','No worship records yet.')}<br/>{t('첫 예배를 드리고 디브리핑을 완료하면','Complete your first worship and reflection')}<br/>{t('여기에 기록됩니다.','to see records here.')}</p>
+            <p style={{fontSize:16}}>{t('아직 기록된 예배가 없습니다.','No worship records yet.')}<br/>{t('첫 예배를 드리고 디브리핑을 완료하면','Complete your first worship and reflection')}<br/>{t('여기에 기록됩니다.','to see records here.')}</p>
           </div>
         ) : worshipLog.map((entry, i) => (
           <div key={i} style={{background:T.card, borderRadius:T.r, boxShadow:T.shadowSm, padding:'16px 18px', marginBottom:10}}>
             {/* 헤더 */}
             <div style={{display:'flex', justifyContent:'space-between', alignItems:'flex-start', marginBottom:10}}>
               <div>
-                <p style={{fontSize:12, color:T.hint, marginBottom:4}}>{entry.date}</p>
-                <p style={{fontSize:15, fontWeight:700, color:T.text}}>
+                <p style={{fontSize:14, color:T.hint, marginBottom:4}}>{entry.date}</p>
+                <p style={{fontSize:17, fontWeight:700, color:T.text}}>
                   {lang==='en' ? (entry.seriesTitleEn||entry.seriesTitle) : entry.seriesTitle}{entry.week ? ` · ${t('','Week ')}${entry.week}` : ''}
                 </p>
-                {entry.itemTitle && <p style={{fontSize:13, color:T.sub, marginTop:2}}>{lang==='en' ? (entry.itemTitleEn||entry.itemTitle) : entry.itemTitle}</p>}
+                {entry.itemTitle && <p style={{fontSize:15, color:T.sub, marginTop:2}}>{lang==='en' ? (entry.itemTitleEn||entry.itemTitle) : entry.itemTitle}</p>}
               </div>
               {entry.debrief?.mood && (
                 <div style={{background:T.purpleBg, border:`1px solid ${T.purpleBorder}`, borderRadius:99, padding:'4px 10px'}}>
-                  <p style={{fontSize:12, color:T.purple, fontWeight:700}}>{MOOD_LABELS[entry.debrief.mood] || entry.debrief.mood}</p>
+                  <p style={{fontSize:14, color:T.purple, fontWeight:700}}>{MOOD_LABELS[entry.debrief.mood] || entry.debrief.mood}</p>
                 </div>
               )}
             </div>
@@ -2746,8 +2746,8 @@ export default function App() {
               {k:'change', label:t('다음 주 계획','Plan for next week')},
             ].map(f => (entry.debrief?.[f.k] || entry.debrief?.[f.k+'_text']) && (
               <div key={f.k} style={{borderTop:`1px solid ${T.border}`, paddingTop:8, marginTop:8}}>
-                <p style={{fontSize:11, color:T.hint, fontWeight:700, marginBottom:3, letterSpacing:'0.05em'}}>{f.label}</p>
-                <p style={{fontSize:13, color:T.text}}>
+                <p style={{fontSize:13, color:T.hint, fontWeight:700, marginBottom:3, letterSpacing:'0.05em'}}>{f.label}</p>
+                <p style={{fontSize:15, color:T.text}}>
                   {entry.debrief[f.k]}{entry.debrief[f.k+'_text'] ? (entry.debrief[f.k] ? ' · ' : '') + entry.debrief[f.k+'_text'] : ''}
                 </p>
               </div>
@@ -2756,8 +2756,8 @@ export default function App() {
             {/* 메모 */}
             {entry.debrief?.memo && (
               <div style={{borderTop:`1px solid ${T.border}`, paddingTop:8, marginTop:8, background:T.greenBg, borderRadius:T.rSm, padding:'8px 12px', marginTop:10}}>
-                <p style={{fontSize:11, color:T.green, fontWeight:700, marginBottom:3}}>📝 {t('기억하고 싶은 한 마디','One thing to remember')}</p>
-                <p style={{fontSize:13, color:T.text, lineHeight:1.7}}>{entry.debrief.memo}</p>
+                <p style={{fontSize:13, color:T.green, fontWeight:700, marginBottom:3}}>📝 {t('기억하고 싶은 한 마디','One thing to remember')}</p>
+                <p style={{fontSize:15, color:T.text, lineHeight:1.7}}>{entry.debrief.memo}</p>
               </div>
             )}
           </div>
@@ -2767,24 +2767,24 @@ export default function App() {
           <div style={{marginTop:8, textAlign:'center'}}>
             {!confirmDelete ? (
               <button onClick={()=>setConfirmDelete(true)}
-                style={{background:'none', border:'none', fontSize:12, color:T.hint, cursor:'pointer', textDecoration:'underline', textUnderlineOffset:3}}>
+                style={{background:'none', border:'none', fontSize:14, color:T.hint, cursor:'pointer', textDecoration:'underline', textUnderlineOffset:3}}>
                 {t('일지 전체 삭제','Delete All Records')}
               </button>
             ) : (
               <div style={{background:'#FEF2F1', border:'1px solid #FBBCB8', borderRadius:T.rSm, padding:'12px 16px'}}>
-                <p style={{fontSize:13, color:'#A32D2D', fontWeight:700, marginBottom:10}}>
+                <p style={{fontSize:15, color:'#A32D2D', fontWeight:700, marginBottom:10}}>
                   {t('모든 예배 일지가 삭제됩니다. 되돌릴 수 없어요.','All records will be permanently deleted.')}
                 </p>
                 <div style={{display:'flex', gap:8}}>
                   <button onClick={()=>setConfirmDelete(false)}
-                    style={{flex:1, padding:'9px', background:'white', border:`1px solid ${T.border}`, borderRadius:T.rSm, fontSize:13, cursor:'pointer', color:T.text}}>
+                    style={{flex:1, padding:'9px', background:'white', border:`1px solid ${T.border}`, borderRadius:T.rSm, fontSize:15, cursor:'pointer', color:T.text}}>
                     {t('취소','Cancel')}
                   </button>
                   <button onClick={async()=>{
                     setWorshipLog([]);
                     setConfirmDelete(false);
                     try { await window.storage.delete('worship_log'); } catch(e) {}
-                  }} style={{flex:1, padding:'9px', background:'#A32D2D', border:'none', borderRadius:T.rSm, fontSize:13, cursor:'pointer', color:'white', fontWeight:700}}>
+                  }} style={{flex:1, padding:'9px', background:'#A32D2D', border:'none', borderRadius:T.rSm, fontSize:15, cursor:'pointer', color:'white', fontWeight:700}}>
                     {t('삭제','Delete')}
                   </button>
                 </div>
