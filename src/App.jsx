@@ -1,11 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { createClient } from '@supabase/supabase-js';
-
-// ── Supabase 연결 ──
-const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL,
-  import.meta.env.VITE_SUPABASE_ANON_KEY
-);
 
 // ── 언어 문자열 객체 ──────────────────────────────────────────────
 const STRINGS = {
@@ -1146,72 +1139,6 @@ const HouseMap = ({selected, lang=''}) => (
 
 // ── 앱 ────────────────────────────────────────────────────────
 export default function App() {
-  // ── 인증 상태 ──
-  const [user, setUser] = useState(null);
-  const [authLoading, setAuthLoading] = useState(true);
-  const [authMode, setAuthMode] = useState('login'); // 'login' | 'signup' | 'join'
-  const [authEmail, setAuthEmail] = useState('');
-  const [authPassword, setAuthPassword] = useState('');
-  const [authName, setAuthName] = useState('');
-  const [authRole, setAuthRole] = useState('parent'); // 'parent' | 'child'
-  const [authAgeGroup, setAuthAgeGroup] = useState('child');
-  const [authFamilyCode, setAuthFamilyCode] = useState('');
-  const [authError, setAuthError] = useState('');
-  const [userRole, setUserRole] = useState(null);
-  const [userAgeGroup, setUserAgeGroup] = useState(null);
-
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setUser(session?.user ?? null);
-      if(session?.user) loadMember(session.user.id);
-      else setAuthLoading(false);
-    });
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null);
-      if(session?.user) loadMember(session.user.id);
-      else { setAuthLoading(false); }
-    });
-    return () => subscription.unsubscribe();
-  }, []);
-
-  const loadMember = async (userId) => {
-    const { data } = await supabase.from('members').select('*').eq('user_id', userId).single();
-    if(data) { setUserRole(data.role); setUserAgeGroup(data.age_group); }
-    setAuthLoading(false);
-  };
-
-  const generateFamilyCode = () => Math.random().toString(36).substring(2,7).toUpperCase();
-
-  const handleSignup = async () => {
-    setAuthError('');
-    const { data, error } = await supabase.auth.signUp({ email: authEmail, password: authPassword });
-    if(error) { setAuthError(error.message); return; }
-    // 가족 생성
-    const code = generateFamilyCode();
-    const { data: family } = await supabase.from('families').insert({ family_name: authName, family_code: code }).select().single();
-    await supabase.from('members').insert({ family_id: family.id, user_id: data.user.id, role: 'parent', age_group: 'adult', name: authName });
-    setUserRole('parent');
-  };
-
-  const handleLogin = async () => {
-    setAuthError('');
-    const { error } = await supabase.auth.signInWithPassword({ email: authEmail, password: authPassword });
-    if(error) setAuthError(error.message);
-  };
-
-  const handleJoin = async () => {
-    setAuthError('');
-    const { data: family } = await supabase.from('families').select('*').eq('family_code', authFamilyCode.toUpperCase()).single();
-    if(!family) { setAuthError('가족 코드를 찾을 수 없어요.'); return; }
-    const { data, error } = await supabase.auth.signUp({ email: authEmail, password: authPassword });
-    if(error) { setAuthError(error.message); return; }
-    await supabase.from('members').insert({ family_id: family.id, user_id: data.user.id, role: authRole, age_group: authAgeGroup, name: authName });
-    setUserRole(authRole);
-    setUserAgeGroup(authAgeGroup);
-  };
-
-  const handleLogout = async () => { await supabase.auth.signOut(); setUserRole(null); };
-
   const [screen, setScreen] = useState('welcome');
   const [lang, setLang] = useState(''); // '' = not selected yet, 'ko', 'en'
   const s_ = S(lang || 'ko'); // current language strings
@@ -1297,83 +1224,7 @@ export default function App() {
   if(screen==='welcome') {
 
     // 언어 선택 화면 — B안: 온보딩 전에 한 번 나옴
-    // ── 로딩 중 ──
-  if(authLoading) return (
-    <div style={{minHeight:'100vh', background:T.bg, display:'flex', alignItems:'center', justifyContent:'center'}}>
-      <p style={{fontSize:16, color:T.sub}}>🏠 불러오는 중...</p>
-    </div>
-  );
-
-  // ── 로그인/사인업 화면 ──
-  if(!user) {
-    const inputStyle = {width:'100%', padding:'12px 14px', borderRadius:T.rSm, border:`1.5px solid ${T.border}`, fontSize:14, fontFamily:'inherit', outline:'none', marginBottom:10, background:'white'};
-    return (
-      <div style={{minHeight:'100vh', background:T.bg, display:'flex', alignItems:'center', justifyContent:'center', padding:'20px'}}>
-        <div style={{width:'100%', maxWidth:380, background:T.card, borderRadius:T.r, padding:'32px 24px', boxShadow:T.shadow}}>
-          <div style={{textAlign:'center', marginBottom:24}}>
-            <div style={{fontSize:48, marginBottom:8}}>🏠</div>
-            <h1 style={{fontSize:20, fontWeight:800, color:T.text, marginBottom:4}}>가정예배 코칭</h1>
-            <p style={{fontSize:13, color:T.sub}}>Family Worship Coaching App</p>
-          </div>
-
-          {authError && <p style={{fontSize:13, color:'#E53E3E', background:'#FFF5F5', border:'1px solid #FEB2B2', borderRadius:T.rSm, padding:'8px 12px', marginBottom:12}}>{authError}</p>}
-
-          {authMode === 'login' && (
-            <>
-              <input placeholder="이메일" value={authEmail} onChange={e=>setAuthEmail(e.target.value)} style={inputStyle}/>
-              <input placeholder="비밀번호" type="password" value={authPassword} onChange={e=>setAuthPassword(e.target.value)} style={inputStyle}/>
-              <button onClick={handleLogin} style={{width:'100%', padding:'13px', background:T.green, border:'none', borderRadius:T.rSm, color:'white', fontSize:15, fontWeight:700, cursor:'pointer', marginBottom:12}}>로그인</button>
-              <div style={{display:'flex', gap:8}}>
-                <button onClick={()=>setAuthMode('signup')} style={{flex:1, padding:'10px', background:'none', border:`1.5px solid ${T.border}`, borderRadius:T.rSm, fontSize:13, cursor:'pointer', color:T.text}}>새 가족 만들기</button>
-                <button onClick={()=>setAuthMode('join')} style={{flex:1, padding:'10px', background:'none', border:`1.5px solid ${T.border}`, borderRadius:T.rSm, fontSize:13, cursor:'pointer', color:T.text}}>가족 코드로 참여</button>
-              </div>
-            </>
-          )}
-
-          {authMode === 'signup' && (
-            <>
-              <p style={{fontSize:14, fontWeight:700, color:T.purple, marginBottom:12}}>👨‍👩‍👧 새 가족 계정 만들기 (부모)</p>
-              <input placeholder="이름 (예: 홍길동 / John Smith)" value={authName} onChange={e=>setAuthName(e.target.value)} style={inputStyle}/>
-              <input placeholder="이메일" value={authEmail} onChange={e=>setAuthEmail(e.target.value)} style={inputStyle}/>
-              <input placeholder="비밀번호" type="password" value={authPassword} onChange={e=>setAuthPassword(e.target.value)} style={inputStyle}/>
-              <button onClick={handleSignup} style={{width:'100%', padding:'13px', background:T.purple, border:'none', borderRadius:T.rSm, color:'white', fontSize:15, fontWeight:700, cursor:'pointer', marginBottom:12}}>가족 만들기</button>
-              <button onClick={()=>setAuthMode('login')} style={{width:'100%', padding:'10px', background:'none', border:'none', fontSize:13, cursor:'pointer', color:T.hint}}>← 로그인으로 돌아가기</button>
-            </>
-          )}
-
-          {authMode === 'join' && (
-            <>
-              <p style={{fontSize:14, fontWeight:700, color:T.green, marginBottom:12}}>🧒 가족 코드로 참여하기</p>
-              <input placeholder="가족 코드 (예: KIM7A)" value={authFamilyCode} onChange={e=>setAuthFamilyCode(e.target.value)} style={{...inputStyle, textTransform:'uppercase', fontWeight:700, letterSpacing:'0.1em'}}/>
-              <input placeholder="이름" value={authName} onChange={e=>setAuthName(e.target.value)} style={inputStyle}/>
-              <input placeholder="이메일" value={authEmail} onChange={e=>setAuthEmail(e.target.value)} style={inputStyle}/>
-              <input placeholder="비밀번호" type="password" value={authPassword} onChange={e=>setAuthPassword(e.target.value)} style={inputStyle}/>
-              <p style={{fontSize:13, fontWeight:700, color:T.text, marginBottom:8}}>역할 선택:</p>
-              <div style={{display:'flex', gap:8, marginBottom:10}}>
-                {[{id:'parent',label:'👨‍👩‍👧 부모'},{id:'child',label:'🧒 자녀'}].map(r=>(
-                  <button key={r.id} onClick={()=>setAuthRole(r.id)} style={{flex:1, padding:'10px', background: authRole===r.id ? T.purpleBg : 'white', border:`1.5px solid ${authRole===r.id ? T.purple : T.border}`, borderRadius:T.rSm, fontSize:13, fontWeight:700, cursor:'pointer', color: authRole===r.id ? T.purple : T.text}}>{r.label}</button>
-                ))}
-              </div>
-              {authRole==='child' && (
-                <>
-                  <p style={{fontSize:13, fontWeight:700, color:T.text, marginBottom:8}}>연령대:</p>
-                  <div style={{display:'flex', flexWrap:'wrap', gap:6, marginBottom:10}}>
-                    {AGE_GROUPS.map(ag=>(
-                      <button key={ag.id} onClick={()=>setAuthAgeGroup(ag.id)} style={{padding:'6px 12px', background: authAgeGroup===ag.id ? T.purpleBg : 'white', border:`1.5px solid ${authAgeGroup===ag.id ? T.purple : T.border}`, borderRadius:T.rFull, fontSize:12, fontWeight:700, cursor:'pointer', color: authAgeGroup===ag.id ? T.purple : T.text}}>{ag.icon} {ag.label.split(' ')[0]}</button>
-                    ))}
-                  </div>
-                </>
-              )}
-              <button onClick={handleJoin} style={{width:'100%', padding:'13px', background:T.green, border:'none', borderRadius:T.rSm, color:'white', fontSize:15, fontWeight:700, cursor:'pointer', marginBottom:12}}>참여하기</button>
-              <button onClick={()=>setAuthMode('login')} style={{width:'100%', padding:'10px', background:'none', border:'none', fontSize:13, cursor:'pointer', color:T.hint}}>← 로그인으로 돌아가기</button>
-            </>
-          )}
-        </div>
-      </div>
-    );
-  }
-
-  if(!lang) return wrap(
+    if(!lang) return wrap(
       <div style={{textAlign:'center', paddingTop:60}}>
         <div style={{fontSize:64, marginBottom:20}}>🏠</div>
         <p style={{fontSize:22, fontWeight:800, color:T.text, marginBottom:8}}>{s_.splashTag}</p>
