@@ -558,7 +558,7 @@ const ELEMENTS = {
     { id:'bedtime', name:'베드타임 스토리', nameEn:'Bedtime Story', def:'자녀가 잠들기 전에 동화책 읽어주기', defEn:'Read a storybook to your child before they fall asleep', why:'이 시간은 부모와 아이가 정서적 교감을 통해 긍정적인 애착관계를 형성할 수 있는 골든타임입니다. 아빠가 해주는 것이 가장 효과적입니다.', whyEn:'This is a golden time for parent and child to form a positive attachment through emotional connection. It is most effective when done by the father.', tip:'너무 바빠서 아이들과 시간 보내기도 어려운 아빠가 베드타임 스토리 만으로 자녀들과 놀랄만큼 친밀해진 사례가 있어요. 옥명호 저 《아빠가 책을 읽어줄 때 생기는 일들》 추천.', tipEn:'Many fathers who barely had time for their children found that bedtime stories alone transformed their relationship remarkably.' },
   ],
   word:[
-    { id:'storytelling', name:'스토리텔링', nameEn:'Storytelling', def:'성경 동화 이야기를 통해 더 깊이 배우고 기억하기', defEn:'Learn and remember more deeply through Bible storytelling', why:'영아/유아들은 논리보다 이야기와 이미지로 세상을 이해합니다. 부모의 목소리로 듣는 성경 이야기는 아이 마음속에 안전함과 친밀함으로 남습니다.', whyEn:'Infants and toddlers understand the world through stories and images, not logic. A Bible story heard in a parent\'s voice becomes a feeling of safety and intimacy in a child\'s heart.', tip:'짧고 생생한 성경 동화나 탈무드 이야기를 들려주세요. 목소리와 표정을 조금만 바꿔도 아이들의 집중도가 달라집니다.', tipEn:'Tell short, vivid Bible stories or Talmud tales. Even small changes in your voice and expression will dramatically increase your child\'s engagement.' },
+    { id:'storytelling', name:'스토리텔링', nameEn:'Storytelling', def:'성경 동화를 엄마 아빠의 목소리로 들을 때 영적 애착이 깊어진다', defEn:'Hearing Bible stories in mom and dad\'s voice deepens spiritual attachment', why:'영아/유아들은 논리보다 이야기와 이미지로 세상을 이해합니다. 부모의 목소리로 듣는 성경 이야기는 아이 마음속에 안전함과 친밀함으로 남습니다.', whyEn:'Infants and toddlers understand the world through stories and images, not logic. A Bible story heard in a parent\'s voice becomes a feeling of safety and intimacy in a child\'s heart.', tip:'짧고 생생한 성경 동화나 탈무드 이야기를 들려주세요. 목소리와 표정을 조금만 바꿔도 아이들의 집중도가 달라집니다.', tipEn:'Tell short, vivid Bible stories or Talmud tales. Even small changes in your voice and expression will dramatically increase your child\'s engagement.' },
     { id:'read',     name:'낭독하기',    nameEn:'Read Aloud',    def:'가족이 돌아가며 소리 내어 말씀을 읽고 듣기', defEn:'Read the Word aloud together, taking turns', why:'믿음은 들음에서 시작됩니다. 가족이 한 명씩 돌아가며 읽을 때 하나님의 말씀을 서로의 음성으로 듣는 독특한 경험을 하게 됩니다.', whyEn:'Faith comes from hearing. When each family member reads aloud, you experience God\'s Word through each other\'s voices.', tip:'천천히 읽고, 본문을 두세 번 반복해서 읽어도 좋습니다.', tipEn:'Read slowly, and feel free to read the passage two or three times.' },
     { id:'meditate', name:'묵상하기',    nameEn:'Meditate',      def:'침묵 속에서 말씀을 마음으로 되새기는 시간', defEn:'Reflect on the Word in silence, letting it sink into your heart', why:'말씀 안에 머물며 성령께서 무엇이라 말씀하시는지 귀를 기울이고 듣는 시간입니다.', whyEn:'Stay in the Word and listen for what the Holy Spirit is saying to you.', tip:'2–3분의 짧은 침묵도 충분히 의미 있습니다.', tipEn:'Even 2–3 minutes of silence is deeply meaningful.' },
     { id:'question', name:'질문과 대화',    nameEn:'Questions & Dialogue', def:'좋은 질문으로 말씀의 본질과 하나님을 만나기', defEn:'Meet God through the heart of His Word with good questions', why:'질문은 상대방의 생각을 듣겠다는 존중의 표현입니다. 좋은 질문은 본문을 입체적으로 경험하게 합니다.', whyEn:'A question is an act of respect — saying "I want to hear your thoughts." Good questions help experience the Word in depth.', tip:'많은 설명보다 좋은 질문 하나가 더 깊이 남습니다.', tipEn:'One good question goes deeper than a long explanation.' },
@@ -566,7 +566,15 @@ const ELEMENTS = {
     { id:'dessert',  name:'후식 나누기', nameEn:'Dessert', def:'분위기를 부드럽게 전환하며 말씀을 함께 나누는 장치', defEn:'A sweet transition that makes the Word a joyful memory', why:'맛있는 간식은 대화를 활기차게 만들고 말씀을 즐거운 기억으로 만들어 줍니다.', whyEn:'A delicious snack energizes conversation and turns the Word into a joyful memory.', tip:'특별한 후식 하나가 자녀에게 예배를 기다리는 이유가 될 수 있습니다. 유대인은 안식일 만찬 후 토라 말씀을 토론할 때, 좀 더 나은 후식을 고민하는 과정에서 던킨도너츠, 하겐다즈, 허쉬 초콜릿, 배스킨라빈스를 창업하기도 했어요.', tipEn:'One special treat can become the reason your child looks forward to worship. In fact, while Jews discussed Torah after Sabbath meals and thought about better desserts, some founded Dunkin\' Donuts, Häagen-Dazs, Hershey\'s, and Baskin-Robbins.' },
   ],
   response:[
-    { id:'draw',     name:'그림 그리기', nameEn:'Draw', def:'말씀을 그림으로 창의적으로 표현하며 마음에 새기기', defEn:'Creatively express the Word through drawing to engrave it in your heart', why:'그리기는 말씀을 눈으로 다시 만나게 하는 방식입니다.', whyEn:'Drawing is a way to encounter the Word again through your eyes.', tip:'잘 그리는 것보다 느낀 것을 자유롭게 표현하면 됩니다.', tipEn:'Express freely what you felt — it\'s not about drawing well.' },
+    { id:'response_activity', name:'반응 활동', nameEn:'Response Activity',
+      def:'말씀을 몸과 손으로 표현하며 하나님을 만나는 시간', defEn:'Express the Word with your body and hands to encounter God',
+      why:'아이들은 듣는 것보다 만들고 움직일 때 더 깊이 기억합니다. 말씀을 손으로 만지고 몸으로 표현할 때, 하나님의 이야기가 머리가 아닌 마음과 몸에 새겨집니다.', whyEn:'Children remember far more through making and moving than through listening. When they touch and embody the Word, God\'s story is engraved not in the mind but in the heart and body.',
+      tip:'잘 만들어야 한다는 부담을 주지 마세요. 과정이 결과보다 중요해요. 부모가 함께 참여하면 아이들이 훨씬 더 즐겁게 집중합니다.', tipEn:'Don\'t pressure them to make it perfect. The process matters more than the result. When parents join in, children focus with so much more joy.' },
+    { id:'creative_activity', name:'창작 활동', nameEn:'Creative Activity',
+      def:'말씀을 나만의 방식으로 표현하며 하나님께 반응하는 시간', defEn:'Respond to God by expressing the Word in your own unique way',
+      why:'중학생은 말로 감정을 표현하기 어려운 시기예요. 그림, 글, 음악, 사진 등 자신만의 언어로 말씀에 반응할 때 억누르고 있던 내면의 목소리가 자연스럽게 열립니다.', whyEn:'Middle schoolers find it hard to express feelings in words. When they respond to the Word through drawing, writing, music, or photos — their own language — the inner voice they\'ve been holding back begins to open naturally.',
+      tip:'"잘했어, 못했어"가 아니라 "어떤 생각이 들었어?"로 마무리해주세요. 강요하지 말고, 하고 싶을 때 할 수 있도록 여지를 주세요.', tipEn:'End with "What were you thinking?" not "Good job or bad job." Don\'t force it — give them space to do it when they want to.' },
+    { id:'draw',     name:'그림 그리기', nameEn:'Drawing', def:'말씀을 그림으로 창의적으로 표현하며 마음에 새기기', defEn:'Creatively express the Word through drawing to engrave it in your heart', why:'그리기는 말씀을 눈으로 다시 만나게 하는 방식입니다.', whyEn:'Drawing is a way to encounter the Word again through your eyes.', tip:'잘 그리는 것보다 느낀 것을 자유롭게 표현하면 됩니다.', tipEn:'Express freely what you felt — it\'s not about drawing well.' },
     { id:'praise',   name:'반응의 찬양',    nameEn:'Response Praise', def:'오늘 말씀과 연관된 찬양으로 하나님께 반응하기', defEn:'Respond to God through praise connected to today\'s Word', why:'반응의 찬양은 말씀을 나누며 받은 그날 은혜에 감사나 기쁨, 회개나 헌신으로 하나님께 고백하는 시간입니다.', whyEn:'Response Praise is a time to confess to God — with gratitude, joy, repentance, or dedication — in response to the grace received through the Word.', tip:'아빠나 엄마가 의도하는 찬양도 좋고, 누구든 오늘 생각나는 찬양도 좋아요.', tipEn:'Any song works — one a parent has in mind, or whatever comes to anyone\'s heart today.' },
     { id:'gratitude',name:'감사 나누기', nameEn:'Thank', def:'말씀을 통해 깨달은 은혜를 감사로 표현하기', defEn:'Express gratitude for the grace received through the Word', why:'감사는 하나님이 하신 일을 인정하는 반응입니다.', whyEn:'Gratitude is the response of acknowledging what God has done.', tip:'오늘 말씀에서 "감사한 한 가지"를 나눠보세요.', tipEn:'Share "one thing I\'m grateful for" from today\'s Word.' },
     { id:'pray',     name:'기도하기',    nameEn:'Pray',          def:'말씀을 들은 후 하나님께 마음을 올려 드리기', defEn:'Lift your heart to God after receiving His Word', why:'기도는 말씀에 대한 가장 직접적인 반응입니다.', whyEn:'Prayer is the most direct response to the Word.', tip:'때로는 회개로, 때로는 결단으로 드리는 기도가 나를 변화시킵니다.', tipEn:'Sometimes as repentance, sometimes as commitment — prayer transforms you.' },
@@ -602,14 +610,16 @@ const SERIES_DB = [
             challenge:'오늘 밤 잠들기 전 불을 껐다 켜며 "하나님, 빛 주셔서 감사해요" 기도하기'
           },
           preschooler:{
-            content:['하나님이 왜 빛을 제일 먼저 만드셨을까?','해가 없는데 생긴 빛 — 이게 어떤 빛이었을까?','하나님이 빛을 "좋았다"고 하셨는데, 뭐가 좋았던 걸까?'],
-            imagine:['"혼돈하고 공허하고 어두운" 세상 위에 하나님의 영이 날고 계셨는데 — 그때 하나님은 뭘 하고 계셨을까?','빛이 생긴 순간, 어둠은 어디로 갔을까?'],
-            apply:['오늘 내가 누군가에게 빛이 될 수 있다면?'],
-            activity:'이번 주 매일 밤 불을 끄고 5초간 있다가 켜며 "하나님 빛을 주세요" 기도하기',
-            challenge:'Light Prayer Challenge: 매일 밤 불을 끄고 5초 후 켜며 "하나님, 제 마음과 하루에 빛을 비춰주세요" 기도하기',
-            en_content:['Why did God make light first?','If there was no sun yet, what kind of "light" was it?','God said the light was "good." What was good about it?'],
-            en_imagine:['When God\'s Spirit was "hovering" over the water — what do you picture? What is He doing?','When the light appeared, where did the darkness go?'],
-            en_apply:['What is one place in your life that feels a little "dark" or "messy" right now? What help do you want from God?'],
+            content:['불을 끄면 어떻게 돼? 같이 꺼볼까! (불 끄기) — 어때? 무서워? 신기해?','하나님이 뭐라고 말씀하셨더니 빛이 생겼어? 같이 외쳐봐 — "빛이 있으라!"','빛이 생기자마자 하나님이 뭐라고 하셨어?'],
+            imagine:['하나님 목소리는 어떤 소리였을까? 천둥처럼? 바람처럼? 아니면 아주 조용했을까?','하나님이 빛을 만드실 때 어떤 표정이셨을까? 따라해봐!'],
+            apply:['오늘 하루 중에 제일 예쁜 빛은 뭐였어? 햇빛? 불빛? 반짝이는 것?','하나님이 만드신 빛 중에 오늘 제일 좋았던 빛은?'],
+            activity:'🎮 온몸 활동: 다같이 쪼그려 앉아 눈 감기(어둠) → 부모가 "빛이 있으라!" 외치면 아이가 번쩍 일어나 손 번쩍 들기!\n\n🔦 빛 놀이: 어두운 방에서 손전등으로 벽에 동물 그림자 만들기\n\n🎨 이번 주 활동 (하나만 골라보세요!)\nA. 검정+흰 색종이 찢어서 빛과 어둠 콜라주\nB. 골판지 전구 모양 오리기 → 노랑/주황 물감 색칠 → 반짝이 스티커\nC. 노랑·주황·빨강 물감으로 손바닥 찍기 → "이게 하나님의 빛이야!"\n\n🕯️ 감각 활동: 촛불 켜고 함께 바라보기 — "이 빛이 하나님의 선물이야"',
+            challenge:'매일 밤 불 끄고 5초 기다렸다 켜며 — "하나님, 빛을 주셔서 감사해요!" 기도하기',
+            en_content:['Let\'s turn off the lights! (turn off lights) — How does it feel? Scary? Exciting?','What did God say that made light appear? Let\'s say it together — "Let there be light!"','What did God say when He saw the light?'],
+            en_imagine:['What do you think God\'s voice sounded like? Like thunder? Like wind? Or very quiet?','What expression do you think God had when He made the light? Copy it!'],
+            en_apply:['What was the most beautiful light you saw today? Sunlight? A lamp? Something sparkly?','What is your favorite light that God made?'],
+            en_activity:'🎮 Full Body Activity: Everyone crouch down and close eyes (darkness) → When parent shouts "Let there be light!" everyone jumps up and raises hands!\n\n🔦 Light Play: Make animal shadows on the wall with a flashlight in a dark room\n\n🎨 This Week\'s Activity (pick just one!)\nA. Tear black + white paper and make a light & darkness collage\nB. Cut out a lightbulb shape from cardboard → paint yellow/orange → add sparkle stickers\nC. Stamp handprints in yellow, orange & red paint → "This is God\'s light!"\n\n🕯️ Sensory: Light a candle and look at it together — "This light is God\'s gift to us"',
+            en_challenge:'Every night, turn off the lights, wait 5 seconds, then turn them on — "Thank you God for the light!" ',
           },
           middle:{
             content:['하나님이 세상을 창조하셨는데, 왜 처음에 땅이 "혼돈하고 공허하고 어두웠을까"?','하나님의 영이 수면 위를 날고 계셨다 — 그 장면, 어떻게 그려져? 하나님이 뭘 하고 계신 걸까?','첫날 빛이 생겼는데, 넷째날에 또 해와 달을 만드셨어. 이 빛은 뭐가 달랐던 걸까?'],
@@ -1187,7 +1197,16 @@ export default function App() {
   const [showQGuide, setShowQGuide] = useState(false);
   const [openElem, setOpenElem] = useState(null);
 
-  const go = s => { setScreen(s); window.scrollTo(0,0); };
+  const go = s => {
+    setScreen(s);
+    window.scrollTo(0,0);
+    if(s==='worship') {
+      const wordRoomElems = selectedElems['word'];
+      if(wordRoomElems && wordRoomElems.has('question')) {
+        setOpenElem('word__question');
+      }
+    }
+  };
   const wrap = (children, noPad=false) => (
     <div style={{maxWidth:480, margin:'0 auto', background:T.bg, minHeight:'100vh', padding: noPad ? 0 : '24px 18px 80px'}}>
       {/* 상단 고정 언어 토글 — C안 */}
@@ -1412,38 +1431,38 @@ export default function App() {
   if(screen==='about') {
 
     const FIVE = [
-      { num:'1', title:"설교가 아닌 '대화'입니다", tag:'Shema', desc:"쉐마의 실천인 '강론하라'의 히브리어 다바르(Davar)는 일방적인 훈계가 아니라 '이야기하고, 대화하며, 친밀하게 사귀고, 함께 살아내다'라는 깊은 의미를 갖습니다. 부모의 주입식 교육이 아닌, 질문과 토론을 통해 자녀가 스스로 하나님을 만나도록 곁에서 함께 동행하는 것입니다." },
-      { num:'2', title:"의식이 아닌 '삶의 예배'입니다", tag:'Lifestyle', desc:"주일예배 형식을 집으로 가져오는 것이 아닙니다. 가정에서 가족과 함께 먹고 마시며 대화하는 일상의 모든 시간이 예배입니다. 주일의 '모이는 교회'를 넘어, 가정이라는 '흩어지는 교회'에서 신앙을 삶으로 증명하는 법을 배웁니다." },
-      { num:'3', title:"추궁이 아닌 '존재 질문'입니다", tag:'Question', desc:"에덴의 아담에게, 광야의 하갈에게, 얍복강의 야곱에게, 로뎀나무의 엘리야에게 질문을 던지신 하나님은 존재 질문의 대가이십니다. 부모의 질문은 자녀의 행위(doing)를 정죄하는 도구가 아니라, 자녀가 하나님 앞에 단독자로 서서 자신의 정체성과 존재(being)를 깨닫도록 기다려 주는 배려와 격려가 되어야 합니다." },
-      { num:'4', title:"교사가 아닌 '부모'가 주도합니다", tag:'Empowerment', desc:"신앙 전수의 주체는 가정의 부모입니다.(신 6:7) 이 앱은 부모, 특히 아버지가 가정의 제사장으로서 자녀를 친밀하게 양육할 수 있도록 돕습니다. 특히 매주 짧은 축복으로 자녀가 영혼이 강한 아이로 자라고, 아버지의 영적 권위는 자연스럽게 회복됩니다." },
-      { num:'5', title:"질문, 가정을 바꾸는 '게임 체인저'", tag:'Game Changer', desc:"질문과 경청의 대화법인 하브루타는 하나님의 대화 방식이자 인류에게 주신 일반 은총입니다. 그래서 다음 세대를 일으키는 하브루타의 7가지 본질적 문화가 신앙전수의 스피릿으로 스며들도록 합니다." },
+      { num:'1', title:"설교가 아닌 '대화'입니다", titleEn:"Not a Sermon, but a 'Conversation'", tag:'Shema', desc:"쉐마의 실천인 '강론하라'의 히브리어 다바르(Davar)는 일방적인 훈계가 아니라 '이야기하고, 대화하며, 친밀하게 사귀고, 함께 살아내다'라는 깊은 의미를 갖습니다. 부모의 주입식 교육이 아닌, 질문과 토론을 통해 자녀가 스스로 하나님을 만나도록 곁에서 함께 동행하는 것입니다.", descEn:"The Hebrew word Davar (דָּבַר) — 'to speak' in the Shema — means far more than one-way instruction. It means to converse, to befriend, to walk alongside and live life together. This app helps parents accompany their children as they encounter God for themselves through questions and dialogue." },
+      { num:'2', title:"의식이 아닌 '삶의 예배'입니다", titleEn:"Not a Ritual, but 'Lifestyle Worship'", tag:'Lifestyle', desc:"주일예배 형식을 집으로 가져오는 것이 아닙니다. 가정에서 가족과 함께 먹고 마시며 대화하는 일상의 모든 시간이 예배입니다. 주일의 '모이는 교회'를 넘어, 가정이라는 '흩어지는 교회'에서 신앙을 삶으로 증명하는 법을 배웁니다.", descEn:"This is not about bringing Sunday service into your home. Every moment of eating, talking, and living together as a family is worship. Beyond the 'gathered church' on Sunday, we learn to embody faith in the 'scattered church' of the home." },
+      { num:'3', title:"추궁이 아닌 '존재 질문'입니다", titleEn:"Not Interrogation, but 'Being Questions'", tag:'Question', desc:"에덴의 아담에게, 광야의 하갈에게, 얍복강의 야곱에게, 로뎀나무의 엘리야에게 질문을 던지신 하나님은 존재 질문의 대가이십니다. 부모의 질문은 자녀의 행위(doing)를 정죄하는 도구가 아니라, 자녀가 하나님 앞에 단독자로 서서 자신의 정체성과 존재(being)를 깨닫도록 기다려 주는 배려와 격려가 되어야 합니다.", descEn:"God asked questions of Adam in Eden, Hagar in the wilderness, Jacob at the Jabbok, and Elijah under the broom tree. He is the master of being questions. A parent's questions should not condemn a child's doing, but patiently invite their being — helping them stand before God and discover their identity." },
+      { num:'4', title:"교사가 아닌 '부모'가 주도합니다", titleEn:"Not Teachers, but 'Parents' Lead", tag:'Empowerment', desc:"신앙 전수의 주체는 가정의 부모입니다.(신 6:7) 이 앱은 부모, 특히 아버지가 가정의 제사장으로서 자녀를 친밀하게 양육할 수 있도록 돕습니다. 특히 매주 짧은 축복으로 자녀가 영혼이 강한 아이로 자라고, 아버지의 영적 권위는 자연스럽게 회복됩니다.", descEn:"Parents — not Sunday school teachers — are the primary carriers of faith. (Deut. 6:7) This app helps parents, especially fathers, raise their children with intimacy as the family's spiritual leader. A short weekly blessing nurtures spiritually strong children and naturally restores a father's spiritual authority." },
+      { num:'5', title:"질문, 가정을 바꾸는 '게임 체인저'", titleEn:"Questions — the 'Game Changer' for Families", tag:'Game Changer', desc:"질문과 경청의 대화법인 하브루타는 하나님의 대화 방식이자 인류에게 주신 일반 은총입니다. 그래서 이 앱은 자녀에게 신앙을 전수하는 하브루타의 7가지 본질적 문화가 자연스레 가정에 스며들게 안내합니다.", descEn:"Havruta — the art of learning through questions and deep listening — is God's own way of communicating, a common grace given to all humanity. This app guides families to naturally embrace the 7 essential Havruta cultures that pass on faith to the next generation." },
     ];
 
     const SEVEN = [
-      ['텍스트의 힘', '말씀이 능력이 되어 삶을 이끄는 권위 회복하기'],
-      ['수직 문화', '부모의 신앙이 전수되는 세대간의 영적 질서 세우기'],
-      ['가정 문화', '가정이 신앙교육의 원초적 공간으로 자리잡기'],
-      ['질문의 문화', '질문을 통해 스스로 하나님을 만나는 루틴 만들기'],
-      ['시간의 문화', '구별된 시간을 통해 안식과 거룩을 형성하기'],
-      ['관계의 교육', '경쟁보다 서로 돕고 세워주는 하베르 우정 쌓기'],
-      ['정체성 교육', '세상에 휩쓸리지 않는 영혼이 강한 아이로 자라기'],
+      [t('텍스트의 힘','The Power of the Text'), t('말씀이 능력이 되어 삶을 이끄는 권위 회복하기','Restoring the authority of the Word as a living power that guides life')],
+      [t('수직 문화','Vertical Culture'), t('부모의 신앙이 전수되는 세대간의 영적 질서 세우기','Building intergenerational spiritual order where parents pass on faith')],
+      [t('가정 문화','Home Culture'), t('가정이 신앙교육의 원초적 공간으로 자리잡기','Establishing the home as the primary space for faith formation')],
+      [t('질문의 문화','Culture of Questions'), t('질문을 통해 스스로 하나님을 만나는 루틴 만들기','Creating a rhythm of encountering God personally through questions')],
+      [t('시간의 문화','Culture of Time'), t('구별된 시간을 통해 안식과 거룩을 형성하기','Forming rest and holiness through set-apart time')],
+      [t('관계의 교육','Relational Education'), t('경쟁보다 서로 돕고 세워주는 하베르 우정 쌓기','Building Haver friendship that uplifts rather than competes')],
+      [t('정체성 교육','Identity Formation'), t('세상에 휩쓸리지 않는 영혼이 강한 아이로 자라기','Raising children with strong souls who are not swept away by the world')],
     ];
 
     const Header = () => (
       <div>
         <BackBtn onClick={()=>go('welcome')} lang={lang}/>
-        <Tag>제작 의도</Tag>
-        <h1 style={{fontSize:27, fontWeight:800, color:T.text, lineHeight:1.3, letterSpacing:'-0.03em', marginBottom:20}}>"모든 가정을 대화가 흐르는 성소(聖所)로"</h1>
+        <Tag>{t('제작 의도','Why This App')}</Tag>
+        <h1 style={{fontSize:27, fontWeight:800, color:T.text, lineHeight:1.3, letterSpacing:'-0.03em', marginBottom:20}}>{t('"모든 가정을 대화가 흐르는 성소(聖所)로"','"Every Home, a Sacred Space Where Conversation Flows"')}</h1>
       </div>
     );
 
     const Footer = () => (
       <div>
         <div style={{background:T.greenBg, border:`1px solid ${T.greenBorder}`, borderRadius:T.rSm, padding:'18px', marginBottom:18, textAlign:'center'}}>
-          <p style={{fontSize:18, color:T.green, fontWeight:700, lineHeight:1.9}}>"지금, 이 앱과 함께 우리 가정을 대화의 천국으로 만들어보세요!"</p>
+          <p style={{fontSize:18, color:T.green, fontWeight:700, lineHeight:1.9}}>{t('"지금, 이 앱과 함께 우리 가정을 대화의 천국으로 만들어보세요!"','"Start today — let this app help your family become a home where conversation flows freely."')}</p>
         </div>
-        <p style={{fontSize:16, color:T.hint, textAlign:'right', marginTop:8}}>— 듀엣 좋은씨앗, 예배사역연구소 소장 이유정</p>
-        <p style={{fontSize:15, color:T.hint, textAlign:'right', marginTop:4}}>*이 앱은 이유정 저 《대화식 가정예배》를 기반으로 설계되었습니다.</p>
+        <p style={{fontSize:16, color:T.hint, textAlign:'right', marginTop:8}}>{t('— 듀엣 좋은씨앗, 예배사역연구소 소장 이유정','— Justin Lee, Director, Worship Ministry Research Institute')}</p>
+        <p style={{fontSize:15, color:T.hint, textAlign:'right', marginTop:4}}>{t('*이 앱은 이유정 저 《대화식 가정예배》를 기반으로 설계되었습니다.','*This app is based on Dialogic Family Worship by Justin Lee.')}</p>
         <div style={{marginTop:16}}><Btn onClick={()=>go('welcome')} outline color={T.purple}>{t('← 처음으로 돌아가기','← Back to Home')}</Btn></div>
         {/* 초기화 — About 맨 아래 숨김 */}
         <div style={{marginTop:40, textAlign:'center'}}>
@@ -1467,9 +1486,9 @@ export default function App() {
       <div>
         <Header/>
         <div style={{fontSize:17, color:T.text, lineHeight:2.0}}>
-          <p style={{marginBottom:16}}>건강한 교회에서 목회하는 후배 목사가 부탁을 했습니다. "책은 좋은데, 성도들에게는 구체적인 툴이 필요해요." 그래서 대화식 예배 경험이 없는 가정들을 위해 이 앱을 만들었습니다.</p>
-          <p style={{marginBottom:20}}>가정예배는 단순한 종교 의식이 아닙니다. 가장 치열한 삶의 예배 현장인 가정에서 대화와 나눔, 경청과 배려, 사귐과 소통 자체가 예배입니다.</p>
-          <p style={{marginBottom:16, fontWeight:700, color:T.purple}}>이 앱은 5가지 가치 회복을 목표로 합니다.</p>
+          <p style={{marginBottom:16}}>{t('건강한 교회에서 목회하는 후배 목사가 부탁을 했습니다. "책은 좋은데, 성도들에게는 구체적인 툴이 필요해요." 그래서 대화식 예배 경험이 없는 가정들을 위해 이 앱을 만들었습니다.','A younger pastor leading a healthy church made a request: "The book is great, but our people need a concrete tool." So this app was created for families with no experience in dialogic worship.')}</p>
+          <p style={{marginBottom:20}}>{t('가정예배는 단순한 종교 의식이 아닙니다. 가장 치열한 삶의 예배 현장인 가정에서 대화와 나눔, 경청과 배려, 사귐과 소통 자체가 예배입니다.','Family worship is not a religious ritual. In the home — the most real arena of life — conversation, sharing, listening, caring, and simply being together is worship.')}</p>
+          <p style={{marginBottom:16, fontWeight:700, color:T.purple}}>{t('이 앱은 5가지 가치 회복을 목표로 합니다.','This app aims to restore 5 core values.')}</p>
 
           {FIVE.map((item,i)=>(
             <button key={i} onClick={()=>toggleItem(i)} style={{width:'100%', background:'none', border:'none', cursor:'pointer', textAlign:'left', padding:0, marginBottom:10}}>
@@ -1479,13 +1498,13 @@ export default function App() {
                     <div style={{width:24, height:24, borderRadius:'50%', background: openItems[i] ? T.purple : T.border, display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0}}>
                       <span style={{color:'#fff', fontSize:14, fontWeight:800}}>{item.num}</span>
                     </div>
-                    <p style={{fontSize:17, fontWeight:800, color: openItems[i] ? T.purple : T.text}}>{item.title}</p>
+                    <p style={{fontSize:17, fontWeight:800, color: openItems[i] ? T.purple : T.text}}>{lang==='en' ? item.titleEn : item.title}</p>
                   </div>
                   <span style={{fontSize:15, color:T.hint}}>{openItems[i] ? '▲' : '▼'}</span>
                 </div>
                 {openItems[i] && (
                   <div>
-                    <p style={{fontSize:16, color:T.text, lineHeight:1.9, marginTop:10, paddingLeft:34}}>{item.desc}</p>
+                    <p style={{fontSize:16, color:T.text, lineHeight:1.9, marginTop:10, paddingLeft:34}}>{lang==='en' ? item.descEn : item.desc}</p>
                     {i === 4 && (
                       <div style={{marginTop:12, paddingLeft:34}}>
                         <button onClick={(e)=>{e.stopPropagation(); toggleItem('seven');}} style={{background:'none', border:`1px solid ${T.purpleBorder}`, borderRadius:T.rSm, padding:'8px 14px', fontSize:15, fontWeight:700, color:T.purple, cursor:'pointer', width:'100%', textAlign:'left'}}>
@@ -1499,7 +1518,7 @@ export default function App() {
                                 <span style={{fontSize:16, color:T.text, lineHeight:1.85}}>{v}</span>
                               </div>
                             ))}
-                            <p style={{fontSize:15, color:T.sub, marginTop:8}}>*추천도서: 이성준 저 《리얼 하브루타》</p>
+                            <p style={{fontSize:15, color:T.sub, marginTop:8}}>{t('*추천도서: 이성준 저 《리얼 하브루타》','*Recommended: Real Havruta by Lee Sung-jun')}</p>
                           </div>
                         )}
                       </div>
@@ -1765,7 +1784,11 @@ export default function App() {
               {selCount>0 && <span style={{fontSize:15, background:rs.color, color:'#fff', borderRadius:T.rFull, padding:'2px 8px', fontWeight:700, marginLeft:'auto'}}>{selCount}{t('개 선택됨',' selected')}</span>}
             </div>
             <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:8}}>
-              {ELEMENTS[r.id].map(e => {
+              {ELEMENTS[r.id].filter(e => {
+                if(e.id==='response_activity') return ['infant','preschooler','child'].includes(ageGroup);
+                if(e.id==='creative_activity') return ageGroup==='middle';
+                return true;
+              }).map(e => {
                 const sel = (selectedElems[r.id]||new Set()).has(e.id);
                 const isOpen = openInfo === r.id+'-'+e.id;
                 return (
@@ -1926,7 +1949,12 @@ export default function App() {
     // 방별 요소 목록
     const getRoomElems = (roomId) =>
       (ELEMENTS[roomId] || [])
-        .filter(e => (selectedElems[roomId]||new Set()).has(e.id));
+        .filter(e => (selectedElems[roomId]||new Set()).has(e.id))
+        .filter(e => {
+          if(e.id==='response_activity') return ['infant','preschooler','child'].includes(ageGroup);
+          if(e.id==='creative_activity') return ageGroup==='middle';
+          return true;
+        });
 
     // 질문 가이드 내용
     const QGUIDE = [
@@ -2018,12 +2046,6 @@ export default function App() {
                             </div>
                           </div>
                         ))}
-                        {hasAgeQ && aq[ag].activity && (lang==='ko' || aq[ag].en_activity) && (
-                          <div style={{background:'#FFF8E7', border:`1px solid #F5D78E`, borderRadius:T.rSm, padding:'12px 14px', marginBottom:8}}>
-                            <p style={{fontSize:15, fontWeight:700, color:'#B8860B', marginBottom:4}}>{t('🎨 연령별 활동','🎨 Age-Based Activity')}</p>
-                            <p style={{fontSize:15, color:T.text, lineHeight:1.7}}>{lang==='en' ? (aq[ag].en_activity||aq[ag].activity) : aq[ag].activity}</p>
-                          </div>
-                        )}
                       </div>
                     );
                   })()}
@@ -2120,6 +2142,62 @@ export default function App() {
           {isOpen && (
             <div style={{borderTop:`1px solid ${T.border}`, padding:'12px 16px 14px'}}>
               {e.why && <p style={{fontSize:15, color:T.sub, lineHeight:1.7, marginBottom:8}}><span style={{fontWeight:700, color:T.text}}>{t('왜 하는가? ','Why do this? ')}</span>{lang==='en' ? (e.whyEn||e.why) : e.why}</p>}
+
+              {/* 반응 활동 — 연령별 활동 내용 */}
+              {e.id==='response_activity' && ageGroup && (() => {
+                const ag = ageGroup;
+                const aq = activeItem?.ageQuestions?.[ag];
+                const activityText = lang==='en' ? (aq?.en_activity||aq?.activity) : aq?.activity;
+                const showAges = ['infant','preschooler','child'];
+                if(!showAges.includes(ag)) return (
+                  <div style={{background:rs.bg, border:`1px solid ${rs.border}`, borderRadius:T.rSm, padding:'12px 14px', marginBottom:8}}>
+                    <p style={{fontSize:15, color:rs.color, lineHeight:1.75}}>{t('반응 활동은 영아기~아동기(0-12세) 자녀에게 적용됩니다.','Response Activity is designed for children ages 0-12.')}</p>
+                  </div>
+                );
+                if(!activityText) return (
+                  <div style={{background:rs.bg, border:`1px solid ${rs.border}`, borderRadius:T.rSm, padding:'12px 14px', marginBottom:8}}>
+                    <p style={{fontSize:15, color:rs.color, lineHeight:1.75}}>🎨 {t('이번 주 활동은 준비 중이에요. 아이와 함께 말씀 장면을 그림으로 그려보세요!','This week\'s activity is coming soon. Try drawing the Bible scene together!')}</p>
+                  </div>
+                );
+                return (
+                  <div style={{background:rs.bg, border:`1px solid ${rs.border}`, borderRadius:T.rSm, padding:'12px 14px', marginBottom:8}}>
+                    <p style={{fontSize:14, fontWeight:700, color:rs.color, marginBottom:8}}>🎨 {t('이번 주 활동','This Week\'s Activity')}</p>
+                    <p style={{fontSize:15, color:T.text, lineHeight:1.85, whiteSpace:'pre-line'}}>{activityText}</p>
+                  </div>
+                );
+              })()}
+
+              {/* 창작 활동 — 중학생용 */}
+              {e.id==='creative_activity' && ageGroup && (() => {
+                const ag = ageGroup;
+                const showAges = ['middle'];
+                if(!showAges.includes(ag)) return (
+                  <div style={{background:rs.bg, border:`1px solid ${rs.border}`, borderRadius:T.rSm, padding:'12px 14px', marginBottom:8}}>
+                    <p style={{fontSize:15, color:rs.color, lineHeight:1.75}}>{t('창작 활동은 중학생(13-15세) 자녀에게 적용됩니다.','Creative Activity is designed for middle schoolers (ages 13-15).')}</p>
+                  </div>
+                );
+                return (
+                  <div style={{background:rs.bg, border:`1px solid ${rs.border}`, borderRadius:T.rSm, padding:'12px 14px', marginBottom:8}}>
+                    <p style={{fontSize:14, fontWeight:700, color:rs.color, marginBottom:8}}>✍️ {t('이번 주 창작 활동 (하나만 골라보세요!)','This Week\'s Creative Activity (pick one!)')}</p>
+                    {(lang==='en' ? [
+                      '📝 Copy one verse from today\'s passage in your own handwriting',
+                      '📸 Take a photo today that reminds you of the Word',
+                      '🎵 Find a song that fits today\'s passage and share it with your family',
+                      '✍️ Write one sentence — what did God say to you today?',
+                    ] : [
+                      '📝 오늘 말씀 중 한 구절 손으로 필사하기',
+                      '📸 오늘 말씀이 생각나는 사진 한 장 찍어 가족과 나누기',
+                      '🎵 오늘 말씀과 어울리는 노래 찾아서 가족에게 소개하기',
+                      '✍️ 한 줄 일기 — 오늘 하나님이 나에게 하신 말씀은?',
+                    ]).map((item,k)=>(
+                      <div key={k} style={{display:'flex', gap:8, padding:'5px 0', alignItems:'flex-start'}}>
+                        <p style={{fontSize:15, color:T.text, lineHeight:1.75}}>{item}</p>
+                      </div>
+                    ))}
+                  </div>
+                );
+              })()}
+
               {e.tip && (
                 <div style={{background:rs.bg, borderLeft:`2px solid ${rs.color}`, borderRadius:`0 ${T.rSm} ${T.rSm} 0`, padding:'7px 10px', marginBottom: e.blessings ? 12 : 0}}>
                   <p style={{fontSize:15, color:rs.color, lineHeight:1.75}}>💡 {lang==='en' ? (e.tipEn||e.tip) : e.tip}</p>
