@@ -1196,6 +1196,12 @@ export default function App() {
   const [seriesConfirmed, setSeriesConfirmed] = useState(null);
   const [showQGuide, setShowQGuide] = useState(false);
   const [openElem, setOpenElem] = useState(null);
+  const [showFeedback, setShowFeedback] = useState(false);
+  const [feedbackName, setFeedbackName] = useState('');
+  const [feedbackMsg, setFeedbackMsg] = useState('');
+  const [feedbackRating, setFeedbackRating] = useState(0);
+  const [feedbackSent, setFeedbackSent] = useState(false);
+  const [feedbackLoading, setFeedbackLoading] = useState(false);
 
   const go = s => {
     setScreen(s);
@@ -1207,15 +1213,98 @@ export default function App() {
       }
     }
   };
+
+  const handleFeedbackSubmit = async () => {
+    if(!feedbackMsg.trim()) return;
+    setFeedbackLoading(true);
+    try {
+      const res = await fetch('https://formspree.io/f/xkoezyaq', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          name: feedbackName || '익명 / Anonymous',
+          rating: feedbackRating ? '⭐'.repeat(feedbackRating) : '평점 없음',
+          message: feedbackMsg,
+          worship_house: worshipName || '이름 없음',
+          age_group: ageGroup || '선택 안함',
+          lang: lang,
+        })
+      });
+    } catch(e) {}
+    // 성공 여부와 관계없이 감사 화면 표시
+    setFeedbackSent(true);
+    setFeedbackMsg('');
+    setFeedbackName('');
+    setFeedbackRating(0);
+    setFeedbackLoading(false);
+  };
+
+  const FeedbackModal = () => showFeedback ? (
+    <div style={{position:'fixed', inset:0, background:'rgba(0,0,0,0.5)', zIndex:9999, display:'flex', alignItems:'flex-end', justifyContent:'center'}}
+      onClick={e=>{ if(e.target===e.currentTarget){ setShowFeedback(false); setFeedbackSent(false); }}}>
+      <div style={{background:T.card, borderRadius:'20px 20px 0 0', padding:'24px 20px 36px', width:'100%', maxWidth:480}}>
+        <div style={{width:36, height:4, background:T.border, borderRadius:2, margin:'0 auto 20px'}}/>
+        {feedbackSent ? (
+          <div style={{textAlign:'center', padding:'20px 0'}}>
+            <div style={{fontSize:48, marginBottom:12}}>🙏</div>
+            <h3 style={{fontSize:20, fontWeight:700, color:T.text, marginBottom:8}}>{t('감사합니다!','Thank you!')}</h3>
+            <p style={{fontSize:15, color:T.sub, lineHeight:1.75}}>{t('소중한 피드백이 예배사역연구소에 전달됐어요. 더 좋은 앱으로 보답할게요!','Your feedback has been sent. We\'ll make the app even better!')}</p>
+            <button onClick={()=>{ setShowFeedback(false); setFeedbackSent(false); }}
+              style={{marginTop:20, padding:'12px 32px', background:T.green, border:'none', borderRadius:99, color:'white', fontSize:15, fontWeight:700, cursor:'pointer'}}>
+              {t('닫기','Close')}
+            </button>
+          </div>
+        ) : (
+          <>
+            <h3 style={{fontSize:18, fontWeight:800, color:T.text, marginBottom:4}}>{t('💬 피드백 보내기','💬 Send Feedback')}</h3>
+            <p style={{fontSize:14, color:T.sub, marginBottom:20}}>{t('예배하면서 느낀 점을 자유롭게 나눠주세요.','Share your experience worshipping with this app.')}</p>
+
+            {/* 별점 */}
+            <p style={{fontSize:14, fontWeight:700, color:T.text, marginBottom:8}}>{t('이 앱이 도움이 됐나요?','Was this app helpful?')}</p>
+            <div style={{display:'flex', gap:8, marginBottom:16}}>
+              {[1,2,3,4,5].map(s=>(
+                <button key={s} onClick={()=>setFeedbackRating(s)}
+                  style={{fontSize:28, background:'none', border:'none', cursor:'pointer', opacity: feedbackRating >= s ? 1 : 0.3, transition:'opacity 0.15s'}}>⭐</button>
+              ))}
+            </div>
+
+            {/* 이름 */}
+            <input placeholder={t('이름 (선택사항)','Name (optional)')}
+              value={feedbackName} onChange={e=>setFeedbackName(e.target.value)}
+              style={{width:'100%', padding:'12px 14px', borderRadius:T.rSm, border:`1.5px solid ${T.border}`, fontSize:14, fontFamily:'inherit', outline:'none', marginBottom:10, background:'white', boxSizing:'border-box'}}/>
+
+            {/* 메시지 */}
+            <textarea placeholder={t('예배하면서 어떠셨나요? 좋았던 점, 아쉬운 점, 바라는 점 모두 환영해요!','How was your worship experience? Share what worked, what didn\'t, and what you\'d like to see!')}
+              value={feedbackMsg} onChange={e=>setFeedbackMsg(e.target.value)} rows={4}
+              style={{width:'100%', padding:'12px 14px', borderRadius:T.rSm, border:`1.5px solid ${T.border}`, fontSize:14, fontFamily:'inherit', outline:'none', marginBottom:16, resize:'none', lineHeight:1.7, boxSizing:'border-box'}}/>
+
+            <button onClick={handleFeedbackSubmit} disabled={!feedbackMsg.trim() || feedbackLoading}
+              style={{width:'100%', padding:'14px', background: feedbackMsg.trim() ? T.green : T.border, border:'none', borderRadius:T.rSm, color:'white', fontSize:15, fontWeight:700, cursor: feedbackMsg.trim() ? 'pointer' : 'not-allowed', transition:'background 0.2s'}}>
+              {feedbackLoading ? t('전송 중...','Sending...') : t('피드백 보내기 →','Send Feedback →')}
+            </button>
+          </>
+        )}
+      </div>
+    </div>
+  ) : null;
   const wrap = (children, noPad=false) => (
     <div style={{maxWidth:480, margin:'0 auto', background:T.bg, minHeight:'100vh', padding: noPad ? 0 : '24px 18px 80px'}}>
-      {/* 상단 고정 언어 토글 — C안 */}
+      {/* 상단 고정 언어 토글 */}
       {lang && (
         <div style={{position:'fixed', top:12, right:16, zIndex:999}}>
           <button onClick={()=>setLang(lang==='ko'?'en':'ko')}
             style={{background:'white', border:`1.5px solid ${T.border}`, borderRadius:99, padding:'5px 12px', fontSize:15, fontWeight:700, color:T.purple, cursor:'pointer', boxShadow:T.shadowSm, display:'flex', alignItems:'center', gap:6}}>
             <span style={{fontSize:17}}>{lang==='ko'?'🇰🇷':'🇺🇸'}</span>
             <span>{lang==='ko'?'KO':'EN'}</span>
+          </button>
+        </div>
+      )}
+      {/* 하단 고정 피드백 버튼 */}
+      {lang && screen==='worship' && (
+        <div style={{position:'fixed', bottom:20, left:'50%', transform:'translateX(-50%)', zIndex:998}}>
+          <button onClick={()=>setShowFeedback(true)}
+            style={{background:T.green, border:'none', borderRadius:99, padding:'10px 20px', fontSize:14, fontWeight:700, color:'white', cursor:'pointer', boxShadow:'0 4px 12px rgba(0,0,0,0.15)', display:'flex', alignItems:'center', gap:6}}>
+            💬 {t('피드백 보내기','Send Feedback')}
           </button>
         </div>
       )}
@@ -1404,7 +1493,7 @@ export default function App() {
         </div>
 
         <Btn onClick={()=>go('diag')}>{s_.diagBtn}</Btn>
-        {(worshipName || selectedScripture) && (
+        {(worshipName || selectedScripture || Object.keys(selectedElems).length > 0) && (
           <div>
             <div style={{marginTop:8}}>
               <Btn onClick={()=>go('worship')} color={T.green}>{t('이번 주 예배 시작하기 →','Start This Week\'s Worship →')}</Btn>
@@ -1466,16 +1555,33 @@ export default function App() {
         <div style={{marginTop:16}}><Btn onClick={()=>go('welcome')} outline color={T.purple}>{t('← 처음으로 돌아가기','← Back to Home')}</Btn></div>
         {/* 초기화 — About 맨 아래 숨김 */}
         <div style={{marginTop:40, textAlign:'center'}}>
-          <button onClick={()=>{
-            if(window.confirm(t('모든 설정이 초기화됩니다. 계속할까요?','Reset all settings? This cannot be undone.'))) {
-              setSelectedScripture(null); setSelectedRooms(new Set()); setSelectedElems({});
-              setWorshipName(''); setInputName(''); setSelectedDiag(null); setAgeGroup('');
-              setDebrief({}); setSeriesConfirmed(null); setExpandedSeries(null);
-              setOnboardingDone(false); setOnboardingStep(-1); setLang('');
-            }
-          }} style={{background:'none', border:'none', fontSize:13, color:T.hint, cursor:'pointer', opacity:0.4}}>
-            {t('앱 초기화','Reset App')}
-          </button>
+          {!confirmDelete ? (
+            <button onClick={()=>setConfirmDelete(true)}
+              style={{background:'none', border:'none', fontSize:13, color:T.hint, cursor:'pointer', opacity:0.5}}>
+              {t('앱 초기화','Reset App')}
+            </button>
+          ) : (
+            <div style={{background:'#FEF2F1', border:'1px solid #FBBCB8', borderRadius:T.rSm, padding:'12px 16px'}}>
+              <p style={{fontSize:15, color:'#A32D2D', fontWeight:700, marginBottom:10}}>
+                {t('모든 설정이 초기화됩니다. 되돌릴 수 없어요.','All settings will be reset. This cannot be undone.')}
+              </p>
+              <div style={{display:'flex', gap:8}}>
+                <button onClick={()=>setConfirmDelete(false)}
+                  style={{flex:1, padding:'9px', background:'white', border:`1px solid ${T.border}`, borderRadius:T.rSm, fontSize:15, cursor:'pointer', color:T.text}}>
+                  {t('취소','Cancel')}
+                </button>
+                <button onClick={()=>{
+                  setSelectedScripture(null); setSelectedRooms(new Set()); setSelectedElems({});
+                  setWorshipName(''); setInputName(''); setSelectedDiag(null); setAgeGroup('');
+                  setDebrief({}); setSeriesConfirmed(null); setExpandedSeries(null);
+                  setOnboardingDone(false); setOnboardingStep(-1); setLang('');
+                  setConfirmDelete(false);
+                }} style={{flex:1, padding:'9px', background:'#A32D2D', border:'none', borderRadius:T.rSm, fontSize:15, cursor:'pointer', color:'white', fontWeight:700}}>
+                  {t('초기화','Reset')}
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     );
@@ -1738,7 +1844,29 @@ export default function App() {
           },
         };
         const msg = COACHING[ageGroup];
-        if(!msg || !ag) return null;
+        if(!msg || !ag) {
+          // 연령 없이 진행한 경우
+          return (
+            <div style={{background:T.amberBg, border:`1px solid ${T.amberBorder}`, borderRadius:T.rSm, padding:'12px 14px', marginBottom:16}}>
+              <p style={{fontSize:15, color:T.amber, lineHeight:1.8}}>
+                💡 {t('연령대를 선택하지 않으셨어요. 각 방의 요소를 자유롭게 선택하시면 돼요. 나중에 2단계로 돌아가서 연령대를 선택하면 맞춤 코칭을 받을 수 있어요.','You haven\'t selected an age group. Feel free to choose any elements. You can go back to Step 2 to select an age group and receive personalized coaching.')}
+              </p>
+            </div>
+          );
+        }
+
+        // 영아기 + 신앙 거부감 특별 케이스
+        if(ageGroup === 'infant' && selectedDiag === 'resistant') {
+          return (
+            <div style={{background:T.purpleBg, border:`1px solid ${T.purpleBorder}`, borderRadius:T.rSm, padding:'12px 14px', marginBottom:16}}>
+              <span style={{fontSize:18}}>🐣</span>
+              <p style={{fontSize:15, color:T.purple, lineHeight:1.8, marginTop:6}}>
+                {t('영아기(0-3세) 아기는 아직 신앙 거부감을 느낄 나이가 아니에요 😊 이 시기는 부모와의 따뜻한 애착이 가장 중요해요. 모임의 방에서 스토리텔링, 찬양, 축복하기로 시작하세요. 아기는 엄마 아빠의 목소리와 스킨십 자체가 예배예요.',
+                'Infants (0-3) are too young to resist faith 😊 At this stage, warm attachment with parents is what matters most. Start with the Gathering Room — Storytelling, Praise, and Blessing. For your baby, mom and dad\'s voice and touch is worship itself.')}
+              </p>
+            </div>
+          );
+        }
         const hasExpand = ['infant','preschooler','child','middle','high'].includes(ageGroup);
         const showMoreMap = {infant: showMoreInfant, preschooler: showMorePreschooler, child: showMoreChild, middle: showMoreMiddle, high: showMoreHigh};
         const setShowMoreMap = {infant: setShowMoreInfant, preschooler: setShowMorePreschooler, child: setShowMoreChild, middle: setShowMoreMiddle, high: setShowMoreHigh};
@@ -2238,6 +2366,55 @@ export default function App() {
 
     return (
       <div style={{minHeight:'100vh', background:T.bg}}>
+        {/* 피드백 모달 인라인 */}
+        {showFeedback && (
+          <div style={{position:'fixed', inset:0, background:'rgba(0,0,0,0.5)', zIndex:9999, display:'flex', alignItems:'flex-end', justifyContent:'center'}}
+            onClick={e=>{ if(e.target===e.currentTarget){ setShowFeedback(false); setFeedbackSent(false); }}}>
+            <div style={{background:T.card, borderRadius:'20px 20px 0 0', padding:'24px 20px 36px', width:'100%', maxWidth:480}}>
+              <div style={{width:36, height:4, background:T.border, borderRadius:2, margin:'0 auto 20px'}}/>
+              {feedbackSent ? (
+                <div style={{textAlign:'center', padding:'20px 0'}}>
+                  <div style={{fontSize:48, marginBottom:12}}>🙏</div>
+                  <h3 style={{fontSize:20, fontWeight:700, color:T.text, marginBottom:8}}>{t('감사합니다!','Thank you!')}</h3>
+                  <p style={{fontSize:15, color:T.sub, lineHeight:1.75}}>{t('소중한 피드백이 예배사역연구소에 전달됐어요!','Your feedback has been sent!')}</p>
+                  <button onClick={()=>{ setShowFeedback(false); setFeedbackSent(false); }}
+                    style={{marginTop:20, padding:'12px 32px', background:T.green, border:'none', borderRadius:99, color:'white', fontSize:15, fontWeight:700, cursor:'pointer'}}>
+                    {t('닫기','Close')}
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <h3 style={{fontSize:18, fontWeight:800, color:T.text, marginBottom:4}}>{t('💬 피드백 보내기','💬 Send Feedback')}</h3>
+                  <p style={{fontSize:14, color:T.sub, marginBottom:16}}>{t('예배하면서 느낀 점을 자유롭게 나눠주세요.','Share your experience worshipping with this app.')}</p>
+                  <p style={{fontSize:14, fontWeight:700, color:T.text, marginBottom:8}}>{t('이 앱이 도움이 됐나요?','Was this app helpful?')}</p>
+                  <div style={{display:'flex', gap:8, marginBottom:16}}>
+                    {[1,2,3,4,5].map(s=>(
+                      <button key={s} onClick={()=>setFeedbackRating(s)}
+                        style={{fontSize:28, background:'none', border:'none', cursor:'pointer', opacity: feedbackRating >= s ? 1 : 0.3, transition:'opacity 0.15s'}}>⭐</button>
+                    ))}
+                  </div>
+                  <input placeholder={t('이름 (선택사항)','Name (optional)')}
+                    value={feedbackName} onChange={e=>setFeedbackName(e.target.value)}
+                    style={{width:'100%', padding:'12px 14px', borderRadius:T.rSm, border:`1.5px solid ${T.border}`, fontSize:14, fontFamily:'inherit', outline:'none', marginBottom:10, background:'white', boxSizing:'border-box'}}/>
+                  <textarea placeholder={t('예배하면서 어떠셨나요? 좋았던 점, 아쉬운 점 모두 환영해요!','How was your worship? Share what worked and what didn\'t!')}
+                    value={feedbackMsg} onChange={e=>setFeedbackMsg(e.target.value)} rows={4}
+                    style={{width:'100%', padding:'12px 14px', borderRadius:T.rSm, border:`1.5px solid ${T.border}`, fontSize:14, fontFamily:'inherit', outline:'none', marginBottom:16, resize:'none', lineHeight:1.7, boxSizing:'border-box'}}/>
+                  <button onClick={handleFeedbackSubmit} disabled={!feedbackMsg.trim() || feedbackLoading}
+                    style={{width:'100%', padding:'14px', background: feedbackMsg.trim() ? T.green : T.border, border:'none', borderRadius:T.rSm, color:'white', fontSize:15, fontWeight:700, cursor: feedbackMsg.trim() ? 'pointer' : 'not-allowed'}}>
+                    {feedbackLoading ? t('전송 중...','Sending...') : t('피드백 보내기 →','Send Feedback →')}
+                  </button>
+                </>
+              )}
+            </div>
+          </div>
+        )}
+        {/* 피드백 버튼 */}
+        <div style={{position:'fixed', bottom:20, left:'50%', transform:'translateX(-50%)', zIndex:998}}>
+          <button onClick={()=>setShowFeedback(true)}
+            style={{background:T.green, border:'none', borderRadius:99, padding:'10px 20px', fontSize:14, fontWeight:700, color:'white', cursor:'pointer', boxShadow:'0 4px 12px rgba(0,0,0,0.15)', display:'flex', alignItems:'center', gap:6}}>
+            💬 {t('피드백 보내기','Send Feedback')}
+          </button>
+        </div>
         {/* 언어 토글 */}
         <div style={{position:'fixed', top:12, right:16, zIndex:999}}>
           <button onClick={()=>setLang(lang==='ko'?'en':'ko')}
