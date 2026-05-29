@@ -1821,11 +1821,11 @@ export default function App() {
           },
           child: {
             short: {
-              ko: '질문과 대화가 핵심이에요. 말씀의 방에서 낭독하기와 질문과 대화를 꼭 넣으세요. 보냄의 방에서 챌린지로 한 주를 마무리하세요. 신앙 전수의 황금기입니다!',
+              ko: '신앙 전수의 황금기! 논리적 사고가 시작되는 시기예요. "왜요?"에서 "어떻게요?"로 질문이 발전합니다. 구체적인 사실과 이야기를 통해 배우고, 옳고 그름에 대한 감각이 생겨나요.',
               en: 'Questions and dialogue are key. Be sure to include Read Aloud and Questions & Dialogue in the Word Room. Close the week with a Challenge in the Sending Room. This is the golden season for passing on faith!'
             },
             full: {
-              ko: '【아동전기 7-9세】\n논리적 사고가 시작되는 시기예요. "왜요?"에서 "어떻게요?"로 질문이 발전합니다. 구체적인 사실과 이야기를 통해 배우고, 옳고 그름에 대한 감각이 생겨나요.\n\n추천: 촛불켜기, 식사하기, 찬양하기, 낭독하기, 질문과 대화, 챌린지\n\n성경 본문을 함께 읽고 등장인물의 감정과 행동에 대해 질문해보세요. 촛불을 켜고 시작하면 아이들이 예배 분위기를 몸으로 느낍니다.\n\n【아동후기 10-12세】\n추상적 사고가 싹트고 또래 관계가 중요해지는 시기예요. 공정함과 정의에 민감하고, "진짜인가?"를 따지기 시작해요. 신앙 전수의 황금기입니다.\n\n추천: 식사하기, 찬양하기, 구제하기, 낭독하기, 질문과 대화, 묵상하기, 챌린지\n\n적용 질문으로 삶과 말씀을 연결하고 챌린지로 한 주를 살아내게 하세요. 부모의 솔직한 신앙 이야기가 이 시기에 특히 큰 영향을 줍니다.',
+              ko: '【아동전기 7-9세】\n추천: 촛불켜기, 식사하기, 찬양하기, 낭독하기, 말씀 나누기, 챌린지\n\n성경 본문을 함께 읽고 등장인물의 감정과 행동에 대해 질문해보세요. 촛불을 켜고 시작하면 아이들이 예배 분위기를 몸으로 느낍니다.\n\n【아동후기 10-12세】\n추상적 사고가 싹트고 또래 관계가 중요해지는 시기예요. 공정함과 정의에 민감하고, "진짜인가?"를 따지기 시작해요. 신앙 전수의 황금기입니다.\n\n추천: 식사하기, 찬양하기, 구제하기, 낭독하기, 말씀 나누기, 묵상하기, 챌린지\n\n적용 질문으로 삶과 말씀을 연결하고 챌린지로 한 주를 살아내게 하세요. 부모의 솔직한 신앙 이야기가 이 시기에 특히 큰 영향을 줍니다.',
               en: '【Early Childhood 7-9】\nLogical thinking begins to emerge. Questions shift from "Why?" to "How?" They learn best through concrete facts and stories, and a sense of right and wrong is developing.\n\nRecommended: Candle Lighting, Meal Together, Praise, Read Aloud, Questions & Dialogue, Challenge\n\nRead the passage together and ask about the feelings and actions of the characters. Lighting a candle to begin helps children feel the worship atmosphere in their bodies.\n\n【Late Childhood 10-12】\nAbstract thinking begins to emerge and peer relationships become important. They are sensitive to fairness and justice, and start asking "Is this really true?" This is the golden season for passing on faith.\n\nRecommended: Meal Together, Praise, Giving/Service, Read Aloud, Questions & Dialogue, Meditation, Challenge\n\nConnect the Word to real life through apply questions and give a Challenge to live out the week. A parent\'s honest sharing of their own faith story has a profound impact at this stage.'
             }
           },
@@ -1835,7 +1835,7 @@ export default function App() {
               en: 'No verbal response is okay. Listen without judgment all the way through. Use Issue Dialogue to take their struggles seriously, and always give a Challenge — they may not say much, but they\'ll respond through action.'
             },
             full: {
-              ko: '사춘기가 본격적으로 시작되는 시기예요. 감정 기복이 심하고, 자기만의 세계가 생기며, 부모보다 또래가 더 중요해집니다. 말이 없어지고, 예배 시간에 눈도 안 마주치는 게 정상이에요.\n\n추천: 촛불켜기, 식사하기, 일상 나누기, 구제하기, 이슈 대화, 낭독하기, 질문과 대화, 챌린지\n\n절대 강요하거나 채근하지 마세요. 반응이 없다고 듣고 있지 않은 게 아니에요. 이 시기 부모의 가장 강력한 무기는 판단 없이 끝까지 들어주는 경청입니다. 이슈 대화로 자녀의 고민과 감정을 먼저 충분히 들어주세요.\n\n말로는 반응 안 해도 챌린지는 은근히 합니다. 작고 구체적인 챌린지를 반드시 주세요. 자존심 때문에 말은 못 해도, 행동으로 반응하는 나이예요.',
+              ko: '사춘기가 본격적으로 시작되는 시기예요. 감정 기복이 심하고, 자기만의 세계가 생기며, 부모보다 또래가 더 중요해집니다. 말이 없어지고, 예배 시간에 눈도 안 마주치는 게 정상이에요.\n\n추천: 촛불켜기, 식사하기, 일상 나누기, 구제하기, 이슈 대화, 낭독하기, 말씀 나누기, 챌린지\n\n절대 강요하거나 채근하지 마세요. 반응이 없다고 듣고 있지 않은 게 아니에요. 이 시기 부모의 가장 강력한 무기는 판단 없이 끝까지 들어주는 경청입니다. 이슈 대화로 자녀의 고민과 감정을 먼저 충분히 들어주세요.\n\n말로는 반응 안 해도 챌린지는 은근히 합니다. 작고 구체적인 챌린지를 반드시 주세요. 자존심 때문에 말은 못 해도, 행동으로 반응하는 나이예요.',
               en: 'Puberty hits full force at this stage. Emotional swings, a world of their own, and peers becoming more important than parents — all normal. Going quiet and avoiding eye contact during worship? Also normal.\n\nRecommended: Candle Lighting, Meal Together, Sharing Life, Giving/Service, Issue Dialogue, Read Aloud, Questions & Dialogue, Challenge\n\nNever force or nag. Silence doesn\'t mean they\'re not listening. The most powerful tool a parent has at this stage is listening without judgment, all the way to the end. Use Issue Dialogue to give their struggles and emotions plenty of space first.\n\nThey may not respond with words, but they\'ll quietly follow through on a Challenge. Always give them one — small and specific. They\'re at an age where pride keeps them silent, but action is how they respond.'
             }
           },
@@ -1845,7 +1845,7 @@ export default function App() {
               en: 'They enjoy deep questions and debate. Throw apply questions that challenge their worldview and identity. Give a Challenge to live out the week. Worship at this stage shapes their identity and Christian worldview for life.'
             },
             full: {
-              ko: '추천: 촛불켜기, 식사하기, 일상 나누기, 구제하기, 이슈 대화, 낭독하기, 질문과 대화, 묵상하기, 기도하기, 챌린지\n\n이 시기는 신앙의 지적 성찰이 완성되는 때예요.\n\n"정말 하나님이 계신가?", "왜 왕이신 예수님이 피 한방울 흘리셔도 되는지 굳이 십자가까지 지셨는가?" 같은 진지한 질문을 억누르지 말고 함께 탐구하세요.\n\n부모가 모르는 게 있어도 괜찮아요 — "나도 모르겠어, 같이 찾아보자"가 가장 좋은 대답이에요.\n\n챌린지는 단순 실천을 넘어 삶의 방식을 바꾸는 수준으로 도전해도 좋아요.',
+              ko: '추천: 촛불켜기, 식사하기, 일상 나누기, 구제하기, 이슈 대화, 낭독하기, 말씀 나누기, 묵상하기, 기도하기, 챌린지\n\n이 시기는 신앙의 지적 성찰이 완성되는 때예요.\n\n"정말 하나님이 계신가?", "왜 왕이신 예수님이 피 한방울 흘리셔도 되는지 굳이 십자가까지 지셨는가?" 같은 진지한 질문을 억누르지 말고 함께 탐구하세요.\n\n부모가 모르는 게 있어도 괜찮아요 — "나도 모르겠어, 같이 찾아보자"가 가장 좋은 대답이에요.\n\n챌린지는 단순 실천을 넘어 삶의 방식을 바꾸는 수준으로 도전해도 좋아요.',
               en: 'Recommended: Candle Lighting, Meal Together, Sharing Life, Giving/Service, Issue Dialogue, Read Aloud, Questions & Dialogue, Meditation, Prayer, Challenge\n\nThis is the season when intellectual and spiritual reflection reaches maturity.\n\nDon\'t suppress serious questions like "Does God really exist?" or "Why did Jesus — who is King — have to go all the way to the cross?" Explore them together.\n\nIt\'s okay if parents don\'t have all the answers — "I\'m not sure either, let\'s find out together" is the best response.\n\nFeel free to set Challenges that go beyond simple practice — ones that actually reshape how they live.'
             }
           },
