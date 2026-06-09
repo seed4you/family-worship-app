@@ -2843,7 +2843,7 @@ export default function App() {
           </div>
           {/* 헤더 */}
           <div style={{textAlign:'center', paddingTop:8, marginBottom:20}}>
-            <img src="/다바르앱_로고_green.png" alt="DAVAR" style={{width:72, height:72, borderRadius:16, marginBottom:10, objectFit:'contain'}}/>
+            <img src="/davar-logo-green.png" alt="DAVAR" style={{width:72, height:72, borderRadius:16, marginBottom:10, objectFit:'contain'}}/>
             <p style={{fontSize:15, color:T.green, fontWeight:700, letterSpacing:'0.06em', marginBottom:8}}>
               {(() => {
                 const now = new Date();
