@@ -2833,10 +2833,17 @@ export default function App() {
         )}
 
         <div style={{maxWidth:480, margin:'0 auto', padding:'16px 16px 40px'}}>
-          <BackBtn onClick={()=>go('routine')} lang={lang}/>
+          <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:4}}>
+            <BackBtn onClick={()=>go('routine')} lang={lang}/>
+            <button onClick={()=>setLang(lang==='ko'?'en':'ko')}
+              style={{display:'flex', alignItems:'center', gap:6, background:T.card, border:`1.5px solid ${T.border}`, borderRadius:T.rFull, padding:'6px 14px', fontSize:14, fontWeight:700, color:T.sub, cursor:'pointer'}}>
+              <span style={{fontSize:16}}>{lang==='ko'?'🇺🇸':'🇰🇷'}</span>
+              <span>{lang==='ko'?'English':'한국어'}</span>
+            </button>
+          </div>
           {/* 헤더 */}
           <div style={{textAlign:'center', paddingTop:8, marginBottom:20}}>
-            <div style={{fontSize:52, marginBottom:10}}>🏠</div>
+            <img src="/다바르앱_로고_green.png" alt="DAVAR" style={{width:72, height:72, borderRadius:16, marginBottom:10, objectFit:'contain'}}/>
             <p style={{fontSize:15, color:T.green, fontWeight:700, letterSpacing:'0.06em', marginBottom:8}}>
               {(() => {
                 const now = new Date();
