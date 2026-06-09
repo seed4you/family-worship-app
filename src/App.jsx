@@ -47,7 +47,7 @@ const STRINGS = {
     onbLabel2: '대화식 가정예배란?',
     onbTitle2: '"가정예배 = 삶의 예배"',
     onbBody2: '구약의 지상명령인 쉐마(שָׁמַע 신 6:4-9)에서, \'강론하다\'의 히브리어 다바르(דָּבַר 신 6:7)는 가르치는 것을 넘어, "말하고, 대화하고, 친구가 되고, 실재가 되게 한다"는 뜻입니다.\n\n가정예배는 자녀와 친구처럼 함께 걸으며, 일상의 대화와 친밀한 사귐 속에서 하나님의 말씀을 토론하며 함께 살아내는 삶의 예배입니다.',
-    onbLabel3: '4개의 방이 생소해요',
+    onbLabel3: '왜 4개의 방이죠?',
     onbTitle3: '"예배 = 하나님과의 만남"',
     onbBody3: '함께 모이고 → 말씀을 나누고 → 말씀에 반응하고 → 세상에 보내는 4가지 \'예배의 방\'마다 하나님을 만날 수 있어요.(콘스탄스 체리, 예배학자)\n\n모든 가정은 각자의 상황과 형편에 맞게 \'예배의 방\'을 선택할 수 있어요. 사춘기 자녀와 대화가 단절된 가정은 마음이 열릴 때까지 모임만 수 개월 간 할 수도 있어요. 삶의 예배이기 때문에 가능한 일이죠. 각 방은 하나님과 가족이 더 깊이 만나도록 인도하는 여정이에요.',
     onbLabel4: '왜 질문이 중요하죠?',
@@ -270,7 +270,7 @@ const STRINGS = {
     noWorry3: 'The smallest church in the world',
     noWorry4: 'begins right here.',
     diagBtn: 'Diagnose Our Family →',
-    worshipBtn: "Start This Week's Worship →",
+    worshipBtn: "Start This Week\'s Worship →",
     logBtn: 'Worship Journal',
     redesignBtn: 'Redesign Worship Rooms',
     introBtn: 'View Intro Again',
@@ -283,7 +283,7 @@ const STRINGS = {
     onbLabel2: 'What is Dialogic Family Worship?',
     onbTitle2: '"Family Worship = Lifestyle Worship"',
     onbBody2: "In the Shema (שָׁמַע, Deut. 6:4-9)—the Great Commission of the Old Testament—the Hebrew word Davar (דָּבַר, Deut. 6:7) means more than just 'to teach.' It means \"to speak, to converse, to befriend, and to make real.\"\n\nFamily worship is lifestyle worship—walking with our children as friends, discussing and living out God's Word together in everyday conversation and intimate friendship.",
-    onbLabel3: 'The 4 Rooms Feel Unfamiliar',
+    onbLabel3: 'Why 4 Rooms?',
     onbTitle3: '"Worship = Meeting God"',
     onbBody3: "Gather together → Share the Word → Respond to the Word → Be sent into the world.\nIn each of the 4 'worship rooms,' you can meet God. (Constance Cherry, worship scholar)\n\nEvery family can choose rooms that fit their situation. A family with a disconnected teenager may spend months in just the Gathering Room until hearts open. This is possible because it is life worship.",
     onbLabel4: 'Why Does Asking Questions Matter?',
@@ -379,7 +379,7 @@ const STRINGS = {
     wordRoomTitle: 'Word Room',
     wordRoomSeries: 'Use your own Bible',
     wordChangeBtn: 'Change Scripture',
-    questionTitle: 'Questions & Dialogue',
+    questionTitle: 'Sharing the Word',
     questionSub: 'Meet God through the heart of His Word',
     questionGuideBtn: '💡 View Question Guide',
     questionGuideTitle: 'Question Guide',
@@ -470,7 +470,7 @@ const STRINGS = {
     samplesTag: 'Worship Sample',
     samplesTitle: 'How about\nthis worship?',
     samplesChallenge: "This Week's Challenge",
-    samplesWorshipBtn: "Start This Week's Worship →",
+    samplesWorshipBtn: "Start This Week\'s Worship →",
     samplesBackBtn: '← Back to Home',
   }
 };
@@ -569,7 +569,7 @@ const ELEMENTS = {
     { id:'storytelling', name:'스토리텔링', nameEn:'Storytelling', def:'성경 동화를 엄마 아빠의 목소리로 들을 때 영적 애착이 깊어진다', defEn:'Hearing Bible stories in mom and dad\'s voice deepens spiritual attachment', why:'영아/유아들은 논리보다 이야기와 이미지로 세상을 이해합니다. 부모의 목소리로 듣는 성경 이야기는 아이 마음속에 안전함과 친밀함으로 남습니다.', whyEn:'Infants and toddlers understand the world through stories and images, not logic. A Bible story heard in a parent\'s voice becomes a feeling of safety and intimacy in a child\'s heart.', tip:'짧고 생생한 성경 동화나 탈무드 이야기를 들려주세요. 목소리와 표정을 조금만 바꿔도 아이들의 집중도가 달라집니다.', tipEn:'Tell short, vivid Bible stories or Talmud tales. Even small changes in your voice and expression will dramatically increase your child\'s engagement.' },
     { id:'read',     name:'낭독하기',    nameEn:'Read Aloud',    def:'가족이 돌아가며 소리 내어 말씀을 읽고 듣기', defEn:'Read the Word aloud together, taking turns', why:'믿음은 들음에서 시작됩니다. 가족이 한 명씩 돌아가며 읽을 때 하나님의 말씀을 서로의 음성으로 듣는 독특한 경험을 하게 됩니다.', whyEn:'Faith comes from hearing. When each family member reads aloud, you experience God\'s Word through each other\'s voices.', tip:'천천히 읽고, 본문을 두세 번 반복해서 읽어도 좋습니다.', tipEn:'Read slowly, and feel free to read the passage two or three times.' },
     { id:'meditate', name:'묵상하기',    nameEn:'Meditate',      def:'침묵 속에서 말씀을 마음으로 되새기는 시간', defEn:'Reflect on the Word in silence, letting it sink into your heart', why:'말씀 안에 머물며 성령께서 무엇이라 말씀하시는지 귀를 기울이고 듣는 시간입니다.', whyEn:'Stay in the Word and listen for what the Holy Spirit is saying to you.', tip:'2–3분의 짧은 침묵도 충분히 의미 있습니다.', tipEn:'Even 2–3 minutes of silence is deeply meaningful.' },
-    { id:'question', name:'말씀 나누기',    nameEn:'Questions & Dialogue', def:'질문과 대화로 말씀을 경험하는 시간', defEn:'Meet God through the heart of His Word with good questions', why:'질문은 상대방의 생각을 듣겠다는 존중의 표현입니다. 좋은 질문은 본문을 입체적으로 경험하게 합니다.', whyEn:'A question is an act of respect — saying "I want to hear your thoughts." Good questions help experience the Word in depth.', tip:'많은 설명보다 열린 질문 하나가 본문의 본질에 다가가게 합니다.', tipEn:'One good question goes deeper than a long explanation.' },
+    { id:'question', name:'말씀 나누기',    nameEn:'Sharing the Word', def:'질문과 대화로 말씀을 경험하는 시간', defEn:'Meet God through the heart of His Word with good questions', why:'질문은 상대방의 생각을 듣겠다는 존중의 표현입니다. 좋은 질문은 본문을 입체적으로 경험하게 합니다.', whyEn:'A question is an act of respect — saying "I want to hear your thoughts." Good questions help experience the Word in depth.', tip:'많은 설명보다 열린 질문 하나가 본문의 본질에 다가가게 합니다.', tipEn:'One good question goes deeper than a long explanation.' },
     { id:'word_draw', name:'그림 그리기', nameEn:'Drawing', def:'말씀의 내용과 장면을 상상하며 자유롭게 그려보는 시간', defEn:'Freely draw scenes and feelings from the Word using your imagination', why:'유아들은 그림 그리고, 활동하면서 더 많이 배웁니다. 아이들은 머리로만 이해하기보다, 그림을 통해 그날의 말씀 장면, 감정, 하나님에 대해 경험합니다.', whyEn:'Young children learn more through drawing and activity than through explanation alone. Drawing helps them experience the Word\'s scenes, emotions, and God in a personal way.', tip:'잘 그리는 것은 중요하지 않습니다. "왜 그렇게 그렸어?"라고 부드럽게 물어보세요. 부모가 함께 그리면 아이들이 더 편안해합니다. 5~10분 정도의 짧은 시간으로도 충분합니다.', tipEn:'Drawing well doesn\'t matter. Gently ask "Why did you draw it that way?" Draw alongside your child — it helps them feel safe. Even 5–10 minutes is enough.' },
     { id:'dessert',  name:'후식 나누기', nameEn:'Dessert', def:'분위기를 부드럽게 전환하며 말씀을 함께 나누는 장치', defEn:'A sweet transition that makes the Word a joyful memory', why:'맛있는 간식은 대화를 활기차게 만들고 말씀을 즐거운 기억으로 만들어 줍니다.', whyEn:'A delicious snack energizes conversation and turns the Word into a joyful memory.', tip:'특별한 후식 하나가 자녀에게 예배를 기다리는 이유가 될 수 있습니다. 유대인은 안식일 만찬 후 토라 말씀을 토론할 때, 좀 더 나은 후식을 고민하는 과정에서 던킨도너츠, 하겐다즈, 허쉬 초콜릿, 배스킨라빈스를 창업하기도 했어요.', tipEn:'One special treat can become the reason your child looks forward to worship. In fact, while Jews discussed Torah after Sabbath meals and thought about better desserts, some founded Dunkin\' Donuts, Häagen-Dazs, Hershey\'s, and Baskin-Robbins.' },
   ],
@@ -1158,7 +1158,8 @@ const HouseMap = ({selected, lang=''}) => (
 // ── 앱 ────────────────────────────────────────────────────────
 export default function App() {
   const [screen, setScreen] = useState('welcome');
-  const [lang, setLang] = useState(''); // '' = not selected yet, 'ko', 'en'
+  const [lang, setLang] = useState('ko'); // 'ko' 기본 고정, 우상단 버튼으로 전환
+  const [showSplash, setShowSplash] = useState(true); // 스플래시 2초 자동 전환
   const s_ = S(lang || 'ko'); // current language strings
   const t = (ko, en) => lang === 'en' ? en : ko; // inline fallback
   const [worshipTab, setWorshipTab] = useState('flow');
@@ -1176,6 +1177,9 @@ export default function App() {
   const [debrief, setDebrief] = useState({});
   const [ageGroup, setAgeGroup] = useState(''); // 자녀 연령대
   const [worshipLog, setWorshipLog] = useState([]); // 예배 일지 기록
+  const [activeTab, setActiveTab] = useState('home'); // 하단 탭
+  const [showQGuideScreen, setShowQGuideScreen] = useState(false); // 질문 가이드 전용 화면
+  const [showShareUrl, setShowShareUrl] = useState(false); // 공유 URL 표시
   const [showLog, setShowLog] = useState(false);
   const [showMoreInfant, setShowMoreInfant] = useState(false);
   const [showMorePreschooler, setShowMorePreschooler] = useState(false);
@@ -1196,6 +1200,15 @@ export default function App() {
       } catch(e) {}
     })();
   }, []);
+  // 스플래시 2초 후 자동 전환 → 초기화면(시작하기 →)으로 이동
+  useEffect(() => {
+    const t = setTimeout(() => {
+      setShowSplash(false);
+      // onboardingStep는 -1 유지 → "시작하기 →" 초기화면이 표시됨
+    }, 2000);
+    return () => clearTimeout(t);
+  }, []);
+
   const [sampleMonth, setSampleMonth] = useState(1);
   const [recommend, setRecommend] = useState('');
   const [selectedSeries, setSelectedSeries] = useState(null);
@@ -1220,6 +1233,7 @@ export default function App() {
     setFeedbackRating(0);
     setShowFeedback(false);
     setShowSettings(false);
+    setShowQGuideScreen(false);
     if(s==='worship') {
       const wordRoomElems = selectedElems['word'];
       if(wordRoomElems && wordRoomElems.has('question')) {
@@ -1301,21 +1315,248 @@ export default function App() {
       </div>
     </div>
   ) : null;
+
+
+  // 하단 탭바
+  const BottomTab = () => {
+    const tabs = [
+      { id:'worship', icon:'🛐', ko:'이번주 예배', en:'Worship' },
+      { id:'diag',    icon:'➕', ko:'예배 설계',   en:'Design' },
+      { id:'qguide',  icon:'❓', ko:'질문 가이드', en:'Q Guide' },
+      { id:'log',     icon:'📋', ko:'예배 일지',   en:'Journal' },
+      { id:'settings',icon:'⚙️', ko:'설정',        en:'Settings' },
+    ];
+    const curTab =
+      screen==='worship' ? 'worship' :
+      screen==='log' ? 'log' :
+      (screen==='diag'||screen==='age'||screen==='rooms'||screen==='elements'||screen==='routine') ? 'diag' :
+      activeTab;
+    return (
+      <div style={{position:'fixed', bottom:0, left:'50%', transform:'translateX(-50%)', width:'100%', maxWidth:480, background:'white', borderTop:`1px solid ${T.border}`, display:'flex', zIndex:990, boxShadow:'0 -2px 12px rgba(0,0,0,0.07)'}}>
+        {tabs.map(tab => {
+          const isActive = curTab === tab.id;
+          const handleClick = () => {
+            setActiveTab(tab.id);
+            setShowQGuideScreen(false);
+            if(tab.id==='worship') {
+              if(selectedRooms.size===0) alert(lang==='ko'?'먼저 예배의 방 구성을 마치면 이번주 예배 내용이 보입니다.':'Please complete your worship room setup first to see this week\'s worship.');
+              else go('worship');
+            }
+            else if(tab.id==='diag') go('diag');
+            else if(tab.id==='log') go('log');
+            else if(tab.id==='qguide') {
+              if(screen==='worship') setShowQGuide(true);
+              else setShowQGuideScreen(true);
+            }
+            else if(tab.id==='settings') setShowSettings(true);
+          };
+          return (
+            <button key={tab.id} onClick={handleClick}
+              style={{flex:1, padding:'8px 2px 12px', background:'none', border:'none', cursor:'pointer', display:'flex', flexDirection:'column', alignItems:'center', gap:2}}>
+              <span style={{fontSize:20}}>{tab.icon}</span>
+              <span style={{fontSize:10, fontWeight:isActive?700:500, color:isActive?T.purple:T.hint, letterSpacing:'-0.02em'}}>
+                {lang==='en' ? tab.en : tab.ko}
+              </span>
+              {isActive && <div style={{width:16, height:2.5, background:T.purple, borderRadius:2}}/>}
+            </button>
+          );
+        })}
+      </div>
+    );
+  };
+
+
+  // 전역 오버레이 — 모든 화면 위에 표시
+  const GlobalOverlays = () => (
+    <>
+      {showQGuideScreen && (
+        <div style={{position:'fixed', inset:0, background:'white', zIndex:9999, overflowY:'auto', padding:'24px 18px 100px'}}>
+          <div style={{display:'flex', alignItems:'center', gap:12, marginBottom:20}}>
+            <button onClick={()=>setShowQGuideScreen(false)} style={{background:'none', border:'none', fontSize:22, cursor:'pointer', color:'#888'}}>←</button>
+            <p style={{fontSize:20, fontWeight:800}}>💡 {t('질문 가이드','Question Guide')}</p>
+          </div>
+          <p style={{fontSize:16, color:'#666', lineHeight:1.7, marginBottom:20}}>{t('좋은 질문 하나가 긴 설명보다 더 깊이 남습니다.','One good question goes deeper than a long explanation.')}</p>
+          {[
+            { icon:'🔍', label:t('내용 질문','Observation Q'), sub:'Thin Question', desc:t('본문이 무엇을 말하는지 살펴보는 질문입니다. 단어, 의미, 배경, 인물, 전후 맥락을 확인합니다.','What does the text say? Observe words, people, context, and background.'), items:[t('누가 등장하는가?','Who appears?'),t('이 일은 어디서 일어났는가?','Where does this take place?'),t('반복되는 단어나 행동은?','Any repeated words or actions?'),t('예수님/하나님의 반응은?','How did Jesus/God respond?')] },
+            { icon:'💭', label:t('상상 질문','Imagination Q'), sub:'Thick Question', desc:t('본문 이면의 의미와 하나님의 마음을 탐구합니다. 등장인물의 감정, 의도, 성품을 상상합니다.','Explore the heart behind the text. Imagine emotions and motives.'), items:[t('그 자리에 내가 있었다면?','What if I were there?'),t('이 말을 들은 사람의 마음은?','How did the people feel?'),t('예수님은 어떤 감정이셨을까?','What was Jesus feeling?'),t('저자는 왜 이 단어를 썼을까?','Why did the author use this word?')] },
+            { icon:'🌱', label:t('적용 질문','Application Q'), sub:'Life Question', desc:t('이 말씀이 오늘 나에게 무엇을 의미하는지 묻는 질문입니다. 삶 속에서 하나님의 뜻을 분별합니다.','What does this mean for my life today?'), items:[t('왜 이 말씀을 오늘 주실까?','Why this Word for today?'),t('이 말씀은 오늘 내게 어떤 빛을 비추는가?','What light does it shine on my life?'),t('이번 주 어떻게 살아낼 수 있을까?','How can I live this out this week?'),t('우리 가족에게 주는 메시지는?','What message for our family?')] },
+          ].map((q,qi)=>(
+            <div key={qi} style={{background:'white', borderRadius:16, padding:'18px', marginBottom:14, boxShadow:'0 2px 8px rgba(0,0,0,0.08)'}}>
+              <div style={{display:'flex', alignItems:'center', gap:10, marginBottom:10}}>
+                <span style={{fontSize:24}}>{q.icon}</span>
+                <div>
+                  <p style={{fontSize:17, fontWeight:800, margin:0}}>{q.label}</p>
+                  <p style={{fontSize:13, color:'#999', margin:0}}>{q.sub}</p>
+                </div>
+              </div>
+              <p style={{fontSize:15, color:'#666', lineHeight:1.7, marginBottom:12}}>{q.desc}</p>
+              <div style={{borderTop:'1px solid #eee', paddingTop:12}}>
+                {q.items.map((item,ii)=>(
+                  <div key={ii} style={{display:'flex', gap:8, marginBottom:7}}>
+                    <span style={{color:'#bbb', fontSize:15}}>·</span>
+                    <p style={{fontSize:15, margin:0, lineHeight:1.65}}>{item}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+          <BottomTab/>
+        </div>
+      )}
+      {showSettings && (
+        <div style={{position:'fixed', inset:0, background:'rgba(0,0,0,0.45)', zIndex:9998, display:'flex', alignItems:'flex-end', justifyContent:'center'}}
+          onClick={e=>{ if(e.target===e.currentTarget){ setShowSettings(false); setShowFeedback(false); setFeedbackSent(false); setShowShareUrl(false); }}}>
+          <div style={{background:'white', borderRadius:'24px 24px 0 0', padding:'20px 20px 48px', width:'100%', maxWidth:480, boxSizing:'border-box', maxHeight:'85vh', overflowY:'auto'}} onClick={e=>e.stopPropagation()}>
+            <div style={{width:40, height:4, background:'#E0E0E0', borderRadius:2, margin:'0 auto 20px'}}/>
+            <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:20}}>
+              <p style={{fontSize:19, fontWeight:800}}>⚙️ {t('설정','Settings')}</p>
+              <button onClick={()=>{ setShowSettings(false); setShowFeedback(false); setFeedbackSent(false); setShowShareUrl(false); }} style={{background:'none', border:'none', fontSize:22, cursor:'pointer', color:'#999'}}>✕</button>
+            </div>
+            {!showFeedback ? (<>
+              <div style={{background:'#F5F3FF', borderRadius:12, padding:'14px 16px', marginBottom:10}}>
+                <p style={{fontSize:14, color:'#888', marginBottom:10}}>{t('언어 설정','Language')}</p>
+                <div style={{display:'flex', gap:8}}>
+                  {['ko','en'].map(l=>(
+                    <button key={l} onClick={()=>setLang(l)}
+                      style={{flex:1, padding:'10px', background:lang===l?'#7F77DD':'white', color:lang===l?'white':'#333', border:`1.5px solid ${lang===l?'#7F77DD':'#E0E0E0'}`, borderRadius:10, fontSize:14, fontWeight:700, cursor:'pointer'}}>
+                      {l==='ko'?'🇰🇷 한국어':'🇺🇸 English'}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <button onClick={()=>setShowShareUrl(v=>!v)}
+                style={{width:'100%', background:'#F5F3FF', borderRadius:12, padding:'14px 16px', marginBottom:4, display:'flex', alignItems:'center', justifyContent:'space-between', border:'none', cursor:'pointer', boxSizing:'border-box'}}>
+                <div style={{display:'flex', alignItems:'center', gap:10}}>
+                  <span style={{fontSize:20}}>📤</span>
+                  <div style={{textAlign:'left'}}>
+                    <p style={{fontSize:16, fontWeight:600}}>{t('앱 공유하기','Share App')}</p>
+                    <p style={{fontSize:13, color:'#999', marginTop:2}}>{t('이웃·교인·친구에게 추천해보세요','Share with neighbors & friends')}</p>
+                  </div>
+                </div>
+                <span style={{fontSize:18, color:'#999'}}>{showShareUrl?'▲':'›'}</span>
+              </button>
+              {showShareUrl && (
+                <div style={{background:'#EDE9FF', borderRadius:12, padding:'12px 14px', marginBottom:10}}>
+                  <p style={{fontSize:12, color:'#7F77DD', fontWeight:600, marginBottom:8}}>{t('아래 링크를 길게 눌러 복사하세요 👇','Long-press the link below to copy 👇')}</p>
+                  <div style={{background:'white', borderRadius:8, padding:'10px 12px', border:'1px solid #C4B5FD', userSelect:'text', WebkitUserSelect:'text'}}>
+                    <p style={{fontSize:13, fontWeight:600, userSelect:'text', WebkitUserSelect:'text', margin:0}}>https://family-worship-app-psi.vercel.app</p>
+                  </div>
+                  <p style={{fontSize:11, color:'#999', marginTop:6}}>{t('카카오톡·문자·SNS에 붙여넣기 하세요','Paste in KakaoTalk, text, or SNS')}</p>
+                </div>
+              )}
+              <button onClick={()=>setShowFeedback(true)}
+                style={{width:'100%', background:'#F5F3FF', borderRadius:12, padding:'14px 16px', marginBottom:10, display:'flex', alignItems:'center', justifyContent:'space-between', border:'none', cursor:'pointer', boxSizing:'border-box'}}>
+                <div style={{display:'flex', alignItems:'center', gap:10}}>
+                  <span style={{fontSize:20}}>💬</span>
+                  <p style={{fontSize:16, fontWeight:600}}>{t('피드백 보내기','Send Feedback')}</p>
+                </div>
+                <span style={{fontSize:18, color:'#999'}}>›</span>
+              </button>
+              <div style={{background:'#F5F3FF', borderRadius:12, padding:'14px 16px', display:'flex', alignItems:'center', gap:10, marginBottom:10}}>
+                <span style={{fontSize:20}}>ℹ️</span>
+                <div>
+                  <p style={{fontSize:15, fontWeight:700}}>Beta v4.3</p>
+                  <p style={{fontSize:13, color:'#999', marginTop:2}}>{t('예배사역연구소','Worship Ministry Research Institute')}</p>
+                </div>
+              </div>
+              <div style={{background:'#F5F3FF', borderRadius:12, padding:'14px 16px', textAlign:'center'}}>
+                <p style={{fontSize:13, fontWeight:700, color:'#555', marginBottom:6}}>© 2026 Justin Lee</p>
+                <p style={{fontSize:12, color:'#888', marginBottom:8}}>All Rights Reserved</p>
+                <p style={{fontSize:12, color:'#999', lineHeight:1.7}}>{t('본 앱의 콘텐츠, 질문 가이드,\n예배 설계 시스템은\n저작권 보호를 받습니다.','The content, question guides, and worship design system of this app are protected by copyright.')}</p>
+              </div>
+            </>) : feedbackSent ? (
+              <div style={{textAlign:'center', padding:'20px 0'}}>
+                <p style={{fontSize:40, marginBottom:12}}>🙏</p>
+                <p style={{fontSize:17, fontWeight:700, color:'#4CAF8C'}}>{t('피드백이 전송됐어요!','Feedback sent!')}</p>
+                <p style={{fontSize:14, color:'#888', marginTop:8}}>{t('감사합니다 😊','Thank you 😊')}</p>
+                <button onClick={()=>{ setShowFeedback(false); setFeedbackSent(false); setFeedbackMsg(''); }}
+                  style={{marginTop:20, padding:'10px 24px', background:'#4CAF8C', color:'white', border:'none', borderRadius:99, fontSize:14, fontWeight:700, cursor:'pointer'}}>
+                  {t('확인','OK')}
+                </button>
+              </div>
+            ) : (
+              <>
+                <div style={{display:'flex', alignItems:'center', gap:8, marginBottom:16}}>
+                  <button onClick={()=>setShowFeedback(false)} style={{background:'none', border:'none', fontSize:18, cursor:'pointer', color:'#999'}}>‹</button>
+                  <p style={{fontSize:17, fontWeight:700}}>{t('피드백 보내기','Send Feedback')}</p>
+                </div>
+                <p style={{fontSize:14, color:'#888', marginBottom:12, lineHeight:1.7}}>{t('예배하면서 느낀 점을 자유롭게 나눠주세요. 이 앱을 통해 가정과 다음세대가 회복되도록 최선을 다하겠습니다.','Share your experience freely. We are committed to helping families and the next generation be restored through this app.')}</p>
+                <textarea placeholder={t('좋았던 점, 아쉬운 점, 바라는 점 모두 환영해요!','What worked? What did you wish was different?')}
+                  value={feedbackMsg} onChange={e=>setFeedbackMsg(e.target.value)} rows={4}
+                  style={{width:'100%', padding:'12px', borderRadius:10, border:'1.5px solid #E0E0E0', fontSize:14, fontFamily:'inherit', outline:'none', marginBottom:12, resize:'none', lineHeight:1.7, boxSizing:'border-box'}}/>
+                <button onClick={handleFeedbackSubmit} disabled={!feedbackMsg.trim()||feedbackLoading}
+                  style={{width:'100%', padding:'14px', background:feedbackMsg.trim()?'#4CAF8C':'#E0E0E0', border:'none', borderRadius:10, color:'white', fontSize:15, fontWeight:700, cursor:feedbackMsg.trim()?'pointer':'not-allowed'}}>
+                  {feedbackLoading?t('전송 중...','Sending...'):t('피드백 보내기 →','Send Feedback →')}
+                </button>
+              </>
+            )}
+          </div>
+        </div>
+      )}
+    </>
+  );
+
   const wrap = (children, noPad=false) => (
-    <div style={{maxWidth:480, margin:'0 auto', background:T.bg, minHeight:'100vh', padding: noPad ? 0 : '24px 18px 80px'}}>
-      {/* 상단 고정 언어 토글 — worship 화면 제외 (⚙️ 패널로 통합) */}
-      {lang && screen !== 'worship' && (
-        <div style={{position:'fixed', top:12, right:16, zIndex:999}}>
+    <div style={{maxWidth:480, margin:'0 auto', background:T.bg, minHeight:'100vh', padding: noPad ? 0 : '24px 18px 100px'}}>
+      {/* 상단 언어 토글 */}
+      {lang && (
+        <div style={{position:'fixed', top:12, right:16, zIndex:991}}>
           <button onClick={()=>setLang(lang==='ko'?'en':'ko')}
-            style={{background:'white', border:`1.5px solid ${T.border}`, borderRadius:99, padding:'5px 12px', fontSize:15, fontWeight:700, color:T.purple, cursor:'pointer', boxShadow:T.shadowSm, display:'flex', alignItems:'center', gap:6}}>
-            <span style={{fontSize:17}}>{lang==='ko'?'🇰🇷':'🇺🇸'}</span>
+            style={{background:'white', border:`1.5px solid ${T.border}`, borderRadius:99, padding:'5px 12px', fontSize:14, fontWeight:700, color:T.purple, cursor:'pointer', boxShadow:T.shadowSm, display:'flex', alignItems:'center', gap:5}}>
             <span>{lang==='ko'?'KO':'EN'}</span>
           </button>
         </div>
       )}
       {children}
+      {lang && <BottomTab/>}
+      <GlobalOverlays/>
     </div>
   );
+
+  // 추천 요소 매핑 (영적상황_연령대 → 추천 요소 ID 배열)
+  const RECOMMENDED_ELEMS = {
+    // ── 관계 어색 / 거부감 ──
+    'awkward_infant':      ['candle','bless','bedtime'],
+    'awkward_preschooler': ['give','candle','bless','storytelling','read','word_draw'],
+    'awkward_child':       ['share','date'],
+    'awkward_middle':      ['share','date'],
+    'awkward_high':        ['share','date'],
+    'awkward_adult':       ['bless','meal','share','read','meditate','question'],
+    // ── 신앙 거부감 ── (영아·유아는 new와 동일)
+    'resistant_infant':      ['candle','bless','bedtime'],
+    'resistant_preschooler': ['give','candle','bless','storytelling','read','word_draw'],
+    'resistant_child':       ['share','date'],
+    'resistant_middle':      ['share','date'],
+    'resistant_high':        ['share','date'],
+    'resistant_adult':       ['bless','meal','share','read','meditate','question'],
+    // ── 첫 시작 ──
+    'new_infant':      ['candle','bless','bedtime','storytelling'],
+    'new_preschooler': ['give','candle','bless','storytelling','read','word_draw'],
+    'new_child':       ['give','candle','bless','gather_praise','storytelling','read','question','word_draw','dessert'],
+    'new_middle':      ['candle','bless','share','read','meditate','question','dessert'],
+    'new_high':        ['candle','bless','share','read','meditate','question','dessert'],
+    'new_adult':       ['bless','meal','share','read','meditate','question'],
+    // ── 이미 드리는 중 ──
+    'ready_infant':      ['candle','bless','bedtime','storytelling','response_activity','draw'],
+    'ready_preschooler': ['give','candle','bless','storytelling','read','word_draw','response_activity','draw'],
+    'ready_child':       ['give','candle','bless','gather_praise','read','question','word_draw','response_activity','draw','praise'],
+    'ready_middle':      ['candle','bless','share','read','meditate','question','dessert','creative_activity','pray'],
+    'ready_high':        ['candle','bless','share','read','meditate','question','dessert','praise','gratitude','pray'],
+    'ready_adult':       ['bless','meal','share','read','meditate','question','gratitude','pray'],
+    // ── 더 깊게 ──
+    'deep_infant':      ['candle','bless','bedtime','storytelling','response_activity','draw'],
+    'deep_preschooler': ['give','candle','bless','storytelling','read','word_draw','response_activity','draw'],
+    'deep_child':       ['give','candle','bless','gather_praise','read','meditate','question','response_activity','pray','issue','challenge'],
+    'deep_middle':      ['give','candle','bless','read','question','creative_activity','pray','issue','challenge'],
+    'deep_high':        ['give','candle','bless','gather_praise','read','meditate','question','pray','issue','challenge'],
+    'deep_adult':       ['bless','meal','share','read','meditate','question','gratitude','pray','challenge'],
+  };
+
+  const isRecommended = (elemId) => {
+    if(!selectedDiag || !ageGroup) return false;
+    const key = `${selectedDiag}_${ageGroup}`;
+    return (RECOMMENDED_ELEMS[key] || []).includes(elemId);
+  };
 
   const ROOM_ORDER = ['gather', 'word', 'response', 'send'];
   const toggleRoom = id => setSelectedRooms(p => {
@@ -1333,37 +1574,43 @@ export default function App() {
   const toggleFlow = id => setOpenFlows(p => { const n=new Set(p); n.has(id)?n.delete(id):n.add(id); return n; });
   const activeRooms = ROOMS.filter(r => selectedRooms.has(r.id));
 
+  // ── 스플래시 화면 (2초 자동 전환) ──
+  if(showSplash) {
+    return (
+      <div style={{
+        maxWidth: 480, margin: '0 auto', width: '100%',
+        height: '100vh', display: 'flex', flexDirection: 'column',
+        alignItems: 'center', justifyContent: 'flex-start',
+        background: '#fff', textAlign: 'center', paddingTop: '22vh',
+        position: 'relative', overflow: 'hidden',
+      }}>
+        {/* DAVAR 로고 — Vercel /public 에서 로드 */}
+        <img
+          src="/다바르_로고_배경투명.png"
+          alt="DAVAR"
+          style={{width: 130, marginBottom: 18, objectFit: 'contain'}}
+        />
+        <p style={{
+          fontSize: 30, fontWeight: 800, color: '#5BA041',
+          letterSpacing: '0.2em', marginBottom: 8,
+          fontFamily: "'Noto Sans KR', Arial, sans-serif"
+        }}>DAVAR</p>
+        <p style={{fontSize: 14, color: '#888', letterSpacing: '0.08em'}}>
+          대화식 가정예배 코칭앱
+        </p>
+        {/* 하단 배경 이미지 — 초기화면 디자인 느낌 */}
+        <div style={{
+          position: 'absolute', bottom: 0, left: 0, right: 0, height: '40%',
+          backgroundImage: "url('/다바르앱_초기화면3.jpg')",
+          backgroundSize: 'cover', backgroundPosition: 'center bottom',
+        }}/>
+      </div>
+    );
+  }
+
   // ── WELCOME ──
   if(screen==='welcome') {
 
-    // 언어 선택 화면 — B안: 온보딩 전에 한 번 나옴
-    if(!lang) return wrap(
-      <div style={{textAlign:'center', paddingTop:60}}>
-        <div style={{fontSize:64, marginBottom:20}}>🏠</div>
-        <p style={{fontSize:24, fontWeight:800, color:T.text, marginBottom:8}}>{s_.splashTag}</p>
-        <p style={{fontSize:24, fontWeight:800, color:T.text, marginBottom:32}}>Family Worship Coaching</p>
-        <p style={{fontSize:17, color:T.sub, marginBottom:40, lineHeight:1.8}}>언어를 선택하세요<br/>Please select your language</p>
-        <div style={{display:'flex', flexDirection:'column', gap:14}}>
-          <button onClick={()=>setLang('ko')}
-            style={{padding:'18px', background:'white', border:`2px solid ${T.purpleBorder}`, borderRadius:T.r, cursor:'pointer', display:'flex', alignItems:'center', gap:16, boxShadow:T.shadowSm}}>
-            <span style={{fontSize:36}}>🇰🇷</span>
-            <div style={{textAlign:'left'}}>
-              <p style={{fontSize:17, fontWeight:800, color:T.text}}>한국어</p>
-              <p style={{fontSize:15, color:T.sub}}>Korean</p>
-            </div>
-          </button>
-          <button onClick={()=>setLang('en')}
-            style={{padding:'18px', background:'white', border:`2px solid ${T.border}`, borderRadius:T.r, cursor:'pointer', display:'flex', alignItems:'center', gap:16, boxShadow:T.shadowSm}}>
-            <span style={{fontSize:36}}>🇺🇸</span>
-            <div style={{textAlign:'left'}}>
-              <p style={{fontSize:17, fontWeight:800, color:T.text}}>English</p>
-              <p style={{fontSize:15, color:T.sub}}>영어</p>
-            </div>
-          </button>
-        </div>
-        <p style={{fontSize:15, color:T.hint, marginTop:28, lineHeight:1.7}}>언제든지 상단 버튼으로 언어를 바꿀 수 있어요<br/>You can change language anytime at the top</p>
-      </div>
-    );
     const ONBOARDING = [
       {
         img: CARD_IMG_1,
@@ -1484,8 +1731,20 @@ export default function App() {
           </div>
         )}
 
-        <div style={{textAlign:'center', paddingTop:16, paddingBottom:8}}>
-          <div style={{fontSize:64, lineHeight:1, marginBottom:14}}>🏠</div>
+        <div style={{textAlign:'center', paddingTop:8, paddingBottom:8}}>
+          {/* 메인화면 집 이미지 */}
+          <img
+            src="/다바르앱_메인화면08-1.jpg"
+            alt={t('예배의 집','Worship House')}
+            style={{
+              width:'100%', maxWidth:440, borderRadius:20,
+              marginBottom:16, display:'block', margin:'0 auto 16px',
+              boxShadow:'0 4px 24px rgba(0,0,0,0.10)'
+            }}
+            onError={(e)=>{ e.target.style.display='none'; e.target.nextSibling.style.display='block'; }}
+          />
+          {/* 이미지 로드 실패 시 폴백 */}
+          <div style={{display:'none', fontSize:64, lineHeight:1, marginBottom:14}}>🏠</div>
           <p style={{fontSize:17, fontWeight:700, letterSpacing:'0.1em', color:T.green, marginBottom:14}}>{s_.splashTag}</p>
           <h1 style={{
             fontFamily:"'Noto Serif KR', 'Georgia', serif",
@@ -1585,7 +1844,7 @@ export default function App() {
                   setSelectedScripture(null); setSelectedRooms(new Set()); setSelectedElems({});
                   setWorshipName(''); setInputName(''); setSelectedDiag(null); setAgeGroup('');
                   setDebrief({}); setSeriesConfirmed(null); setExpandedSeries(null);
-                  setOnboardingDone(false); setOnboardingStep(-1); setLang('');
+                  setOnboardingDone(false); setOnboardingStep(-1); setLang('ko');
                   setConfirmDelete(false);
                 }} style={{flex:1, padding:'9px', background:'#A32D2D', border:'none', borderRadius:T.rSm, fontSize:15, cursor:'pointer', color:'white', fontWeight:700}}>
                   {t('초기화','Reset')}
@@ -1822,11 +2081,11 @@ export default function App() {
           child: {
             short: {
               ko: '신앙 전수의 황금기! 논리적 사고가 시작되는 시기예요. "왜요?"에서 "어떻게요?"로 질문이 발전합니다. 구체적인 사실과 이야기를 통해 배우고, 옳고 그름에 대한 감각이 생겨나요.',
-              en: 'Questions and dialogue are key. Be sure to include Read Aloud and Questions & Dialogue in the Word Room. Close the week with a Challenge in the Sending Room. This is the golden season for passing on faith!'
+              en: 'Questions and dialogue are key. Be sure to include Read Aloud and Sharing the Word in the Word Room. Close the week with a Challenge in the Sending Room. This is the golden season for passing on faith!'
             },
             full: {
               ko: '【아동전기 7-9세】\n추천: 촛불켜기, 식사하기, 찬양하기, 낭독하기, 말씀 나누기, 챌린지\n\n성경 본문을 함께 읽고 등장인물의 감정과 행동에 대해 질문해보세요. 촛불을 켜고 시작하면 아이들이 예배 분위기를 몸으로 느낍니다.\n\n【아동후기 10-12세】\n추상적 사고가 싹트고 또래 관계가 중요해지는 시기예요. 공정함과 정의에 민감하고, "진짜인가?"를 따지기 시작해요. 신앙 전수의 황금기입니다.\n\n추천: 식사하기, 찬양하기, 구제하기, 낭독하기, 말씀 나누기, 묵상하기, 챌린지\n\n적용 질문으로 삶과 말씀을 연결하고 챌린지로 한 주를 살아내게 하세요. 부모의 솔직한 신앙 이야기가 이 시기에 특히 큰 영향을 줍니다.',
-              en: '【Early Childhood 7-9】\nLogical thinking begins to emerge. Questions shift from "Why?" to "How?" They learn best through concrete facts and stories, and a sense of right and wrong is developing.\n\nRecommended: Candle Lighting, Meal Together, Praise, Read Aloud, Questions & Dialogue, Challenge\n\nRead the passage together and ask about the feelings and actions of the characters. Lighting a candle to begin helps children feel the worship atmosphere in their bodies.\n\n【Late Childhood 10-12】\nAbstract thinking begins to emerge and peer relationships become important. They are sensitive to fairness and justice, and start asking "Is this really true?" This is the golden season for passing on faith.\n\nRecommended: Meal Together, Praise, Giving/Service, Read Aloud, Questions & Dialogue, Meditation, Challenge\n\nConnect the Word to real life through apply questions and give a Challenge to live out the week. A parent\'s honest sharing of their own faith story has a profound impact at this stage.'
+              en: '【Early Childhood 7-9】\nLogical thinking begins to emerge. Questions shift from "Why?" to "How?" They learn best through concrete facts and stories, and a sense of right and wrong is developing.\n\nRecommended: Candle Lighting, Meal Together, Praise, Read Aloud, Sharing the Word, Challenge\n\nRead the passage together and ask about the feelings and actions of the characters. Lighting a candle to begin helps children feel the worship atmosphere in their bodies.\n\n【Late Childhood 10-12】\nAbstract thinking begins to emerge and peer relationships become important. They are sensitive to fairness and justice, and start asking "Is this really true?" This is the golden season for passing on faith.\n\nRecommended: Meal Together, Praise, Giving/Service, Read Aloud, Sharing the Word, Meditation, Challenge\n\nConnect the Word to real life through apply questions and give a Challenge to live out the week. A parent\'s honest sharing of their own faith story has a profound impact at this stage.'
             }
           },
           middle: {
@@ -1836,7 +2095,7 @@ export default function App() {
             },
             full: {
               ko: '사춘기가 본격적으로 시작되는 시기예요. 감정 기복이 심하고, 자기만의 세계가 생기며, 부모보다 또래가 더 중요해집니다. 말이 없어지고, 예배 시간에 눈도 안 마주치는 게 정상이에요.\n\n추천: 촛불켜기, 식사하기, 일상 나누기, 구제하기, 이슈 대화, 낭독하기, 말씀 나누기, 챌린지\n\n절대 강요하거나 채근하지 마세요. 반응이 없다고 듣고 있지 않은 게 아니에요. 이 시기 부모의 가장 강력한 무기는 판단 없이 끝까지 들어주는 경청입니다. 이슈 대화로 자녀의 고민과 감정을 먼저 충분히 들어주세요.\n\n말로는 반응 안 해도 챌린지는 은근히 합니다. 작고 구체적인 챌린지를 반드시 주세요. 자존심 때문에 말은 못 해도, 행동으로 반응하는 나이예요.',
-              en: 'Puberty hits full force at this stage. Emotional swings, a world of their own, and peers becoming more important than parents — all normal. Going quiet and avoiding eye contact during worship? Also normal.\n\nRecommended: Candle Lighting, Meal Together, Sharing Life, Giving/Service, Issue Dialogue, Read Aloud, Questions & Dialogue, Challenge\n\nNever force or nag. Silence doesn\'t mean they\'re not listening. The most powerful tool a parent has at this stage is listening without judgment, all the way to the end. Use Issue Dialogue to give their struggles and emotions plenty of space first.\n\nThey may not respond with words, but they\'ll quietly follow through on a Challenge. Always give them one — small and specific. They\'re at an age where pride keeps them silent, but action is how they respond.'
+              en: 'Puberty hits full force at this stage. Emotional swings, a world of their own, and peers becoming more important than parents — all normal. Going quiet and avoiding eye contact during worship? Also normal.\n\nRecommended: Candle Lighting, Meal Together, Sharing Life, Giving/Service, Issue Dialogue, Read Aloud, Sharing the Word, Challenge\n\nNever force or nag. Silence doesn\'t mean they\'re not listening. The most powerful tool a parent has at this stage is listening without judgment, all the way to the end. Use Issue Dialogue to give their struggles and emotions plenty of space first.\n\nThey may not respond with words, but they\'ll quietly follow through on a Challenge. Always give them one — small and specific. They\'re at an age where pride keeps them silent, but action is how they respond.'
             }
           },
           high: {
@@ -1846,7 +2105,7 @@ export default function App() {
             },
             full: {
               ko: '추천: 촛불켜기, 식사하기, 일상 나누기, 구제하기, 이슈 대화, 낭독하기, 말씀 나누기, 묵상하기, 기도하기, 챌린지\n\n이 시기는 신앙의 지적 성찰이 완성되는 때예요.\n\n"정말 하나님이 계신가?", "왜 왕이신 예수님이 피 한방울 흘리셔도 되는지 굳이 십자가까지 지셨는가?" 같은 진지한 질문을 억누르지 말고 함께 탐구하세요.\n\n부모가 모르는 게 있어도 괜찮아요 — "나도 모르겠어, 같이 찾아보자"가 가장 좋은 대답이에요.\n\n챌린지는 단순 실천을 넘어 삶의 방식을 바꾸는 수준으로 도전해도 좋아요.',
-              en: 'Recommended: Candle Lighting, Meal Together, Sharing Life, Giving/Service, Issue Dialogue, Read Aloud, Questions & Dialogue, Meditation, Prayer, Challenge\n\nThis is the season when intellectual and spiritual reflection reaches maturity.\n\nDon\'t suppress serious questions like "Does God really exist?" or "Why did Jesus — who is King — have to go all the way to the cross?" Explore them together.\n\nIt\'s okay if parents don\'t have all the answers — "I\'m not sure either, let\'s find out together" is the best response.\n\nFeel free to set Challenges that go beyond simple practice — ones that actually reshape how they live.'
+              en: 'Recommended: Candle Lighting, Meal Together, Sharing Life, Giving/Service, Issue Dialogue, Read Aloud, Sharing the Word, Meditation, Prayer, Challenge\n\nThis is the season when intellectual and spiritual reflection reaches maturity.\n\nDon\'t suppress serious questions like "Does God really exist?" or "Why did Jesus — who is King — have to go all the way to the cross?" Explore them together.\n\nIt\'s okay if parents don\'t have all the answers — "I\'m not sure either, let\'s find out together" is the best response.\n\nFeel free to set Challenges that go beyond simple practice — ones that actually reshape how they live.'
             }
           },
           adult: {
@@ -1939,7 +2198,7 @@ export default function App() {
                     <div onClick={()=>toggleElem(r.id, e.id)}
                       style={{background: sel ? T.card : 'rgba(255,255,255,0.6)', border:`1.5px solid ${sel ? rs.color : 'rgba(255,255,255,0.8)'}`, borderRadius:T.rSm, padding:'12px 14px', cursor:'pointer', position:'relative', boxShadow: sel ? T.shadowSm : 'none'}}>
                       {sel && <div style={{position:'absolute', top:6, right:6, width:16, height:16, borderRadius:'50%', background:rs.color, display:'flex', alignItems:'center', justifyContent:'center'}}><span style={{color:'#fff', fontSize:12}}>✓</span></div>}
-                      <p style={{fontSize:16, fontWeight:700, color: sel ? rs.color : T.text, marginBottom:2, paddingRight:18}}>{lang==='en' ? (e.nameEn||e.name) : e.name}</p>
+                      <p style={{fontSize:16, fontWeight:700, color: sel ? rs.color : T.text, marginBottom:2, paddingRight:18}}><>{lang==='en' ? (e.nameEn||e.name) : e.name}{isRecommended(e.id) && <span style={{color:'#E05C3A', fontWeight:900, fontSize:16, marginLeft:3}}>*</span>}</></p>
                       <button onClick={ev=>{ev.stopPropagation(); setOpenInfo(isOpen?null:r.id+'-'+e.id);}}
                         style={{position:'absolute', bottom:6, right:6, background:'none', border:`1px solid ${rs.color}40`, width:16, height:16, borderRadius:'50%', fontSize:13, cursor:'pointer', color:rs.color, display:'flex', alignItems:'center', justifyContent:'center'}}>i</button>
                     </div>
@@ -2004,19 +2263,133 @@ export default function App() {
               )}
               {item.key==='schedule' && (
                 <div onClick={e=>e.stopPropagation()}>
-                  {[
-                    ['day', t('요일 (예: 금요일 저녁)','Day (e.g. Friday evening)')],
-                    ['time', t('시간 (예: 저녁 7시)','Time (e.g. 7:00 PM)')],
-                    ['place', t('장소 (예: 거실 식탁)','Place (e.g. Living room table)')]
-                  ].map(([k,ph])=>(
-                    <input key={k} style={{width:'100%', padding:'12px 14px', fontSize:16, border:`1px solid ${T.border}`, borderRadius:T.rSm, marginBottom:8, fontFamily:'inherit', background:T.bg, color:T.text, boxSizing:'border-box'}} placeholder={ph} value={routineChecks[k]||''} onChange={e=>setRoutineChecks(p=>({...p,[k]:e.target.value}))}/>
-                  ))}
-                  <div style={{display:'flex', alignItems:'center', gap:8, cursor:'pointer', marginTop:4}} onClick={()=>setRoutineChecks(p=>({...p,phones:!p.phones}))}>
+                  {/* 요일 선택 — 버튼 */}
+                  <p style={{fontSize:14, color:T.sub, marginBottom:8, fontWeight:600}}>{t('요일 선택','Day of Week')}</p>
+                  <div style={{display:'flex', flexWrap:'wrap', gap:7, marginBottom:14}}>
+                    {(lang==='ko'
+                      ? ['월요일','화요일','수요일','목요일','금요일','토요일','일요일']
+                      : ['Mon','Tue','Wed','Thu','Fri','Sat','Sun']
+                    ).map((d,i)=>{
+                      const sel = routineChecks.day===d;
+                      return (
+                        <button key={d} onClick={()=>setRoutineChecks(p=>({...p,day:d,_di:i}))}
+                          style={{padding:'8px 14px', borderRadius:20, fontSize:15, cursor:'pointer', fontWeight:700, border:'none',
+                            background:sel?T.purple:T.purpleBg, color:sel?'#fff':T.purple, transition:'all 0.15s'}}>
+                          {lang==='ko' ? ['월','화','수','목','금','토','일'][i]+'요일' : d}
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  {/* 시간 선택 — 드롭다운 */}
+                  <p style={{fontSize:14, color:T.sub, marginBottom:8, fontWeight:600}}>{t('시간 선택','Time')}</p>
+                  <div style={{display:'flex', alignItems:'center', gap:8, marginBottom:14}}>
+                    <select value={routineChecks._h||''} onChange={e=>setRoutineChecks(p=>({...p,_h:e.target.value,time:e.target.value+(p._m?':'+p._m:':00')}))}
+                      style={{flex:1, padding:'11px 10px', fontSize:16, border:`1px solid ${T.border}`, borderRadius:T.rSm, background:T.bg, color:T.text}}>
+                      <option value="">{t('시','Hour')}</option>
+                      {Array.from({length:17},(_,i)=>i+6).map(h=>(
+                        <option key={h} value={String(h).padStart(2,'0')}>{h}{t('시','')}</option>
+                      ))}
+                    </select>
+                    <span style={{fontSize:20, color:T.sub, fontWeight:300}}>:</span>
+                    <select value={routineChecks._m||'00'} onChange={e=>setRoutineChecks(p=>({...p,_m:e.target.value,time:(p._h||'')+':'+e.target.value}))}
+                      style={{flex:1, padding:'11px 10px', fontSize:16, border:`1px solid ${T.border}`, borderRadius:T.rSm, background:T.bg, color:T.text}}>
+                      {['00','15','30','45'].map(m=>(<option key={m} value={m}>{m}{t('분','')}</option>))}
+                    </select>
+                  </div>
+
+                  {/* 장소 */}
+                  <p style={{fontSize:14, color:T.sub, marginBottom:8, fontWeight:600}}>{t('장소','Place')}</p>
+                  <input style={{width:'100%', padding:'12px 14px', fontSize:16, border:`1px solid ${T.border}`, borderRadius:T.rSm, marginBottom:12, fontFamily:'inherit', background:T.bg, color:T.text, boxSizing:'border-box'}}
+                    placeholder={t('예: 거실 식탁','e.g. Living room table')}
+                    value={routineChecks.place||''} onChange={e=>setRoutineChecks(p=>({...p,place:e.target.value}))}/>
+
+                  {/* 스마트폰 체크 */}
+                  <div style={{display:'flex', alignItems:'center', gap:8, cursor:'pointer', marginBottom:16}} onClick={()=>setRoutineChecks(p=>({...p,phones:!p.phones}))}>
                     <div style={{width:20, height:20, borderRadius:6, border: routineChecks.phones ? `2px solid ${T.purple}` : `1.5px solid ${T.borderMid}`, background: routineChecks.phones ? T.purple : 'transparent', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0}}>
                       {routineChecks.phones && <span style={{color:'#fff', fontSize:13}}>✓</span>}
                     </div>
-                    <p style={{fontSize:16, color:T.sub}}>{t('스마트폰·TV 끄기 — 가족 모두 동의','Turn off phones & TV — everyone agrees')}</p>
+                    <p style={{fontSize:15, color:T.sub}}>{t('스마트폰·TV 끄기 — 가족 모두 동의','Turn off phones & TV — everyone agrees')}</p>
                   </div>
+
+                  {/* ── 알람 설정 ── */}
+                  {routineChecks.day && routineChecks._h && (
+                    <div style={{background:T.purpleBg, borderRadius:T.rSm, padding:'16px', border:`1px solid ${T.purpleBorder}`}}>
+                      <p style={{fontSize:15, fontWeight:700, color:T.purple, marginBottom:12}}>
+                        🔔 {t('알람 설정','Set Reminder')}
+                      </p>
+                      <p style={{fontSize:14, color:T.sub, marginBottom:12, lineHeight:1.6}}>
+                        {t(`매주 ${routineChecks.day} ${routineChecks._h}:${routineChecks._m||'00'}에 알람이 울립니다.`,
+                           `Reminder every ${routineChecks.day} at ${routineChecks._h}:${routineChecks._m||'00'}.`)}
+                      </p>
+                      <div style={{display:'flex', flexDirection:'column', gap:8}}>
+                        {/* ① .ics 다운로드 */}
+                        <button onClick={()=>{
+                          const BYDAY = {'월요일':'MO','화요일':'TU','수요일':'WE','목요일':'TH','금요일':'FR','토요일':'SA','일요일':'SU',
+                                         'Mon':'MO','Tue':'TU','Wed':'WE','Thu':'TH','Fri':'FR','Sat':'SA','Sun':'SU'};
+                          const DAY_OFFSET = {MO:1,TU:2,WE:3,TH:4,FR:5,SA:6,SU:0};
+                          const byDay = BYDAY[routineChecks.day]||'FR';
+                          const h = parseInt(routineChecks._h||'19');
+                          const m = parseInt(routineChecks._m||'00');
+                          const now = new Date();
+                          const diff = (DAY_OFFSET[byDay]-now.getDay()+7)%7||7;
+                          const start = new Date(now); start.setDate(now.getDate()+diff); start.setHours(h,m,0,0);
+                          const end   = new Date(start.getTime()+60*60*1000);
+                          const pd = (n)=>String(n).padStart(2,'0');
+                          const fmt = (d)=>`${d.getFullYear()}${pd(d.getMonth()+1)}${pd(d.getDate())}T${pd(d.getHours())}${pd(d.getMinutes())}00`;
+                          const ics = [
+                            'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//DAVAR//FamilyWorship//KO','CALSCALE:GREGORIAN',
+                            'BEGIN:VEVENT',
+                            `DTSTART;TZID=Asia/Seoul:${fmt(start)}`,
+                            `DTEND;TZID=Asia/Seoul:${fmt(end)}`,
+                            `RRULE:FREQ=WEEKLY;BYDAY=${byDay}`,
+                            `SUMMARY:${lang==='ko'?'대화식 가정예배 🙏':'DAVAR Family Worship 🙏'}`,
+                            `DESCRIPTION:${lang==='ko'?'DAVAR 가정예배 코칭앱 — 매주 예배 알람':'DAVAR Family Worship Coach — Weekly Reminder'}`,
+                            'BEGIN:VALARM','TRIGGER:-PT15M','ACTION:DISPLAY',
+                            `DESCRIPTION:${lang==='ko'?'⏰ 15분 후 가정예배 시작!':'⏰ Family worship starts in 15 min!'}`,
+                            'END:VALARM','END:VEVENT','END:VCALENDAR'
+                          ].join('\r\n');
+                          const a=document.createElement('a');
+                          a.href=URL.createObjectURL(new Blob([ics],{type:'text/calendar;charset=utf-8'}));
+                          a.download='davar-family-worship.ics'; a.click();
+                        }}
+                          style={{padding:'13px', background:T.purple, color:'#fff', border:'none', borderRadius:T.rSm, fontSize:16, fontWeight:700, cursor:'pointer', textAlign:'left'}}>
+                          📥 {t('캘린더에 추가하기 (.ics)','Add to Calendar (.ics)')}
+                          <span style={{display:'block', fontSize:13, fontWeight:400, opacity:0.85, marginTop:2}}>
+                            {t('애플·아웃룩·삼성 캘린더 호환','Apple · Outlook · Samsung Calendar')}
+                          </span>
+                        </button>
+                        {/* ② Google Calendar */}
+                        <button onClick={()=>{
+                          const BYDAY = {'월요일':'MO','화요일':'TU','수요일':'WE','목요일':'TH','금요일':'FR','토요일':'SA','일요일':'SU',
+                                         'Mon':'MO','Tue':'TU','Wed':'WE','Thu':'TH','Fri':'FR','Sat':'SA','Sun':'SU'};
+                          const DAY_OFFSET = {MO:1,TU:2,WE:3,TH:4,FR:5,SA:6,SU:0};
+                          const byDay = BYDAY[routineChecks.day]||'FR';
+                          const h = parseInt(routineChecks._h||'19');
+                          const m = parseInt(routineChecks._m||'00');
+                          const now = new Date();
+                          const diff = (DAY_OFFSET[byDay]-now.getDay()+7)%7||7;
+                          const start = new Date(now); start.setDate(now.getDate()+diff); start.setHours(h,m,0,0);
+                          const end   = new Date(start.getTime()+60*60*1000);
+                          const pd = (n)=>String(n).padStart(2,'0');
+                          const fmt = (d)=>`${d.getFullYear()}${pd(d.getMonth()+1)}${pd(d.getDate())}T${pd(d.getHours())}${pd(d.getMinutes())}00`;
+                          const title = encodeURIComponent(lang==='ko'?'대화식 가정예배 🙏':'DAVAR Family Worship 🙏');
+                          const detail= encodeURIComponent(lang==='ko'?'DAVAR 가정예배 코칭앱':'DAVAR Family Worship Coach');
+                          const recur = encodeURIComponent(`RRULE:FREQ=WEEKLY;BYDAY=${byDay}`);
+                          window.open(`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${fmt(start)}/${fmt(end)}&details=${detail}&recur=${recur}`,'_blank');
+                        }}
+                          style={{padding:'13px', background:'#fff', color:T.text, border:`1.5px solid ${T.border}`, borderRadius:T.rSm, fontSize:16, fontWeight:700, cursor:'pointer', textAlign:'left'}}>
+                          🔗 {t('Google 캘린더에 추가','Add to Google Calendar')}
+                          <span style={{display:'block', fontSize:13, fontWeight:400, color:T.hint, marginTop:2}}>
+                            {t('구글 캘린더 · Gmail 사용자','For Google Calendar · Gmail users')}
+                          </span>
+                        </button>
+                      </div>
+                      <p style={{fontSize:13, color:T.hint, marginTop:10, lineHeight:1.6}}>
+                        💡 {t('예배 15분 전 알람이 자동 설정됩니다.','Alarm is set 15 minutes before worship.')}
+                      </p>
+                    </div>
+                  )}
                 </div>
               )}
               {item.key==='covenant' && (
@@ -2028,7 +2401,7 @@ export default function App() {
                     </p>
                     <div style={{borderTop:`1px solid ${T.purpleBorder}`, borderBottom:`1px solid ${T.purpleBorder}`, padding:'12px 4px', marginBottom:14}}>
                       <p style={{fontSize:15, color:T.text, lineHeight:2}}>
-                        {t('하나, 우리는 매주','We will worship every')} <strong style={{color:T.purple}}>{routineChecks.day||'______'}</strong> {t('요일','')}{t(' ','  ')}<strong style={{color:T.purple}}>{routineChecks.time||'______'}</strong> {t('시에 가정예배를 드립니다.','')}<br/>
+                        {t('하나, 우리는 매주','We will worship every')} <strong style={{color:T.purple}}>{routineChecks.day||'______'}</strong>{t(' ','')} <strong style={{color:T.purple}}>{routineChecks.time||'__:__'}</strong>{t('에 가정예배를 드립니다.',' each week.')}<br/>
                         {t('하나, 이 시간에는 스마트폰, 컴퓨터, TV를 끕니다.','We will turn off phones, computers, and TV.')}<br/>
                         {t('하나, 서로 판단하지 않고, 경청하고 공감합니다.','We will listen without judgment and empathize.')}<br/>
                         {t('하나, 하나님을 더 알아가고 서로가 더 친밀해 집니다.','We will grow closer to God and to each other.')}
@@ -2042,16 +2415,22 @@ export default function App() {
                     <p style={{fontSize:15, color:T.hint, textAlign:'center'}}>________________ &nbsp;&nbsp; ________________</p>
                   </div>
 
-                  {/* 내보내기 — 텍스트 직접 선택 복사 */}
-                  <div style={{marginBottom:12}}>
-                    <p style={{fontSize:14, color:T.hint, marginBottom:6}}>📋 {t('아래 텍스트를 길게 눌러 전체 선택 후 복사하세요','Long-press the text below to select all and copy')}</p>
-                    <textarea readOnly
-                      value={lang==='en'
-                        ? `Family Covenant\n\nOur family commits to practicing dialogic family worship regularly.\n\nWe will worship every ${routineChecks.day||'______'} at ${routineChecks.time||'______'}.\nWe will turn off phones, computers, and TV.\nWe will listen without judgment and empathize.\nWe will grow closer to God and to each other.\n\nWe promise to participate faithfully.\n\nDate: _____________________\n\nSigned: ________________   ________________\n        ________________   ________________`
-                        : `서약서\n\n우리 가족은 오늘부터 대화식 가정예배를 정기적으로 드리기를 다짐합니다.\n\n하나, 우리는 매주 ${routineChecks.day||'______'} 요일 ${routineChecks.time||'______'} 시에 가정예배를 드립니다.\n하나, 이 시간에는 스마트폰, 컴퓨터, TV를 끕니다.\n하나, 서로 판단하지 않고, 경청하고 공감합니다.\n하나, 하나님을 더 알아가고 서로가 더 친밀해 집니다.\n\n위 내용대로 성실하게 참여하기를 약속합니다.\n\n날짜: _____________________\n\n서명: ________________   ________________\n       ________________   ________________`}
-                      style={{width:'100%', padding:'12px', fontSize:14, border:`1px solid ${T.purpleBorder}`, borderRadius:T.rSm, background:'white', color:T.text, lineHeight:1.8, resize:'none', height:200, boxSizing:'border-box', fontFamily:'inherit'}}
-                      onFocus={e=>e.target.select()}
-                    />
+                  {/* 복사 버튼 */}
+                  <div style={{marginBottom:12, textAlign:'center'}}>
+                    <button
+                      onClick={()=>{
+                        const text = lang==='en'
+                          ? `Family Covenant\n\nOur family commits to practicing dialogic family worship regularly.\n\nWe will worship every ${routineChecks.day||'______'} at ${routineChecks.time||'______'}.\nWe will turn off phones, computers, and TV.\nWe will listen without judgment and empathize.\nWe will grow closer to God and to each other.\n\nWe promise to participate faithfully.\n\nDate: _____________________\n\nSigned: ________________   ________________\n        ________________   ________________`
+                          : `서약서\n\n우리 가족은 오늘부터 대화식 가정예배를 정기적으로 드리기를 다짐합니다.\n\n하나, 우리는 매주 ${routineChecks.day||'______'} 요일 ${routineChecks.time||'______'} 시에 가정예배를 드립니다.\n하나, 이 시간에는 스마트폰, 컴퓨터, TV를 끕니다.\n하나, 서로 판단하지 않고, 경청하고 공감합니다.\n하나, 하나님을 더 알아가고 서로가 더 친밀해 집니다.\n\n위 내용대로 성실하게 참여하기를 약속합니다.\n\n날짜: _____________________\n\n서명: ________________   ________________\n       ________________   ________________`;
+                        navigator.clipboard.writeText(text).then(()=>{
+                          alert(lang==='en' ? '✅ Copied! Paste into Notes or any app.' : '✅ 복사됐어요! 메모앱 등에 붙여넣기 하세요.');
+                        }).catch(()=>{
+                          alert(lang==='en' ? 'Copy failed. Please try again.' : '복사 실패. 다시 시도해 주세요.');
+                        });
+                      }}
+                      style={{background:T.purple, color:'white', border:'none', borderRadius:T.rSm, padding:'12px 32px', fontSize:16, fontWeight:700, cursor:'pointer', width:'100%'}}>
+                      📋 {t('서약서 텍스트 복사하기','Copy Covenant Text')}
+                    </button>
                   </div>
 
                   <p style={{fontSize:15, color:T.sub, lineHeight:1.5, marginBottom:10}}>{t('서약서를 출력하여 가족 모두 사인한 후 거실에 걸어두세요.','Print the covenant, have everyone sign it, and hang it in your living room.')}</p>
@@ -2119,7 +2498,7 @@ export default function App() {
             style={{display:'flex', alignItems:'center', gap:12, padding:'16px 18px', cursor:'pointer'}}>
             <div style={{width:36, height:36, borderRadius:10, background:rs.bg, border:`1.5px solid ${rs.border}`, display:'flex', alignItems:'center', justifyContent:'center', fontSize:22, flexShrink:0}}>💬</div>
             <div style={{flex:1}}>
-              <p style={{fontSize:17, fontWeight:700, color:T.text}}>{lang==='en' ? (e.nameEn||e.name) : e.name}</p>
+              <p style={{fontSize:17, fontWeight:700, color:T.text}}><>{lang==='en' ? (e.nameEn||e.name) : e.name}{isRecommended(e.id) && <span style={{color:'#E05C3A', fontWeight:900, fontSize:16, marginLeft:3}}>*</span>}</></p>
               <p style={{fontSize:15, color:T.sub, marginTop:2}}>{lang==='en' ? (e.defEn||e.def) : e.def}</p>
             </div>
             <span style={{fontSize:24, color:T.hint, transform:isOpen?'rotate(180deg)':'none', transition:'transform 0.2s'}}>▾</span>
@@ -2224,7 +2603,7 @@ export default function App() {
             style={{display:'flex', alignItems:'center', gap:12, padding:'16px 18px', cursor:'pointer'}}>
             <div style={{width:36, height:36, borderRadius:10, background:rs.bg, border:`1.5px solid ${rs.border}`, display:'flex', alignItems:'center', justifyContent:'center', fontSize:22, flexShrink:0}}>🤝</div>
             <div style={{flex:1}}>
-              <p style={{fontSize:17, fontWeight:700, color:T.text}}>{lang==='en' ? (e.nameEn||e.name) : e.name}</p>
+              <p style={{fontSize:17, fontWeight:700, color:T.text}}><>{lang==='en' ? (e.nameEn||e.name) : e.name}{isRecommended(e.id) && <span style={{color:'#E05C3A', fontWeight:900, fontSize:16, marginLeft:3}}>*</span>}</></p>
               <p style={{fontSize:15, color:T.sub, marginTop:2}}>{lang==='en' ? (e.defEn||e.def) : e.def}</p>
             </div>
             <span style={{fontSize:24, color:T.hint, transform:isOpen?'rotate(180deg)':'none', transition:'transform 0.2s'}}>▾</span>
@@ -2268,7 +2647,7 @@ export default function App() {
               {e.id==='candle'?'🕯️':e.id==='bless'?'🙌':e.id==='meal'?'🍽️':e.id==='share'?'💬':e.id==='thanks'?'🙏':e.id==='give'?'💝':e.id==='read'?'📖':e.id==='meditate'?'🤫':e.id==='talk'?'🗣️':e.id==='debate'?'⚡':e.id==='snack'?'☕':e.id==='pray'?'🙏':e.id==='praise'?'🎵':e.id==='challenge'?'🎯':e.id==='issue'?'🌍':e.id==='send'?'✉️':'✨'}
             </div>
             <div style={{flex:1}}>
-              <p style={{fontSize:17, fontWeight:700, color:T.text}}>{lang==='en' ? (e.nameEn||e.name) : e.name}</p>
+              <p style={{fontSize:17, fontWeight:700, color:T.text}}><>{lang==='en' ? (e.nameEn||e.name) : e.name}{isRecommended(e.id) && <span style={{color:'#E05C3A', fontWeight:900, fontSize:16, marginLeft:3}}>*</span>}</></p>
               <p style={{fontSize:15, color:T.sub, marginTop:2}}>{lang==='en' ? (e.defEn||e.def) : e.def}</p>
             </div>
             <span style={{fontSize:24, color:T.hint, transform:isOpen?'rotate(180deg)':'none', transition:'transform 0.2s'}}>▾</span>
@@ -2371,136 +2750,10 @@ export default function App() {
     };
 
     return (
-      <div style={{minHeight:'100vh', background:T.bg}}>
+      <div style={{minHeight:'100vh', background:T.bg, paddingBottom:100}}>
 
         {/* ── 설정 슬라이드업 패널 ── */}
-        {showSettings && (
-          <div style={{position:'fixed', inset:0, background:'rgba(0,0,0,0.45)', zIndex:9998, display:'flex', alignItems:'flex-end', justifyContent:'center'}}
-            onClick={e=>{ if(e.target===e.currentTarget){ setShowSettings(false); setShowFeedback(false); setFeedbackSent(false); }}}>
-            <div style={{background:T.card, borderRadius:'24px 24px 0 0', padding:'20px 20px 40px', width:'100%', maxWidth:480, boxSizing:'border-box'}}>
-              {/* 핸들바 */}
-              <div style={{width:40, height:4, background:T.border, borderRadius:2, margin:'0 auto 20px'}}/>
-
-              {!showFeedback ? (
-                <>
-                  {/* 패널 타이틀 */}
-                  <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:20}}>
-                    <p style={{fontSize:18, fontWeight:800, color:T.text}}>{t('설정','Settings')}</p>
-                    <button onClick={()=>setShowSettings(false)}
-                      style={{background:'none', border:'none', fontSize:22, cursor:'pointer', color:T.hint, lineHeight:1}}>✕</button>
-                  </div>
-
-                  {/* 언어 전환 */}
-                  <div style={{background:T.bg, borderRadius:T.rSm, padding:'14px 16px', marginBottom:10, display:'flex', alignItems:'center', justifyContent:'space-between'}}>
-                    <div style={{display:'flex', alignItems:'center', gap:10}}>
-                      <span style={{fontSize:20}}>🌐</span>
-                      <p style={{fontSize:16, fontWeight:600, color:T.text}}>{t('언어','Language')}</p>
-                    </div>
-                    <button onClick={()=>{ setLang(lang==='ko'?'en':'ko'); }}
-                      style={{background:'white', border:`1.5px solid ${T.border}`, borderRadius:99, padding:'6px 14px', fontSize:14, fontWeight:700, color:T.purple, cursor:'pointer', display:'flex', alignItems:'center', gap:6, boxShadow:T.shadowSm}}>
-                      <span>{lang==='ko'?'🇰🇷':'🇺🇸'}</span>
-                      <span>{lang==='ko'?'한국어':'English'}</span>
-                    </button>
-                  </div>
-
-                  {/* 앱 공유하기 */}
-                  <button onClick={()=>{
-                    const shareData = {
-                      title: t('가정예배 코칭 앱','Family Worship Coach App'),
-                      text: t('이웃, 교인, 친구에게 이 앱을 추천해보세요 🏠🙏','Recommend this app to your neighbors, church members, and friends 🏠🙏'),
-                      url: 'https://family-worship-app-psi.vercel.app'
-                    };
-                    if(navigator.share) {
-                      navigator.share(shareData).catch(()=>{});
-                    } else {
-                      navigator.clipboard.writeText('https://family-worship-app-psi.vercel.app').then(()=>{
-                        alert(t('링크가 복사됐어요!','Link copied!'));
-                      }).catch(()=>{});
-                    }
-                  }}
-                    style={{width:'100%', background:T.bg, borderRadius:T.rSm, padding:'14px 16px', marginBottom:10, display:'flex', alignItems:'center', justifyContent:'space-between', border:'none', cursor:'pointer', boxSizing:'border-box'}}>
-                    <div style={{display:'flex', alignItems:'center', gap:10}}>
-                      <span style={{fontSize:20}}>📤</span>
-                      <div style={{textAlign:'left'}}>
-                        <p style={{fontSize:16, fontWeight:600, color:T.text}}>{t('앱 공유하기','Share App')}</p>
-                        <p style={{fontSize:13, color:T.hint, marginTop:2}}>{t('이웃·교인·친구에게 추천해보세요','Share with neighbors, church & friends')}</p>
-                      </div>
-                    </div>
-                    <span style={{fontSize:18, color:T.hint}}>›</span>
-                  </button>
-
-                  {/* 피드백 보내기 */}
-                  <button onClick={()=>setShowFeedback(true)}
-                    style={{width:'100%', background:T.bg, borderRadius:T.rSm, padding:'14px 16px', marginBottom:10, display:'flex', alignItems:'center', justifyContent:'space-between', border:'none', cursor:'pointer', boxSizing:'border-box'}}>
-                    <div style={{display:'flex', alignItems:'center', gap:10}}>
-                      <span style={{fontSize:20}}>💬</span>
-                      <p style={{fontSize:16, fontWeight:600, color:T.text}}>{t('피드백 보내기','Send Feedback')}</p>
-                    </div>
-                    <span style={{fontSize:18, color:T.hint}}>›</span>
-                  </button>
-
-                  {/* 앱 버전 */}
-                  <div style={{background:T.bg, borderRadius:T.rSm, padding:'14px 16px', display:'flex', alignItems:'center', gap:10}}>
-                    <span style={{fontSize:20}}>ℹ️</span>
-                    <div>
-                      <p style={{fontSize:15, fontWeight:700, color:T.text}}>Beta v4.2.3</p>
-                      <p style={{fontSize:13, color:T.hint, marginTop:2}}>예배사역연구소</p>
-                    </div>
-                  </div>
-                </>
-              ) : (
-                /* ── 피드백 폼 (패널 내부) ── */
-                <>
-                  <div style={{display:'flex', alignItems:'center', gap:8, marginBottom:16}}>
-                    <button onClick={()=>setShowFeedback(false)}
-                      style={{background:'none', border:'none', fontSize:18, cursor:'pointer', color:T.hint, padding:'0 4px'}}>‹</button>
-                    <p style={{fontSize:18, fontWeight:800, color:T.text}}>{t('💬 피드백 보내기','💬 Send Feedback')}</p>
-                  </div>
-                  {feedbackSent ? (
-                    <div style={{textAlign:'center', padding:'24px 0 8px'}}>
-                      <div style={{fontSize:48, marginBottom:12}}>🙏</div>
-                      <h3 style={{fontSize:20, fontWeight:700, color:T.text, marginBottom:8}}>{t('감사합니다!','Thank you!')}</h3>
-                      <p style={{fontSize:15, color:T.sub, lineHeight:1.75}}>{t('소중한 피드백이 예배사역연구소에 전달됐어요!','Your feedback has been sent!')}</p>
-                      <button onClick={()=>{ setShowSettings(false); setShowFeedback(false); setFeedbackSent(false); }}
-                        style={{marginTop:20, padding:'12px 32px', background:T.green, border:'none', borderRadius:99, color:'white', fontSize:15, fontWeight:700, cursor:'pointer'}}>
-                        {t('닫기','Close')}
-                      </button>
-                    </div>
-                  ) : (
-                    <>
-                      <p style={{fontSize:14, color:T.sub, marginBottom:14, lineHeight:1.7}}>{t('예배하면서 느낀 점을 자유롭게 나눠주세요.','Share your experience worshipping with this app.')}</p>
-                      <p style={{fontSize:14, fontWeight:700, color:T.text, marginBottom:8}}>{t('이 앱이 도움이 됐나요?','Was this app helpful?')}</p>
-                      <div style={{display:'flex', gap:8, marginBottom:14}}>
-                        {[1,2,3,4,5].map(s=>(
-                          <button key={s} onClick={()=>setFeedbackRating(s)}
-                            style={{fontSize:28, background:'none', border:'none', cursor:'pointer', opacity: feedbackRating >= s ? 1 : 0.3, transition:'opacity 0.15s'}}>⭐</button>
-                        ))}
-                      </div>
-                      <input placeholder={t('이름 (선택사항)','Name (optional)')}
-                        value={feedbackName} onChange={e=>setFeedbackName(e.target.value)}
-                        style={{width:'100%', padding:'12px 14px', borderRadius:T.rSm, border:`1.5px solid ${T.border}`, fontSize:14, fontFamily:'inherit', outline:'none', marginBottom:10, background:'white', boxSizing:'border-box'}}/>
-                      <textarea placeholder={t('예배하면서 어떠셨나요? 좋았던 점, 아쉬운 점 모두 환영해요!','How was your worship? Share what worked and what didn\'t!')}
-                        value={feedbackMsg} onChange={e=>setFeedbackMsg(e.target.value)} rows={3}
-                        style={{width:'100%', padding:'12px 14px', borderRadius:T.rSm, border:`1.5px solid ${T.border}`, fontSize:14, fontFamily:'inherit', outline:'none', marginBottom:14, resize:'none', lineHeight:1.7, boxSizing:'border-box'}}/>
-                      <button onClick={handleFeedbackSubmit} disabled={!feedbackMsg.trim() || feedbackLoading}
-                        style={{width:'100%', padding:'14px', background: feedbackMsg.trim() ? T.green : T.border, border:'none', borderRadius:T.rSm, color:'white', fontSize:15, fontWeight:700, cursor: feedbackMsg.trim() ? 'pointer' : 'not-allowed'}}>
-                        {feedbackLoading ? t('전송 중...','Sending...') : t('피드백 보내기 →','Send Feedback →')}
-                      </button>
-                    </>
-                  )}
-                </>
-              )}
-            </div>
-          </div>
-        )}
-
-        {/* ── 우측 상단: ⚙️ 설정 아이콘 ── */}
-        <div style={{position:'fixed', top:12, right:16, zIndex:999}}>
-          <button onClick={()=>{ setShowSettings(true); setShowFeedback(false); }}
-            style={{background:'white', border:`1.5px solid ${T.border}`, borderRadius:99, width:40, height:40, display:'flex', alignItems:'center', justifyContent:'center', fontSize:20, cursor:'pointer', boxShadow:T.shadowSm}}>
-            ⚙️
-          </button>
-        </div>
+        
         {/* 질문 가이드 모달 */}
         {showQGuide && (
           <div style={{position:'fixed', inset:0, background:'rgba(0,0,0,0.5)', zIndex:100, display:'flex', alignItems:'flex-end'}}>
@@ -2579,6 +2832,13 @@ export default function App() {
                 </div>
                 {elems.map(e => <ElemCard key={e.id} roomId='gather' e={e} rs={rs}/>)}
                 {elems.length === 0 && <p style={{fontSize:15, color:T.hint, padding:'8px 0'}}>{t('선택된 요소가 없습니다.','No elements selected.')}</p>}
+              {/* 💡 질문 가이드 — 말씀의 방 하단 고정 */}
+                {elems.some(e => e.id === 'question') && (
+                  <button onClick={()=>setShowQGuide(true)}
+                    style={{width:'100%', padding:'12px', background:rs.bg, border:`1.5px solid ${rs.border}`, borderRadius:T.rSm, fontSize:15, fontWeight:700, color:rs.color, cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center', gap:8, marginTop:4, boxSizing:'border-box'}}>
+                    💡 {t('질문 가이드 보기','View Question Guide')}
+                  </button>
+                )}
               </div>
             );
           })()}
@@ -2622,7 +2882,8 @@ export default function App() {
                 </div>
                 {elems.map(e => <ElemCard key={e.id} roomId='word' e={e} rs={rs}/>)}
 
-                {/* 💡 질문 가이드 — 말씀의 방 하단 고정 */}
+            
+              {/* 💡 질문 가이드 — 말씀의 방 하단 고정 */}
                 {elems.some(e => e.id === 'question') && (
                   <button onClick={()=>setShowQGuide(true)}
                     style={{width:'100%', padding:'12px', background:rs.bg, border:`1.5px solid ${rs.border}`, borderRadius:T.rSm, fontSize:15, fontWeight:700, color:rs.color, cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center', gap:8, marginTop:4, boxSizing:'border-box'}}>
@@ -2644,6 +2905,13 @@ export default function App() {
                   <p style={{fontSize:18, fontWeight:800, color:rs.color}}>{t('반응의 방','Response Room')}</p>
                 </div>
                 {elems.map(e => <ElemCard key={e.id} roomId='response' e={e} rs={rs}/>)}
+              {/* 💡 질문 가이드 — 말씀의 방 하단 고정 */}
+                {elems.some(e => e.id === 'question') && (
+                  <button onClick={()=>setShowQGuide(true)}
+                    style={{width:'100%', padding:'12px', background:rs.bg, border:`1.5px solid ${rs.border}`, borderRadius:T.rSm, fontSize:15, fontWeight:700, color:rs.color, cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center', gap:8, marginTop:4, boxSizing:'border-box'}}>
+                    💡 {t('질문 가이드 보기','View Question Guide')}
+                  </button>
+                )}
               </div>
             );
           })()}
@@ -2659,6 +2927,13 @@ export default function App() {
                   <p style={{fontSize:18, fontWeight:800, color:rs.color}}>{t('보냄의 방','Sending Room')}</p>
                 </div>
                 {elems.map(e => <ElemCard key={e.id} roomId='send' e={e} rs={rs}/>)}
+              {/* 💡 질문 가이드 — 말씀의 방 하단 고정 */}
+                {elems.some(e => e.id === 'question') && (
+                  <button onClick={()=>setShowQGuide(true)}
+                    style={{width:'100%', padding:'12px', background:rs.bg, border:`1.5px solid ${rs.border}`, borderRadius:T.rSm, fontSize:15, fontWeight:700, color:rs.color, cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center', gap:8, marginTop:4, boxSizing:'border-box'}}>
+                    💡 {t('질문 가이드 보기','View Question Guide')}
+                  </button>
+                )}
               </div>
             );
           })()}
@@ -2687,7 +2962,7 @@ export default function App() {
         {showSettings && (
           <div style={{position:'fixed', inset:0, background:'rgba(0,0,0,0.45)', zIndex:9998, display:'flex', alignItems:'flex-end', justifyContent:'center'}}
             onClick={e=>{ if(e.target===e.currentTarget){ setShowSettings(false); setShowFeedback(false); }}}>
-            <div style={{background:T.card, borderRadius:'24px 24px 0 0', padding:'20px 20px 40px', width:'100%', maxWidth:480, boxSizing:'border-box'}}>
+            <div style={{background:T.card, borderRadius:'24px 24px 0 0', padding:'20px 20px 40px', width:'100%', maxWidth:480, boxSizing:'border-box'}} onClick={e=>e.stopPropagation()}>
               <div style={{width:40, height:4, background:T.border, borderRadius:2, margin:'0 auto 20px'}}/>
               <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:20}}>
                 <p style={{fontSize:18, fontWeight:800, color:T.text}}>{t('설정','Settings')}</p>
@@ -2708,9 +2983,8 @@ export default function App() {
               </div>
               {/* 앱 공유하기 */}
               <button onClick={()=>{
-                const shareData = { title: t('가정예배 코칭 앱','Family Worship Coach App'), text: t('이웃, 교인, 친구에게 이 앱을 추천해보세요 🏠🙏','Recommend this app to your neighbors, church members, and friends 🏠🙏'), url:'https://family-worship-app-psi.vercel.app' };
-                if(navigator.share) { navigator.share(shareData).catch(()=>{}); }
-                else { navigator.clipboard.writeText('https://family-worship-app-psi.vercel.app').then(()=>alert(t('링크가 복사됐어요!','Link copied!'))).catch(()=>{}); }
+                const appUrl = 'https://family-worship-app-psi.vercel.app';
+                window.prompt(lang==='ko'?'아래 링크를 복사해서 공유하세요':'Copy this link to share', appUrl);
               }}
                 style={{width:'100%', background:T.bg, borderRadius:T.rSm, padding:'14px 16px', marginBottom:10, display:'flex', alignItems:'center', justifyContent:'space-between', border:'none', cursor:'pointer', boxSizing:'border-box'}}>
                 <div style={{display:'flex', alignItems:'center', gap:10}}>
@@ -2733,13 +3007,7 @@ export default function App() {
             </div>
           </div>
         )}
-        {/* ⚙️ 우측 상단 고정 */}
-        <div style={{position:'fixed', top:12, right:16, zIndex:999}}>
-          <button onClick={()=>{ setShowSettings(true); setShowFeedback(false); }}
-            style={{background:'white', border:`1.5px solid ${T.border}`, borderRadius:99, width:40, height:40, display:'flex', alignItems:'center', justifyContent:'center', fontSize:20, cursor:'pointer', boxShadow:T.shadowSm}}>
-            ⚙️
-          </button>
-        </div>
+
 
         <BackBtn onClick={()=>go('worship')} lang={lang}/>
         <Tag>{t('예배 후 디브리핑','Post-Worship Reflection')}</Tag>
@@ -3224,9 +3492,13 @@ export default function App() {
             )}
           </div>
         )}
+      <BottomTab/>
+      <GlobalOverlays/>
       </div>
     );
   }
+
+
 
   return null;
 }
