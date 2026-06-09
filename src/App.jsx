@@ -599,7 +599,7 @@ const ELEMENTS = {
 // ── 시리즈 DB ─────────────────────────────────────────────────
 const SERIES_DB = [
   {
-    id: 'creation', title: '천지창조', titleEn: 'Creation', icon: '🌍', weeks: 7,
+    id: 'creation', title: '천지창조', titleEn: 'Creation', icon: '🌍', weeks: 7, locked: true,
     desc: '하나님이 세상을 만드신 6일간의 이야기로 가족이 함께 창조주를 만납니다.', descEn: 'Encounter the Creator together through the 6-day story of how God made the world.',
     color: T.green, bg: T.greenBg, border: T.greenBorder,
     items: [
@@ -917,7 +917,7 @@ const SERIES_DB = [
     ]
     },
   {
-    id: 'psalms', title: '시편 묵상', titleEn: 'Psalms', icon: '🎵', weeks: 8,
+    id: 'psalms', title: '시편 묵상', titleEn: 'Psalms', icon: '🎵', weeks: 8, locked: true,
     desc: '다윗의 기도와 찬양으로 하나님과 더 깊이 대화하는 법을 배웁니다.', descEn: 'Learn to dialogue more deeply with God through David\'s prayers and praise.',
     color: T.purple, bg: T.purpleBg, border: T.purpleBorder,
     items: [
@@ -940,7 +940,7 @@ const SERIES_DB = [
     ]
   },
   {
-    id: 'parables', title: '예수님의 비유', titleEn: "Jesus' Parables", icon: '🌱', weeks: 8,
+    id: 'parables', title: '예수님의 비유', titleEn: "Jesus' Parables", icon: '🌱', weeks: 8, locked: true,
     desc: '예수님이 들려주신 이야기로 하나님 나라의 비밀을 함께 발견합니다.', descEn: 'Discover the secrets of God\'s Kingdom together through the stories Jesus told.',
     color: T.amber, bg: T.amberBg, border: T.amberBorder,
     items: [
@@ -968,29 +968,119 @@ const SERIES_DB = [
     color: T.amber, bg: T.amberBg, border: T.amberBorder,
     items: [
       { week:1, title:'아브라함의 부르심', titleEn:'The Call of Abraham', ref:'창 12:1-4', verse:'여호와께서 아브람에게 이르시되 너는 네 고향을 떠나라',
-        questions:{ content:['하나님이 아브람에게 요구하신 세 가지는?','아브람이 순종한 이유가 뭘까요?'], imagine:['75세에 고향을 떠나라는 명령을 들었을 때 어떤 기분이었을까요?','아내와 조카와 함께 짐을 싸는 아브람의 모습을 상상해보면?'], apply:['하나님의 부르심이 내 삶에 있다면 어떤 것일까요?','안전한 것을 두고 떠날 용기가 있나요?'] }, challenge:'내 삶에서 하나님이 부르시는 한 가지 결단 나누기' },
+        opener:'지금까지 살면서 가장 큰 결단을 내려야 했던 순간이 언제였나요?',
+        openerEn:'When was a moment in your life when you had to make a really big decision?',
+        questions:{
+          content:['아브람은 75세에 고향을 떠나라는 하나님의 말씀을 듣습니다. 가족, 재산, 친구를 두고 떠나야 했는데 — 아브람이 그래도 순종한 이유가 뭐였을까요?','하나님은 아브람에게 "네가 복이 될 것이라"고 하셨어요. 아직 아무것도 이루어지지 않았는데 — 이 약속이 아브람에게 어떤 힘이 됐을까요?'],
+          apply:['지금 내 삶에서 "익숙한 것을 내려놓고 한 걸음 나아가야 할" 부분이 있다면 무엇인가요?'],
+          en_content:['Abram was 75 years old when he heard God\'s call to leave everything — his family, his land, his friends. Why do you think he still obeyed?','God promised Abram "you will be a blessing" before anything had happened yet. How do you think that promise gave Abram strength?'],
+          en_apply:['Is there an area in your life right now where you feel God is asking you to take a step of faith?']
+        },
+        challenge:''
+      },
       { week:2, title:'이삭을 바치다', titleEn:'Offering Isaac', ref:'창 22:1-12', verse:'네가 네 아들 네 독자 이삭을 아끼지 아니하였으니',
-        questions:{ content:['하나님이 이삭을 바치라고 하신 이유가 뭘까요?','여호와 이레의 의미는?'], imagine:['아브라함이 3일을 걸어가는 동안 어떤 마음이었을까요?','이삭의 눈에는 아버지가 어떻게 보였을까요?'], apply:['내가 하나님보다 더 붙잡고 있는 것이 있다면?','가장 소중한 것을 내려놓는 순종이 가능한가요?'] }, challenge:'내가 가장 소중히 여기는 것을 하나님께 기도로 드리기' },
+        opener:'지금까지 포기하거나 내려놓기 가장 힘들었던 것은 무엇이었나요?',
+        openerEn:'What is something you have found hardest to let go of or give up?',
+        questions:{
+          content:['아브라함은 아들 이삭을 바치라는 말을 듣고도 다음날 아침 일찍 길을 떠납니다. 3일 길을 걸어가는 동안 아브라함의 마음이 어땠을까요?','아브라함이 칼을 드는 순간 하나님이 막으시며 "네가 하나님을 경외하는 줄 아노라"고 하십니다. 하나님이 이 시험을 통해 보고 싶으셨던 것은 무엇이었을까요?'],
+          apply:['내가 하나님보다 더 꼭 쥐고 있는 것이 있다면 — 솔직하게 나눠볼 수 있나요?'],
+          en_content:['After hearing God\'s command to sacrifice Isaac, Abraham got up early the next morning and set out. What do you think was going through his mind during those three days of walking?','At the very moment Abraham raised the knife, God stopped him and said "Now I know that you fear God." What do you think God was looking for through this test?'],
+          en_apply:['Is there something you are holding onto more tightly than God? Can you share honestly?']
+        },
+        challenge:''
+      },
       { week:3, title:'야곱의 사다리', titleEn:"Jacob's Ladder", ref:'창 28:10-17', verse:'보라 여호와께서 그 위에 서서 이르시되',
-        questions:{ content:['야곱이 도망가는 상황에서 하나님이 나타나신 이유는?','천사들이 오르락내리락 하는 것이 의미하는 바는?'], imagine:['혼자 광야에서 돌베개를 베고 자는 야곱의 마음은?','꿈에서 깨어났을 때 야곱의 표정은 어땠을까요?'], apply:['힘든 상황에서 하나님이 나타나신 경험이 있나요?','하나님이 항상 함께하신다는 것이 위로가 되나요?'] }, challenge:'오늘 잠들기 전 하나님이 함께하심을 느끼며 기도하기' },
+        opener:'혼자 완전히 외롭고 막막했던 순간이 있었나요?',
+        openerEn:'Have you ever felt completely alone and lost, not knowing what to do?',
+        questions:{
+          content:['야곱은 형 에서를 속이고 도망치는 길에 광야에서 홀로 잠을 잡니다. 바로 그 순간 하나님이 나타나셨어요. 왜 하나님은 야곱이 가장 힘든 순간에 찾아오셨을까요?','꿈에서 깨어난 야곱은 "하나님이 여기 계시거늘 내가 알지 못하였도다"라고 말합니다. 야곱이 몰랐던 것은 무엇이었을까요?'],
+          apply:['지금 내 삶에서 "하나님이 여기 계실 줄 몰랐다"라고 느낀 순간이 있었나요?'],
+          en_content:['Jacob was running away after deceiving his brother Esau, completely alone in the wilderness. Why do you think God appeared to him at that very moment?','When Jacob woke up, he said "Surely God is in this place, and I did not know it." What had Jacob not known?'],
+          en_apply:['Is there a place or situation in your life right now where you might be surprised to find that God is already there?']
+        },
+        challenge:''
+      },
       { week:4, title:'야곱의 씨름', titleEn:'Jacob Wrestles with God', ref:'창 32:24-30', verse:'그가 이르되 네 이름을 다시는 야곱이라 부를 것이 아니요 이스라엘이라 부를 것이니',
-        questions:{ content:['야곱이 씨름에서 이겼나요, 졌나요?','이름이 바뀌는 것의 의미는?'], imagine:['밤새 하나님과 씨름하는 야곱의 절박함은 어떤 것일까요?','절뚝이면서 걸어가는 야곱의 마음은?'], apply:['하나님과 씨름해본 경험이 있나요?','내 삶에서 바뀌어야 할 이름(정체성)이 있다면?'] }, challenge:'내가 바꾸고 싶은 습관이나 정체성 한 가지 나누기' },
+        opener:'살면서 정말 간절하게 뭔가를 붙잡고 놓지 않은 경험이 있나요?',
+        openerEn:'Have you ever held onto something so desperately you just wouldn\'t let go?',
+        questions:{
+          content:['야곱은 밤새도록 하나님과 씨름합니다. 하나님이 야곱의 환도뼈를 치셨는데도 야곱은 "당신이 내게 축복하지 아니하면 가게 하지 아니하겠나이다"라고 합니다. 야곱의 이 집요함을 어떻게 보나요?','씨름 후에 야곱의 이름이 "이스라엘"로 바뀝니다. 이름이 바뀐다는 것이 어떤 의미일까요?'],
+          apply:['지금 나에게 필요한 변화가 있다면 — 하나님 앞에서 무엇을 붙잡고 씨름해야 할까요?'],
+          en_content:['Jacob wrestled with God all night. Even after God touched his hip socket and injured him, Jacob said "I will not let you go unless you bless me." What do you think of Jacob\'s persistence?','After the wrestling, Jacob\'s name was changed to Israel. What do you think it means to have your name — your identity — changed?'],
+          en_apply:['Is there something you need to wrestle with before God right now — something you need to hold onto until He blesses you?']
+        },
+        challenge:''
+      },
       { week:5, title:'요셉의 꿈', titleEn:"Joseph's Dream", ref:'창 37:3-11', verse:'요셉이 꿈을 꾸고 자기 형들에게 말하매',
-        questions:{ content:['요셉의 꿈이 형제들을 화나게 한 이유는?','아버지가 채색옷을 준 것이 문제가 됐나요?'], imagine:['형들에게 꿈 이야기를 신나게 말하는 요셉의 표정은?','형들의 질투가 어떻게 자랐을까요?'], apply:['내 꿈이나 비전을 나눴을 때 상처받은 경험이 있나요?','가족이 서로의 꿈을 어떻게 응원할 수 있을까요?'] }, challenge:'가족 각자의 꿈 하나씩 나누고 응원해주기' },
+        opener:'누군가에게 기쁜 마음으로 이야기했다가 오히려 상처를 받은 적이 있나요?',
+        openerEn:'Have you ever shared something exciting with someone, only to feel hurt by their reaction?',
+        questions:{
+          content:['요셉은 형들에게 "우리가 형들의 곡식 단에 절했다"는 꿈을 신나게 이야기합니다. 형들은 이미 요셉을 미워하고 있었는데 — 요셉은 왜 이 꿈을 말했을까요?','아버지 야곱이 요셉에게만 채색옷을 줬어요. 특별한 사랑이 가정 안에 갈등을 만들 수 있다는 것을 이 이야기가 보여줍니다. 우리 가족 안에는 어떤가요?'],
+          apply:['가족 안에서 서로의 꿈이나 비전을 어떻게 대하고 있나요? 응원하고 있나요, 아니면 모르고 지나치고 있나요?'],
+          en_content:['Joseph eagerly told his brothers about a dream where their sheaves bowed down to his. His brothers already resented him — why do you think Joseph shared the dream anyway?','Jacob gave Joseph a special coat that he didn\'t give the other brothers. How can showing favoritism — even out of love — create conflict in a family?'],
+          en_apply:['How does your family respond to each other\'s dreams and hopes? Do you encourage one another, or do they often go unnoticed?']
+        },
+        challenge:''
+      },
       { week:6, title:'요셉이 팔리다', titleEn:'Joseph Sold', ref:'창 37:23-28', verse:'미디안 상인들이 요셉을 애굽으로 데려가니라',
-        questions:{ content:['형들이 요셉을 판 이유와 과정은?','르우벤의 역할은 무엇이었나요?'], imagine:['구덩이 속에서 형들의 목소리를 듣는 요셉의 마음은?','요셉이 팔려가는 낙타를 타고 바라보는 가나안 땅의 모습은?'], apply:['억울하게 배신당한 경험이 있나요?','그 상황에서 어떻게 하나님을 신뢰할 수 있을까요?'] }, challenge:'억울했던 경험 하나를 기도로 하나님께 드리기' },
+        opener:'가장 믿었던 사람에게 배신당하거나 상처받은 경험이 있나요?',
+        openerEn:'Have you ever been hurt or betrayed by someone you deeply trusted?',
+        questions:{
+          content:['형들은 요셉을 구덩이에 던지고 밥을 먹습니다. 그리고 그를 은 20에 팝니다. 요셉은 이 순간 어떤 마음이었을까요?','르우벤은 나중에 돌아와 요셉을 구하려 했지만 이미 팔린 후였습니다. 르우벤의 역할을 어떻게 생각하나요 — 그는 잘못이 없을까요?'],
+          apply:['억울하고 배신당한 경험이 있을 때, 하나님을 신뢰하는 것이 왜 어렵게 느껴질까요?'],
+          en_content:['After throwing Joseph into a pit, his brothers sat down to eat a meal. Then they sold him for 20 pieces of silver. What do you think Joseph was feeling in that moment?','Reuben came back to rescue Joseph but he was already gone. Do you think Reuben shares in the guilt? Why or why not?'],
+          en_apply:['When you\'ve experienced betrayal or injustice, why does it feel hard to still trust God?']
+        },
+        challenge:''
+      },
       { week:7, title:'보디발의 집', titleEn:"Potiphar's House", ref:'창 39:1-6', verse:'여호와께서 요셉과 함께하시므로 그가 형통한 자가 되어',
-        questions:{ content:['하나님이 함께하심이 어떤 결과를 가져왔나요?','보디발이 요셉을 신뢰한 이유는?'], imagine:['노예로 팔려갔지만 성실하게 일하는 요셉의 마음은?','하나님이 함께하신다는 것을 느끼는 것이 어떤 것일까요?'], apply:['최악의 상황에서도 성실할 수 있는 원동력은 무엇인가요?','내 삶에서 하나님이 함께하심의 흔적이 있나요?'] }, challenge:'오늘 맡은 일에 최선을 다하고 그 경험 나누기' },
+        opener:'최악의 상황에서도 최선을 다했던 경험이 있나요?',
+        openerEn:'Have you ever had to give your best even in a really terrible situation?',
+        questions:{
+          content:['요셉은 노예로 팔려왔지만 성경은 "여호와께서 요셉과 함께하시므로 형통하였다"고 합니다. 노예 신분인데 어떻게 형통할 수 있을까요?','보디발은 요셉을 신뢰하여 모든 것을 맡깁니다. 요셉이 그 신뢰를 받을 수 있었던 이유가 무엇이었을까요?'],
+          apply:['지금 내가 있는 자리 — 학교, 직장, 가정 — 에서 하나님이 함께하신다는 것을 어떻게 경험할 수 있을까요?'],
+          en_content:['Joseph was sold as a slave, yet the Bible says "the Lord was with Joseph and he prospered." How can someone prosper in such a terrible situation?','Potiphar trusted Joseph so completely that he put everything in his hands. What qualities do you think made Joseph worthy of that trust?'],
+          en_apply:['In your current situation — at school, work, or home — how might you experience God being with you this week?']
+        },
+        challenge:''
+      },
       { week:8, title:'감옥에서도', titleEn:'Even in Prison', ref:'창 39:20-23', verse:'여호와께서 요셉과 함께하시고',
-        questions:{ content:['억울하게 감옥에 갔는데도 하나님이 함께하셨다는 것이 이상하지 않나요?','간수장이 요셉을 신뢰한 이유는?'], imagine:['억울하게 감옥에 들어가는 요셉의 마음은?','감옥에서도 성실하게 일하는 요셉을 보시는 하나님의 마음은?'], apply:['내 상황이 나빠질 때 하나님이 함께하신다고 믿기 어려운 이유는?','고난 속에서 성실함을 유지하는 것이 가능한가요?'] }, challenge:'힘든 상황에서 감사 제목 하나 찾아보기' },
+        opener:'억울하게 오해받거나 잘못된 비난을 받은 경험이 있나요?',
+        openerEn:'Have you ever been falsely accused or misunderstood in a way that felt deeply unfair?',
+        questions:{
+          content:['요셉은 억울하게 감옥에 갇힙니다. 그런데 성경은 또 "여호와께서 요셉과 함께하시고"라고 합니다. 상황이 더 나빠졌는데도 하나님이 함께하신다는 표현이 반복되는 이유가 뭘까요?','감옥 안에서도 요셉은 간수장의 신임을 얻고 모든 죄수를 맡게 됩니다. 요셉의 태도가 어떠했기에 이런 일이 가능했을까요?'],
+          apply:['내 상황이 나빠질 때 "하나님이 여전히 나와 함께하신다"는 것을 어떻게 믿을 수 있을까요?'],
+          en_content:['Joseph was thrown into prison unjustly. Yet the Bible again says "the Lord was with Joseph." Why do you think this phrase is repeated even when things got worse?','Even in prison, Joseph earned the trust of the warden and was put in charge of all the prisoners. What do you think his attitude was like that made this possible?'],
+          en_apply:['When your circumstances get worse, how can you hold onto the belief that God is still with you?']
+        },
+        challenge:''
+      },
       { week:9, title:'바로의 꿈', titleEn:"Pharaoh's Dream", ref:'창 41:25-32', verse:'하나님이 그가 하실 일을 바로에게 보이심이니이다',
-        questions:{ content:['요셉이 꿈을 해석할 수 있었던 이유는?','7년 풍년과 7년 흉년의 의미는?'], imagine:['13년을 기다려온 요셉이 갑자기 바로 앞에 섰을 때 마음은?','하나님의 때가 왔을 때 요셉의 준비가 되어있었나요?'], apply:['하나님의 때를 기다리는 것이 힘든 이유는?','내 삶에서 준비해야 할 것이 있다면?'] }, challenge:'하나님의 때를 기다리는 기도 함께 드리기' },
+        opener:'오래 기다리다가 드디어 때가 왔다고 느꼈던 경험이 있나요?',
+        openerEn:'Have you ever waited a long time for something, and then finally felt like the moment had arrived?',
+        questions:{
+          content:['요셉은 노예로 팔린 후 13년 만에 갑자기 바로 앞에 서게 됩니다. 꿈을 해석하며 요셉이 한 첫 마디는 "내가 아니라 하나님이 답을 주실 것입니다"였어요. 13년의 기다림이 요셉을 어떻게 만들었을까요?','바로는 요셉의 해석을 듣고 바로 그 자리에서 요셉을 총리로 세웁니다. 오랜 준비 끝에 때가 왔을 때 — 요셉이 준비되어 있었던 이유는 무엇일까요?'],
+          apply:['지금 내 삶에서 "아직 때가 아닌 것 같아 기다리고 있는 것"이 있다면 무엇인가요?'],
+          en_content:['Thirteen years after being sold into slavery, Joseph suddenly found himself standing before Pharaoh. His first words were "It is not in me — God will give Pharaoh an answer." What had those 13 years done to Joseph?','Pharaoh immediately made Joseph his second-in-command after hearing the interpretation. After years of preparation, Joseph was ready when the moment came. What made him ready?'],
+          en_apply:['Is there something in your life right now where you feel like you\'re still waiting for God\'s timing?']
+        },
+        challenge:''
+      },
       { week:10, title:'요셉의 화해', titleEn:"Joseph's Reconciliation", ref:'창 45:4-8', verse:'나를 이리로 판 것을 근심하지 마소서 하나님이 생명을 구원하시려고 나를 당신들보다 먼저 보내셨나이다',
-        questions:{ content:['요셉이 형들을 용서한 이유가 무엇인가요?','하나님이 먼저 보내셨다는 표현이 의미하는 것은?'], imagine:['형들이 요셉인 것을 알았을 때 어떤 반응이었을까요?','요셉이 울며 용서를 선언하는 장면을 상상해보면?'], apply:['고난이 하나님의 계획이었다는 것을 믿기 어려운 상황이 있나요?','용서가 나를 자유롭게 한다는 것을 경험한 적이 있나요?'] }, challenge:'용서하지 못한 사람을 위해 기도하기' },
+        opener:'용서하기 힘들었지만 결국 용서했던 경험이 있나요? 아니면 아직 용서하지 못한 것이 있나요?',
+        openerEn:'Have you ever found it hard to forgive someone, but eventually did? Or is there something you still haven\'t been able to forgive?',
+        questions:{
+          content:['요셉은 자신을 판 형들에게 "근심하지 마세요, 하나님이 저를 먼저 보내신 것입니다"라고 말합니다. 13년의 고통을 이렇게 볼 수 있게 된 요셉의 마음이 어떻게 바뀐 걸까요?','요셉은 형들을 만났을 때 세 번 웁니다. 용서를 선언하면서도 왜 울었을까요?'],
+          apply:['지금 내가 용서해야 할 사람이 있다면 — 요셉의 이야기가 어떤 힘을 줄 수 있을까요?'],
+          en_content:['Joseph told his brothers who had sold him: "Don\'t be troubled — it was God who sent me ahead of you." After 13 years of suffering, how do you think Joseph came to see things this way?','Joseph wept three times when he met his brothers. Even while declaring forgiveness, why do you think he cried?'],
+          en_apply:['Is there someone in your life you need to forgive? How might Joseph\'s story give you strength to take that step?']
+        },
+        challenge:''
+      },
     ]
   },
   {
-    id: 'jesus_life', title: '예수님 일생', titleEn: 'Life of Jesus', icon: '✝️', weeks: 12,
+    id: 'jesus_life', title: '예수님 일생', titleEn: 'Life of Jesus', icon: '✝️', weeks: 12, locked: true,
     desc: '예수님의 탄생부터 부활까지 함께 따라가며 복음의 깊이를 경험합니다.', descEn: 'Experience the depth of the Gospel by following Jesus from birth to resurrection.',
     color: T.blue, bg: T.blueBg, border: T.blueBorder,
     items: [
@@ -1021,7 +1111,7 @@ const SERIES_DB = [
     ]
   },
   {
-    id: 'love_chapter', title: '사랑장 (고전 13장)', titleEn: 'Love Chapter (1 Cor 13)', icon: '❤️', weeks: 6,
+    id: 'love_chapter', title: '사랑장 (고전 13장)', titleEn: 'Love Chapter (1 Cor 13)', icon: '❤️', weeks: 6, locked: true,
     desc: '고린도전서 13장을 절별로 깊이 묵상하며 사랑의 본질을 가족과 나눕니다.', descEn: 'Meditate verse by verse through 1 Corinthians 13 and discover the essence of love together as a family.',
     color: T.green, bg: T.greenBg, border: T.greenBorder,
     items: [
@@ -2470,67 +2560,67 @@ export default function App() {
                       if(lang==='en') {
                         if(hasAgeQ && aq[ag]['en_'+type]) return aq[ag]['en_'+type];
                         if(activeItem.questions['en_'+type]) return activeItem.questions['en_'+type];
-                        // fallback: 기본 질문 영어도 없으면 기본 질문 한국어
                         return activeItem.questions[type];
                       }
                       if(hasAgeQ) return aq[ag][type];
                       return activeItem.questions[type];
                     };
-                    const questions = [
-                      {label:t('내용 질문 🔍','Content Q 🔍'), color:T.blue, bg:T.blueBg, border:T.blueBorder, qs:getQs('content')},
-                      {label:t('상상 질문 💭','Imagine Q 💭'), color:T.purple, bg:T.purpleBg, border:T.purpleBorder, qs:getQs('imagine')},
-                      {label:t('적용 질문 🌱','Apply Q 🌱'), color:T.green, bg:T.greenBg, border:T.greenBorder, qs:getQs('apply')},
-                    ];
+                    const hasOpener = activeItem.opener;
+                    const openerText = lang==='en' ? (activeItem.openerEn || activeItem.opener) : activeItem.opener;
+                    const contentQs = getQs('content') || [];
+                    const applyQs = getQs('apply') || [];
                     return (
                       <div>
-                        {hasAgeQ && (
-                          <div style={{display:'flex', alignItems:'center', gap:8, marginBottom:10, background:T.purpleBg, border:`1px solid ${T.purpleBorder}`, borderRadius:T.rSm, padding:'8px 12px'}}>
-                            <span style={{fontSize:22}}>{AGE_GROUPS.find(a=>a.id===ag)?.icon}</span>
-                            <p style={{fontSize:15, color:T.purple, fontWeight:700}}>{lang==='en' ? AGE_GROUPS.find(a=>a.id===ag)?.labelEn : AGE_GROUPS.find(a=>a.id===ag)?.label} {t('맞춤 질문','Customized Questions')}</p>
+                        {/* 여는 질문 */}
+                        {hasOpener && (
+                          <div style={{background:'#FFF8EC', border:`1.5px solid ${T.amberBorder}`, borderRadius:T.rSm, padding:'12px 14px', marginBottom:14}}>
+                            <p style={{fontSize:13, fontWeight:700, color:T.amber, marginBottom:6, letterSpacing:'0.05em'}}>{t('🔥 여는 질문','🔥 Opening Question')}</p>
+                            <p style={{fontSize:16, color:T.text, lineHeight:1.7, fontWeight:500}}>{openerText}</p>
                           </div>
                         )}
-                        {!hasAgeQ && !ag && (
-                          <div style={{marginBottom:10, background:T.amberBg, border:`1px solid ${T.amberBorder}`, borderRadius:T.rSm, padding:'8px 12px'}}>
-                            <p style={{fontSize:14, color:T.amber}}>💡 t('4단계에서 자녀 연령대를 선택하면 맞춤 질문이 표시됩니다.','Select your child\'s age in Step 4 to see customized questions.')</p>
-                          </div>
-                        )}
-                        {questions.map((q,i)=>(
-                          <div key={i} style={{marginBottom:12}}>
-                            <div style={{background:q.bg, border:`1px solid ${q.border}`, borderRadius:T.rSm, padding:'12px 14px', marginBottom:6}}>
-                              <p style={{fontSize:15, fontWeight:700, color:q.color, marginBottom:6}}>{q.label}</p>
-                              {q.qs.map((qs,j)=>(
+                        {/* 일반 질문 */}
+                        {contentQs.length > 0 && (
+                          <div style={{marginBottom:12}}>
+                            <div style={{background:T.blueBg, border:`1px solid ${T.blueBorder}`, borderRadius:T.rSm, padding:'12px 14px'}}>
+                              <p style={{fontSize:15, fontWeight:700, color:T.blue, marginBottom:6}}>{t('💬 일반 질문','💬 Questions')}</p>
+                              {contentQs.map((qs,j)=>(
                                 <div key={j} style={{display:'flex', gap:8, padding:'4px 0', alignItems:'flex-start'}}>
-                                  <div style={{width:16, height:16, borderRadius:'50%', background:q.color, display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0, marginTop:1}}>
-                                    <span style={{color:'#fff', fontSize:12, fontWeight:700}}>Q</span>
+                                  <div style={{width:20, height:20, borderRadius:'50%', background:T.blue, display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0, marginTop:2}}>
+                                    <span style={{color:'#fff', fontSize:12, fontWeight:700}}>{j+1}</span>
                                   </div>
                                   <p style={{fontSize:15, color:T.text, lineHeight:1.7}}>{qs}</p>
                                 </div>
                               ))}
                             </div>
-                            {/* 내 질문 — 각 섹션 아래 */}
-                            <div style={{background:'white', border:`1px dashed ${q.border}`, borderRadius:T.rSm, padding:'8px 12px', display:'flex', alignItems:'center', gap:8}}>
-                              <span style={{fontSize:15, color:q.color, fontWeight:700, flexShrink:0}}>{t('✏️ 내 질문:','✏️ My Question:')}</span>
-                              <input placeholder={t('여기에 내 질문을 써보세요...','Write your own question here...')} style={{flex:1, border:'none', outline:'none', fontSize:15, color:T.text, background:'transparent', fontFamily:'inherit'}}/>
+                          </div>
+                        )}
+                        {/* 적용 질문 */}
+                        {applyQs.length > 0 && (
+                          <div style={{marginBottom:12}}>
+                            <div style={{background:T.greenBg, border:`1px solid ${T.greenBorder}`, borderRadius:T.rSm, padding:'12px 14px'}}>
+                              <p style={{fontSize:15, fontWeight:700, color:T.green, marginBottom:6}}>{t('🌱 적용 질문','🌱 Apply')}</p>
+                              {applyQs.map((qs,j)=>(
+                                <div key={j} style={{display:'flex', gap:8, padding:'4px 0', alignItems:'flex-start'}}>
+                                  <div style={{width:20, height:20, borderRadius:'50%', background:T.green, display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0, marginTop:2}}>
+                                    <span style={{color:'#fff', fontSize:12, fontWeight:700}}>A</span>
+                                  </div>
+                                  <p style={{fontSize:15, color:T.text, lineHeight:1.7}}>{qs}</p>
+                                </div>
+                              ))}
                             </div>
                           </div>
-                        ))}
+                        )}
                       </div>
                     );
                   })()}
-                  {/* 챌린지 — 연령별 우선, 없으면 기본 */}
-                  <div style={{background:T.amberBg, border:`1px solid ${T.amberBorder}`, borderRadius:T.rSm, padding:'12px 14px'}}>
-                    <p style={{fontSize:15, fontWeight:700, color:T.amber, marginBottom:4}}>{t('🎯 이번 주 챌린지','🎯 This Week\'s Challenge')}</p>
-                    <p style={{fontSize:15, color:T.text, lineHeight:1.7}}>
-                      {(() => {
-                        const ag = ageGroup === 'adult' ? 'adult' : ageGroup;
-                        const ageQ = activeItem.ageQuestions?.[ag];
-                        if(lang==='en') {
-                          return ageQ?.en_challenge || activeItem.challengeEn || ageQ?.challenge || activeItem.challenge;
-                        }
-                        return ageQ?.challenge || activeItem.challenge;
-                      })()}
-                    </p>
-                  </div>
+                  {/* 챌린지 — 빈칸, 가족이 직접 정하기 */}
+                  <div style={{background:T.amberBg, border:`1.5px dashed ${T.amberBorder}`, borderRadius:T.rSm, padding:'12px 14px', marginTop:4}}>
+                    <p style={{fontSize:15, fontWeight:700, color:T.amber, marginBottom:6}}>{t('🎯 이번 주 우리 가족 챌린지','🎯 Our Family Challenge This Week')}</p>
+                    <p style={{fontSize:14, color:T.amber, marginBottom:8, opacity:0.8}}>{t('대화가 끝난 후, 가족이 함께 정해보세요.','After your conversation, decide together as a family.')}</p>
+                    <textarea
+                      placeholder={t('이번 주 우리 가족이 함께 실천할 한 가지를 적어보세요...','Write one thing your family will do together this week...')}
+                      style={{width:'100%', minHeight:60, border:`1px solid ${T.amberBorder}`, borderRadius:T.rSm, padding:'8px 10px', fontSize:15, color:T.text, background:'white', outline:'none', fontFamily:'inherit', resize:'none', boxSizing:'border-box', lineHeight:1.6}}
+                    /></div>
                 </div>
               ) : (
                 <div style={{textAlign:'center', padding:'12px 0'}}>
@@ -3104,21 +3194,25 @@ export default function App() {
         <p style={{fontSize:16, color:T.sub, marginBottom:20, lineHeight:1.75}}>{t('시리즈를 선택하고 오늘 시작할 주차를 고르세요.','Select a series and choose the week to start today.')}</p>
         {SERIES_DB.map(s => {
           const isExpanded = expandedSeries === s.id;
+          const isLocked = s.locked === true;
           return (
             <div key={s.id} style={{marginBottom:10}}>
-              <div onClick={()=>setExpandedSeries(isExpanded ? null : s.id)}
-                style={{background:isExpanded ? s.bg : T.card, border:`1.5px solid ${isExpanded ? s.border : T.border}`, borderRadius:T.r, padding:'16px 18px', cursor:'pointer', display:'flex', alignItems:'center', gap:12}}>
-                <div style={{width:44, height:44, borderRadius:12, background:s.color, display:'flex', alignItems:'center', justifyContent:'center', fontSize:25, flexShrink:0}}>{s.icon}</div>
+              <div onClick={()=>{ if(!isLocked) setExpandedSeries(isExpanded ? null : s.id); }}
+                style={{background: isLocked ? T.cardAlt : (isExpanded ? s.bg : T.card), border:`1.5px solid ${isLocked ? T.border : (isExpanded ? s.border : T.border)}`, borderRadius:T.r, padding:'16px 18px', cursor: isLocked ? 'default' : 'pointer', display:'flex', alignItems:'center', gap:12, opacity: isLocked ? 0.6 : 1}}>
+                <div style={{width:44, height:44, borderRadius:12, background: isLocked ? T.hint : s.color, display:'flex', alignItems:'center', justifyContent:'center', fontSize:25, flexShrink:0}}>{isLocked ? '🔒' : s.icon}</div>
                 <div style={{flex:1}}>
                   <div style={{display:'flex', alignItems:'center', gap:8, marginBottom:3}}>
-                    <p style={{fontSize:17, fontWeight:800, color:T.text}}>{lang==='en' ? (s.titleEn||s.title) : s.title}</p>
-                    <span style={{fontSize:15, background:`${s.color}22`, color:s.color, padding:'2px 8px', borderRadius:T.rFull, fontWeight:700}}>{s.weeks} {t('주','Weeks')}</span>
+                    <p style={{fontSize:17, fontWeight:800, color: isLocked ? T.hint : T.text}}>{lang==='en' ? (s.titleEn||s.title) : s.title}</p>
+                    {isLocked
+                      ? <span style={{fontSize:13, background:'#eee', color:T.hint, padding:'2px 8px', borderRadius:T.rFull, fontWeight:700}}>{t('준비 중','Coming Soon')}</span>
+                      : <span style={{fontSize:15, background:`${s.color}22`, color:s.color, padding:'2px 8px', borderRadius:T.rFull, fontWeight:700}}>{s.weeks} {t('주','Weeks')}</span>
+                    }
                   </div>
-                  <p style={{fontSize:15, color:T.sub, lineHeight:1.4}}>{lang==='en' ? (s.descEn||s.desc) : s.desc}</p>
+                  <p style={{fontSize:15, color:T.hint, lineHeight:1.4}}>{isLocked ? t('곧 업데이트될 예정입니다.','This series will be available soon.') : (lang==='en' ? (s.descEn||s.desc) : s.desc)}</p>
                 </div>
-                <span style={{fontSize:17, color:s.color, transform:isExpanded?'rotate(90deg)':'none', transition:'transform 0.2s', flexShrink:0}}>›</span>
+                {!isLocked && <span style={{fontSize:17, color:s.color, transform:isExpanded?'rotate(90deg)':'none', transition:'transform 0.2s', flexShrink:0}}>›</span>}
               </div>
-              {isExpanded && (
+              {!isLocked && isExpanded && (
                 <div style={{background:s.bg, border:`1px solid ${s.border}`, borderTop:'none', borderRadius:`0 0 ${T.r} ${T.r}`, padding:'12px 14px'}}>
                   <p style={{fontSize:15, color:s.color, fontWeight:700, marginBottom:10}}>{s_.seriesSub}</p>
                   <div style={{display:'grid', gridTemplateColumns:'repeat(4, 1fr)', gap:6}}>
