@@ -1793,7 +1793,7 @@ export default function App() {
           style={{
             position:'absolute', bottom:'10%', left:'3%',
             width:'44%', height:'14%',
-            background:'transparent', border:'none', cursor:'pointer',
+            background:'transparent', border:'none', cursor:'pointer', pointerEvents:'auto',
           }}
         />
       </div>
@@ -1805,14 +1805,24 @@ export default function App() {
       const isLast = onboardingStep === ONBOARDING.length - 1;
       return (
         <div style={{minHeight:'100vh', background:card.bg, display:'flex', flexDirection:'column'}}>
-          <style>{`@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Sunflower:wght@300;500;700&display=swap');`}</style>
+          <style>{`@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Sunflower:wght@300;500;700&display=swap');
+        img {
+          -webkit-user-drag: none;
+          -khtml-user-drag: none;
+          -moz-user-drag: none;
+          -o-user-drag: none;
+          user-drag: none;
+          -webkit-user-select: none;
+          user-select: none;
+          pointer-events: none;
+        }`}</style>
           <div style={{display:'flex', justifyContent:'center', gap:8, padding:'24px 0 8px'}}>
             {ONBOARDING.map((_, i) => (
               <div key={i} style={{width:i===onboardingStep?32:8, height:8, borderRadius:4, background:i===onboardingStep?card.color:'rgba(0,0,0,0.12)', transition:'all 0.3s'}}/>
             ))}
           </div>
           <div style={{flex:1, display:'flex', alignItems:'center', justifyContent:'center', padding:'16px 32px'}}>
-            <img src={card.img} alt="" style={{width:'100%', maxWidth:380, height:'auto', objectFit:'contain', display:'block', margin:'0 auto', filter:'drop-shadow(0 6px 16px rgba(0,0,0,0.12))'}}/>
+            <img onContextMenu={(e)=>e.preventDefault()} draggable="false" src={card.img} alt="" style={{width:'100%', maxWidth:380, height:'auto', objectFit:'contain', display:'block', margin:'0 auto', filter:'drop-shadow(0 6px 16px rgba(0,0,0,0.12))'}}/>
           </div>
           <div style={{background:'white', borderRadius:'28px 28px 0 0', padding:'28px 24px 40px', boxShadow:'0 -6px 32px rgba(0,0,0,0.08)'}}>
             <div style={{display:'inline-flex', alignItems:'center', background:card.bg, border:`1.5px solid ${card.border}`, borderRadius:99, padding:'6px 16px', marginBottom:16}}>
@@ -1918,7 +1928,7 @@ export default function App() {
                 style={{
                   position:'absolute', bottom:'10%', left:'3%',
                   width:'44%', height:'14%',
-                  background:'transparent', border:'none', cursor:'pointer',
+                  background:'transparent', border:'none', cursor:'pointer', pointerEvents:'auto',
                 }}
               />
               {/* 우측 표지판: 방이 있으면 → 오늘 예배 시작하기 */}
@@ -1928,7 +1938,7 @@ export default function App() {
                   style={{
                     position:'absolute', bottom:'10%', right:'3%',
                     width:'44%', height:'14%',
-                    background:'transparent', border:'none', cursor:'pointer',
+                    background:'transparent', border:'none', cursor:'pointer', pointerEvents:'auto',
                   }}
                 />
               )}
@@ -2977,7 +2987,7 @@ export default function App() {
           </div>
           {/* 헤더 */}
           <div style={{textAlign:'center', paddingTop:8, marginBottom:20}}>
-            <img src={LOGO_SRC} alt="DAVAR" style={{width:80, height:80, borderRadius:0, marginBottom:10, objectFit:'contain', display:'block', margin:'0 auto 10px'}}/>
+            <img onContextMenu={(e)=>e.preventDefault()} draggable="false" src={LOGO_SRC} alt="DAVAR" style={{width:80, height:80, borderRadius:0, marginBottom:10, objectFit:'contain', display:'block', margin:'0 auto 10px'}}/>
             <p style={{fontSize:15, color:T.green, fontWeight:700, letterSpacing:'0.06em', marginBottom:8}}>
               {(() => {
                 const now = new Date();
