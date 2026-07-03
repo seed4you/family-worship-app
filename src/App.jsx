@@ -2874,8 +2874,9 @@ export default function App() {
                               <p style={{fontSize:12, fontWeight:700, color:T.green, marginBottom:6, letterSpacing:'0.06em'}}>{t('🌿 이번 주 나의 챌린지','🌿 My Challenge This Week')}</p>
                               <p style={{fontSize:15, color:T.sub, lineHeight:1.8, marginBottom:10}}>{pledge}</p>
                               <textarea
-                                value={debrief.coupleChallenge || ''}
-                                onChange={e=>setDebrief({...debrief, coupleChallenge:e.target.value})}
+                                key={`couple-challenge-${activeItem?.week}`}
+                                defaultValue={debrief.coupleChallenge || ''}
+                                onBlur={e=>setDebrief({...debrief, coupleChallenge:e.target.value})}
                                 placeholder={t('이번 주 나만의 챌린지를 직접 써보세요...','Write your personal challenge for this week...')}
                                 style={{width:'100%', minHeight:64, border:`1px solid ${T.greenBorder}`, borderRadius:T.rSm, padding:'10px 12px', fontSize:15, color:T.text, background:T.greenBg, outline:'none', fontFamily:'inherit', resize:'none', boxSizing:'border-box', lineHeight:1.7}}
                               />
