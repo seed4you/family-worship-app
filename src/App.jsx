@@ -58,13 +58,13 @@ const STRINGS = {
     onbStart: '우리 가정 현실 진단하기 →',
 
     // 진단
-    diagTag: '1단계 · 우리 가정 현실',
+    diagTag: '우리 가정 현실',
     diagTitle: '우리 가정의\n현재를 선택하세요',
     diagSub: '솔직하게 답할수록 우리 가정에 맞는 예배가 설계된다.',
     diagNextBtn: '다음 단계로 →',
 
     // 연령 선택
-    ageTag: '2단계 · 우리 가정 구성',
+    ageTag: '우리 가정 구성',
     ageTitle1: '자녀의',
     ageTitle2: '연령대는?',
     ageSub: '선택한 구성에 맞게 질문과 활동이 자동으로 맞춤 표시된다.',
@@ -72,7 +72,7 @@ const STRINGS = {
     ageSkipBtn: '연령대 없이 진행하기',
 
     // 방 선택
-    roomsTag: '3단계 · 예배의 집 설계',
+    roomsTag: '예배의 집 설계',
     roomsTitle1: '몇 개의 방을',
     roomsTitle2: '열까?',
     roomsSub: '4개의 방은 친구와의 만남과 비슷해요. 만나서 대화하고 공감하고 헤어져요.',
@@ -88,7 +88,7 @@ const STRINGS = {
     lockMsg_send: '반응의 방을 먼저 선택하세요',
 
     // 요소 선택
-    elemsTag: '4단계 · 예배의 방 구성',
+    elemsTag: '예배의 방 구성',
     elemsTitle1: '예배의 방',
     elemsTitle2: '꾸미기',
     elemsSub: '각 방을 눌러 요소를 선택하세요. 요소 이름을 누르면 의미를 볼 수 있어요.',
@@ -97,7 +97,7 @@ const STRINGS = {
     elemsNextBtn: '언제, 어디서 예배할까? →',
 
     // 루틴
-    routineTag: '5단계 · 가족의 동의 구하기',
+    routineTag: '가족의 동의 구하기',
     routineTitle1: '언제, 어디서',
     routineTitle2: '예배할까?',
     routineSub: '우리 가정에 맞는 때와 장소가 가장 좋은 리듬입니다. 가족이 모두 동의할 때까지 기다립니다.',
@@ -156,7 +156,7 @@ const STRINGS = {
     challengeLabel: '🎯 이번 주 챌린지',
     activityLabel: '🎨 연령별 활동',
     customQBadge: '맞춤 질문',
-    noAgeHint: '4단계에서 자녀 연령대를 선택하면 맞춤 질문이 표시된다.',
+    noAgeHint: '가족 구성 화면에서 자녀 연령대를 선택하면 맞춤 질문이 표시된다.',
     debriefBtn: '예배 후 디브리핑 →',
 
     // 질문 가이드 내용
@@ -294,13 +294,13 @@ const STRINGS = {
     onbStart: 'Diagnose Our Family →',
 
     // Diagnosis
-    diagTag: 'Step 1 · Our Family Reality',
+    diagTag: 'Our Family Reality',
     diagTitle: "Select Your\nFamily's Current Reality",
     diagSub: 'The more honest you are, the better your worship will be designed.',
     diagNextBtn: 'Next Step →',
 
     // Age selection
-    ageTag: 'Step 2 · Family Makeup',
+    ageTag: 'Family Makeup',
     ageTitle1: "Your Child's",
     ageTitle2: 'Age Group?',
     ageSub: 'Questions and activities will be automatically customized for your selection.',
@@ -308,7 +308,7 @@ const STRINGS = {
     ageSkipBtn: 'Continue without selecting',
 
     // Rooms
-    roomsTag: 'Step 3 · Design Your Worship House',
+    roomsTag: 'Design Your Worship House',
     roomsTitle1: 'How many rooms',
     roomsTitle2: 'will you open?',
     roomsSub: 'The 4 rooms are like meeting a friend — gather, talk, connect, and part ways.',
@@ -324,7 +324,7 @@ const STRINGS = {
     lockMsg_send: 'Select the Response Room first',
 
     // Elements
-    elemsTag: 'Step 4 · Worship Room Setup',
+    elemsTag: 'Worship Room Setup',
     elemsTitle1: 'Decorate Your',
     elemsTitle2: 'Worship Rooms',
     elemsSub: 'Tap each room to choose elements. Tap an element name to learn more.',
@@ -333,7 +333,7 @@ const STRINGS = {
     elemsNextBtn: 'When & Where Will You Worship? →',
 
     // Routine
-    routineTag: 'Step 5 · Get Family Agreement',
+    routineTag: 'Get Family Agreement',
     routineTitle1: 'When and Where',
     routineTitle2: 'Will You Worship?',
     routineSub: 'The time and place that fits your family is the best rhythm. Wait until everyone agrees.',
@@ -392,7 +392,7 @@ const STRINGS = {
     challengeLabel: '🎯 This Week\'s Challenge',
     activityLabel: '🎨 Age-Based Activity',
     customQBadge: 'Customized Questions',
-    noAgeHint: 'Select your child\'s age in Step 4 to see customized questions.',
+    noAgeHint: 'Select your child\'s age in the Family Makeup screen to see customized questions.',
     debriefBtn: 'Post-Worship Reflection →',
 
     // Question Guide
@@ -718,6 +718,200 @@ const SERIES_DB = [
         challenge:''
       },
     ]
+  },
+  {
+    id: 'couple_restore', title: '건강한 부부소통', titleEn: 'Healthy Couple Communication',
+    icon: '💑', weeks: 15, type: 'couple', locked: false,
+    desc: '15주간의 하브루타 대화로 부부 사이의 소통, 신뢰, 영적 연합을 회복합니다. 매주 두 가지 질문과 함께 우리 부부만의 예배를 드려보세요.',
+    descEn: 'Over 15 weeks of Havruta dialogue, restore communication, trust, and spiritual unity in your marriage. Each week features two honest questions and a shared commitment.',
+    color: T.green, bg: T.greenBg, border: T.greenBorder,
+    stages: [
+      { weeks: [1,2,3,4,5], ko: '대화와 소통의 기초 세우기', en: 'Building the Foundation of Communication' },
+      { weeks: [6,7,8,9,10], ko: '삶의 영역 리모델링하기', en: 'Remodeling Life Together' },
+      { weeks: [11,12,13,14,15], ko: '치유와 영적 연합의 완성', en: 'Healing and Spiritual Unity' },
+    ],
+    items: [
+      { week:1, title:'듣기의 예술', titleEn:'The Art of Listening',
+        subtitle:'말하기보다 경청', subtitleEn:'Hearing Before Speaking',
+        ref:'약 1:19', refEn:'James 1:19',
+        verse:'"사람마다 듣기는 속히 하고 말하기는 더디 하며 성내기도 더디 하라"',
+        verseEn:'"Everyone should be quick to listen, slow to speak and slow to become angry."',
+        q1:'최근 우리 대화 중에서 내가 당신의 말을 끝까지 듣지 않고 중간에 끊거나, 미리 짐작해서 대답해 속상했던 적 있나요?',
+        q1En:"Can you recall a recent conversation where I cut you off or assumed what you\'d say — and how did that make you feel?",
+        q2:'당신이 내게 "내 말을 진짜로 잘 들어주고 있구나"라고 느끼며 안심하게 되는 순간은 언제인가요?',
+        q2En:"When do you most feel truly heard and at ease in our conversations — what does that look like?",
+        pledge:'이야기를 들을 때 내 의견을 즉시 얹지 않고, 고개를 끄덕이며 3초간 기다린 후 말하기',
+        pledgeEn:"When you speak, I will hold back my response, nod, and wait 3 seconds before replying.",
+      },
+      { week:2, title:'말의 온도', titleEn:'The Temperature of Words',
+        subtitle:'살리는 말 vs 죽이는 말', subtitleEn:'Words That Heal vs Words That Wound',
+        ref:'잠 12:18', refEn:'Proverbs 12:18',
+        verse:'"칼로 찌름 같이 함부로 말하는 자가 있거니와 지혜로운 자의 혀는 양약과 같으니라"',
+        verseEn:'"The words of the reckless pierce like swords, but the tongue of the wise brings healing."',
+        q1:'우리가 갈등할 때 내가 무심코 던진 단어나 말투 중에서 당신의 마음을 칼로 찌르듯 아프게 했던 것은 무엇이었나요?',
+        q1En:"During our conflicts, what words or tone of mine have felt like a knife — hurting you in ways I may not have noticed?",
+        q2:'내가 당신에게 해주었을 때, 당신의 영혼을 가뿐하게 만들고 힘이 나게 하는 \'살리는 한마디\'는 무엇인가요?',
+        q2En:"What is the one thing I say or do that brings life to your soul and gives you genuine strength?",
+        pledge:'화가 날 때 한 번 숨을 고르고, 비난 대신 내가 필요한 것을 부드럽게 표현하기',
+        pledgeEn:"Before reacting, I\'ll take a breath — and express my needs softly instead of attacking.",
+      },
+      { week:3, title:'감정의 방', titleEn:'The Room of Emotions',
+        subtitle:'배우자의 지침을 알아채기', subtitleEn:'Recognizing When Your Partner Is Depleted',
+        ref:'갈 6:2', refEn:'Galatians 6:2',
+        verse:'"너희가 짐을 서로 지라 그리하여 그리스도의 법을 성취하라"',
+        verseEn:'"Carry each other\'s burdens, and in this way you will fulfill the law of Christ."',
+        q1:'요즘 일상이나 직장, 가사, 육아 속에서 당신의 에너지 게이지를 가장 바닥나게 만드는 힘겨운 \'짐\'은 무엇인가요?',
+        q1En:"What is the heaviest burden draining your energy most right now — whether at work, home, or in daily life?",
+        q2:'당신이 지쳐서 혼자만의 동굴이나 휴식이 필요할 때, 내가 어떻게 해주는 것이 가장 방해되지 않고 편안한가?',
+        q2En:"When you\'re exhausted and need space to recharge, what\'s the most helpful — and least intrusive — thing I can do for you?",
+        pledge:'배우자의 지친 기색을 비난하지 않고, 쉴 수 있는 시간과 공간을 선물하기',
+        pledgeEn:"When you\'re drained, I won\'t criticize. I\'ll give you the time and space you need to rest.",
+      },
+      { week:4, title:'분노의 해소', titleEn:'Resolving Anger',
+        subtitle:'해지기 전에 화해하기', subtitleEn:'Making Peace Before Sunset',
+        ref:'엡 4:26-27', refEn:'Ephesians 4:26-27',
+        verse:'"분을 내어도 죄를 짓지 말며 해가 지도록 분을 품지 말고 마귀에게 틈을 주지 말라"',
+        verseEn:'"In your anger do not sin: do not let the sun go down while you are still angry, and do not give the devil a foothold."',
+        q1:'우리는 싸우고 나서 화를 푸는 방식(침묵하기, 당장 대화하기, 생각할 시간 갖기 등)이 서로 어떻게 다른가요?',
+        q1En:"How do we each tend to handle anger after a fight — silence, talking right away, or needing time to think?",
+        q2:'갈등이 일어났을 때 마귀에게 틈을 주지 않고 \'해지기 전에 안전하게 화해\'하기 위해 우리가 미리 정해둘 대화 규칙은 무엇일까?',
+        q2En:"What ground rules could we agree on now so we can resolve things safely before the day ends?",
+        pledge:'아무리 화가 나도 침묵으로 벌주지 않고, 타임아웃이 필요할 땐 동의를 구한 후 시간을 갖기',
+        pledgeEn:"No matter how angry I feel, I won\'t punish with silence. I\'ll ask for a timeout respectfully if I need one.",
+      },
+      { week:5, title:'투명한 안심', titleEn:'Transparent Trust',
+        subtitle:'숨김없는 정직함', subtitleEn:'Honesty Without Secrets',
+        ref:'잠 28:13', refEn:'Proverbs 28:13',
+        verse:'"자기의 죄를 숨기는 자는 형통하지 못하나 죄를 자복하고 버리는 자는 불쌍히 여김을 받으리라"',
+        verseEn:'"Whoever conceals their sins does not prosper, but the one who confesses and renounces them finds mercy."',
+        q1:'크고 작은 일(일정, 재정, 대인관계 등)을 혼자 결정하고 나중에 통보했을 때, 상대방이 느꼈을 소외감이나 불안은 어떠했을까요?',
+        q1En:"When I\'ve made decisions alone and told you afterward, what feelings of exclusion or anxiety might that have caused you?",
+        q2:'우리 사이에 사소한 오해나 숨김이 없도록 더 투명하게 일상을 공유하려면 어떤 노력이 필요할까요?',
+        q2En:"What would help us share our daily lives more transparently, with fewer misunderstandings between us?",
+        pledge:'\'이 정도는 괜찮겠지\' 하고 혼자 판단하지 않고, 사소한 일도 미리 나눠 안심을 드리기',
+        pledgeEn:"I won\'t decide alone thinking it\'ll be fine. I\'ll share even the small things to give you peace of mind.",
+      },
+      { week:6, title:'재정의 청지기', titleEn:'Stewards of Our Finances',
+        subtitle:'돈을 바라보는 관점의 일치', subtitleEn:'Aligning Our Views on Money',
+        ref:'마 6:21', refEn:'Matthew 6:21',
+        verse:'"네 보물 있는 그 곳에는 네 마음도 있느니라"',
+        verseEn:'"For where your treasure is, there your heart will be also."',
+        q1:'우리는 성장 배경에 따라 돈을 쓰고 모으는 가치관(미래 저축 중심 vs 현재 가치 중심 등)이 어떻게 다른가요?',
+        q1En:"How do our spending and saving values differ — shaped by the way we each grew up?",
+        q2:'현재 우리의 재정 사용 내역이나 미래 계획 중에서 서로 가장 안심이 안 되거나 조율이 필요한 영역은 어디인가?',
+        q2En:"Which area of our finances feels most unsettled or needs the most honest alignment right now?",
+        pledge:'재정은 부부 공동의 책임임을 기억하고, 지출과 저축의 기준을 명확하게 합의하기',
+        pledgeEn:"I\'ll remember that our finances belong to both of us — and we\'ll agree clearly on how we spend and save.",
+      },
+      { week:7, title:'우선순위의 재조정', titleEn:'Realigning Our Priorities',
+        subtitle:'세상 모든 관계 위의 부부', subtitleEn:'Each Other First, Above All Else',
+        ref:'창 2:24', refEn:'Genesis 2:24',
+        verse:'"남자가 부모를 떠나 그의 아내와 합하여 둘이 한 몸을 이룰지로다"',
+        verseEn:'"A man leaves his father and mother and is united to his wife, and they become one flesh."',
+        q1:'혹시 내 삶에서 일, 사역, 자녀, 친구, 혹은 스마트폰이 당신보다 은연중에 더 우선순위에 있다고 느낀 적 있었나요?',
+        q1En:"Have you ever felt that my work, ministry, children, friends, or even my phone had a higher priority than you — even unintentionally?",
+        q2:'당신이 내 삶에서 \'내가 이 사람에게 절대적인 1순위구나\'라고 온전히 느끼게 되는 순간은 언제인가요?',
+        q2En:"When do you fully feel like you are my absolute first priority?",
+        pledge:'집에 돌아왔을 때 다른 어떤 것보다 당신의 눈을 먼저 맞추고 집중하기',
+        pledgeEn:"When I come home, I will meet your eyes first — before anything else.",
+      },
+      { week:8, title:'원가족으로부터의 독립', titleEn:'Independence from Family of Origin',
+        subtitle:'건강한 울타리 치기', subtitleEn:'Setting Healthy Boundaries',
+        ref:'마 19:6', refEn:'Matthew 19:6',
+        verse:'"이제 둘이 아니요 한 몸이니 하나님이 짝지어 주신 것을 사람이 나누지 못할지니라"',
+        verseEn:'"They are no longer two, but one flesh. Therefore what God has joined together, let no one separate."',
+        q1:'양가 부모님이나 형제들과의 관계, 혹은 그분들의 조언 때문에 우리 부부의 경계선이 흔들리거나 상처받았던 기억 있나요?',
+        q1En:"Has advice or involvement from our families of origin ever caused our boundaries as a couple to waver or left you hurt?",
+        q2:'양가 원가족에게 효도하되, 우리 부부의 연합과 평화를 지키기 위해 단단히 쳐야 할 건강한 바운더리는 무엇일까?',
+        q2En:"What healthy boundaries do we need to firmly set to protect our unity and peace while still honoring our families?",
+        pledge:'가정사의 최종 결정권은 우리 부부에게 있음을 확인하고, 원가족과의 소통 시 당신의 입장을 최우선으로 대변하기',
+        pledgeEn:"I\'ll affirm that all family decisions belong to us first — and I\'ll always stand for your perspective with our extended families.",
+      },
+      { week:9, title:'가사와 역할 분담', titleEn:'Sharing Household Roles',
+        subtitle:'공평함을 넘어선 배려', subtitleEn:'Beyond Fairness — Genuine Care',
+        ref:'빌 2:4', refEn:'Philippians 2:4',
+        verse:'"각각 자기 일을 돌볼뿐더러 또한 각각 다른 사람들의 일을 돌보아 나의 기쁨을 충만하게 하라"',
+        verseEn:'"Not looking to your own interests but each of you to the interests of the others."',
+        q1:'현재 우리 가정의 역할 분담 중에서 당신이 혼자 과도하게 짊어지고 있다고 느끼는 부분은 무엇인가요?',
+        q1En:"Which part of our household responsibilities do you feel you carry alone or carry too much of?",
+        q2:'내가 당연하게 여기지 않고, 당신의 수고를 덜어주기 위해 오늘부터 구체적으로 맡아 지지해 줄 수 있는 일은 무엇일까?',
+        q2En:"What specific task could I take on starting today — without being asked — to lighten your load?",
+        pledge:'상대방의 가사 노동을 당연한 의무로 여기지 않고, 눈에 보이는 작은 일부터 먼저 움직여 돕기',
+        pledgeEn:"I won\'t take your work for granted. I\'ll start with the small visible things — and move first, without being asked.",
+      },
+      { week:10, title:'즉흥성과 계획성의 조화', titleEn:'Harmonizing Spontaneity and Structure',
+        subtitle:'라이프스타일의 존중', subtitleEn:'Respecting Each Other\'s Rhythms',
+        ref:'고전 14:40', refEn:'1 Corinthians 14:40',
+        verse:'"모든 것을 품위 있게 하고 질서 있게 하라"',
+        verseEn:'"But everything should be done in a fitting and orderly way."',
+        q1:'나의 즉흥적인 행동이나 반대로 과도한 계획성 때문에 당신이 피곤하거나 숨 막혔던 적은 언제인가요?',
+        q1En:"When has my spontaneity — or on the other hand, my over-planning — left you feeling drained or stifled?",
+        q2:'서로 다른 두 라이프스타일이 부딪히지 않고 조화를 이루려면 어떤 양해가 필요할까요?',
+        q2En:"What kind of understanding do we need to find harmony between our two different rhythms of life?",
+        pledge:'변화가 생길 때는 반드시 사전에 구체적으로 공유하기',
+        pledgeEn:"When anything changes in my plans, I\'ll share it clearly and in advance — every time.",
+      },
+      { week:11, title:'숨겨진 상처의 직면', titleEn:'Facing Hidden Wounds',
+        subtitle:'과거의 아픔 껴안기', subtitleEn:'Embracing the Pain of the Past',
+        ref:'엡 4:32', refEn:'Ephesians 4:32',
+        verse:'"서로 친절하게 하며 불쌍히 여기며 서로 용서하기를 하나님이 그리스도 안에서 너희를 용서하심과 같이 하라"',
+        verseEn:'"Be kind and compassionate to one another, forgiving each other, just as in Christ God forgave you."',
+        q1:'결혼 생활을 해오면서 내 무심함이나 실수로 인해 당신의 마음 깊은 곳에 응어리로 남아 있는 \'미해결된 상처\'는 무엇인가요?',
+        q1En:"As we\'ve walked through marriage, what unresolved wound from my carelessness or mistakes still lingers in your heart?",
+        q2:'그 상처가 치유되고 당신의 마음에 다시 안전감이 찾아오기 위해, 내가 어떻게 사과하고 보상해 주기를 원하나?',
+        q2En:"What would it look like for me to apologize and make it right — so your heart can feel safe again?",
+        pledge:'과거의 일이라며 치부하지 않고, 당신의 아픈 기억이 아물 때까지 진심으로 경청하고 품어드리기',
+        pledgeEn:"I won\'t dismiss the past. I\'ll listen and hold your hurt until it fully heals.",
+      },
+      { week:12, title:'다름의 축복', titleEn:'The Gift of Difference',
+        subtitle:'최고의 돕는 배필', subtitleEn:'The Perfect Helper God Designed',
+        ref:'창 2:18', refEn:'Genesis 2:18',
+        verse:'"사람이 혼자 사는 것이 좋지 아니하니 내가 그를 위하여 돕는 배필을 지으리라 하시니라"',
+        verseEn:'"It is not good for the man to be alone. I will make a helper suitable for him."',
+        q1:'처음에는 매력적이었지만 지금은 갈등의 원인이 된 서로의 성향 격차(예: 내향성과 외향성, 감정형과 이성형 등)는 무엇인가요?',
+        q1En:"What personality difference that once attracted you has now become a recurring source of conflict?",
+        q2:'하나님이 왜 나에게 나와 정반대인 당신을 \'돕는 배필\'로 선물하셨는지, 그 영적인 유익과 감사한 점을 고백해 볼까요?',
+        q2En:"Why do you think God gave you someone so different as your helper — what spiritual gift and gratitude can you find in that?",
+        pledge:'당신을 내 입맛에 맞게 바꾸려는 집착을 버리고, 나를 보완해 주는 최고의 파트너로 인정하기',
+        pledgeEn:"I\'ll let go of the need to change you — and embrace you as the best partner God gave me.",
+      },
+      { week:13, title:'신뢰의 성벽 구축', titleEn:'Building Walls of Trust',
+        subtitle:'약속과 책임', subtitleEn:'Promises and Follow-Through',
+        ref:'마 5:37', refEn:'Matthew 5:37',
+        verse:'"오직 너희 말은 옳다 옳다, 아니라 아니라 하라 이에서 지나는 것은 악으로부터 나느니라"',
+        verseEn:'"All you need to say is simply \'Yes\' or \'No\'; anything beyond this comes from the evil one."',
+        q1:'내가 말만 앞세우고 행동으로 맺지 못했거나, 약속을 가볍게 여겨 당신에게 실망을 안겨주었던 일은 무엇이었나요?',
+        q1En:"When have I made promises I didn\'t keep — leaving you disappointed or losing your trust in me?",
+        q2:'우리 가정 안에서 무너진 신뢰의 성벽을 다시 쌓기 위해, 내가 말한 것을 어떻게 끝까지 완수해 보이면 좋을까요?',
+        q2En:"What would it look like for me to prove my word through follow-through, so we can rebuild the trust between us?",
+        pledge:'지키지 못할 모호한 약속은 하지 않으며, 약속한 것은 결과로 증명해 신뢰를 드리기',
+        pledgeEn:"I won\'t make promises I can\'t keep — and I\'ll let my actions be the proof of my word.",
+      },
+      { week:14, title:'영적 연합', titleEn:'Spiritual Unity',
+        subtitle:'함께 무릎 꿇는 부부', subtitleEn:'A Couple Who Prays Together',
+        ref:'마 18:19', refEn:'Matthew 18:19',
+        verse:'"너희 중의 두 사람이 땅에서 합심하여 무엇이든지 구하면 하늘에 계신 내 아버지께서 그들을 위하여 이루게 하시리라"',
+        verseEn:'"If two of you on earth agree about anything they ask for, it will be done for them by my Father in heaven."',
+        q1:'그동안 함께 예배를 드리거나 영적인 대화를 나눌 때, 당신이 느꼈던 아쉬움이나 형식적인 장벽은 무엇이었나요?',
+        q1En:"When we\'ve worshipped or had spiritual conversations together, what felt hollow or created a barrier for you?",
+        q2:'우리 부부가 하나님 앞에 더 깊이 연합하고 가정을 기도의 성소로 만들기 위해 서로 어떤 중보기도 제목을 나누면 좋을까요?',
+        q2En:"What prayer requests would you most want to share so we can intercede for each other and make our home a house of prayer?",
+        pledge:'비난과 훈계의 종교성을 걷어내고, 날마다 당신의 영혼과 아픔을 위해 진심으로 기도하는 중보자가 되기',
+        pledgeEn:"I\'ll set aside religious formality — and become a true intercessor who prays for your soul every day.",
+      },
+      { week:15, title:'소통의 완성', titleEn:'The Completion of Communication',
+        subtitle:'에덴 가정이 주는 평화', subtitleEn:'The Peace of an Eden Home',
+        ref:'엡 4:2-3', refEn:'Ephesians 4:2-3',
+        verse:'"모든 겸손과 온유로 하고 오래 참음으로 사랑 가운데서 서로 용납하고 평안의 매는 줄로 성령이 하나 되게 하신 것을 힘써 지키라"',
+        verseEn:'"Be completely humble and gentle; be patient, bearing with one another in love. Make every effort to keep the unity of the Spirit through the bond of peace."',
+        q1:'지난 15주간 대화식 예배와 소통 훈련을 거치며, 우리 부부 사이에서 가장 눈에 띄게 변화되고 회복된 영역은 무엇인가요?',
+        q1En:"Looking back over these 15 weeks, what\'s the most visible area of change and restoration in our relationship?",
+        q2:'하나님이 기뻐하시는 \'평화의 가정\'을 앞으로도 지속하기 위해, 우리가 서로에게 평생 약속하고 싶은 고백은 무엇인가요?',
+        q2En:"What lifelong promise would you want to make to each other so that God\'s peace may continue in our home?",
+        pledge:'성령님이 평안의 줄로 묶어주신 하나 됨을 힘써 지키며, 날마다 질문과 경청으로 에덴의 기쁨을 누리는 부부가 되기',
+        pledgeEn:"I\'ll guard the oneness the Holy Spirit has woven between us — and keep choosing questions and listening, every day.",
+      },
+    ]
   },,
   {
     id: 'creation', title: '천지창조', titleEn: 'Creation', icon: '🌍', weeks: 7, locked: true,
@@ -732,7 +926,7 @@ const SERIES_DB = [
         },
         ageQuestions:{
           infant:{
-            content:['하나님이 제일 먼저 만드신 게 뭐야?','빛이 없으면 어떻게 될까?','빛과 어둠을 나누셨는데, 어둠이 사라진 건 아니야. 왜 그럴까?'],
+            content:['하나님이 제일 먼저 만드신 게 뭐야?','빛이 없으면 어떻게 될까요?','빛과 어둠을 나누셨는데, 어둠이 사라진 건 아니야. 왜 그럴까?'],
             imagine:['처음 빛이 생겼을 때 하나님 얼굴이 어떤 표정이었을까?','OO가 처음 빛을 봤다면 뭐라고 했을 것 같아요?'],
             apply:['오늘 하나님이 만드신 빛 중에 제일 예쁜 게 뭐야?'],
             activity:'손전등으로 빛 놀이하기 — 불을 껐다 켜며 "빛이 있으라!" 외쳐보기',
@@ -807,13 +1001,13 @@ const SERIES_DB = [
           },
           high:{
             content:['"궁창"이 대기권인지, 우주인지, 아니면 다른 무언가인지 — 본문이 가장 강조하는 게 뭘까?','"위의 물"이 문자적인 물인지, 고대 세계관의 언어인지, 상징인지 — 이 본문의 핵심 메시지는 뭐라고 생각해?','분리→모음→드러남→결실의 순서 — 이게 단순한 창조 과정인지, 아니면 하나님이 일하시는 패턴인지?'],
-            imagine:['하나님이 "경계"를 만드신다는 게 — 정체성과 목적을 만드는 것과 어떻게 연결될까?','둘째 날에 "좋았더라"가 없다 — 완성되지 않은 날이라서? 아니면 다른 이유가 있을까?'],
+            imagine:['하나님이 "경계"를 만드신다는 게 — 정체성과 목적을 만드는 것과 어떻게 연결될까요?','둘째 날에 "좋았더라"가 없다 — 완성되지 않은 날이라서? 아니면 다른 이유가 있을까?'],
             apply:['하나님이 나를 "구별"하셨다면 — 그게 내 정체성에 어떤 의미를 갖는 걸까?'],
             challenge:'매일 아침 거울을 보며 "나는 세상에 하나뿐인 소중한 사람, 예수님이 날 사랑해서 목숨을 주셨어" 선포하기'
           },
           adult:{
             content:['하나님이 분리→모음→드러남→결실의 순서로 창조하시는데 — 이 패턴이 하나님의 일하시는 방식에 대해 뭘 말해주는 걸까?','"위의 물"이 뭘 말하는 건지 — 문자적인가, 세계관적인가, 상징인가?','둘째 날에 "좋았더라"가 없다 — 왜일까?'],
-            imagine:['하나님이 경계와 구분으로 창조하신다는 것이 — 우리 가정의 질서와 어떻게 연결될까?','혼돈에서 질서를 만드시는 하나님 — 지금 우리 가정의 혼돈 위에 하나님이 계신다면?'],
+            imagine:['하나님이 경계와 구분으로 창조하신다는 것이 — 우리 가정의 질서와 어떻게 연결될까요?','혼돈에서 질서를 만드시는 하나님 — 지금 우리 가정의 혼돈 위에 하나님이 계신다면?'],
             apply:['지금 우리 가정에서 하나님이 "경계"나 "질서"를 가져오시길 원하는 부분이 있다면?'],
             challenge:'이번 주 하루를 정해 매일 아침·점심·저녁 잠깐 멈추고 하나님이 우리 삶의 주인임을 고백하기'
           }
@@ -843,19 +1037,19 @@ const SERIES_DB = [
             challenge:'이번 주 내 재능으로 가족이나 친구를 한 번 섬겨보기'
           },
           middle:{
-            content:['창 1:6-13의 둘째·셋째 날 순서를 내 말로 설명해봐 — 왜 이 순서일까? 하나님이 일하시는 방식에 대해 뭘 보여주는 걸까?','하나님이 나누고 → 모으고 → 드러내고 → 싹 틔우시는 방식으로 창조하시는데 — 이게 하나님이 정체성과 목적을 만드시는 것과 어떻게 연결될까?','셋째 날 식물이 생겼는데, 넷째 날에 태양이 생겼어 — 식물이 태양 없이 살 수 있었을까?'],
+            content:['창 1:6-13의 둘째·셋째 날 순서를 내 말로 설명해봐 — 왜 이 순서일까? 하나님이 일하시는 방식에 대해 뭘 보여주는 걸까?','하나님이 나누고 → 모으고 → 드러내고 → 싹 틔우시는 방식으로 창조하시는데 — 이게 하나님이 정체성과 목적을 만드시는 것과 어떻게 연결될까요?','셋째 날 식물이 생겼는데, 넷째 날에 태양이 생겼어 — 식물이 태양 없이 살 수 있었을까?'],
             imagine:['땅이 "드러났다(appeared)"와 식물이 "생산됐다(produced)"의 차이가 뭘까 — 이미 있던 게 드러난 건지, 새로 만들어진 건지?','하나님이 나를 설계하실 때 — 드러나게 하시는 부분과 새로 자라게 하시는 부분이 각각 뭘까?'],
             apply:['내 안에 하나님이 심어주신 것 중 아직 싹이 트지 않은 게 있다면?'],
             challenge:'매일 아침 거울 보며 "나는 세상에 하나뿐인 소중한 사람, 예수님이 날 사랑해" 선포하기'
           },
           high:{
-            content:['창 1:2의 "땅"과 1:10-11의 "땅/육지"는 같은 땅인가, 다른 땅인가 — 뭐가 바뀐 걸까? 정체성? 경계? 기능? 결실?','태양 없이 식물이 먼저 생겼다 — 하나님의 주권이 자연 법칙 위에 있다는 걸 말하는 걸까, 아니면 다른 뭔가가 있는 걸까?','씨 맺는 식물을 강조하신 이유 — 이게 청지기 사명과 어떻게 연결될까?'],
+            content:['창 1:2의 "땅"과 1:10-11의 "땅/육지"는 같은 땅인가, 다른 땅인가 — 뭐가 바뀐 걸까? 정체성? 경계? 기능? 결실?','태양 없이 식물이 먼저 생겼다 — 하나님의 주권이 자연 법칙 위에 있다는 걸 말하는 걸까, 아니면 다른 뭔가가 있는 걸까?','씨 맺는 식물을 강조하신 이유 — 이게 청지기 사명과 어떻게 연결될까요?'],
             imagine:['v9에서 땅이 "드러났다(appear)" v11에서 식물이 "생산됐다(produced)" — 이미 있던 게 드러난 것과 새로 자란 것의 차이가 하나님이 우리 안에서 일하시는 방식에 대해 뭘 말해주는 걸까?','하나님이 분리→모음→드러남→결실의 패턴으로 창조하신다면 — 지금 내 삶에서 어느 단계에 있는 것 같아?'],
             apply:['이번 시즌 내 설계에 맞는 "열매"를 하나 꼽는다면?'],
             challenge:'매일 아침 거울 보며 "나는 세상에 하나뿐인 소중한 사람, 예수님이 날 사랑해서 목숨을 주셨어" 선포하기'
           },
           adult:{
-            content:['창 1:2의 "땅"과 1:10-11의 "땅"이 어떻게 다른가 — 정체성이 바뀐 건지, 기능이 바뀐 건지, 경계가 생긴 건지?','씨 맺는 식물의 강조 — 다음 세대 신앙 전수와 어떻게 연결될까?','태양 없이 식물이 먼저 생겼다 — 이 순서가 하나님의 주권에 대해 뭘 말해주는 걸까?'],
+            content:['창 1:2의 "땅"과 1:10-11의 "땅"이 어떻게 다른가 — 정체성이 바뀐 건지, 기능이 바뀐 건지, 경계가 생긴 건지?','씨 맺는 식물의 강조 — 다음 세대 신앙 전수와 어떻게 연결될까요?','태양 없이 식물이 먼저 생겼다 — 이 순서가 하나님의 주권에 대해 뭘 말해주는 걸까?'],
             imagine:['드러남(appear)과 결실(produce)의 차이 — 하나님이 우리 가정 안에서 이미 드러내고 계신 것과 아직 자라게 하고 계신 것이 뭘까?','하나님이 우리 가정을 통해 맺기 원하시는 열매가 있다면 — 그게 뭔지 지금 보이나?'],
             apply:['지금 우리 가정에서 하나님이 결실을 기대하시는 한 영역을 함께 나눠봅시다.'],
             challenge:'오늘 가족에게 서로의 재능과 특별함을 한 가지씩 말해주기'
@@ -899,7 +1093,7 @@ const SERIES_DB = [
           },
           adult:{
             content:['첫째 날의 빛과 넷째 날의 해와 달 — 이 구분이 창조 신학에서 갖는 의미가 뭘까?','해와 달을 "징조"로 주셨다는 게 — 역사와 섭리를 어떻게 보여주는 걸까?','셋째 날 식물, 넷째 날 태양 — 이 순서가 하나님의 주권에 대해 뭘 말해주는 걸까?'],
-            imagine:['시간을 창조하신 하나님이 시간 위에 계신다는 것 — 우리 가정의 바쁜 일상에 어떤 의미가 될까?','별이 많은 밤하늘처럼 어둠 속에도 질서와 아름다움이 있다는 것 — 지금 우리 가정의 어두운 시간에 어떤 소망이 될까?'],
+            imagine:['시간을 창조하신 하나님이 시간 위에 계신다는 것 — 우리 가정의 바쁜 일상에 어떤 의미가 될까요?','별이 많은 밤하늘처럼 어둠 속에도 질서와 아름다움이 있다는 것 — 지금 우리 가정의 어두운 시간에 어떤 소망이 될까요?'],
             apply:['우리 가정의 시간 사용이 하나님이 기뻐하시는 리듬인지 함께 솔직하게 나눠봅시다.'],
             challenge:'매일 아침 "하나님, 오늘 제 시간도 주님이 만드셨어" 고백하고, 잠들기 전 하루를 주신 하나님께 감사하기'
           }
@@ -942,7 +1136,7 @@ const SERIES_DB = [
           },
           adult:{
             content:['하나님이 처음으로 "복을 주셨다"라고 말씀하신 대상이 바다와 하늘의 생물이라는 점 — 어떻게 읽혀지나?','이 복이 단순한 번성과 증가 이상의 의미가 있을까? 생명을 향한 하나님의 마음은 무엇이라고 생각하나?','인간은 하나님의 형상으로 창조되었는데 — 이 복을 맡은 청지기로서 우리는 지금 어떤 태도를 보이고 있을까?'],
-            imagine:['시편 148편처럼 파도 소리, 고래 소리, 새 소리, 별들에서 나는 소리가 하나님께 찬양이라면 — 나는 나의 재능과 목소리로 어떻게 창조 세계와 함께 하나님을 높일 수 있을까?','루이 기글리오 목사님의 메시지를 통해 창조 세계를 바라보는 책임감이나 시각에 어떤 도전이 있었나?'],
+            imagine:['시편 148편처럼 파도 소리, 고래 소리, 새 소리, 별들에서 나는 소리가 하나님께 찬양이라면 — 나는 나의 재능과 목소리로 어떻게 창조 세계와 함께 하나님을 높일 수 있을까?','루이 기글리오 목사님의 메시지를 통해 창조 세계를 바라보는 책임감이나 시각에 어떤 도전이 있었나요?'],
             apply:['이번 주 매일 한 번씩 자연 속에서 하나님께 감사와 찬양을 드려봅시다.'],
             challenge:'이번 주 매일 한 번씩 자연 속에서 하나님께 감사와 찬양 드리기'
           }
@@ -1036,53 +1230,53 @@ const SERIES_DB = [
         challenge:'이번 주 매일 아침 "나는 하나님의 형상으로 만들어진 소중한 존재입니다" 선포하기', challengeEn:'Every morning this week, declare: "I am a precious person made in the image of God."'
       },
     ]
-    },,
+    },
   {
     id: 'psalms', title: '시편 묵상', titleEn: 'Psalms', icon: '🎵', weeks: 8, locked: true,
     desc: '다윗의 기도와 찬양으로 하나님과 더 깊이 대화하는 법을 배웁니다.', descEn: 'Learn to dialogue more deeply with God through David\'s prayers and praise.',
     color: T.green, bg: T.greenBg, border: T.greenBorder,
     items: [
       { week:1, title:'시편 1편 — 복 있는 사람', titleEn:'Psalm 1 — The Blessed', ref:'시 1:1-6', verse:'복 있는 사람은 악인들의 꾀를 따르지 않고',
-        questions:{ content:['복 있는 사람의 특징이 무엇인가?','나무와 시냇가 비유가 말해주는 것은?'], imagine:['시냇가에 심긴 나무처럼 사는 사람의 하루는 어떤 모습일까?','다윗이 이 시를 쓸 때 어떤 상황이었을까?'], apply:['내 삶에서 악인의 꾀를 따르고 싶은 유혹이 있다면?','말씀을 즐거워하는 습관을 어떻게 만들 수 있을까?'] }, challenge:'오늘 말씀 한 구절 소리 내어 읽기' },
+        questions:{ content:['복 있는 사람의 특징이 무엇인가요?','나무와 시냇가 비유가 말해주는 것은?'], imagine:['시냇가에 심긴 나무처럼 사는 사람의 하루는 어떤 모습일까?','다윗이 이 시를 쓸 때 어떤 상황이었을까?'], apply:['내 삶에서 악인의 꾀를 따르고 싶은 유혹이 있다면?','말씀을 즐거워하는 습관을 어떻게 만들 수 있을까?'] }, challenge:'오늘 말씀 한 구절 소리 내어 읽기' },
       { week:2, title:'시편 23편 — 여호와는 나의 목자', titleEn:'Psalm 23 — The Lord is My Shepherd', ref:'시 23:1-6', verse:'여호와는 나의 목자시니 내게 부족함이 없으리로다',
-        questions:{ content:['목자와 양의 관계가 하나님과 우리의 관계와 어떻게 같나?','사망의 음침한 골짜기는 어떤 상황을 말할까?'], imagine:['다윗이 이 시를 쓸 때 어떤 경험을 했을까?','하나님이 우리의 목자라는 것을 실감한 순간이 있었나?'], apply:['내 삶에서 하나님이 목자 되심을 믿기 어려운 부분이 있다면?','"내게 부족함이 없다"는 고백이 가능하려면 무엇이 필요할까?'] }, challenge:'오늘 시편 23편 천천히 두 번 읽고 마음에 와닿는 구절 나누기' },
+        questions:{ content:['목자와 양의 관계가 하나님과 우리의 관계와 어떻게 같나?','사망의 음침한 골짜기는 어떤 상황을 말할까?'], imagine:['다윗이 이 시를 쓸 때 어떤 경험을 했을까?','하나님이 우리의 목자라는 것을 실감한 순간이 있었나요?'], apply:['내 삶에서 하나님이 목자 되심을 믿기 어려운 부분이 있다면?','"내게 부족함이 없다"는 고백이 가능하려면 무엇이 필요할까요?'] }, challenge:'오늘 시편 23편 천천히 두 번 읽고 마음에 와닿는 구절 나누기' },
       { week:3, title:'시편 46편 — 하나님은 우리의 피난처', titleEn:'Psalm 46 — God Our Refuge', ref:'시 46:1-3', verse:'하나님은 우리의 피난처시요 힘이시니',
-        questions:{ content:['피난처와 힘이라는 표현이 같이 나온 이유는?','땅이 변하고 산이 흔들려도라는 표현이 의미하는 것은?'], imagine:['이 시를 쓸 당시 이스라엘은 어떤 위협을 받고 있었을까?','흔들리지 않는 피난처가 있다는 것이 어떤 느낌인가?'], apply:['지금 내 삶에서 가장 두려운 것이 무엇인가?','하나님을 피난처로 삼는다는 것이 구체적으로 어떤 행동일까?'] }, challenge:'가족의 두려움 하나씩 나누고 함께 기도하기' },
+        questions:{ content:['피난처와 힘이라는 표현이 같이 나온 이유는?','땅이 변하고 산이 흔들려도라는 표현이 의미하는 것은?'], imagine:['이 시를 쓸 당시 이스라엘은 어떤 위협을 받고 있었을까?','흔들리지 않는 피난처가 있다는 것이 어떤 느낌인가?'], apply:['지금 내 삶에서 가장 두려운 것이 무엇인가요?','하나님을 피난처로 삼는다는 것이 구체적으로 어떤 행동일까?'] }, challenge:'가족의 두려움 하나씩 나누고 함께 기도하기' },
       { week:4, title:'시편 91편 — 지존자의 은밀한 곳', titleEn:'Psalm 91 — Shelter of the Most High', ref:'시 91:1-4', verse:'지존자의 은밀한 곳에 거주하며 전능자의 그늘 아래에 있는 자여',
-        questions:{ content:['은밀한 곳, 그늘, 날개, 방패 — 이 표현들의 공통점은?','천천히 닥치는 재앙과 갑자기 닥치는 재앙 모두를 말하는 이유는?'], imagine:['새의 날개 아래 있는 작은 새의 마음이 어떨까?','하나님의 날개 아래 있다고 느꼈던 순간이 있었나?'], apply:['보호받는다는 느낌을 언제 받나?','가족이 서로에게 "피난처"가 될 수 있는 방법은?'] }, challenge:'가족이 서로를 위해 보호하는 기도 한 마디씩 하기' },
+        questions:{ content:['은밀한 곳, 그늘, 날개, 방패 — 이 표현들의 공통점은?','천천히 닥치는 재앙과 갑자기 닥치는 재앙 모두를 말하는 이유는?'], imagine:['새의 날개 아래 있는 작은 새의 마음이 어떨까?','하나님의 날개 아래 있다고 느꼈던 순간이 있었나요?'], apply:['보호받는다는 느낌을 언제 받나?','가족이 서로에게 "피난처"가 될 수 있는 방법은?'] }, challenge:'가족이 서로를 위해 보호하는 기도 한 마디씩 하기' },
       { week:5, title:'시편 103편 — 내 영혼아 여호와를 송축하라', titleEn:'Psalm 103 — Praise the Lord, My Soul', ref:'시 103:1-5', verse:'내 영혼아 여호와를 송축하라 그의 모든 은택을 잊지 말지어다',
         questions:{ content:['다윗이 나열한 하나님의 은혜가 몇 가지인가?','영혼에게 명령하는 표현이 독특하게 느껴지는 이유는?'], imagine:['다윗이 이 시를 쓸 때 어떤 마음이었을까?','우리가 잊고 살았던 하나님의 은택이 있다면?'], apply:['감사를 잊어버릴 때 어떤 일이 일어나나?','이번 주 하나님의 은혜 5가지를 가족이 함께 나눠봐요.'] }, challenge:'감사 목록 5개 함께 적고 벽에 붙이기' },
       { week:6, title:'시편 119편 — 말씀의 등불', titleEn:'Psalm 119 — A Lamp for My Feet', ref:'시 119:105', verse:'주의 말씀은 내 발에 등이요 내 길에 빛이니이다',
-        questions:{ content:['등불과 빛 비유가 말씀을 어떻게 설명하나?','발에 등, 길에 빛의 차이가 있나?'], imagine:['어두운 길을 걷다가 등불이 생겼을 때 기분이 어떨까?','말씀이 없다면 내 삶이 어떤 모습일까?'], apply:['말씀이 내 삶의 결정에 영향을 준 적이 있나?','우리 가족이 말씀을 더 가까이하는 방법이 있다면?'] }, challenge:'이번 주 말씀 한 구절 함께 암송하기' },
+        questions:{ content:['등불과 빛 비유가 말씀을 어떻게 설명하나?','발에 등, 길에 빛의 차이가 있나요?'], imagine:['어두운 길을 걷다가 등불이 생겼을 때 기분이 어떨까?','말씀이 없다면 내 삶이 어떤 모습일까?'], apply:['말씀이 내 삶의 결정에 영향을 준 적이 있나요?','우리 가족이 말씀을 더 가까이하는 방법이 있다면?'] }, challenge:'이번 주 말씀 한 구절 함께 암송하기' },
       { week:7, title:'시편 139편 — 하나님의 전지하심', titleEn:'Psalm 139 — God Knows Me', ref:'시 139:1-6', verse:'여호와여 주께서 나를 살펴 보셨으므로 나를 아시나이다',
-        questions:{ content:['하나님이 안다고 표현되는 것들이 무엇인가?','이 지식이 다윗에게 위로가 됐을까, 두려움이었을까?'], imagine:['하나님이 내 모든 것을 안다는 것이 어떤 느낌인가?','나를 가장 잘 아는 분이 하나님이라면?'], apply:['숨기고 싶은 것이 있는데 하나님이 이미 아신다면?','완전히 알려지면서도 완전히 사랑받는다는 것이 어떤 의미인가?'] }, challenge:'하나님께 솔직한 기도 편지 한 문단 쓰기' },
+        questions:{ content:['하나님이 안다고 표현되는 것들이 무엇인가요?','이 지식이 다윗에게 위로가 됐을까, 두려움이었을까?'], imagine:['하나님이 내 모든 것을 안다는 것이 어떤 느낌인가?','나를 가장 잘 아는 분이 하나님이라면?'], apply:['숨기고 싶은 것이 있는데 하나님이 이미 아신다면?','완전히 알려지면서도 완전히 사랑받는다는 것이 어떤 의미인가?'] }, challenge:'하나님께 솔직한 기도 편지 한 문단 쓰기' },
       { week:8, title:'시편 150편 — 할렐루야', titleEn:'Psalm 150 — Hallelujah', ref:'시 150:1-6', verse:'호흡이 있는 자마다 여호와를 찬양할지어다',
-        questions:{ content:['찬양의 장소, 이유, 방법, 대상이 각각 무엇인가?','호흡이 있는 자마다라는 표현의 의미는?'], imagine:['모든 악기와 모든 사람이 함께 찬양하는 장면을 상상해보면?','하나님은 우리의 찬양을 들을 때 어떤 마음일까?'], apply:['우리 가족만의 찬양 방식이 있나?','일상에서 찬양이 자연스럽게 나오려면 어떻게 해야 할까?'] }, challenge:'오늘 가족이 함께 좋아하는 찬양 한 곡 부르기' },
+        questions:{ content:['찬양의 장소, 이유, 방법, 대상이 각각 무엇인가요?','호흡이 있는 자마다라는 표현의 의미는?'], imagine:['모든 악기와 모든 사람이 함께 찬양하는 장면을 상상해보면?','하나님은 우리의 찬양을 들을 때 어떤 마음일까?'], apply:['우리 가족만의 찬양 방식이 있나요?','일상에서 찬양이 자연스럽게 나오려면 어떻게 해야 할까?'] }, challenge:'오늘 가족이 함께 좋아하는 찬양 한 곡 부르기' },
     ]
-  },,
+  },
   {
     id: 'parables', title: '예수님의 비유', titleEn: "Jesus' Parables", icon: '🌱', weeks: 8, locked: true,
     desc: '예수님이 들려주신 이야기로 하나님 나라의 비밀을 함께 발견합니다.', descEn: 'Discover the secrets of God\'s Kingdom together through the stories Jesus told.',
     color: T.amber, bg: T.amberBg, border: T.amberBorder,
     items: [
       { week:1, title:'씨 뿌리는 자', titleEn:'The Sower', ref:'마 13:3-9', verse:'씨를 뿌리는 자가 뿌리러 나가서',
-        questions:{ content:['네 가지 밭의 차이가 무엇인가?','씨는 같은데 왜 결과가 다를까?'], imagine:['예수님이 이 비유를 처음 들려주실 때 청중의 반응은?','나는 어떤 밭인가?'], apply:['말씀이 내 마음에 잘 심겨지려면 어떤 조건이 필요할까?','가족 중 누가 어떤 밭인지 솔직하게 나눠볼까?'] }, challenge:'이번 주 말씀 묵상 시간 하루 5분 갖기' },
+        questions:{ content:['네 가지 밭의 차이가 무엇인가요?','씨는 같은데 왜 결과가 다를까?'], imagine:['예수님이 이 비유를 처음 들려주실 때 청중의 반응은?','나는 어떤 밭인가?'], apply:['말씀이 내 마음에 잘 심겨지려면 어떤 조건이 필요할까요?','가족 중 누가 어떤 밭인지 솔직하게 나눠볼까?'] }, challenge:'이번 주 말씀 묵상 시간 하루 5분 갖기' },
       { week:2, title:'탕자', titleEn:'The Prodigal Son', ref:'눅 15:11-24', verse:'아직도 거리가 먼데 아버지가 그를 보고 측은히 여겨',
-        questions:{ content:['탕자가 집을 떠난 이유와 돌아온 이유는?','아버지가 달려가 안은 장면이 의미하는 것은?'], imagine:['아버지가 매일 문 앞에서 기다렸다면 어떤 마음이었을까?','탕자가 집으로 걸어오는 동안 무슨 생각을 했을까?'], apply:['하나님 아버지의 마음을 오해한 적이 있나?','우리 가정에서 서로를 탕자처럼 품어준 경험이 있나?'] }, challenge:'"돌아와서 다행이야" 가족 중 한 명에게 말하기' },
+        questions:{ content:['탕자가 집을 떠난 이유와 돌아온 이유는?','아버지가 달려가 안은 장면이 의미하는 것은?'], imagine:['아버지가 매일 문 앞에서 기다렸다면 어떤 마음이었을까?','탕자가 집으로 걸어오는 동안 무슨 생각을 했을까?'], apply:['하나님 아버지의 마음을 오해한 적이 있나요?','우리 가정에서 서로를 탕자처럼 품어준 경험이 있나요?'] }, challenge:'"돌아와서 다행이야" 가족 중 한 명에게 말하기' },
       { week:3, title:'선한 사마리아인', titleEn:'The Good Samaritan', ref:'눅 10:30-37', verse:'어떤 사마리아 사람은 여행하는 중 거기 이르러 그를 보고 불쌍히 여겨',
-        questions:{ content:['제사장과 레위인이 지나친 이유가 뭘까?','사마리아인이 특별한 이유는 무엇인가?'], imagine:['다친 사람을 보고 지나칠 때 제사장의 마음은?','사마리아인의 마음속에는 무엇이 있었을까?'], apply:['오늘 내 주변의 "강도 만난 자"는 누구인가?','우리 가족이 이웃에게 선한 사마리아인이 될 기회는?'] }, challenge:'이번 주 도움이 필요한 누군가에게 먼저 손 내밀기' },
+        questions:{ content:['제사장과 레위인이 지나친 이유가 뭘까?','사마리아인이 특별한 이유는 무엇인가요?'], imagine:['다친 사람을 보고 지나칠 때 제사장의 마음은?','사마리아인의 마음속에는 무엇이 있었을까?'], apply:['오늘 내 주변의 "강도 만난 자"는 누구인가?','우리 가족이 이웃에게 선한 사마리아인이 될 기회는?'] }, challenge:'이번 주 도움이 필요한 누군가에게 먼저 손 내밀기' },
       { week:4, title:'잃은 양', titleEn:'The Lost Sheep', ref:'눅 15:4-7', verse:'잃은 양 한 마리를 찾아다니지 않겠느냐',
-        questions:{ content:['99마리를 두고 한 마리를 찾는 것이 합리적인가?','찾은 후 잔치를 여는 이유는?'], imagine:['잃어버린 양의 마음은 어떨까?','하나님이 나를 찾아다니신다면 어떤 느낌인가?'], apply:['내가 잃어버린 양처럼 느꼈던 순간이 있나?','우리 가족 중 관계가 멀어진 사람이 있다면 먼저 찾아갈 수 있을까?'] }, challenge:'오늘 연락이 끊긴 가족이나 친구에게 먼저 연락하기' },
+        questions:{ content:['99마리를 두고 한 마리를 찾는 것이 합리적인가?','찾은 후 잔치를 여는 이유는?'], imagine:['잃어버린 양의 마음은 어떨까?','하나님이 나를 찾아다니신다면 어떤 느낌인가?'], apply:['내가 잃어버린 양처럼 느꼈던 순간이 있나요?','우리 가족 중 관계가 멀어진 사람이 있다면 먼저 찾아갈 수 있을까?'] }, challenge:'오늘 연락이 끊긴 가족이나 친구에게 먼저 연락하기' },
       { week:5, title:'겨자씨와 누룩', titleEn:'Mustard Seed & Yeast', ref:'마 13:31-33', verse:'겨자씨 한 알을 가져다 밭에 심었더니',
-        questions:{ content:['겨자씨와 누룩의 공통점은 무엇인가?','작은 것에서 시작하는 이유가 있을까?'], imagine:['작은 겨자씨가 큰 나무가 되는 과정을 상상해보면?','하나님 나라가 우리 안에서 자라는 것이 보이나?'], apply:['내 삶에서 작은 씨앗 같은 것이 있다면?','우리 가정예배도 겨자씨처럼 자랄 수 있을까?'] }, challenge:'가정예배를 계속하기 위한 결단 한 가지 나누기' },
+        questions:{ content:['겨자씨와 누룩의 공통점은 무엇인가요?','작은 것에서 시작하는 이유가 있을까?'], imagine:['작은 겨자씨가 큰 나무가 되는 과정을 상상해보면?','하나님 나라가 우리 안에서 자라는 것이 보이나?'], apply:['내 삶에서 작은 씨앗 같은 것이 있다면?','우리 가정예배도 겨자씨처럼 자랄 수 있을까?'] }, challenge:'가정예배를 계속하기 위한 결단 한 가지 나누기' },
       { week:6, title:'열 처녀', titleEn:'The Ten Virgins', ref:'마 25:1-13', verse:'그들이 예비하는 동안에 신랑이 오더니',
-        questions:{ content:['슬기로운 다섯과 미련한 다섯의 차이는 무엇인가?','기름을 나눠주지 못한 이유는 무엇인가?'], imagine:['기름이 다 된 것을 발견했을 때 다섯 처녀의 마음은?','신랑을 기다리는 기쁨과 긴장감이 어떤 것일까?'], apply:['내 신앙생활에서 준비되어 있지 않은 부분이 있다면?','매일의 작은 준비가 왜 중요한지 나눠볼까?'] }, challenge:'이번 주 매일 짧은 기도로 하루 시작하기' },
+        questions:{ content:['슬기로운 다섯과 미련한 다섯의 차이는 무엇인가요?','기름을 나눠주지 못한 이유는 무엇인가요?'], imagine:['기름이 다 된 것을 발견했을 때 다섯 처녀의 마음은?','신랑을 기다리는 기쁨과 긴장감이 어떤 것일까?'], apply:['내 신앙생활에서 준비되어 있지 않은 부분이 있다면?','매일의 작은 준비가 왜 중요한지 나눠볼까?'] }, challenge:'이번 주 매일 짧은 기도로 하루 시작하기' },
       { week:7, title:'포도원 일꾼', titleEn:'Workers in the Vineyard', ref:'마 20:1-16', verse:'나중 온 이 사람들에게도 처음과 같이 주노니',
-        questions:{ content:['주인이 늦게 온 일꾼에게도 같은 삯을 준 이유는?','먼저 온 일꾼이 불평한 것이 이해되나?'], imagine:['하루 종일 일한 일꾼과 한 시간 일한 일꾼의 마음은?','포도원 주인이 되어보면 어떤 마음일까?'], apply:['하나님의 은혜가 공평하지 않다고 느낀 적이 있나?','우리 가족 안에서 서로를 비교하는 경향이 있나?'] }, challenge:'가족 중 한 명에게 "수고했어" 먼저 말하기' },
+        questions:{ content:['주인이 늦게 온 일꾼에게도 같은 삯을 준 이유는?','먼저 온 일꾼이 불평한 것이 이해되나?'], imagine:['하루 종일 일한 일꾼과 한 시간 일한 일꾼의 마음은?','포도원 주인이 되어보면 어떤 마음일까?'], apply:['하나님의 은혜가 공평하지 않다고 느낀 적이 있나요?','우리 가족 안에서 서로를 비교하는 경향이 있나요?'] }, challenge:'가족 중 한 명에게 "수고했어" 먼저 말하기' },
       { week:8, title:'달란트', titleEn:'The Talents', ref:'마 25:14-30', verse:'잘하였도다 착하고 충성된 종아',
         questions:{ content:['세 종이 받은 달란트가 다른 이유는?','한 달란트 받은 종이 땅에 묻은 이유는?'], imagine:['주인이 돌아왔을 때 각 종의 마음은?','내가 받은 달란트는 무엇일까?'], apply:['내가 땅에 묻어두고 있는 달란트가 있다면?','가족이 서로의 달란트를 발견해주는 시간을 갖는다면?'] }, challenge:'가족이 서로의 달란트 하나씩 말해주기' },
     ]
-  },,
+  },
   {
     id: 'jesus_life', title: '예수님 일생', titleEn: 'Life of Jesus', icon: '✝️', weeks: 12, locked: true,
     desc: '예수님의 탄생부터 부활까지 함께 따라가며 복음의 깊이를 경험합니다.', descEn: 'Experience the depth of the Gospel by following Jesus from birth to resurrection.',
@@ -1097,23 +1291,23 @@ const SERIES_DB = [
       { week:4, title:'첫 제자들', titleEn:'The First Disciples', ref:'마 4:18-22', verse:'나를 따라오라 내가 너희를 사람을 낚는 어부가 되게 하리라',
         questions:{ content:['베드로와 안드레가 즉시 따라간 이유가 뭘까?','사람을 낚는 어부라는 표현의 의미는?'], imagine:['그물을 던지다가 예수님의 목소리를 들었을 때 어떤 느낌이었을까?','배와 아버지를 두고 따라가는 야고보와 요한의 마음은?'], apply:['예수님이 나를 부르신다면 지금 내가 두고 가야 할 것은?','우리 가정이 함께 예수님을 따르는 모습이 어떨지 그려봐요.'] }, challenge:'오늘 예수님을 따르는 한 가지 결단 나누기' },
       { week:5, title:'산상수훈 — 팔복', titleEn:'Sermon on the Mount', ref:'마 5:3-10', verse:'심령이 가난한 자는 복이 있나니 천국이 그들의 것임이요',
-        questions:{ content:['팔복의 8가지가 우리의 상식과 어떻게 다른가요?','슬퍼하는 자, 온유한 자가 복 있는 이유는?'], imagine:['산 위에서 이 말씀을 듣는 군중의 반응은?','예수님이 이 말씀을 하실 때 어떤 표정이었을까?'], apply:['내 삶에서 세상의 복과 예수님의 복이 충돌하는 순간은?','팔복 중 나에게 가장 도전이 되는 것은 무엇인가?'] }, challenge:'팔복 중 한 가지를 이번 주 실천해보기' },
+        questions:{ content:['팔복의 8가지가 우리의 상식과 어떻게 다른가요?','슬퍼하는 자, 온유한 자가 복 있는 이유는?'], imagine:['산 위에서 이 말씀을 듣는 군중의 반응은?','예수님이 이 말씀을 하실 때 어떤 표정이었을까?'], apply:['내 삶에서 세상의 복과 예수님의 복이 충돌하는 순간은?','팔복 중 나에게 가장 도전이 되는 것은 무엇인가요?'] }, challenge:'팔복 중 한 가지를 이번 주 실천해보기' },
       { week:6, title:'오병이어', titleEn:'Feeding the 5000', ref:'요 6:5-13', verse:'예수께서 떡을 가져 축사하신 후에 앉아 있는 자들에게 나눠 주시고',
         questions:{ content:['소년의 도시락이 어떻게 5000명을 먹였을까?','남은 12바구니의 의미는?'], imagine:['소년이 도시락을 건네주는 장면을 상상해보면?','먹고 배부른 후 사람들의 표정은?'], apply:['내가 가진 작은 것을 하나님께 드린다면 어떤 일이 일어날까?','우리 가족이 가진 작은 것들로 나눌 수 있는 것은?'] }, challenge:'오늘 가진 것 중 하나를 나눠주기' },
       { week:7, title:'물 위를 걷다', titleEn:'Walking on Water', ref:'마 14:28-32', verse:'주여 만일 주님이시거든 나를 명하사 물 위로 오라 하소서',
-        questions:{ content:['베드로가 물 위로 걸을 수 있었던 이유와 빠진 이유는?','예수님이 즉시 손을 잡으신 의미는?'], imagine:['파도를 보며 무서워지는 베드로의 마음은?','손을 뻗어 잡으시는 예수님의 표정은?'], apply:['믿음으로 시작했다가 두려움에 빠진 경험이 있나?','예수님의 손을 잡는다는 것이 내 삶에서 어떤 의미인가?'] }, challenge:'두려운 것 하나를 예수님께 맡기는 기도하기' },
+        questions:{ content:['베드로가 물 위로 걸을 수 있었던 이유와 빠진 이유는?','예수님이 즉시 손을 잡으신 의미는?'], imagine:['파도를 보며 무서워지는 베드로의 마음은?','손을 뻗어 잡으시는 예수님의 표정은?'], apply:['믿음으로 시작했다가 두려움에 빠진 경험이 있나요?','예수님의 손을 잡는다는 것이 내 삶에서 어떤 의미인가?'] }, challenge:'두려운 것 하나를 예수님께 맡기는 기도하기' },
       { week:8, title:'변화산', titleEn:'The Transfiguration', ref:'마 17:1-5', verse:'이는 내 사랑하는 아들이요 내 기뻐하는 자니 너희는 그의 말을 들으라',
-        questions:{ content:['변화산에서 일어난 일들을 순서대로 나열해볼까?','엘리야와 모세가 등장한 이유는?'], imagine:['갑자기 예수님이 변화되는 것을 본 제자들의 반응은?','하나님의 음성을 직접 들었을 때 어떤 기분이었을까?'], apply:['예수님이 누구인지 더 분명하게 알게 된 순간이 있나?','그 말씀을 들으라는 명령이 내게 어떤 의미인가?'] }, challenge:'이번 주 말씀을 듣고 순종하는 경험 나누기' },
+        questions:{ content:['변화산에서 일어난 일들을 순서대로 나열해볼까?','엘리야와 모세가 등장한 이유는?'], imagine:['갑자기 예수님이 변화되는 것을 본 제자들의 반응은?','하나님의 음성을 직접 들었을 때 어떤 기분이었을까?'], apply:['예수님이 누구인지 더 분명하게 알게 된 순간이 있나요?','그 말씀을 들으라는 명령이 내게 어떤 의미인가?'] }, challenge:'이번 주 말씀을 듣고 순종하는 경험 나누기' },
       { week:9, title:'예루살렘 입성', titleEn:'The Triumphal Entry', ref:'마 21:1-11', verse:'호산나 다윗의 자손이여 찬송하리로다',
         questions:{ content:['왜 예수님은 나귀를 타고 입성하셨을까?','군중이 환호한 이유와 그 며칠 후 외친 것의 차이는?'], imagine:['나귀를 타고 예루살렘에 들어가는 예수님의 마음은?','겉옷과 종려나무를 깔며 환호하는 군중을 보시는 예수님은?'], apply:['믿음이 열정에서 배신으로 바뀌는 이유가 뭘까?','내 신앙이 감정에 의존하지 않으려면 어떻게 해야 할까?'] }, challenge:'조용히 예수님을 예배하는 시간 5분 갖기' },
       { week:10, title:'최후의 만찬', titleEn:'The Last Supper', ref:'눅 22:14-20', verse:'이것은 너희를 위하여 주는 내 몸이라',
         questions:{ content:['예수님이 마지막 식사에서 하신 행동들은?','이것을 행하여 나를 기념하라는 뜻은?'], imagine:['제자들과 마지막 식사를 하는 예수님의 마음은?','빵과 포도주를 나누는 제자들의 표정은?'], apply:['가족이 함께 식사하는 것이 어떤 의미를 가질 수 있을까?','우리 가정예배의 식사가 성만찬과 연결된다면?'] }, challenge:'오늘 식사를 감사로 시작하며 예수님을 기억하기' },
       { week:11, title:'십자가', titleEn:'The Cross', ref:'요 19:28-30', verse:'다 이루었다 하시고 머리를 숙이니 영혼이 떠나가시니라',
-        questions:{ content:['다 이루었다는 말의 의미가 무엇인가?','예수님이 십자가에서 마지막으로 하신 말씀들은?'], imagine:['십자가 아래에 있던 마리아의 마음은?','예수님의 마지막 순간을 제자들은 어떻게 기억했을까?'], apply:['십자가의 의미가 나에게 얼마나 현실감 있게 다가오나?','다 이루었다는 말이 내 죄와 연결된다면?'] }, challenge:'십자가 앞에 조용히 서는 묵상 시간 갖기' },
+        questions:{ content:['다 이루었다는 말의 의미가 무엇인가요?','예수님이 십자가에서 마지막으로 하신 말씀들은?'], imagine:['십자가 아래에 있던 마리아의 마음은?','예수님의 마지막 순간을 제자들은 어떻게 기억했을까?'], apply:['십자가의 의미가 나에게 얼마나 현실감 있게 다가오나?','다 이루었다는 말이 내 죄와 연결된다면?'] }, challenge:'십자가 앞에 조용히 서는 묵상 시간 갖기' },
       { week:12, title:'부활', titleEn:'The Resurrection', ref:'요 20:1-18', verse:'예수께서 이르시되 마리아야 하시거늘',
         questions:{ content:['빈 무덤을 발견했을 때 각자의 반응이 어떻게 달랐나?','예수님이 마리아를 이름으로 부르신 의미는?'], imagine:['무덤이 비어있는 것을 발견했을 때 마리아의 마음은?','"마리아야" 한 마디에 눈물 흘리는 마리아를 상상해보면?'], apply:['예수님이 나를 이름으로 아신다는 것이 어떤 의미인가?','부활이 오늘 내 삶에 어떤 차이를 만드나?'] }, challenge:'내 이름 앞에 "부활의 주님이 아신다" 말하며 하루 시작하기' },
     ]
-  },,
+  },
   {
     id: 'love_chapter', title: '사랑장 (고전 13장)', titleEn: 'Love Chapter (1 Cor 13)', icon: '❤️', weeks: 6, locked: true,
     desc: '고린도전서 13장을 절별로 깊이 묵상하며 사랑의 본질을 가족과 나눕니다.', descEn: 'Meditate verse by verse through 1 Corinthians 13 and discover the essence of love together as a family.',
@@ -1126,14 +1320,14 @@ const SERIES_DB = [
       { week:3, title:'사랑은 자랑하지 않고', titleEn:'Love Does Not Boast', ref:'고전 13:5하-6', verse:'사랑은 자기의 유익을 구하지 아니하며 성내지 아니하며',
         questions:{ content:['자기 유익을 구하지 않는다는 것이 어떤 행동인가?','성내지 않고 악한 것을 생각하지 않는 것이 가능한가요?'], imagine:['자기 유익을 구하지 않는 부모의 하루는?','성내지 않고 공감하는 대화가 어떤 모습일까?'], apply:['내가 자주 성내는 상황이 있다면?','가족에게 내 유익보다 그들의 유익을 구하는 방법은?'] }, challenge:'오늘 가족 중 한 명의 유익을 먼저 생각하기' },
       { week:4, title:'모든 것을 견디는 사랑', titleEn:'Love Bears All Things', ref:'고전 13:7', verse:'모든 것을 참으며 모든 것을 믿으며 모든 것을 바라며 모든 것을 견디느니라',
-        questions:{ content:['네 가지 "모든 것"이 무엇인가?','참음과 견딤의 차이가 있을까?'], imagine:['"모든 것을 믿는다"는 신뢰가 가족 사이에 있다면 어떤 모습일까?','예수님이 우리에게 모든 것을 바라신다면?'], apply:['가족에 대한 희망을 포기하고 싶었던 순간이 있나?','모든 것을 견디는 사랑이 내 가정에 있나?'] }, challenge:'포기하고 싶었던 가족에 대한 소망을 기도로 드리기' },
+        questions:{ content:['네 가지 "모든 것"이 무엇인가요?','참음과 견딤의 차이가 있을까?'], imagine:['"모든 것을 믿는다"는 신뢰가 가족 사이에 있다면 어떤 모습일까?','예수님이 우리에게 모든 것을 바라신다면?'], apply:['가족에 대한 희망을 포기하고 싶었던 순간이 있나요?','모든 것을 견디는 사랑이 내 가정에 있나요?'] }, challenge:'포기하고 싶었던 가족에 대한 소망을 기도로 드리기' },
       { week:5, title:'사랑은 없어지지 않는다', titleEn:'Love Never Fails', ref:'고전 13:8-10', verse:'사랑은 언제까지나 떨어지지 아니하되',
-        questions:{ content:['예언, 방언, 지식이 없어지는 이유는?','온전한 것이 올 때 부분적인 것이 폐한다는 뜻은?'], imagine:['영원히 없어지지 않는 사랑이 있다면 어떤 느낌일까?','하나님의 사랑이 "언제까지나" 떨어지지 않는다는 것이?'], apply:['변하지 않는 것에 기반한 삶을 살고 있나?','가정에서 사랑이 사라지지 않으려면 무엇이 필요할까?'] }, challenge:'가족에게 변하지 않는 사랑을 표현하는 편지 한 줄 쓰기' },
+        questions:{ content:['예언, 방언, 지식이 없어지는 이유는?','온전한 것이 올 때 부분적인 것이 폐한다는 뜻은?'], imagine:['영원히 없어지지 않는 사랑이 있다면 어떤 느낌일까?','하나님의 사랑이 "언제까지나" 떨어지지 않는다는 것이?'], apply:['변하지 않는 것에 기반한 삶을 살고 있나요?','가정에서 사랑이 사라지지 않으려면 무엇이 필요할까요?'] }, challenge:'가족에게 변하지 않는 사랑을 표현하는 편지 한 줄 쓰기' },
       { week:6, title:'믿음 소망 사랑', titleEn:'Faith, Hope & Love', ref:'고전 13:13', verse:'그런즉 믿음, 소망, 사랑, 이 세 가지는 항상 있을 것인데 그 중의 제일은 사랑이라',
-        questions:{ content:['믿음, 소망, 사랑이 항상 있어야 하는 이유는?','왜 사랑이 제일인가?'], imagine:['믿음, 소망, 사랑이 충만한 가정의 모습을 그려본다면?','하나님이 이 세 가지를 우리에게 주실 때 어떤 마음이었을까?'], apply:['우리 가정에 믿음, 소망, 사랑이 얼마나 있나?','가정예배를 통해 이 세 가지가 자라고 있나?'] }, challenge:'가족이 함께 믿음, 소망, 사랑으로 서약하기' },
+        questions:{ content:['믿음, 소망, 사랑이 항상 있어야 하는 이유는?','왜 사랑이 제일인가?'], imagine:['믿음, 소망, 사랑이 충만한 가정의 모습을 그려본다면?','하나님이 이 세 가지를 우리에게 주실 때 어떤 마음이었을까?'], apply:['우리 가정에 믿음, 소망, 사랑이 얼마나 있나요?','가정예배를 통해 이 세 가지가 자라고 있나요?'] }, challenge:'가족이 함께 믿음, 소망, 사랑으로 서약하기' },
     ]
   },
-];
+]
 
 const DIAGNOSES = [
   { id:'new',       icon:'🌱', label:'가정예배를 처음 시작하는 가정',      labelEn:'Just Starting Family Worship',      sub:'어디서 시작해야 할지 막막합니다',       subEn:"Not sure where to begin",
@@ -1348,47 +1542,29 @@ export default function App() {
   };
 
   const handleFeedbackSubmit = async () => {
-    // ① 버튼 클릭 확인용 (나중에 제거)
-    console.log('[피드백] 버튼 클릭됨, msg:', feedbackMsg, 'rating:', feedbackRating, 'loading:', feedbackLoading);
-    if(feedbackLoading) { alert('이미 전송 중이에요. 잠시 기다려 주세요.'); return; }
-    if(!feedbackMsg.trim() && feedbackRating === 0) {
-      alert('메시지를 입력하거나 별점을 선택해 주세요.');
-      return;
-    }
+    if(feedbackLoading) return;
+    if(!feedbackMsg.trim() && feedbackRating === 0) return;
     setFeedbackLoading(true);
     try {
-      const payload = {
-        service_id:  'service_davar',
-        template_id: 'template_z5j7lqm',
-        user_id:     'tgez3Ojai9wvx9nDH',
-        template_params: {
-          name:          feedbackName || '익명',
-          rating:        feedbackRating ? '⭐'.repeat(feedbackRating) : '없음',
-          message:       feedbackMsg || '(내용 없음)',
-          worship_house: worshipName || '이름 없음',
-          age_group:     ageGroup || '선택 안함',
-          lang:          lang,
-          source:        screen === 'debrief' ? '디브리핑' : '설정',
-        }
-      };
-      console.log('[피드백] 전송 시도:', payload);
-      const res = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+      await fetch('https://api.emailjs.com/api/v1.0/email/send', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
+        body: JSON.stringify({
+          service_id:  'service_davar',
+          template_id: 'template_z5j7lqm',
+          user_id:     'tgez3Ojai9wvx9nDH',
+          template_params: {
+            name:          feedbackName || '익명',
+            rating:        feedbackRating ? '⭐'.repeat(feedbackRating) : '없음',
+            message:       feedbackMsg || '(내용 없음)',
+            worship_house: worshipName || '이름 없음',
+            age_group:     ageGroup || '선택 안함',
+            lang:          lang,
+            source:        screen === 'debrief' ? '디브리핑' : '설정',
+          }
+        }),
       });
-      const txt = await res.text();
-      console.log('[피드백] 응답:', res.status, txt);
-      if (!res.ok) {
-        throw new Error('HTTP ' + res.status + ': ' + txt);
-      }
-    } catch(e) {
-      const msg = e && e.message ? e.message : String(e);
-      console.error('[피드백] 오류:', msg);
-      alert('전송 실패: ' + msg);
-      setFeedbackLoading(false);
-      return;
-    }
+    } catch(e) {}
     setFeedbackSent(true);
     setFeedbackMsg('');
     setFeedbackName('');
@@ -1435,7 +1611,7 @@ export default function App() {
               value={feedbackMsg} onChange={e=>setFeedbackMsg(e.target.value)} rows={4}
               style={{width:'100%', padding:'12px 14px', borderRadius:T.rSm, border:`1.5px solid ${T.border}`, fontSize:14, fontFamily:'inherit', outline:'none', marginBottom:16, resize:'none', lineHeight:1.7, boxSizing:'border-box'}}/>
 
-            <button onClick={handleFeedbackSubmit} style={{width:'100%', padding:'14px', background: feedbackMsg.trim() ? T.green : T.border, border:'none', borderRadius:T.rSm, color:'white', fontSize:15, fontWeight:700, cursor:'pointer', transition:'background 0.2s'}}>
+            <button onClick={handleFeedbackSubmit} disabled={!feedbackMsg.trim()} style={{width:'100%', padding:'14px', background: feedbackMsg.trim() ? T.green : T.border, border:'none', borderRadius:T.rSm, color:'white', fontSize:15, fontWeight:700, cursor:feedbackMsg.trim()?'pointer':'not-allowed', transition:'background 0.2s', opacity:feedbackMsg.trim()?1:0.6}}>
               {feedbackLoading ? t('전송 중...','Sending...') : t('피드백 보내기 →','Send Feedback →')}
             </button>
           </>
@@ -1612,7 +1788,7 @@ export default function App() {
                 <textarea placeholder={t('좋았던 점, 아쉬운 점, 바라는 점 모두 환영해요!','What worked? What did you wish was different?')}
                   value={feedbackMsg} onChange={e=>setFeedbackMsg(e.target.value)} rows={4}
                   style={{width:'100%', padding:'12px', borderRadius:10, border:'1.5px solid #E0E0E0', fontSize:14, fontFamily:'inherit', outline:'none', marginBottom:12, resize:'none', lineHeight:1.7, boxSizing:'border-box'}}/>
-                <button onClick={handleFeedbackSubmit} onTouchEnd={e=>{e.preventDefault();handleFeedbackSubmit();}} style={{width:'100%', padding:'14px', background:feedbackMsg.trim()?T.green:T.border, border:'none', borderRadius:10, color:'white', fontSize:15, fontWeight:700, cursor:'pointer'}}>
+                <button onClick={handleFeedbackSubmit} disabled={!feedbackMsg.trim()} style={{width:'100%', padding:'14px', background:feedbackMsg.trim()?T.green:T.border, border:'none', borderRadius:10, color:'white', fontSize:15, fontWeight:700, cursor:feedbackMsg.trim()?'pointer':'not-allowed', opacity:feedbackMsg.trim()?1:0.6}}>
                   {feedbackLoading?t('전송 중...','Sending...'):t('피드백 보내기 →','Send Feedback →')}
                 </button>
               </>
@@ -1790,13 +1966,13 @@ export default function App() {
             </span>
           </div>
         )}
-        {/* 우리 가정 진단하기 표지판 투명 버튼 */}
+        {/* 시작하기 표지판 투명 버튼 → 온보딩 카드 4장 시작 */}
         <button
-          onClick={()=>go('diag')}
+          onClick={()=>setOnboardingStep(0)}
           style={{
             position:'absolute', bottom:'10%', left:'3%',
             width:'44%', height:'14%',
-            background:'transparent', border:'none', cursor:'pointer', pointerEvents:'auto', pointerEvents:'auto',
+            background:'transparent', border:'none', cursor:'pointer', pointerEvents:'auto',
           }}
         />
       </div>
@@ -1961,38 +2137,13 @@ export default function App() {
   // ── ABOUT ──
   if(screen==='about') {
 
-    const FIVE = [
-      { num:'1', title:"설교가 아닌 '대화'입니다", titleEn:"Not a Sermon, but a 'Conversation'", tag:'Shema', desc:"쉐마의 실천인 '강론하라'의 히브리어 다바르(Davar)는 일방적인 훈계가 아니라 '이야기하고, 대화하며, 친밀하게 사귀고, 함께 살아내다'라는 깊은 의미를 갖습니다. 부모의 주입식 교육이 아닌, 질문과 토론을 통해 자녀가 스스로 하나님을 만나도록 곁에서 함께 동행하는 것입니다.", descEn:"The Hebrew word Davar (דָּבַר) — 'to speak' in the Shema — means far more than one-way instruction. It means to converse, to befriend, to walk alongside and live life together. This app helps parents accompany their children as they encounter God for themselves through questions and dialogue." },
-      { num:'2', title:"의식이 아닌 '삶의 예배'입니다", titleEn:"Not a Ritual, but 'Lifestyle Worship'", tag:'Lifestyle', desc:"주일예배 형식을 집으로 가져오는 것이 아닙니다. 가정에서 가족과 함께 먹고 마시며 대화하는 일상의 모든 시간이 예배입니다. 주일의 '모이는 교회'를 넘어, 가정이라는 '흩어지는 교회'에서 신앙을 삶으로 증명하는 법을 배웁니다.", descEn:"This is not about bringing Sunday service into your home. Every moment of eating, talking, and living together as a family is worship. Beyond the 'gathered church' on Sunday, we learn to embody faith in the 'scattered church' of the home." },
-      { num:'3', title:"추궁이 아닌 '존재 질문'입니다", titleEn:"Not Interrogation, but 'Being Questions'", tag:'Question', desc:"에덴의 아담에게, 광야의 하갈에게, 얍복강의 야곱에게, 로뎀나무의 엘리야에게 질문을 던지신 하나님은 존재 질문의 대가이십니다. 부모의 질문은 자녀의 행위(doing)를 정죄하는 도구가 아니라, 자녀가 하나님 앞에 단독자로 서서 자신의 정체성과 존재(being)를 깨닫도록 기다려 주는 배려와 격려가 되어야 합니다.", descEn:"God asked questions of Adam in Eden, Hagar in the wilderness, Jacob at the Jabbok, and Elijah under the broom tree. He is the master of being questions. A parent's questions should not condemn a child's doing, but patiently invite their being — helping them stand before God and discover their identity." },
-      { num:'4', title:"교사가 아닌 '부모'가 주도합니다", titleEn:"Not Teachers, but 'Parents' Lead", tag:'Empowerment', desc:"신앙 전수의 주체는 가정의 부모입니다.(신 6:7) 이 앱은 부모, 특히 아버지가 가정의 제사장으로서 자녀를 친밀하게 양육할 수 있도록 돕습니다. 특히 매주 짧은 축복으로 자녀가 영혼이 강한 아이로 자라고, 아버지의 영적 권위는 자연스럽게 회복된다.", descEn:"Parents — not Sunday school teachers — are the primary carriers of faith. (Deut. 6:7) This app helps parents, especially fathers, raise their children with intimacy as the family's spiritual leader. A short weekly blessing nurtures spiritually strong children and naturally restores a father's spiritual authority." },
-      { num:'5', title:"질문, 가정을 바꾸는 '게임 체인저'", titleEn:"Questions — the 'Game Changer' for Families", tag:'Game Changer', desc:"질문과 경청의 대화법인 하브루타는 하나님의 대화 방식이자 인류에게 주신 일반 은총입니다. 그래서 이 앱은 자녀에게 신앙을 전수하는 하브루타의 7가지 본질적 문화가 자연스레 가정에 스며들게 안내합니다.", descEn:"Havruta — the art of learning through questions and deep listening — is God's own way of communicating, a common grace given to all humanity. This app guides families to naturally embrace the 7 essential Havruta cultures that pass on faith to the next generation." },
-    ];
-
-    const SEVEN = [
-      [t('텍스트의 힘','The Power of the Text'), t('말씀이 능력이 되어 삶을 이끄는 권위 회복하기','Restoring the authority of the Word as a living power that guides life')],
-      [t('수직 문화','Vertical Culture'), t('부모의 신앙이 전수되는 세대간의 영적 질서 세우기','Building intergenerational spiritual order where parents pass on faith')],
-      [t('가정 문화','Home Culture'), t('가정이 신앙교육의 원초적 공간으로 자리잡기','Establishing the home as the primary space for faith formation')],
-      [t('질문의 문화','Culture of Questions'), t('질문을 통해 스스로 하나님을 만나는 루틴 만들기','Creating a rhythm of encountering God personally through questions')],
-      [t('시간의 문화','Culture of Time'), t('구별된 시간을 통해 안식과 거룩을 형성하기','Forming rest and holiness through set-apart time')],
-      [t('관계의 교육','Relational Education'), t('경쟁보다 서로 돕고 세워주는 하베르 우정 쌓기','Building Haver friendship that uplifts rather than competes')],
-      [t('정체성 교육','Identity Formation'), t('세상에 휩쓸리지 않는 영혼이 강한 아이로 자라기','Raising children with strong souls who are not swept away by the world')],
-    ];
-
-    const Header = () => (
-      <div>
-        <BackBtn onClick={()=>go('welcome')} lang={lang}/>
-        <Tag>{t('제작 의도','Why This App')}</Tag>
-        <h1 style={{fontSize:27, fontWeight:800, color:T.text, lineHeight:1.3, letterSpacing:'-0.03em', marginBottom:20}}>{t('"모든 가정을 대화가 흐르는 성소(聖所)로"','"Every Home, a Sacred Space Where Conversation Flows"')}</h1>
-      </div>
-    );
-
+    // ── About 본문 시작 ──
+    // (초기화 버튼은 아래 Footer에 유지)
     const Footer = () => (
       <div>
         <div style={{background:T.greenBg, border:`1px solid ${T.greenBorder}`, borderRadius:T.rSm, padding:'18px', marginBottom:18, textAlign:'center'}}>
-          <p style={{fontSize:18, color:T.green, fontWeight:700, lineHeight:1.9}}>{t('"지금, 이 앱과 함께 우리 가정을 대화의 천국으로 만들어보세요!"','"Start today — let this app help your family become a home where conversation flows freely."')}</p>
+          <p style={{fontSize:18, color:T.green, fontWeight:800, lineHeight:1.9}}>{t('부모의 언어가 아이의 미래를 만듭니다.','A parent\'s words shape a child\'s future.')}</p>
         </div>
-        <p style={{fontSize:16, color:T.hint, textAlign:'right', marginTop:8}}>{t('— 듀엣 좋은씨앗, 예배사역연구소 소장 이유정','— Justin Lee, Director, Worship Ministry Research Institute')}</p>
         <p style={{fontSize:15, color:T.hint, textAlign:'right', marginTop:4}}>{t('*이 앱은 이유정 저 《대화식 가정예배》를 기반으로 설계되었습니다.','*This app is based on Dialogic Family Worship by Justin Lee.')}</p>
         <div style={{marginTop:16}}><Btn onClick={()=>go('welcome')} outline color={T.green}>{t('← 처음으로 돌아가기','← Back to Home')}</Btn></div>
         {/* 초기화 — About 맨 아래 숨김 */}
@@ -2028,55 +2179,49 @@ export default function App() {
       </div>
     );
 
-    // ── A안: 전체 + 7가지 아코디언 ──
-    // ── About 본문 ──
     return wrap(
       <div>
-        <Header/>
-        <div style={{fontSize:15, color:T.text, lineHeight:1.75}}>
-          <p style={{marginBottom:16}}>{t('건강한 교회에서 목회하는 후배 목사가 부탁을 했습니다. "책은 좋은데, 성도들에게는 구체적인 툴이 필요해요." 그래서 대화식 예배 경험이 없는 가정들을 위해 이 앱을 만들었습니다.','A younger pastor leading a healthy church made a request: "The book is great, but our people need a concrete tool." So this app was created for families with no experience in dialogic worship.')}</p>
-          <p style={{marginBottom:20}}>{t('가정예배는 단순한 종교 의식이 아닙니다. 가장 치열한 삶의 예배 현장인 가정에서 대화와 나눔, 경청과 배려, 사귐과 소통 자체가 예배입니다.','Family worship is not a religious ritual. In the home — the most real arena of life — conversation, sharing, listening, caring, and simply being together is worship.')}</p>
-          <p style={{marginBottom:16, fontWeight:700, color:T.green}}>{t('이 앱은 5가지 가치 회복을 목표로 합니다.','This app aims to restore 5 core values.')}</p>
+        <BackBtn onClick={()=>go('welcome')} lang={lang}/>
+        <Tag>{t('이 앱을 만든 이유','Why DAVAR')}</Tag>
+        <h2 style={{fontSize:24, fontWeight:800, color:T.text, lineHeight:1.35, letterSpacing:'-0.02em', marginBottom:24}}>
+          {t('왜 DAVAR를 만들었을까요?', 'Why Did We Create DAVAR?')}
+        </h2>
 
-          {FIVE.map((item,i)=>(
-            <button key={i} onClick={()=>toggleItem(i)} style={{width:'100%', background:'none', border:'none', cursor:'pointer', textAlign:'left', padding:0, marginBottom:10}}>
-              <div style={{background: openItems[i] ? T.greenBg : T.cardAlt, border:`1.5px solid ${openItems[i] ? T.greenBorder : T.border}`, borderRadius:T.rSm, padding:'14px 16px', transition:'all 0.15s'}}>
-                <div style={{display:'flex', justifyContent:'space-between', alignItems:'center'}}>
-                  <div style={{display:'flex', alignItems:'center', gap:10}}>
-                    <div style={{width:24, height:24, borderRadius:'50%', background: openItems[i] ? T.green : T.border, display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0}}>
-                      <span style={{color:'#fff', fontSize:14, fontWeight:800}}>{item.num}</span>
-                    </div>
-                    <p style={{fontSize:17, fontWeight:800, color: openItems[i] ? T.green : T.text}}>{lang==='en' ? item.titleEn : item.title}</p>
-                  </div>
-                  <span style={{fontSize:15, color:T.hint}}>{openItems[i] ? '▲' : '▼'}</span>
-                </div>
-                {openItems[i] && (
-                  <div>
-                    <p style={{fontSize:15, color:T.text, lineHeight:1.75, marginTop:10, paddingLeft:34}}>{lang==='en' ? item.descEn : item.desc}</p>
-                    {i === 4 && (
-                      <div style={{marginTop:12, paddingLeft:34}}>
-                        <button onClick={(e)=>{e.stopPropagation(); toggleItem('seven');}} style={{background:'none', border:`1px solid ${T.greenBorder}`, borderRadius:T.rSm, padding:'8px 14px', fontSize:15, fontWeight:700, color:T.green, cursor:'pointer', width:'100%', textAlign:'left'}}>
-                          7가지 본질적 문화 {openItems['seven'] ? '▲' : '▼'}
-                        </button>
-                        {openItems['seven'] && (
-                          <div style={{marginTop:8}}>
-                            {SEVEN.map(([k,v],si)=>(
-                              <div key={si} style={{display:'flex', gap:8, paddingBottom:7, marginBottom:7, borderBottom: si<6 ? `1px solid ${T.greenBorder}` : 'none'}}>
-                                <span style={{fontSize:16, fontWeight:700, color:T.green, flexShrink:0}}>· {k}:</span>
-                                <span style={{fontSize:16, color:T.text, lineHeight:1.85}}>{v}</span>
-                              </div>
-                            ))}
-                            <p style={{fontSize:15, color:T.sub, marginTop:8}}>{t('*추천도서: 이성준 저 《리얼 하브루타》','*Recommended: Real Havruta by Lee Sung-jun')}</p>
-                          </div>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                )}
-              </div>
-            </button>
-          ))}
+        {/* 섹션 1 */}
+        <div style={{marginBottom:28}}>
+          <p style={{fontSize:16, color:T.text, lineHeight:1.85, marginBottom:10, fontWeight:700}}>{t('부모의 사랑은 충분합니다.', 'Parents love their children deeply.')}</p>
+          <p style={{fontSize:16, color:T.text, lineHeight:1.85, marginBottom:10}}>{t('하지만 대화는 배운 적이 없습니다.', 'But most of us were never taught how to talk with them.')}</p>
+          <p style={{fontSize:16, color:T.text, lineHeight:1.85, marginBottom:10}}>{t('모든 부모는 아이를 사랑합니다.', 'Every parent loves their child.')}</p>
+          <p style={{fontSize:16, color:T.text, lineHeight:1.85, marginBottom:10}}>{t('하지만 사랑한다고 해서 대화가 통하는 것은 아닙니다.', 'But love alone doesn\'t always open the door to real conversation.')}</p>
+          <p style={{fontSize:16, color:T.text, lineHeight:1.85, marginBottom:10}}>{t('우리는 바쁜 일상 속에서 질문보다 지시를, 경청보다 훈계를, 대화보다 정답을 말할 때가 많습니다.', 'In our busy lives, we often give instructions instead of asking questions, lecture instead of listen, and hand out answers instead of having conversations.')}</p>
+          <p style={{fontSize:16, color:T.text, lineHeight:1.85, marginBottom:10}}>{t('그 결과 부모도 지치고, 아이는 마음의 문을 닫아갑니다.', 'The result? Parents burn out. And children slowly close their hearts.')}</p>
+          <p style={{fontSize:16, color:T.green, lineHeight:1.85, fontWeight:700}}>{t('DAVAR는 바로 그 순간을 바꾸기 위해 시작되었습니다.', 'DAVAR was created to change that moment.')}</p>
         </div>
+
+        <div style={{height:1, background:T.border, marginBottom:28}}/>
+
+        {/* 섹션 2 */}
+        <div style={{marginBottom:28}}>
+          <p style={{fontSize:16, color:T.text, lineHeight:1.85, marginBottom:10}}>{t('좋은 부모는 답을 빨리 말하는 사람이 아닙니다.', 'A good parent isn\'t one who always has the right answer.')}</p>
+          <p style={{fontSize:16, color:T.text, lineHeight:1.85, marginBottom:10}}>{t('좋은 부모는 아이가 스스로 답을 발견하도록 질문하고 기다려줍니다.', 'A good parent asks questions and waits — letting the child find their own answer.')}</p>
+          <p style={{fontSize:16, color:T.text, lineHeight:1.85, marginBottom:10}}>{t('부모의 작은 질문 하나가 아이의 생각을 키우고,', 'One small question from a parent grows a child\'s thinking.')}</p>
+          <p style={{fontSize:16, color:T.text, lineHeight:1.85, marginBottom:10}}>{t('따뜻한 경청 하나가 아이의 자존감을 세우며,', 'One moment of warm listening builds a child\'s self-worth.')}</p>
+          <p style={{fontSize:16, color:T.text, lineHeight:1.85, marginBottom:10}}>{t('매일 반복되는 짧은 대화가 가족의 미래를 바꿉니다.', 'And short, daily conversations change a family\'s future.')}</p>
+          <p style={{fontSize:16, color:T.green, lineHeight:1.85, fontWeight:700}}>{t('DAVAR는 부모와 자녀의 친밀한 사귐과 건강한 대화를 돕는 플랫폼입니다.', 'DAVAR is a platform that helps parents and children build genuine closeness through healthy conversation.')}</p>
+        </div>
+
+        <div style={{height:1, background:T.border, marginBottom:28}}/>
+
+        {/* 섹션 3 */}
+        <div style={{marginBottom:28}}>
+          <p style={{fontSize:16, color:T.text, lineHeight:1.85, marginBottom:10}}>{t('하나님도 질문으로 사람을 만나셨어요.', 'Even God meets people through questions.')}</p>
+          <p style={{fontSize:16, color:T.text, lineHeight:1.85, marginBottom:10}}>{t('그분은 사람을 먼저 정죄하지 않으셨습니다.', 'He doesn\'t rush to judge.')}</p>
+          <p style={{fontSize:16, color:T.text, lineHeight:1.85, marginBottom:10}}>{t('선악과를 먹은 아담에게는 "네가 어디 있느냐?"라고 물으셨고,', 'He asked Adam after the fall, "Where are you?"')}</p>
+          <p style={{fontSize:16, color:T.text, lineHeight:1.85, marginBottom:10}}>{t('예수님은 자신을 부인한 베드로에게 "네가 나를 사랑하느냐?" 물으셨습니다.', 'And Jesus asked Peter, who had denied him, "Do you love me?"')}</p>
+          <p style={{fontSize:16, color:T.text, lineHeight:1.85, marginBottom:10}}>{t('질문은 상대를 존중하는 하나님의 언어입니다.', 'Questions are God\'s language of respect.')}</p>
+          <p style={{fontSize:16, color:T.green, lineHeight:1.85, fontWeight:700}}>{t('DAVAR는 그 질문의 정신을 오늘 부모와 자녀의 일상 속으로 이어가고자 합니다.', 'DAVAR carries that spirit of questions into the everyday moments between parents and children.')}</p>
+        </div>
+
         <Footer/>
       </div>
     );
@@ -2087,7 +2232,7 @@ export default function App() {
     <div>
       <ProgressBar pct={20} color={T.green}/>
       <BackBtn onClick={()=>go('welcome')} lang={lang}/>
-      <Tag>{t('1단계 · 우리 가정 현실','Step 1 · Our Family Reality')}</Tag>
+      <Tag>{t('우리 가정 현실','Our Family Reality')}</Tag>
       <h2 style={{fontSize:27, fontWeight:800, color:T.text, lineHeight:1.3, letterSpacing:'-0.03em', marginBottom:4}}>{s_.diagTitle.split('\n')[0]}<br/>{s_.diagTitle.split('\n')[1]}</h2>
       <p style={{fontSize:16, color:T.sub, marginBottom:18, lineHeight:1.75}}>{s_.diagSub}</p>
       {DIAGNOSES.map(d => (
@@ -2116,7 +2261,7 @@ export default function App() {
     <div>
       <ProgressBar pct={40} color={T.green}/>
       <BackBtn onClick={()=>go('diag')} lang={lang}/>
-      <Tag>{t('2단계 · 우리 가정 구성','Step 2 · Family Makeup')}</Tag>
+      <Tag>{t('우리 가정 구성','Family Makeup')}</Tag>
       <h2 style={{fontSize:27, fontWeight:800, color:T.text, lineHeight:1.3, letterSpacing:'-0.03em', marginBottom:4}}>{t('자녀의',"Your Child's")}<br/>{t('연령대는?','Age Group?')}</h2>
       <p style={{fontSize:16, color:T.sub, marginBottom:12, lineHeight:1.75}}>
         {t('선택한 구성에 맞게','Questions and activities will be')}<strong style={{color:T.green}}>{t(' 질문과 활동이 자동으로 맞춤 표시',' automatically customized')}</strong>{t('된다.','')}
@@ -2166,7 +2311,7 @@ export default function App() {
     <div>
       <ProgressBar pct={60} color={T.green}/>
       <BackBtn onClick={()=>go('age')} lang={lang}/>
-      <Tag>{t('3단계 · 예배의 집 설계','Step 3 · Design Worship House')}</Tag>
+      <Tag>{t('예배의 집 설계','Design Worship House')}</Tag>
       <h2 style={{fontSize:27, fontWeight:800, color:T.text, lineHeight:1.3, letterSpacing:'-0.03em', marginBottom:4}}>{t('몇 개의 방을','How many rooms')}<br/>{t('열까?','will you open?')}</h2>
       <p style={{fontSize:16, color:T.sub, marginBottom:16, lineHeight:1.5}}>
         {t('4개의 방은 친구와의 만남과 비슷해요. 만나서 대화하고 공감하고 헤어져요. ','The 4 rooms are like meeting a friend — gather, talk, connect, and part ways. ')}
@@ -2220,7 +2365,7 @@ export default function App() {
     <div>
       <ProgressBar pct={75} color={T.green}/>
       <BackBtn onClick={()=>go('rooms')} lang={lang}/>
-      <Tag>{t('4단계 · 예배의 방 구성','Step 4 · Worship Room Setup')}</Tag>
+      <Tag>{t('예배의 방 구성','Worship Room Setup')}</Tag>
       <h2 style={{fontSize:27, fontWeight:800, color:T.text, lineHeight:1.3, letterSpacing:'-0.03em', marginBottom:4}}>{t('예배의 방','Decorate Your')}<br/>{t('꾸미기','Worship Rooms')}</h2>
       <p style={{fontSize:16, color:T.sub, marginBottom:16, lineHeight:1.5}}>{t('각 방에서 하고 싶은 것을 골라보세요.','Choose what you want to do in each room.')}<br/></p>
 
@@ -2291,7 +2436,7 @@ export default function App() {
           return (
             <div style={{background:T.amberBg, border:`1px solid ${T.amberBorder}`, borderRadius:T.rSm, padding:'12px 14px', marginBottom:16}}>
               <p style={{fontSize:15, color:T.amber, lineHeight:1.5}}>
-                💡 {t('연령대를 선택하지 않으셨어요. 각 방의 요소를 자유롭게 선택하시면 돼요. 나중에 2단계로 돌아가서 연령대를 선택하면 맞춤 코칭을 받을 수 있어요.','You haven\'t selected an age group. Feel free to choose any elements. You can go back to Step 2 to select an age group and receive personalized coaching.')}
+                💡 {t('연령대를 선택하지 않으셨어요. 각 방의 요소를 자유롭게 선택하시면 돼요. 나중에 가족 구성 화면으로 돌아가서 연령대를 선택하면 맞춤 코칭을 받을 수 있어.','You haven\'t selected an age group. Feel free to choose any elements. You can go back to the Family Makeup screen to select an age group and receive personalized coaching.')}
               </p>
             </div>
           );
@@ -2406,7 +2551,7 @@ export default function App() {
     <div>
       <ProgressBar pct={90} color={T.green}/>
       <BackBtn onClick={()=>go('elements')} lang={lang}/>
-      <Tag>{t('5단계 · 가족의 동의 구하기','Step 5 · Get Family Agreement')}</Tag>
+      <Tag>{t('가족의 동의 구하기','Get Family Agreement')}</Tag>
       <h2 style={{fontSize:27, fontWeight:800, color:T.text, lineHeight:1.3, letterSpacing:'-0.03em', marginBottom:4}}>{t('언제, 어디서','When and Where')}<br/>{t('예배할까?','Will You Worship?')}</h2>
       <Card style={{background:T.greenBg, boxShadow:'none', border:`1px solid ${T.greenBorder}`, marginBottom:16}}>
         <p style={{fontSize:15, color:T.sub, lineHeight:1.65}}>{t('우리 가정에 맞는 때와 장소가 가장 좋은 리듬입니다.','The time and place that fits your family is the best rhythm.')}<br/>{t('가족이 모두 동의할 때까지 기다립니다.','Wait until everyone agrees.')}{' '}<strong style={{color:T.green}}>{t('부부 또는 자녀의 의견을 서로 존중하는 것부터 가정예배의 시작입니다.','Respecting each other\'s opinions is where family worship begins.')}</strong></p>
@@ -2666,7 +2811,7 @@ export default function App() {
     ];
 
     // 요소 카드 렌더
-    const ElemCard = ({roomId, e, rs}) => {
+    const ElemCard = ({roomId, e, rs, activeSeries: elemActiveSeries}) => {
       const key = `${roomId}__${e.id}`;
       const isOpen = openElem === key;
 
@@ -2688,7 +2833,7 @@ export default function App() {
                 <div>
                   {/* 본문 표시 */}
                   <div style={{background:rs.bg, border:`1px solid ${rs.border}`, borderRadius:T.rSm, padding:'12px 14px', marginBottom:12}}>
-                    <p style={{fontSize:13, color:rs.color, fontWeight:700, marginBottom:4}}>{lang==='en' ? (activeSeries?.titleEn||activeSeries?.title) : activeSeries?.title} · {t('','Week ')}{activeItem.week} · {convertRef(activeItem.ref, lang)}</p>
+                    <p style={{fontSize:13, color:rs.color, fontWeight:700, marginBottom:4}}>{lang==='en' ? (elemActiveSeries?.titleEn||elemActiveSeries?.title) : elemActiveSeries?.title} · {t('','Week ')}{activeItem.week} · {convertRef(activeItem.ref, lang)}</p>
                     <p style={{fontSize:15, color:T.sub, lineHeight:1.75}}>{s_.wordRoomSeries}</p>
                   </div>
                   {/* 연령별 질문 또는 기본 질문 */}
@@ -2706,6 +2851,39 @@ export default function App() {
                       if(hasAgeQ) return aq[ag][type];
                       return activeItem.questions[type];
                     };
+                    // ── 부부 시리즈 전용 렌더링 ──
+                    if(elemActiveSeries?.type === 'couple') {
+                      const q1 = lang==='en' ? activeItem.q1En : activeItem.q1;
+                      const q2 = lang==='en' ? activeItem.q2En : activeItem.q2;
+                      const pledge = lang==='en' ? activeItem.pledgeEn : activeItem.pledge;
+                      return (
+                        <div>
+                          {/* 질문 1 */}
+                          <div style={{background:T.greenBg, border:`1px solid ${T.greenBorder}`, borderRadius:T.rSm, padding:'14px 16px', marginBottom:10}}>
+                            <p style={{fontSize:12, fontWeight:700, color:T.green, marginBottom:6, letterSpacing:'0.06em'}}>{t('💬 질문 1','💬 Question 1')}</p>
+                            <p style={{fontSize:16, color:T.text, lineHeight:1.8}}>{q1}</p>
+                          </div>
+                          {/* 질문 2 */}
+                          <div style={{background:T.greenBg, border:`1px solid ${T.greenBorder}`, borderRadius:T.rSm, padding:'14px 16px', marginBottom:10}}>
+                            <p style={{fontSize:12, fontWeight:700, color:T.green, marginBottom:6, letterSpacing:'0.06em'}}>{t('💬 질문 2','💬 Question 2')}</p>
+                            <p style={{fontSize:16, color:T.text, lineHeight:1.8}}>{q2}</p>
+                          </div>
+                          {/* 나의 챌린지 */}
+                          {pledge && (
+                            <div style={{background:'white', border:`1.5px solid ${T.greenBorder}`, borderRadius:T.rSm, padding:'14px 16px', marginBottom:4}}>
+                              <p style={{fontSize:12, fontWeight:700, color:T.green, marginBottom:6, letterSpacing:'0.06em'}}>{t('🌿 이번 주 나의 챌린지','🌿 My Challenge This Week')}</p>
+                              <p style={{fontSize:15, color:T.sub, lineHeight:1.8, marginBottom:10}}>{pledge}</p>
+                              <textarea
+                                value={debrief.coupleChallenge || ''}
+                                onChange={e=>setDebrief({...debrief, coupleChallenge:e.target.value})}
+                                placeholder={t('이번 주 나만의 챌린지를 직접 써보세요...','Write your personal challenge for this week...')}
+                                style={{width:'100%', minHeight:64, border:`1px solid ${T.greenBorder}`, borderRadius:T.rSm, padding:'10px 12px', fontSize:15, color:T.text, background:T.greenBg, outline:'none', fontFamily:'inherit', resize:'none', boxSizing:'border-box', lineHeight:1.7}}
+                              />
+                            </div>
+                          )}
+                        </div>
+                      );
+                    }
                     const hasOpener = activeItem.opener;
                     const openerText = lang==='en' ? (activeItem.openerEn || activeItem.opener) : activeItem.opener;
                     const contentQs = getQs('content') || [];
@@ -2764,7 +2942,8 @@ export default function App() {
                       </div>
                     );
                   })()}
-                  {/* 챌린지 — 빈칸, 가족이 직접 정하기 */}
+                  {/* 챌린지 — 커플 시리즈는 나의 챌린지 박스 제외, 일반 시리즈만 표시 */}
+                  {elemActiveSeries?.type !== 'couple' && (
                   <div style={{background:T.amberBg, border:`1.5px dashed ${T.amberBorder}`, borderRadius:T.rSm, padding:'12px 14px', marginTop:4}}>
                     <p style={{fontSize:15, fontWeight:700, color:T.amber, marginBottom:6}}>{t('🎯 이번 주 우리 가족 챌린지','🎯 Our Family Challenge This Week')}</p>
                     <p style={{fontSize:14, color:T.amber, marginBottom:8, opacity:0.8}}>{t('대화가 끝난 후, 가족이 함께 정해보세요.','After your conversation, decide together as a family.')}</p>
@@ -2772,6 +2951,7 @@ export default function App() {
                       placeholder={t('이번 주 우리 가족이 함께 실천할 한 가지를 적어보세요...','Write one thing your family will do together this week...')}
                       style={{width:'100%', minHeight:60, border:`1px solid ${T.amberBorder}`, borderRadius:T.rSm, padding:'8px 10px', fontSize:15, color:T.text, background:'white', outline:'none', fontFamily:'inherit', resize:'none', boxSizing:'border-box', lineHeight:1.6}}
                     /></div>
+                  )}
                 </div>
               ) : (
                 <div style={{textAlign:'center', padding:'12px 0'}}>
@@ -3026,10 +3206,10 @@ export default function App() {
                   <span style={{fontSize:22}}>🚪</span>
                   <p style={{fontSize:18, fontWeight:800, color:rs.color}}>{t('모임의 방','Gathering Room')}</p>
                 </div>
-                {elems.map(e => <ElemCard key={e.id} roomId='gather' e={e} rs={rs}/>)}
+                {elems.map(e => <ElemCard key={e.id} roomId='gather' e={e} rs={rs} activeSeries={activeSeries}/>)}
                 {elems.length === 0 && <p style={{fontSize:15, color:T.hint, padding:'8px 0'}}>{t('선택된 요소가 없습니다.','No elements selected.')}</p>}
               {/* 💡 질문 가이드 — 말씀의 방 하단 고정 */}
-                {elems.some(e => e.id === 'question') && (
+                {elems.some(e => e.id === 'question') && activeSeries?.type !== 'couple' && (
                   <button onClick={()=>setShowQGuide(true)}
                     style={{width:'100%', padding:'12px', background:rs.bg, border:`1.5px solid ${rs.border}`, borderRadius:T.rSm, fontSize:15, fontWeight:700, color:rs.color, cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center', gap:8, marginTop:4, boxSizing:'border-box'}}>
                     💡 {t('질문 가이드 보기','View Question Guide')}
@@ -3076,11 +3256,11 @@ export default function App() {
                     </div>
                   )}
                 </div>
-                {elems.map(e => <ElemCard key={e.id} roomId='word' e={e} rs={rs}/>)}
+                {elems.map(e => <ElemCard key={e.id} roomId='word' e={e} rs={rs} activeSeries={activeSeries}/>)}
 
             
               {/* 💡 질문 가이드 — 말씀의 방 하단 고정 */}
-                {elems.some(e => e.id === 'question') && (
+                {elems.some(e => e.id === 'question') && activeSeries?.type !== 'couple' && (
                   <button onClick={()=>setShowQGuide(true)}
                     style={{width:'100%', padding:'12px', background:rs.bg, border:`1.5px solid ${rs.border}`, borderRadius:T.rSm, fontSize:15, fontWeight:700, color:rs.color, cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center', gap:8, marginTop:4, boxSizing:'border-box'}}>
                     💡 {t('질문 가이드 보기','View Question Guide')}
@@ -3100,9 +3280,9 @@ export default function App() {
                   <span style={{fontSize:22}}>🙏</span>
                   <p style={{fontSize:18, fontWeight:800, color:rs.color}}>{t('반응의 방','Response Room')}</p>
                 </div>
-                {elems.map(e => <ElemCard key={e.id} roomId='response' e={e} rs={rs}/>)}
+                {elems.map(e => <ElemCard key={e.id} roomId='response' e={e} rs={rs} activeSeries={activeSeries}/>)}
               {/* 💡 질문 가이드 — 말씀의 방 하단 고정 */}
-                {elems.some(e => e.id === 'question') && (
+                {elems.some(e => e.id === 'question') && activeSeries?.type !== 'couple' && (
                   <button onClick={()=>setShowQGuide(true)}
                     style={{width:'100%', padding:'12px', background:rs.bg, border:`1.5px solid ${rs.border}`, borderRadius:T.rSm, fontSize:15, fontWeight:700, color:rs.color, cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center', gap:8, marginTop:4, boxSizing:'border-box'}}>
                     💡 {t('질문 가이드 보기','View Question Guide')}
@@ -3122,9 +3302,9 @@ export default function App() {
                   <span style={{fontSize:22}}>🌍</span>
                   <p style={{fontSize:18, fontWeight:800, color:rs.color}}>{t('보냄의 방','Sending Room')}</p>
                 </div>
-                {elems.map(e => <ElemCard key={e.id} roomId='send' e={e} rs={rs}/>)}
+                {elems.map(e => <ElemCard key={e.id} roomId='send' e={e} rs={rs} activeSeries={activeSeries}/>)}
               {/* 💡 질문 가이드 — 말씀의 방 하단 고정 */}
-                {elems.some(e => e.id === 'question') && (
+                {elems.some(e => e.id === 'question') && activeSeries?.type !== 'couple' && (
                   <button onClick={()=>setShowQGuide(true)}
                     style={{width:'100%', padding:'12px', background:rs.bg, border:`1.5px solid ${rs.border}`, borderRadius:T.rSm, fontSize:15, fontWeight:700, color:rs.color, cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center', gap:8, marginTop:4, boxSizing:'border-box'}}>
                     💡 {t('질문 가이드 보기','View Question Guide')}
@@ -3269,7 +3449,7 @@ export default function App() {
                 placeholder={t('짧게라도 괜찮아요 (선택사항)','Even a short note is welcome (optional)')}
                 value={feedbackMsg} onChange={e=>setFeedbackMsg(e.target.value)} rows={2}
                 style={{width:'100%', padding:'10px 12px', borderRadius:T.rSm, border:`1px solid ${T.border}`, fontSize:14, fontFamily:'inherit', outline:'none', marginBottom:10, resize:'none', lineHeight:1.7, boxSizing:'border-box', background:T.bg, color:T.text}}/>
-              <button onClick={handleFeedbackSubmit} onTouchEnd={e=>{e.preventDefault();handleFeedbackSubmit();}} style={{width:'100%', padding:'12px', background: (feedbackMsg.trim() || feedbackRating>0) ? T.green : T.border, border:'none', borderRadius:T.rSm, color:'white', fontSize:14, fontWeight:700, cursor:'pointer', transition:'background 0.2s'}}>
+              <button onClick={handleFeedbackSubmit} disabled={!feedbackMsg.trim() && feedbackRating===0} style={{width:'100%', padding:'12px', background: (feedbackMsg.trim() || feedbackRating>0) ? T.green : T.border, border:'none', borderRadius:T.rSm, color:'white', fontSize:14, fontWeight:700, cursor:(feedbackMsg.trim()||feedbackRating>0)?'pointer':'not-allowed', transition:'background 0.2s', opacity:(feedbackMsg.trim()||feedbackRating>0)?1:0.6}}>
                 {feedbackLoading ? t('전송 중...','Sending...') : t('피드백 보내기 →','Send Feedback →')}
               </button>
             </>
@@ -3372,6 +3552,30 @@ export default function App() {
               {!isLocked && isExpanded && (
                 <div style={{background:s.bg, border:`1px solid ${s.border}`, borderTop:'none', borderRadius:`0 0 ${T.r} ${T.r}`, padding:'12px 14px'}}>
                   <p style={{fontSize:15, color:s.color, fontWeight:700, marginBottom:10}}>{s_.seriesSub}</p>
+                  {s.type === 'couple' ? (
+                    <div>
+                      {s.stages && s.stages.map(stage => (
+                        <div key={stage.ko} style={{marginBottom:14}}>
+                          <div style={{display:'flex', alignItems:'center', gap:8, marginBottom:8}}>
+                            <div style={{flex:1, height:1, background:s.border}}/>
+                            <p style={{fontSize:12, fontWeight:700, color:s.color, letterSpacing:'0.05em', flexShrink:0}}>
+                              {lang==='en' ? stage.en : stage.ko}
+                            </p>
+                            <div style={{flex:1, height:1, background:s.border}}/>
+                          </div>
+                          <div style={{display:'grid', gridTemplateColumns:'repeat(5, 1fr)', gap:5}}>
+                            {s.items.filter(item => stage.weeks.includes(item.week)).map(item => (
+                              <button key={item.week} onClick={()=>setSeriesConfirmed({seriesId:s.id, week:item.week})}
+                                style={{padding:'8px 4px', background:'white', border:`1.5px solid ${s.border}`, borderRadius:T.rSm, cursor:'pointer', textAlign:'center'}}>
+                                <p style={{fontSize:15, fontWeight:800, color:s.color}}>{item.week}</p>
+                                <p style={{fontSize:11, color:T.sub, lineHeight:1.3, marginTop:2}}>{lang==='en' ? (item.titleEn||item.title).slice(0,7)+'…' : (item.title.length>4 ? item.title.slice(0,4)+'…' : item.title)}</p>
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
                   <div style={{display:'grid', gridTemplateColumns:'repeat(4, 1fr)', gap:6}}>
                     {s.items.map(item => (
                       <button key={item.week} onClick={()=>setSeriesConfirmed({seriesId:s.id, week:item.week})}
@@ -3381,6 +3585,7 @@ export default function App() {
                       </button>
                     ))}
                   </div>
+                  )}
                 </div>
               )}
             </div>
