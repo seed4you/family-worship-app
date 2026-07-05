@@ -41,15 +41,15 @@ const STRINGS = {
     aboutBtn: '이 앱을 만든 이유? →',
 
     // 온보딩
-    onbLabel1: '가정예배에 대한 오해',
-    onbTitle1: '"가정예배 = 설교 + 훈계 + 잔소리"',
-    onbBody1: '이건 하나님의 의도가 아니에요.\n수많은 MZ 세대가 상처입고, 교회를 떠난 케이스도 많아요.',
-    onbLabel2: '대화식 가정예배란?',
-    onbTitle2: '"가정예배 = 삶의 예배"',
-    onbBody2: '구약의 지상명령인 쉐마(שָׁמַע 신 6:4-9)에서, \'강론하다\'의 히브리어 다바르(דָּבַר 신 6:7)는 가르치는 것을 넘어, "말하고, 대화하고, 친구가 되고, 실재가 되게 한다"는 뜻입니다.\n\n가정예배는 자녀와 친구처럼 함께 걸으며, 일상의 대화와 친밀한 사귐 속에서 하나님의 말씀을 토론하며 함께 살아내는 삶의 예배입니다.',
-    onbLabel3: '왜 4개의 방이죠?',
-    onbTitle3: '"예배 = 하나님과의 만남"',
-    onbBody3: '함께 모이고 → 말씀을 나누고 → 말씀에 반응하고 → 세상에 보내는 4가지 \'예배의 방\'마다 하나님을 만날 수 있어요.(콘스탄스 체리, 예배학자)\n\n모든 가정은 각자의 상황과 형편에 맞게 \'예배의 방\'을 선택할 수 있어요. 사춘기 자녀와 대화가 단절된 가정은 마음이 열릴 때까지 모임만 수 개월 간 할 수도 있어요. 삶의 예배이기 때문에 가능한 일이죠. 각 방은 하나님과 가족이 더 깊이 만나도록 인도하는 여정이에요.',
+    onbLabel1: '',
+    onbTitle1: '가정예배는\n설교가 아니라 대화입니다.',
+    onbBody1: '하나님은 오늘도\n가족의 대화 속에서 일하십니다.',
+    onbLabel2: '',
+    onbTitle2: '좋은 부모는\n답을 빨리 말하는 부모가 아닙니다.',
+    onbBody2: '질문하고,\n기다려주고,\n함께 답을 찾아가는 부모입니다.',
+    onbLabel3: '',
+    onbTitle3: '우리 가족만의\n예배의 집을 만들어 보세요.',
+    onbBody3: 'DAVAR가\n가족의 상황에 맞는 예배와\n질문을 함께 코칭해 드립니다.',
     onbLabel4: '왜 질문이 중요하죠?',
     onbTitle4: '"완벽한 부모보다 질문하는 부모가 낫다"',
     onbBody4: '부모가 모든 답을 주려고\n어깨에 힘주고, 훈계하고, 잔소리하기보다\n목소리를 낮추고 질문으로 자녀 스스로\n성경과 인생의 답을 찾아가도록 도와줄 때\n\n자녀는 놀라운 속도로 성장하고\n하나님 앞에 단독자로 자신의 정체성(being)을 발견해가며\n신앙과 인생을 스스로 주도해 나갑니다.',
@@ -277,14 +277,14 @@ const STRINGS = {
     aboutBtn: 'Why This App? →',
 
     // Onboarding
-    onbLabel1: 'A Common Misunderstanding',
-    onbTitle1: '"Family Worship = Sermon + Lectures + Nagging"',
-    onbBody1: "This is not what God intended.\nMany young people have been hurt and even left the church because of this.",
-    onbLabel2: 'What is Dialogic Family Worship?',
-    onbTitle2: '"Family Worship = Lifestyle Worship"',
-    onbBody2: "In the Shema (שָׁמַע, Deut. 6:4-9)—the Great Commission of the Old Testament—the Hebrew word Davar (דָּבַר, Deut. 6:7) means more than just 'to teach.' It means \"to speak, to converse, to befriend, and to make real.\"\n\nFamily worship is lifestyle worship—walking with our children as friends, discussing and living out God's Word together in everyday conversation and intimate friendship.",
-    onbLabel3: 'Why 4 Rooms?',
-    onbTitle3: '"Worship = Meeting God"',
+    onbLabel1: '',
+    onbTitle1: "Family worship isn't a sermon.\nIt's a conversation.",
+    onbBody1: "God is at work\nright in the middle of\nyour family's conversations.",
+    onbLabel2: '',
+    onbTitle2: "A good parent isn't one\nwho always has the answer.",
+    onbBody2: "Ask questions,\nwait patiently,\nand walk toward the answers together.",
+    onbLabel3: '',
+    onbTitle3: "Build your family's\nvery own House of Worship.",
     onbBody3: "Gather together → Share the Word → Respond to the Word → Be sent into the world.\nIn each of the 4 'worship rooms,' you can meet God. (Constance Cherry, worship scholar)\n\nEvery family can choose rooms that fit their situation. A family with a disconnected teenager may spend months in just the Gathering Room until hearts open. This is possible because it is life worship.",
     onbLabel4: 'Why Does Asking Questions Matter?',
     onbTitle4: 'A Parent Who Asks Is Better Than a Perfect One',
@@ -1894,34 +1894,9 @@ export default function App() {
   if(screen==='welcome') {
 
     const ONBOARDING = [
-      {
-        img: CARD_IMG_1,
-        label: s_.onbLabel1,
-        title: s_.onbTitle1,
-        body: s_.onbBody1,
-        color: T.amber, bg: T.amberBg, border: T.amberBorder,
-      },
-      {
-        img: CARD_IMG_2,
-        label: s_.onbLabel2,
-        title: s_.onbTitle2,
-        body: s_.onbBody2,
-        color: T.green, bg: T.greenBg, border: T.greenBorder,
-      },
-      {
-        img: CARD_IMG_3,
-        label: s_.onbLabel3,
-        title: s_.onbTitle3,
-        body: s_.onbBody3,
-        color: T.blue, bg: T.blueBg, border: T.blueBorder,
-      },
-      {
-        img: CARD_IMG_4,
-        label: s_.onbLabel4,
-        title: s_.onbTitle4,
-        body: s_.onbBody4,
-        color: T.green, bg: T.greenBg, border: T.greenBorder,
-      },
+      { img: CARD_IMG_2, title: s_.onbTitle1, body: s_.onbBody1 },
+      { img: CARD_IMG_4, title: s_.onbTitle2, body: s_.onbBody2 },
+      { img: CARD_IMG_3, title: s_.onbTitle3, body: s_.onbBody3 },
     ];
 
     // 메인화면1 — 시작하기 표지판 클릭 → 온보딩
@@ -1983,7 +1958,7 @@ export default function App() {
       const card = ONBOARDING[onboardingStep];
       const isLast = onboardingStep === ONBOARDING.length - 1;
       return (
-        <div style={{minHeight:'100vh', background:card.bg, display:'flex', flexDirection:'column'}}>
+        <div style={{minHeight:'100vh', background:T.greenBg, display:'flex', flexDirection:'column'}}>
           <style>{`@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&display=swap');
         img {
           -webkit-touch-callout: none;
@@ -1999,31 +1974,28 @@ export default function App() {
         }`}</style>
           <div style={{display:'flex', justifyContent:'center', gap:8, padding:'24px 0 8px'}}>
             {ONBOARDING.map((_, i) => (
-              <div key={i} style={{width:i===onboardingStep?32:8, height:8, borderRadius:4, background:i===onboardingStep?card.color:'rgba(0,0,0,0.12)', transition:'all 0.3s'}}/>
+              <div key={i} style={{width:i===onboardingStep?32:8, height:8, borderRadius:4, background:i===onboardingStep?T.green:'rgba(0,100,0,0.15)', transition:'all 0.3s'}}/>
             ))}
           </div>
           <div style={{flex:1, display:'flex', alignItems:'center', justifyContent:'center', padding:'16px 32px'}}>
-            <img onContextMenu={(e)=>e.preventDefault()} draggable="false" src={card.img} alt="" style={{width:'100%', maxWidth:380, height:'auto', objectFit:'contain', display:'block', margin:'0 auto', filter:'drop-shadow(0 6px 16px rgba(0,0,0,0.12))'}}/>
+            <img onContextMenu={(e)=>e.preventDefault()} draggable="false" src={card.img} alt="" style={{width:'100%', maxWidth:380, height:'auto', objectFit:'contain', display:'block', margin:'0 auto', filter:'none'}}/>
           </div>
-          <div style={{background:'white', borderRadius:'28px 28px 0 0', padding:'28px 24px 40px', boxShadow:'0 -6px 32px rgba(0,0,0,0.08)'}}>
-            <div style={{display:'inline-flex', alignItems:'center', background:card.bg, border:`1.5px solid ${card.border}`, borderRadius:99, padding:'6px 16px', marginBottom:16}}>
-              <p style={{fontSize:16, color:card.color, fontWeight:700, letterSpacing:'0.06em'}}>{card.label}</p>
-            </div>
-            <p style={{fontFamily:"'Noto Serif KR', serif", fontSize:24, fontWeight:700, color:'#1a1a1a', lineHeight:1.55, marginBottom:16}}>{card.title}</p>
-            <p style={{fontSize:15, color:'#555', lineHeight:1.75, marginBottom:20, whiteSpace:'pre-line'}}>{card.body}</p>
+          <div style={{padding:'20px 28px 40px', textAlign:'center'}}>
+            <p style={{fontFamily:"'Noto Serif KR', serif", fontSize:26, fontWeight:700, color:'#1a3320', lineHeight:1.6, marginBottom:16, whiteSpace:'pre-line', letterSpacing:'0.01em'}}>{card.title}</p>
+            <p style={{fontSize:18, color:'#1a4030', lineHeight:1.9, marginBottom:28, whiteSpace:'pre-line'}}>{card.body}</p>
             {isLast ? (
               <button onClick={()=>{ setOnboardingDone(true); go('diag'); }}
-                style={{width:'100%', padding:'17px', background:card.color, border:'none', borderRadius:99, fontSize:18, color:'white', cursor:'pointer', fontWeight:700}}>
+                style={{width:'100%', padding:'17px', background:T.green, border:'none', borderRadius:99, fontSize:18, color:'white', cursor:'pointer', fontWeight:700}}>
                 {t('우리 가정 현실 진단하기 →','Diagnose Our Family →')}
               </button>
             ) : (
               <div style={{display:'flex', gap:10}}>
                 <button onClick={()=>setOnboardingDone(true)}
-                  style={{flex:1, padding:'16px', background:'none', border:'1.5px solid rgba(0,0,0,0.12)', borderRadius:99, fontSize:16, color:'#aaa', cursor:'pointer', fontWeight:600}}>
+                  style={{flex:1, padding:'16px', background:'none', border:`1.5px solid ${T.greenBorder}`, borderRadius:99, fontSize:16, color:T.green, cursor:'pointer', fontWeight:600}}>
                   {t('건너뛰기','Skip')}
                 </button>
                 <button onClick={()=>setOnboardingStep(s=>s+1)}
-                  style={{flex:2, padding:'16px', background:card.color, border:'none', borderRadius:99, fontSize:17, color:'white', cursor:'pointer', fontWeight:700}}>
+                  style={{flex:2, padding:'16px', background:T.green, border:'none', borderRadius:99, fontSize:17, color:'white', cursor:'pointer', fontWeight:700}}>
                   {t('다음 →','Next →')}
                 </button>
               </div>
