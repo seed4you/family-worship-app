@@ -1958,7 +1958,7 @@ export default function App() {
       const card = ONBOARDING[onboardingStep];
       const isLast = onboardingStep === ONBOARDING.length - 1;
       return (
-        <div style={{minHeight:'100vh', background:T.greenBg, display:'flex', flexDirection:'column'}}>
+        <div style={{height:'100dvh', minHeight:'100vh', background:T.greenBg, display:'flex', flexDirection:'column', overflow:'hidden'}}>
           <style>{`@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&display=swap');
         img {
           -webkit-touch-callout: none;
@@ -1972,34 +1972,40 @@ export default function App() {
           pointer-events: none;
           touch-action: none;
         }`}</style>
-          <div style={{display:'flex', justifyContent:'center', gap:8, padding:'24px 0 8px'}}>
+          <div style={{display:'flex', justifyContent:'center', gap:8, padding:'14px 0 6px', flexShrink:0}}>
             {ONBOARDING.map((_, i) => (
-              <div key={i} style={{width:i===onboardingStep?32:8, height:8, borderRadius:4, background:i===onboardingStep?T.green:'rgba(0,100,0,0.15)', transition:'all 0.3s'}}/>
+              <div key={i} style={{width:i===onboardingStep?28:8, height:7, borderRadius:4, background:i===onboardingStep?T.green:'rgba(0,100,0,0.15)', transition:'all 0.3s'}}/>
             ))}
           </div>
-          <div style={{flex:1, display:'flex', alignItems:'center', justifyContent:'center', padding:'16px 32px'}}>
-            <img onContextMenu={(e)=>e.preventDefault()} draggable="false" src={card.img} alt="" style={{width:'100%', maxWidth:380, height:'auto', objectFit:'contain', display:'block', margin:'0 auto', filter:'none'}}/>
+          <div style={{flex:1}}/>
+          <div style={{flexShrink:0, display:'flex', alignItems:'center', justifyContent:'center', padding:'0 24px'}}>
+            <img onContextMenu={(e)=>e.preventDefault()} draggable="false" src={card.img} alt="" style={{width:'100%', maxWidth:320, maxHeight:'36vh', height:'auto', objectFit:'contain', display:'block', margin:'0 auto', filter:'none'}}/>
           </div>
-          <div style={{padding:'20px 28px 40px', textAlign:'center'}}>
-            <p style={{fontFamily:"'Noto Serif KR', serif", fontSize:26, fontWeight:700, color:'#1a3320', lineHeight:1.6, marginBottom:16, whiteSpace:'pre-line', letterSpacing:'0.01em'}}>{card.title}</p>
-            <p style={{fontSize:18, color:'#1a4030', lineHeight:1.9, marginBottom:28, whiteSpace:'pre-line'}}>{card.body}</p>
+          <div style={{flexShrink:0, padding:'16px 24px 0', textAlign:'center'}}>
+            <p style={{fontFamily:"'Noto Serif KR', serif", fontSize:23, fontWeight:700, color:'#1a3320', lineHeight:1.5, marginBottom:16, whiteSpace:'pre-line', letterSpacing:'0.01em'}}>{card.title}</p>
+            <p style={{fontSize:17, color:'#1a4030', lineHeight:1.8, whiteSpace:'pre-line'}}>{card.body}</p>
+          </div>
+          <div style={{flex:1}}/>
+          <div style={{flexShrink:0, padding:'0 24px'}}>
+            <div style={{paddingBottom:'max(24px, env(safe-area-inset-bottom, 24px))', paddingTop:'16px'}}>
             {isLast ? (
               <button onClick={()=>{ setOnboardingDone(true); go('diag'); }}
-                style={{width:'100%', padding:'17px', background:T.green, border:'none', borderRadius:99, fontSize:18, color:'white', cursor:'pointer', fontWeight:700}}>
+                style={{width:'100%', padding:'14px', background:T.green, border:'none', borderRadius:99, fontSize:17, color:'white', cursor:'pointer', fontWeight:700}}>
                 {t('우리 가정 현실 진단하기 →','Diagnose Our Family →')}
               </button>
             ) : (
               <div style={{display:'flex', gap:10}}>
                 <button onClick={()=>setOnboardingDone(true)}
-                  style={{flex:1, padding:'16px', background:'none', border:`1.5px solid ${T.greenBorder}`, borderRadius:99, fontSize:16, color:T.green, cursor:'pointer', fontWeight:600}}>
+                  style={{flex:1, padding:'13px', background:'none', border:`1.5px solid ${T.greenBorder}`, borderRadius:99, fontSize:15, color:T.green, cursor:'pointer', fontWeight:600}}>
                   {t('건너뛰기','Skip')}
                 </button>
                 <button onClick={()=>setOnboardingStep(s=>s+1)}
-                  style={{flex:2, padding:'16px', background:T.green, border:'none', borderRadius:99, fontSize:17, color:'white', cursor:'pointer', fontWeight:700}}>
+                  style={{flex:2, padding:'13px', background:T.green, border:'none', borderRadius:99, fontSize:16, color:'white', cursor:'pointer', fontWeight:700}}>
                   {t('다음 →','Next →')}
                 </button>
               </div>
             )}
+            </div>
           </div>
         </div>
       );
@@ -2206,7 +2212,6 @@ export default function App() {
       <BackBtn onClick={()=>go('welcome')} lang={lang}/>
       <Tag>{t('우리 가정 현실','Our Family Reality')}</Tag>
       <h2 style={{fontSize:27, fontWeight:800, color:T.text, lineHeight:1.3, letterSpacing:'-0.03em', marginBottom:4}}>{s_.diagTitle.split('\n')[0]}<br/>{s_.diagTitle.split('\n')[1]}</h2>
-      <p style={{fontSize:16, color:T.sub, marginBottom:18, lineHeight:1.75}}>{s_.diagSub}</p>
       {DIAGNOSES.map(d => (
         <div key={d.id} onClick={()=>{setSelectedDiag(d.id); setRecommend(d.recommend);}}
           style={{background:T.card, borderRadius:T.r, boxShadow: selectedDiag===d.id ? `0 0 0 2.5px ${T.green}` : T.shadowSm, padding:'16px 18px', marginBottom:10, cursor:'pointer', display:'flex', alignItems:'center', gap:12, transition:'box-shadow 0.15s'}}>
@@ -2236,7 +2241,6 @@ export default function App() {
       <Tag>{t('우리 가정 구성','Family Makeup')}</Tag>
       <h2 style={{fontSize:27, fontWeight:800, color:T.text, lineHeight:1.3, letterSpacing:'-0.03em', marginBottom:4}}>{t('자녀의',"Your Child's")}<br/>{t('연령대는?','Age Group?')}</h2>
       <p style={{fontSize:16, color:T.sub, marginBottom:12, lineHeight:1.75}}>
-        {t('선택한 구성에 맞게','Questions and activities will be')}<strong style={{color:T.green}}>{t(' 질문과 활동이 자동으로 맞춤 표시',' automatically customized')}</strong>{t('된다.','')}
       </p>
       <div style={{background:T.greenBg, border:`1px solid ${T.greenBorder}`, borderRadius:T.rSm, padding:'12px 14px', marginBottom:16}}>
         <p style={{fontSize:15, color:T.green, lineHeight:1.6}}>💡 {t('자녀가 2명 이상이고 연령대가 다양한 경우, 가능하면 낮은 연령대 — 즉 막내 또는 둘째 아이 수준에 맞게 선택하는 것이 좋습니다.','If you have 2 or more children of different ages, it\'s best to select based on the youngest child\'s age group.')}</p>
