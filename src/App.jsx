@@ -1486,6 +1486,7 @@ export default function App() {
   const [showMoreMiddle, setShowMoreMiddle] = useState(false);
   const [showMoreHigh, setShowMoreHigh] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false); // 일지 삭제 확인
+  const [confirmResetApp, setConfirmResetApp] = useState(false); // 앱 전체 초기화 확인
   const [aboutVer, setAboutVer] = useState('A'); // About 화면 A/B
   const [openItems, setOpenItems] = useState({}); // About 아코디언
   const toggleItem = (k) => setOpenItems(p=>({...p,[k]:!p[k]}));
@@ -1517,6 +1518,7 @@ export default function App() {
   const [showQGuide, setShowQGuide] = useState(false);
   const [openElem, setOpenElem] = useState(null);
   const [showFeedback, setShowFeedback] = useState(false);
+  const [aboutPage, setAboutPage] = useState(0);
   const [showSettings, setShowSettings] = useState(false);
   const [feedbackName, setFeedbackName] = useState('');
   const [feedbackMsg, setFeedbackMsg] = useState('');
@@ -2114,93 +2116,98 @@ export default function App() {
 
   // ── ABOUT ──
   if(screen==='about') {
+    const ABOUT_PAGES = [
+      {
+        title: t('왜 DAVAR를 만들었을까요?','Why Did We Create DAVAR?'),
+        body: t(
+          '부모의 언어가 아이의 미래를 만듭니다.\n모든 부모는 아이를 사랑합니다.\n\n하지만 사랑한다고 해서\n대화가 저절로 이루어지는 것은 아닙니다.\n\n우리는 질문보다 지시를,\n경청보다 훈계를,\n대화보다 정답을 말할 때가 많습니다.\n\nDAVAR는\n부모와 자녀의 따뜻한 대화가\n다시 시작되도록 돕기 위해 탄생했습니다.',
+          "A parent's words shape a child's future.\nEvery parent loves their child.\n\nBut love alone doesn't\nautomatically create conversation.\n\nWe often give instructions instead of questions,\nlectures instead of listening,\nanswers instead of dialogue.\n\nDAVAR was born\nto help parents and children\nrediscover warm conversation together."
+        ),
+      },
+      {
+        title: t('대화식 가정예배란 무엇일까요?','What Is Dialogic Family Worship?'),
+        body: t(
+          '함께 성경을 읽고,\n함께 질문하고,\n함께 하나님을 만나는 시간\n\n대화식 가정예배는\n부모가 답을 가르치는 시간이 아닙니다.\n\n부모와 자녀가\n성경을 중심으로 자유롭게 질문하고,\n서로의 생각을 나누며,\n함께 하나님을 만나는 예배입니다.\n\n말씀이 중심이 될 때,\n가정은 가장 따뜻한 대화의 공간이 됩니다.',
+          "Reading Scripture together,\nasking questions together,\nmeeting God together\n\nDialogic family worship isn't\na time for parents to teach answers.\n\nIt's worship where parents and children\nfreely ask questions centered on Scripture,\nshare their thoughts,\nand meet God together.\n\nWhen the Word becomes the center,\nhome becomes the warmest place for conversation."
+        ),
+      },
+      {
+        title: t('하나님도 질문으로 대화하셨습니다.','Even God Spoke Through Questions.'),
+        body: t(
+          '선악과를 먹고 숨은 아담에게는\n"네가 어디 있느냐?"\n\n자신을 배반한 수제자 베드로에게는\n"네가 나를 사랑하느냐?"\n\n하나님과 예수님은 행위를 판단하기보다\n존재를 존중하고 질문하셨습니다.\n\n질문은 상대를 존중하는\n하나님의 언어입니다.\n\nDAVAR는\n그 질문의 문화를\n오늘 우리 가정으로 이어갑니다.',
+          'To Adam, hiding after eating the fruit —\n"Where are you?"\n\nTo Peter, who had denied Him —\n"Do you love me?"\n\nGod and Jesus asked questions,\nhonoring being over judging doing.\n\nQuestions are\nGod\'s language of respect.\n\nDAVAR carries that culture of questions\ninto our homes today.'
+        ),
+      },
+      {
+        title: t('우리 가정만의 예배의 집을 세워보세요.',"Build Your Family's Own House of Worship."),
+        body: t(
+          '완벽한 예배보다\n지속되는 예배,\n\n설명보다 질문\n훈계보다 대화\n\n이제 세상에 하나 뿐인 우리 가족만의\n예배의 집을 함께 세워보세요.\n\n질문과 대화로 하나님을 만나는\n대화식 가정예배 코칭앱\nDAVAR',
+          "Not a perfect worship,\nbut a lasting one.\n\nQuestions over explanations,\nconversation over lectures.\n\nNow, build your one-of-a-kind\nfamily House of Worship together.\n\nMeeting God through questions and conversation —\nthe dialogic family worship coaching app,\nDAVAR"
+        ),
+      },
+    ];
 
-    // ── About 본문 시작 ──
-    // (초기화 버튼은 아래 Footer에 유지)
-    const Footer = () => (
-      <div>
-        <div style={{background:T.greenBg, border:`1px solid ${T.greenBorder}`, borderRadius:T.rSm, padding:'18px', marginBottom:18, textAlign:'center'}}>
-          <p style={{fontSize:18, color:T.green, fontWeight:800, lineHeight:1.9}}>{t('부모의 언어가 아이의 미래를 만듭니다.','A parent\'s words shape a child\'s future.')}</p>
+    const isLastAbout = aboutPage === ABOUT_PAGES.length - 1;
+    let touchStartX = 0;
+    const onTStart = (e) => { touchStartX = e.touches[0].clientX; };
+    const onTEnd = (e) => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (dx < -50 && aboutPage < ABOUT_PAGES.length - 1) setAboutPage(p => p + 1);
+      else if (dx > 50 && aboutPage > 0) setAboutPage(p => p - 1);
+    };
+    const page = ABOUT_PAGES[aboutPage];
+
+    return (
+      <div style={{height:'100dvh', minHeight:'100vh', background:T.greenBg, display:'flex', flexDirection:'column', overflow:'hidden'}}
+        onTouchStart={onTStart} onTouchEnd={onTEnd}>
+        <style>{`@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&display=swap');`}</style>
+
+        {/* 상단: 뒤로가기 + 점 인디케이터 */}
+        <div style={{flexShrink:0, padding:'16px 20px 0', display:'flex', alignItems:'center'}}>
+          <button onClick={()=>go('welcome')} style={{background:'none', border:'none', cursor:'pointer', padding:8, marginLeft:-8}}>
+            <span style={{fontSize:22, color:T.green}}>←</span>
+          </button>
         </div>
-        <p style={{fontSize:15, color:T.hint, textAlign:'right', marginTop:4}}>{t('*이 앱은 이유정 저 《대화식 가정예배》를 기반으로 설계되었습니다.','*This app is based on Dialogic Family Worship by Justin Lee.')}</p>
-        <div style={{marginTop:16}}><Btn onClick={()=>go('welcome')} outline color={T.green}>{t('← 처음으로 돌아가기','← Back to Home')}</Btn></div>
-        {/* 초기화 — About 맨 아래 숨김 */}
-        <div style={{marginTop:40, textAlign:'center'}}>
-          {!confirmDelete ? (
-            <button onClick={()=>setConfirmDelete(true)}
-              style={{background:'none', border:'none', fontSize:13, color:T.hint, cursor:'pointer', opacity:0.5}}>
-              {t('앱 초기화','Reset App')}
-            </button>
-          ) : (
-            <div style={{background:'#FEF2F1', border:'1px solid #FBBCB8', borderRadius:T.rSm, padding:'12px 16px'}}>
-              <p style={{fontSize:15, color:'#A32D2D', fontWeight:700, marginBottom:10}}>
-                {t('모든 설정이 초기화된다. 되돌릴 수 없어요.','All settings will be reset. This cannot be undone.')}
-              </p>
-              <div style={{display:'flex', gap:8}}>
-                <button onClick={()=>setConfirmDelete(false)}
-                  style={{flex:1, padding:'9px', background:'white', border:`1px solid ${T.border}`, borderRadius:T.rSm, fontSize:15, cursor:'pointer', color:T.text}}>
-                  {t('취소','Cancel')}
+        <div style={{display:'flex', justifyContent:'center', gap:8, padding:'12px 0 8px', flexShrink:0}}>
+          {ABOUT_PAGES.map((_, i) => (
+            <div key={i} style={{width:i===aboutPage?28:8, height:7, borderRadius:4, background:i===aboutPage?T.green:'rgba(0,100,0,0.15)', transition:'all 0.3s'}}/>
+          ))}
+        </div>
+
+        {/* 상단 여백 */}
+        <div style={{flex:1}}/>
+
+        {/* 텍스트 콘텐츠 */}
+        <div style={{flexShrink:0, padding:'0 28px', textAlign:'center'}}>
+          <p style={{fontFamily:"'Noto Serif KR', serif", fontSize:22, fontWeight:700, color:'#1a3320', lineHeight:1.5, marginBottom:20, whiteSpace:'pre-line', letterSpacing:'0.01em'}}>{page.title}</p>
+          <p style={{fontSize:16, color:'#1a4030', lineHeight:1.85, whiteSpace:'pre-line'}}>{page.body}</p>
+        </div>
+
+        {/* 하단 여백 */}
+        <div style={{flex:1}}/>
+
+        {/* 하단 버튼 */}
+        <div style={{flexShrink:0, padding:'0 24px'}}>
+          <div style={{paddingBottom:'max(24px, env(safe-area-inset-bottom, 24px))', paddingTop:'16px'}}>
+            {isLastAbout ? (
+              <button onClick={()=>go('welcome')}
+                style={{width:'100%', padding:'14px', background:T.green, border:'none', borderRadius:99, fontSize:17, color:'white', cursor:'pointer', fontWeight:700}}>
+                {t('처음으로 돌아가기','Back to Home')}
+              </button>
+            ) : (
+              <div style={{display:'flex', gap:10}}>
+                <button onClick={()=>go('welcome')}
+                  style={{flex:1, padding:'13px', background:'none', border:`1.5px solid ${T.greenBorder}`, borderRadius:99, fontSize:15, color:T.green, cursor:'pointer', fontWeight:600}}>
+                  {t('건너뛰기','Skip')}
                 </button>
-                <button onClick={()=>{
-                  setSelectedScripture(null); setSelectedRooms(new Set()); setSelectedElems({});
-                  setWorshipName(''); setInputName(''); setSelectedDiag(null); setAgeGroup('');
-                  setDebrief({}); setSeriesConfirmed(null); setExpandedSeries(null);
-                  setOnboardingDone(false); setOnboardingStep(-1); setLang('ko');
-                  setConfirmDelete(false);
-                }} style={{flex:1, padding:'9px', background:'#A32D2D', border:'none', borderRadius:T.rSm, fontSize:15, cursor:'pointer', color:'white', fontWeight:700}}>
-                  {t('초기화','Reset')}
+                <button onClick={()=>setAboutPage(p=>p+1)}
+                  style={{flex:2, padding:'13px', background:T.green, border:'none', borderRadius:99, fontSize:16, color:'white', cursor:'pointer', fontWeight:700}}>
+                  {t('다음 →','Next →')}
                 </button>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
-      </div>
-    );
-
-    return wrap(
-      <div>
-        <BackBtn onClick={()=>go('welcome')} lang={lang}/>
-        <Tag>{t('이 앱을 만든 이유','Why DAVAR')}</Tag>
-        <h2 style={{fontSize:24, fontWeight:800, color:T.text, lineHeight:1.35, letterSpacing:'-0.02em', marginBottom:24}}>
-          {t('왜 DAVAR를 만들었을까요?', 'Why Did We Create DAVAR?')}
-        </h2>
-
-        {/* 섹션 1 */}
-        <div style={{marginBottom:28}}>
-          <p style={{fontSize:16, color:T.text, lineHeight:1.85, marginBottom:10, fontWeight:700}}>{t('부모의 사랑은 충분합니다.', 'Parents love their children deeply.')}</p>
-          <p style={{fontSize:16, color:T.text, lineHeight:1.85, marginBottom:10}}>{t('하지만 대화는 배운 적이 없습니다.', 'But most of us were never taught how to talk with them.')}</p>
-          <p style={{fontSize:16, color:T.text, lineHeight:1.85, marginBottom:10}}>{t('모든 부모는 아이를 사랑합니다.', 'Every parent loves their child.')}</p>
-          <p style={{fontSize:16, color:T.text, lineHeight:1.85, marginBottom:10}}>{t('하지만 사랑한다고 해서 대화가 통하는 것은 아닙니다.', 'But love alone doesn\'t always open the door to real conversation.')}</p>
-          <p style={{fontSize:16, color:T.text, lineHeight:1.85, marginBottom:10}}>{t('우리는 바쁜 일상 속에서 질문보다 지시를, 경청보다 훈계를, 대화보다 정답을 말할 때가 많습니다.', 'In our busy lives, we often give instructions instead of asking questions, lecture instead of listen, and hand out answers instead of having conversations.')}</p>
-          <p style={{fontSize:16, color:T.text, lineHeight:1.85, marginBottom:10}}>{t('그 결과 부모도 지치고, 아이는 마음의 문을 닫아갑니다.', 'The result? Parents burn out. And children slowly close their hearts.')}</p>
-          <p style={{fontSize:16, color:T.green, lineHeight:1.85, fontWeight:700}}>{t('DAVAR는 바로 그 순간을 바꾸기 위해 시작되었습니다.', 'DAVAR was created to change that moment.')}</p>
-        </div>
-
-        <div style={{height:1, background:T.border, marginBottom:28}}/>
-
-        {/* 섹션 2 */}
-        <div style={{marginBottom:28}}>
-          <p style={{fontSize:16, color:T.text, lineHeight:1.85, marginBottom:10}}>{t('좋은 부모는 답을 빨리 말하는 사람이 아닙니다.', 'A good parent isn\'t one who always has the right answer.')}</p>
-          <p style={{fontSize:16, color:T.text, lineHeight:1.85, marginBottom:10}}>{t('좋은 부모는 아이가 스스로 답을 발견하도록 질문하고 기다려줍니다.', 'A good parent asks questions and waits — letting the child find their own answer.')}</p>
-          <p style={{fontSize:16, color:T.text, lineHeight:1.85, marginBottom:10}}>{t('부모의 작은 질문 하나가 아이의 생각을 키우고,', 'One small question from a parent grows a child\'s thinking.')}</p>
-          <p style={{fontSize:16, color:T.text, lineHeight:1.85, marginBottom:10}}>{t('따뜻한 경청 하나가 아이의 자존감을 세우며,', 'One moment of warm listening builds a child\'s self-worth.')}</p>
-          <p style={{fontSize:16, color:T.text, lineHeight:1.85, marginBottom:10}}>{t('매일 반복되는 짧은 대화가 가족의 미래를 바꿉니다.', 'And short, daily conversations change a family\'s future.')}</p>
-          <p style={{fontSize:16, color:T.green, lineHeight:1.85, fontWeight:700}}>{t('DAVAR는 부모와 자녀의 친밀한 사귐과 건강한 대화를 돕는 플랫폼입니다.', 'DAVAR is a platform that helps parents and children build genuine closeness through healthy conversation.')}</p>
-        </div>
-
-        <div style={{height:1, background:T.border, marginBottom:28}}/>
-
-        {/* 섹션 3 */}
-        <div style={{marginBottom:28}}>
-          <p style={{fontSize:16, color:T.text, lineHeight:1.85, marginBottom:10}}>{t('하나님도 질문으로 사람을 만나셨어요.', 'Even God meets people through questions.')}</p>
-          <p style={{fontSize:16, color:T.text, lineHeight:1.85, marginBottom:10}}>{t('그분은 사람을 먼저 정죄하지 않으셨습니다.', 'He doesn\'t rush to judge.')}</p>
-          <p style={{fontSize:16, color:T.text, lineHeight:1.85, marginBottom:10}}>{t('선악과를 먹은 아담에게는 "네가 어디 있느냐?"라고 물으셨고,', 'He asked Adam after the fall, "Where are you?"')}</p>
-          <p style={{fontSize:16, color:T.text, lineHeight:1.85, marginBottom:10}}>{t('예수님은 자신을 부인한 베드로에게 "네가 나를 사랑하느냐?" 물으셨습니다.', 'And Jesus asked Peter, who had denied him, "Do you love me?"')}</p>
-          <p style={{fontSize:16, color:T.text, lineHeight:1.85, marginBottom:10}}>{t('질문은 상대를 존중하는 하나님의 언어입니다.', 'Questions are God\'s language of respect.')}</p>
-          <p style={{fontSize:16, color:T.green, lineHeight:1.85, fontWeight:700}}>{t('DAVAR는 그 질문의 정신을 오늘 부모와 자녀의 일상 속으로 이어가고자 합니다.', 'DAVAR carries that spirit of questions into the everyday moments between parents and children.')}</p>
-        </div>
-
-        <Footer/>
       </div>
     );
   }
@@ -2487,6 +2494,7 @@ export default function App() {
             </div>
             <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:8}}>
               {ELEMENTS[r.id].filter(e => {
+                if(['date','bedtime','storytelling','word_draw','draw'].includes(e.id) && ageGroup==='adult') return false;
                 if(e.id==='response_activity') return ['infant','preschooler','child'].includes(ageGroup);
                 if(e.id==='creative_activity') return ageGroup==='middle';
                 return true;
@@ -2771,6 +2779,7 @@ export default function App() {
       (ELEMENTS[roomId] || [])
         .filter(e => (selectedElems[roomId]||new Set()).has(e.id))
         .filter(e => {
+          if(['date','bedtime','storytelling','word_draw','draw'].includes(e.id) && ageGroup==='adult') return false;
           if(e.id==='response_activity') return ['infant','preschooler','child'].includes(ageGroup);
           if(e.id==='creative_activity') return ageGroup==='middle';
           return true;
@@ -3349,8 +3358,38 @@ export default function App() {
                 </div>
                 <span style={{fontSize:18, color:T.hint}}>›</span>
               </button>
+              {/* 앱 초기화 */}
+              <div style={{marginTop:16, textAlign:'center'}}>
+                {!confirmResetApp ? (
+                  <button onClick={()=>setConfirmResetApp(true)}
+                    style={{background:'none', border:'none', fontSize:13, color:T.hint, cursor:'pointer', opacity:0.5}}>
+                    {t('앱 초기화','Reset App')}
+                  </button>
+                ) : (
+                  <div style={{background:'#FEF2F1', border:'1px solid #FBBCB8', borderRadius:T.rSm, padding:'12px 16px'}}>
+                    <p style={{fontSize:15, color:'#A32D2D', fontWeight:700, marginBottom:10}}>
+                      {t('모든 설정이 초기화된다. 되돌릴 수 없어요.','All settings will be reset. This cannot be undone.')}
+                    </p>
+                    <div style={{display:'flex', gap:8}}>
+                      <button onClick={()=>setConfirmResetApp(false)}
+                        style={{flex:1, padding:'9px', background:'white', border:`1px solid ${T.border}`, borderRadius:T.rSm, fontSize:15, cursor:'pointer', color:T.text}}>
+                        {t('취소','Cancel')}
+                      </button>
+                      <button onClick={()=>{
+                        setSelectedScripture(null); setSelectedRooms(new Set()); setSelectedElems({});
+                        setWorshipName(''); setInputName(''); setSelectedDiag(null); setAgeGroup('');
+                        setDebrief({}); setSeriesConfirmed(null); setExpandedSeries(null);
+                        setOnboardingDone(false); setOnboardingStep(-1); setLang('ko');
+                        setConfirmResetApp(false); setShowSettings(false);
+                      }} style={{flex:1, padding:'9px', background:'#A32D2D', border:'none', borderRadius:T.rSm, fontSize:15, cursor:'pointer', color:'white', fontWeight:700}}>
+                        {t('초기화','Reset')}
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
               {/* 버전 */}
-              <div style={{background:T.bg, borderRadius:T.rSm, padding:'14px 16px', display:'flex', alignItems:'center', gap:10}}>
+              <div style={{marginTop:10, background:T.bg, borderRadius:T.rSm, padding:'14px 16px', display:'flex', alignItems:'center', gap:10}}>
                 <span style={{fontSize:20}}>ℹ️</span>
                 <div>
                   <p style={{fontSize:15, fontWeight:700, color:T.text}}>Beta v4.2.3</p>
