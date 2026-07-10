@@ -1959,8 +1959,15 @@ export default function App() {
     if(!onboardingDone && onboardingStep >= 0) {
       const card = ONBOARDING[onboardingStep];
       const isLast = onboardingStep === ONBOARDING.length - 1;
+      let onbTouchStartX = 0;
+      const onOnbTStart = (e) => { onbTouchStartX = e.touches[0].clientX; };
+      const onOnbTEnd = (e) => {
+        const dx = e.changedTouches[0].clientX - onbTouchStartX;
+        if (dx < -50 && onboardingStep < ONBOARDING.length - 1) setOnboardingStep(s => s + 1);
+      };
       return (
-        <div style={{height:'100dvh', minHeight:'100vh', background:T.greenBg, display:'flex', flexDirection:'column', overflow:'hidden'}}>
+        <div style={{height:'100dvh', minHeight:'100vh', background:T.greenBg, display:'flex', flexDirection:'column', overflow:'hidden'}}
+          onTouchStart={onOnbTStart} onTouchEnd={onOnbTEnd}>
           <style>{`@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&display=swap');
         img {
           -webkit-touch-callout: none;
