@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Analytics } from "@vercel/analytics/react";
 
 // ── 언어 문자열 객체 ──────────────────────────────────────────────
 const STRINGS = {
@@ -1815,6 +1816,7 @@ export default function App() {
       {children}
       {lang && <BottomTab/>}
       {GlobalOverlays()}
+      <Analytics/>
     </div>
   );
 
@@ -3921,6 +3923,7 @@ export default function App() {
         )}
       <BottomTab/>
       {GlobalOverlays()}
+      <Analytics/>
       </div>
     );
   }
