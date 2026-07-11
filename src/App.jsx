@@ -1,5 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { Analytics } from "@vercel/analytics/react";
+
+// Vercel Analytics는 배포 환경(Vercel)에서만 존재하는 패키지입니다.
+// 아티팩트 미리보기 등 패키지가 없는 환경에서는 조용히 아무것도 렌더링하지 않도록
+// 동적 import + try/catch로 안전하게 불러옵니다. (실제 Vercel 배포에서는 정상 작동)
+function SafeAnalytics() {
+  const [Comp, setComp] = useState(null);
+  useEffect(() => {
+    let active = true;
+    import("@vercel/analytics/react")
+      .then((mod) => { if (active) setComp(() => mod.Analytics); })
+      .catch(() => {}); // 패키지가 없는 환경(아티팩트 미리보기 등)에서는 무시
+    return () => { active = false; };
+  }, []);
+  return Comp ? <Comp /> : null;
+}
 
 // ── 언어 문자열 객체 ──────────────────────────────────────────────
 const STRINGS = {
@@ -479,13 +493,44 @@ const STRINGS = {
 // 언어 헬퍼
 const S = (lang) => STRINGS[lang] || STRINGS.ko;
 
-// 성경 약자 → 풀 명칭 변환
-const KO_BOOK = {'창':'창세기','출':'출애굽기','시':'시편','잠언':'잠언','마':'마태복음','막':'마가복음','눅':'누가복음','요':'요한복음','롬':'로마서','고전':'고린도전서','갈':'갈라디아서','엡':'에베소서','빌':'빌립보서','골':'골로새서','살전':'데살로니가전서','히':'히브리서'};
-const EN_BOOK = {'창':'Genesis','출':'Exodus','시':'Psalms','잠언':'Proverbs','마':'Matthew','막':'Mark','눅':'Luke','요':'John','롬':'Romans','고전':'1 Corinthians','갈':'Galatians','엡':'Ephesians','빌':'Philippians','골':'Colossians','살전':'1 Thessalonians','히':'Hebrews'};
+// 성경 66권 (창세기~요한계시록) 정식 명칭 ↔ 영문 정식 명칭
+const BOOK_EN = {
+  '창세기':'Genesis','출애굽기':'Exodus','레위기':'Leviticus','민수기':'Numbers','신명기':'Deuteronomy',
+  '여호수아':'Joshua','사사기':'Judges','룻기':'Ruth','사무엘상':'1 Samuel','사무엘하':'2 Samuel',
+  '열왕기상':'1 Kings','열왕기하':'2 Kings','역대상':'1 Chronicles','역대하':'2 Chronicles',
+  '에스라':'Ezra','느헤미야':'Nehemiah','에스더':'Esther','욥기':'Job','시편':'Psalms','잠언':'Proverbs',
+  '전도서':'Ecclesiastes','아가':'Song of Solomon','이사야':'Isaiah','예레미야':'Jeremiah',
+  '예레미야애가':'Lamentations','에스겔':'Ezekiel','다니엘':'Daniel','호세아':'Hosea','요엘':'Joel',
+  '아모스':'Amos','오바댜':'Obadiah','요나':'Jonah','미가':'Micah','나훔':'Nahum','하박국':'Habakkuk',
+  '스바냐':'Zephaniah','학개':'Haggai','스가랴':'Zechariah','말라기':'Malachi',
+  '마태복음':'Matthew','마가복음':'Mark','누가복음':'Luke','요한복음':'John','사도행전':'Acts',
+  '로마서':'Romans','고린도전서':'1 Corinthians','고린도후서':'2 Corinthians','갈라디아서':'Galatians',
+  '에베소서':'Ephesians','빌립보서':'Philippians','골로새서':'Colossians',
+  '데살로니가전서':'1 Thessalonians','데살로니가후서':'2 Thessalonians',
+  '디모데전서':'1 Timothy','디모데후서':'2 Timothy','디도서':'Titus','빌레몬서':'Philemon',
+  '히브리서':'Hebrews','야고보서':'James','베드로전서':'1 Peter','베드로후서':'2 Peter',
+  '요한일서':'1 John','요한이서':'2 John','요한삼서':'3 John','유다서':'Jude','요한계시록':'Revelation',
+};
+// 옛 약자 데이터가 남아있을 경우를 위한 안전망 (약자 → 정식 명칭)
+const BOOK_ALIAS = {
+  '창':'창세기','출':'출애굽기','레':'레위기','민':'민수기','신':'신명기','수':'여호수아','삿':'사사기',
+  '룻':'룻기','삼상':'사무엘상','삼하':'사무엘하','왕상':'열왕기상','왕하':'열왕기하','대상':'역대상',
+  '대하':'역대하','스':'에스라','느':'느헤미야','에':'에스더','욥':'욥기','시':'시편','잠':'잠언',
+  '전':'전도서','아':'아가','사':'이사야','렘':'예레미야','애':'예레미야애가','겔':'에스겔','단':'다니엘',
+  '호':'호세아','욜':'요엘','암':'아모스','옵':'오바댜','욘':'요나','미':'미가','나':'나훔','합':'하박국',
+  '습':'스바냐','학':'학개','슥':'스가랴','말':'말라기','마':'마태복음','막':'마가복음','눅':'누가복음',
+  '요':'요한복음','행':'사도행전','롬':'로마서','고전':'고린도전서','고후':'고린도후서','갈':'갈라디아서',
+  '엡':'에베소서','빌':'빌립보서','골':'골로새서','살전':'데살로니가전서','살후':'데살로니가후서',
+  '딤전':'디모데전서','딤후':'디모데후서','딛':'디도서','몬':'빌레몬서','히':'히브리서','약':'야고보서',
+  '벧전':'베드로전서','벧후':'베드로후서','요일':'요한일서','요이':'요한이서','요삼':'요한삼서',
+  '유':'유다서','계':'요한계시록',
+};
 const convertRef = (ref, lang) => {
   if(!ref) return ref;
-  const map = lang==='en' ? EN_BOOK : KO_BOOK;
-  return ref.replace(/^([가-힣]+)(\s)/, (m, book, sp) => (map[book]||book)+sp);
+  return ref.replace(/^([가-힣]+)(\s)/, (m, book, sp) => {
+    const full = BOOK_ALIAS[book] || book; // 약자가 남아있어도 정식 명칭으로 정규화
+    return (lang==='en' ? (BOOK_EN[full]||full) : full) + sp;
+  });
 };
 
 
@@ -545,7 +590,7 @@ const ROOMS = [
 
 const ELEMENTS = {
   gather:[
-    { id:'give',     name:'구제하기',    nameEn:'Giving',          def:'한 주간 모은 재정을 도움이 필요한 이웃에게 나누기', defEn:'Share collected offerings with neighbors in need', why:'예수님은 "지극히 작은 자 하나에게 한 일이 곧 나에게 한 것"(마 25:40)이라 하셨다.', whyEn:'Jesus said, "Whatever you did for the least of these, you did for me." (Matt 25:40)', tip:'구제함을 함께 만들고 어디에 사용할지 가족이 함께 결정해 보세요.', tipEn:'Make an offering box together and decide as a family where to use it.' },
+    { id:'give',     name:'구제하기',    nameEn:'Giving',          def:'한 주간 모은 재정을 도움이 필요한 이웃에게 나누기', defEn:'Share collected offerings with neighbors in need', why:'예수님은 "지극히 작은 자 하나에게 한 일이 곧 나에게 한 것"(마태복음 25:40)이라 하셨다.', whyEn:'Jesus said, "Whatever you did for the least of these, you did for me." (Matthew 25:40)', tip:'구제함을 함께 만들고 어디에 사용할지 가족이 함께 결정해 보세요.', tipEn:'Make an offering box together and decide as a family where to use it.' },
     { id:'candle',   name:'촛불 켜기',   nameEn:'Light a Candle',  def:'빛 되신 예수님을 식탁에 초대하는 시작의 신호', defEn:'A signal that invites Jesus, the Light, to your table', why:'초가 빛을 내기 위해 자신을 녹이듯, 예수님은 우리에게 생명을 주시기 위해 자신을 내어 주셨습니다.', whyEn:'Just as a candle melts to give light, Jesus gave Himself to give us life.', tip:'꼭 촛불이 아니어도 된다. 우리 가족만의 시작 신호를 만들어 보세요.', tipEn:"It doesn't have to be a candle. Create your own family start signal." },
     { id:'bless',    name:'축복하기',    nameEn:'Blessing', def:'부부·부모가 자녀에게 격려와 축복을 선포', defEn:'Parents speak blessing and encouragement over their children', why:'하나님은 가정 안에서 부모, 특히 아버지에게 가족을 축복할 영적 책임을 맡기셨습니다.', whyEn:'God entrusted parents, especially fathers, with the spiritual responsibility to bless their family.', tip:'성경에 근거한 짧지만 진심 어린 축복이 자녀의 가슴에 오래 남습니다.', tipEn:'A short, heartfelt, Scripture-based blessing stays with your child for a lifetime.',
       blessings: [
@@ -608,7 +653,7 @@ const SERIES_DB = [
     desc: '아브라함에서 요셉까지 족장들의 이야기 속에, 연약한 인간의 실수에도 불구하고 변함없이 신실하신 하나님을 함께 발견해 갑니다.', descEn: 'From Abraham to Joseph, we discover together a God who remains faithfully constant — even through the failures and weaknesses of very human people.',
     color: T.amber, bg: T.amberBg, border: T.amberBorder,
     items: [
-      { week:1, title:'아브라함의 부르심', titleEn:'The Call of Abraham', ref:'창 12:1-4', verse:'여호와께서 아브람에게 이르시되 너는 네 고향을 떠나라',
+      { week:1, title:'아브라함의 부르심', titleEn:'The Call of Abraham', ref:'창세기 12:1-4', verse:'여호와께서 아브람에게 이르시되 너는 네 고향을 떠나라',
         opener:'지금까지 살면서 가장 큰 결단을 내려야 했던 순간이 언제였나?',
         openerEn:'When was a moment in your life when you had to make a really big decision?',
         questions:{
@@ -619,7 +664,7 @@ const SERIES_DB = [
         },
         challenge:''
       },
-      { week:2, title:'이삭을 바치다', titleEn:'Offering Isaac', ref:'창 22:1-12', verse:'네가 네 아들 네 독자 이삭을 아끼지 아니하였으니',
+      { week:2, title:'이삭을 바치다', titleEn:'Offering Isaac', ref:'창세기 22:1-12', verse:'네가 네 아들 네 독자 이삭을 아끼지 아니하였으니',
         opener:'지금까지 포기하거나 내려놓기 가장 힘들었던 것은 무엇이었나?',
         openerEn:'What is something you have found hardest to let go of or give up?',
         questions:{
@@ -630,7 +675,7 @@ const SERIES_DB = [
         },
         challenge:''
       },
-      { week:3, title:'야곱의 사다리', titleEn:"Jacob's Ladder", ref:'창 28:10-17', verse:'보라 여호와께서 그 위에 서서 이르시되',
+      { week:3, title:'야곱의 사다리', titleEn:"Jacob's Ladder", ref:'창세기 28:10-17', verse:'보라 여호와께서 그 위에 서서 이르시되',
         opener:'혼자 완전히 외롭고 막막했던 순간이 있었나?',
         openerEn:'Have you ever felt completely alone and lost, not knowing what to do?',
         questions:{
@@ -641,7 +686,7 @@ const SERIES_DB = [
         },
         challenge:''
       },
-      { week:4, title:'야곱의 씨름', titleEn:'Jacob Wrestles with God', ref:'창 32:24-30', verse:'그가 이르되 네 이름을 다시는 야곱이라 부를 것이 아니요 이스라엘이라 부를 것이니',
+      { week:4, title:'야곱의 씨름', titleEn:'Jacob Wrestles with God', ref:'창세기 32:24-30', verse:'그가 이르되 네 이름을 다시는 야곱이라 부를 것이 아니요 이스라엘이라 부를 것이니',
         opener:'살면서 정말 간절하게 뭔가를 붙잡고 놓지 않은 경험이 있나?',
         openerEn:'Have you ever held onto something so desperately you just wouldn\'t let go?',
         questions:{
@@ -652,7 +697,7 @@ const SERIES_DB = [
         },
         challenge:''
       },
-      { week:5, title:'요셉의 꿈', titleEn:"Joseph's Dream", ref:'창 37:3-11', verse:'요셉이 꿈을 꾸고 자기 형들에게 말하매',
+      { week:5, title:'요셉의 꿈', titleEn:"Joseph's Dream", ref:'창세기 37:3-11', verse:'요셉이 꿈을 꾸고 자기 형들에게 말하매',
         opener:'누군가에게 기쁜 마음으로 이야기했다가 오히려 상처를 받은 적이 있나?',
         openerEn:'Have you ever shared something exciting with someone, only to feel hurt by their reaction?',
         questions:{
@@ -663,7 +708,7 @@ const SERIES_DB = [
         },
         challenge:''
       },
-      { week:6, title:'요셉이 팔리다', titleEn:'Joseph Sold', ref:'창 37:23-28', verse:'미디안 상인들이 요셉을 애굽으로 데려가니라',
+      { week:6, title:'요셉이 팔리다', titleEn:'Joseph Sold', ref:'창세기 37:23-28', verse:'미디안 상인들이 요셉을 애굽으로 데려가니라',
         opener:'가장 믿었던 사람에게 배신당하거나 상처받은 경험이 있나?',
         openerEn:'Have you ever been hurt or betrayed by someone you deeply trusted?',
         questions:{
@@ -674,7 +719,7 @@ const SERIES_DB = [
         },
         challenge:''
       },
-      { week:7, title:'보디발의 집', titleEn:"Potiphar's House", ref:'창 39:1-6', verse:'여호와께서 요셉과 함께하시므로 그가 형통한 자가 되어',
+      { week:7, title:'보디발의 집', titleEn:"Potiphar's House", ref:'창세기 39:1-6', verse:'여호와께서 요셉과 함께하시므로 그가 형통한 자가 되어',
         opener:'최악의 상황에서도 최선을 다했던 경험이 있나?',
         openerEn:'Have you ever had to give your best even in a really terrible situation?',
         questions:{
@@ -685,7 +730,7 @@ const SERIES_DB = [
         },
         challenge:''
       },
-      { week:8, title:'감옥에서도', titleEn:'Even in Prison', ref:'창 39:20-23', verse:'여호와께서 요셉과 함께하시고',
+      { week:8, title:'감옥에서도', titleEn:'Even in Prison', ref:'창세기 39:20-23', verse:'여호와께서 요셉과 함께하시고',
         opener:'억울하게 오해받거나 잘못된 비난을 받은 경험이 있나?',
         openerEn:'Have you ever been falsely accused or misunderstood in a way that felt deeply unfair?',
         questions:{
@@ -696,7 +741,7 @@ const SERIES_DB = [
         },
         challenge:''
       },
-      { week:9, title:'바로의 꿈', titleEn:"Pharaoh's Dream", ref:'창 41:25-32', verse:'하나님이 그가 하실 일을 바로에게 보이심이니이다',
+      { week:9, title:'바로의 꿈', titleEn:"Pharaoh's Dream", ref:'창세기 41:25-32', verse:'하나님이 그가 하실 일을 바로에게 보이심이니이다',
         opener:'오래 기다리다가 드디어 때가 왔다고 느꼈던 경험이 있나?',
         openerEn:'Have you ever waited a long time for something, and then finally felt like the moment had arrived?',
         questions:{
@@ -707,7 +752,7 @@ const SERIES_DB = [
         },
         challenge:''
       },
-      { week:10, title:'요셉의 화해', titleEn:"Joseph's Reconciliation", ref:'창 45:4-8', verse:'나를 이리로 판 것을 근심하지 마소서 하나님이 생명을 구원하시려고 나를 당신들보다 먼저 보내셨나이다',
+      { week:10, title:'요셉의 화해', titleEn:"Joseph's Reconciliation", ref:'창세기 45:4-8', verse:'나를 이리로 판 것을 근심하지 마소서 하나님이 생명을 구원하시려고 나를 당신들보다 먼저 보내셨나이다',
         opener:'용서하기 힘들었지만 결국 용서했던 경험이 있나? 아니면 아직 용서하지 못한 것이 있나?',
         openerEn:'Have you ever found it hard to forgive someone, but eventually did? Or is there something you still haven\'t been able to forgive?',
         questions:{
@@ -734,7 +779,7 @@ const SERIES_DB = [
     items: [
       { week:1, title:'듣기의 예술', titleEn:'The Art of Listening',
         subtitle:'말하기보다 경청', subtitleEn:'Hearing Before Speaking',
-        ref:'약 1:19', refEn:'James 1:19',
+        ref:'야고보서 1:19',
         verse:'"사람마다 듣기는 속히 하고 말하기는 더디 하며 성내기도 더디 하라"',
         verseEn:'"Everyone should be quick to listen, slow to speak and slow to become angry."',
         q1:'최근 우리 대화 중에서 내가 당신의 말을 끝까지 듣지 않고 중간에 끊거나, 미리 짐작해서 대답해 속상했던 적 있나요?',
@@ -746,7 +791,7 @@ const SERIES_DB = [
       },
       { week:2, title:'말의 온도', titleEn:'The Temperature of Words',
         subtitle:'살리는 말 vs 죽이는 말', subtitleEn:'Words That Heal vs Words That Wound',
-        ref:'잠 12:18', refEn:'Proverbs 12:18',
+        ref:'잠언 12:18',
         verse:'"칼로 찌름 같이 함부로 말하는 자가 있거니와 지혜로운 자의 혀는 양약과 같으니라"',
         verseEn:'"The words of the reckless pierce like swords, but the tongue of the wise brings healing."',
         q1:'우리가 갈등할 때 내가 무심코 던진 단어나 말투 중에서 당신의 마음을 칼로 찌르듯 아프게 했던 것은 무엇이었나요?',
@@ -758,7 +803,7 @@ const SERIES_DB = [
       },
       { week:3, title:'감정의 방', titleEn:'The Room of Emotions',
         subtitle:'배우자의 지침을 알아채기', subtitleEn:'Recognizing When Your Partner Is Depleted',
-        ref:'갈 6:2', refEn:'Galatians 6:2',
+        ref:'갈라디아서 6:2',
         verse:'"너희가 짐을 서로 지라 그리하여 그리스도의 법을 성취하라"',
         verseEn:'"Carry each other\'s burdens, and in this way you will fulfill the law of Christ."',
         q1:'요즘 일상이나 직장, 가사, 육아 속에서 당신의 에너지 게이지를 가장 바닥나게 만드는 힘겨운 \'짐\'은 무엇인가요?',
@@ -770,7 +815,7 @@ const SERIES_DB = [
       },
       { week:4, title:'분노의 해소', titleEn:'Resolving Anger',
         subtitle:'해지기 전에 화해하기', subtitleEn:'Making Peace Before Sunset',
-        ref:'엡 4:26-27', refEn:'Ephesians 4:26-27',
+        ref:'에베소서 4:26-27',
         verse:'"분을 내어도 죄를 짓지 말며 해가 지도록 분을 품지 말고 마귀에게 틈을 주지 말라"',
         verseEn:'"In your anger do not sin: do not let the sun go down while you are still angry, and do not give the devil a foothold."',
         q1:'우리는 싸우고 나서 화를 푸는 방식(침묵하기, 당장 대화하기, 생각할 시간 갖기 등)이 서로 어떻게 다른가요?',
@@ -782,7 +827,7 @@ const SERIES_DB = [
       },
       { week:5, title:'투명한 안심', titleEn:'Transparent Trust',
         subtitle:'숨김없는 정직함', subtitleEn:'Honesty Without Secrets',
-        ref:'잠 28:13', refEn:'Proverbs 28:13',
+        ref:'잠언 28:13',
         verse:'"자기의 죄를 숨기는 자는 형통하지 못하나 죄를 자복하고 버리는 자는 불쌍히 여김을 받으리라"',
         verseEn:'"Whoever conceals their sins does not prosper, but the one who confesses and renounces them finds mercy."',
         q1:'크고 작은 일(일정, 재정, 대인관계 등)을 혼자 결정하고 나중에 통보했을 때, 상대방이 느꼈을 소외감이나 불안은 어떠했을까요?',
@@ -794,7 +839,7 @@ const SERIES_DB = [
       },
       { week:6, title:'재정의 청지기', titleEn:'Stewards of Our Finances',
         subtitle:'돈을 바라보는 관점의 일치', subtitleEn:'Aligning Our Views on Money',
-        ref:'마 6:21', refEn:'Matthew 6:21',
+        ref:'마태복음 6:21',
         verse:'"네 보물 있는 그 곳에는 네 마음도 있느니라"',
         verseEn:'"For where your treasure is, there your heart will be also."',
         q1:'우리는 성장 배경에 따라 돈을 쓰고 모으는 가치관(미래 저축 중심 vs 현재 가치 중심 등)이 어떻게 다른가요?',
@@ -806,7 +851,7 @@ const SERIES_DB = [
       },
       { week:7, title:'우선순위의 재조정', titleEn:'Realigning Our Priorities',
         subtitle:'세상 모든 관계 위의 부부', subtitleEn:'Each Other First, Above All Else',
-        ref:'창 2:24', refEn:'Genesis 2:24',
+        ref:'창세기 2:24',
         verse:'"남자가 부모를 떠나 그의 아내와 합하여 둘이 한 몸을 이룰지로다"',
         verseEn:'"A man leaves his father and mother and is united to his wife, and they become one flesh."',
         q1:'혹시 내 삶에서 일, 사역, 자녀, 친구, 혹은 스마트폰이 당신보다 은연중에 더 우선순위에 있다고 느낀 적 있었나요?',
@@ -818,7 +863,7 @@ const SERIES_DB = [
       },
       { week:8, title:'원가족으로부터의 독립', titleEn:'Independence from Family of Origin',
         subtitle:'건강한 울타리 치기', subtitleEn:'Setting Healthy Boundaries',
-        ref:'마 19:6', refEn:'Matthew 19:6',
+        ref:'마태복음 19:6',
         verse:'"이제 둘이 아니요 한 몸이니 하나님이 짝지어 주신 것을 사람이 나누지 못할지니라"',
         verseEn:'"They are no longer two, but one flesh. Therefore what God has joined together, let no one separate."',
         q1:'양가 부모님이나 형제들과의 관계, 혹은 그분들의 조언 때문에 우리 부부의 경계선이 흔들리거나 상처받았던 기억 있나요?',
@@ -830,7 +875,7 @@ const SERIES_DB = [
       },
       { week:9, title:'가사와 역할 분담', titleEn:'Sharing Household Roles',
         subtitle:'공평함을 넘어선 배려', subtitleEn:'Beyond Fairness — Genuine Care',
-        ref:'빌 2:4', refEn:'Philippians 2:4',
+        ref:'빌립보서 2:4',
         verse:'"각각 자기 일을 돌볼뿐더러 또한 각각 다른 사람들의 일을 돌보아 나의 기쁨을 충만하게 하라"',
         verseEn:'"Not looking to your own interests but each of you to the interests of the others."',
         q1:'현재 우리 가정의 역할 분담 중에서 당신이 혼자 과도하게 짊어지고 있다고 느끼는 부분은 무엇인가요?',
@@ -842,7 +887,7 @@ const SERIES_DB = [
       },
       { week:10, title:'즉흥성과 계획성의 조화', titleEn:'Harmonizing Spontaneity and Structure',
         subtitle:'라이프스타일의 존중', subtitleEn:'Respecting Each Other\'s Rhythms',
-        ref:'고전 14:40', refEn:'1 Corinthians 14:40',
+        ref:'고린도전서 14:40',
         verse:'"모든 것을 품위 있게 하고 질서 있게 하라"',
         verseEn:'"But everything should be done in a fitting and orderly way."',
         q1:'나의 즉흥적인 행동이나 반대로 과도한 계획성 때문에 당신이 피곤하거나 숨 막혔던 적은 언제인가요?',
@@ -854,7 +899,7 @@ const SERIES_DB = [
       },
       { week:11, title:'숨겨진 상처의 직면', titleEn:'Facing Hidden Wounds',
         subtitle:'과거의 아픔 껴안기', subtitleEn:'Embracing the Pain of the Past',
-        ref:'엡 4:32', refEn:'Ephesians 4:32',
+        ref:'에베소서 4:32',
         verse:'"서로 친절하게 하며 불쌍히 여기며 서로 용서하기를 하나님이 그리스도 안에서 너희를 용서하심과 같이 하라"',
         verseEn:'"Be kind and compassionate to one another, forgiving each other, just as in Christ God forgave you."',
         q1:'결혼 생활을 해오면서 내 무심함이나 실수로 인해 당신의 마음 깊은 곳에 응어리로 남아 있는 \'미해결된 상처\'는 무엇인가요?',
@@ -866,7 +911,7 @@ const SERIES_DB = [
       },
       { week:12, title:'다름의 축복', titleEn:'The Gift of Difference',
         subtitle:'최고의 돕는 배필', subtitleEn:'The Perfect Helper God Designed',
-        ref:'창 2:18', refEn:'Genesis 2:18',
+        ref:'창세기 2:18',
         verse:'"사람이 혼자 사는 것이 좋지 아니하니 내가 그를 위하여 돕는 배필을 지으리라 하시니라"',
         verseEn:'"It is not good for the man to be alone. I will make a helper suitable for him."',
         q1:'처음에는 매력적이었지만 지금은 갈등의 원인이 된 서로의 성향 격차(예: 내향성과 외향성, 감정형과 이성형 등)는 무엇인가요?',
@@ -878,7 +923,7 @@ const SERIES_DB = [
       },
       { week:13, title:'신뢰의 성벽 구축', titleEn:'Building Walls of Trust',
         subtitle:'약속과 책임', subtitleEn:'Promises and Follow-Through',
-        ref:'마 5:37', refEn:'Matthew 5:37',
+        ref:'마태복음 5:37',
         verse:'"오직 너희 말은 옳다 옳다, 아니라 아니라 하라 이에서 지나는 것은 악으로부터 나느니라"',
         verseEn:'"All you need to say is simply \'Yes\' or \'No\'; anything beyond this comes from the evil one."',
         q1:'내가 말만 앞세우고 행동으로 맺지 못했거나, 약속을 가볍게 여겨 당신에게 실망을 안겨주었던 일은 무엇이었나요?',
@@ -890,7 +935,7 @@ const SERIES_DB = [
       },
       { week:14, title:'영적 연합', titleEn:'Spiritual Unity',
         subtitle:'함께 무릎 꿇는 부부', subtitleEn:'A Couple Who Prays Together',
-        ref:'마 18:19', refEn:'Matthew 18:19',
+        ref:'마태복음 18:19',
         verse:'"너희 중의 두 사람이 땅에서 합심하여 무엇이든지 구하면 하늘에 계신 내 아버지께서 그들을 위하여 이루게 하시리라"',
         verseEn:'"If two of you on earth agree about anything they ask for, it will be done for them by my Father in heaven."',
         q1:'그동안 함께 예배를 드리거나 영적인 대화를 나눌 때, 당신이 느꼈던 아쉬움이나 형식적인 장벽은 무엇이었나요?',
@@ -902,7 +947,7 @@ const SERIES_DB = [
       },
       { week:15, title:'소통의 완성', titleEn:'The Completion of Communication',
         subtitle:'에덴 가정이 주는 평화', subtitleEn:'The Peace of an Eden Home',
-        ref:'엡 4:2-3', refEn:'Ephesians 4:2-3',
+        ref:'에베소서 4:2-3',
         verse:'"모든 겸손과 온유로 하고 오래 참음으로 사랑 가운데서 서로 용납하고 평안의 매는 줄로 성령이 하나 되게 하신 것을 힘써 지키라"',
         verseEn:'"Be completely humble and gentle; be patient, bearing with one another in love. Make every effort to keep the unity of the Spirit through the bond of peace."',
         q1:'지난 15주간 대화식 예배와 소통 훈련을 거치며, 우리 부부 사이에서 가장 눈에 띄게 변화되고 회복된 영역은 무엇인가요?',
@@ -919,7 +964,7 @@ const SERIES_DB = [
     desc: '하나님이 세상을 만드신 6일간의 이야기로 가족이 함께 창조주를 만납니다.', descEn: 'Encounter the Creator together through the 6-day story of how God made the world.',
     color: T.green, bg: T.greenBg, border: T.greenBorder,
     items: [
-      { week:1, title:'첫째 날 — 빛', titleEn:'Day 1 — Light', ref:'창 1:1-5', verse:'하나님이 빛이 있으라 하시니 빛이 있었고',
+      { week:1, title:'첫째 날 — 빛', titleEn:'Day 1 — Light', ref:'창세기 1:1-5', verse:'하나님이 빛이 있으라 하시니 빛이 있었고',
         questions:{
           content:['하나님이 왜 빛을 제일 먼저 만드셨을까?','해가 없는데 생긴 빛 — 이게 어떤 빛이었을까?','하나님이 빛을 "좋았더라"고 하셨는데, 뭐가 좋았던 걸까?'],
           imagine:['"혼돈하고 공허하고 어두운" 세상 위에 하나님의 영이 날고 계셨는데 — 그때 하나님은 뭘 하고 계셨을까?','빛이 생긴 순간, 어둠은 어디로 갔을까?'],
@@ -973,7 +1018,7 @@ const SERIES_DB = [
         challenge:'오늘 하루 누군가에게 밝은 말 한마디 건네기', challengeEn:'Today, say one bright and encouraging word to someone.'
       },
 
-      { week:2, title:'둘째 날 — 하늘', titleEn:'Day 2 — Sky', ref:'창 1:6-8', verse:'하나님이 궁창을 만드사 궁창 아래의 물과 궁창 위의 물로 나뉘게 하시니',
+      { week:2, title:'둘째 날 — 하늘', titleEn:'Day 2 — Sky', ref:'창세기 1:6-8', verse:'하나님이 궁창을 만드사 궁창 아래의 물과 궁창 위의 물로 나뉘게 하시니',
         questions:{
           content:['하나님이 만드신 "궁창(expanse/sky)"이 뭘까? 하늘? 공기? 우주?','하나님이 왜 물을 위아래로 나누셨을까?','하나님이 궁창을 만드신 순서가 — 나누고, 모으고, 드러내는 순서인데 왜 이 순서일까?'],
           imagine:['물 위에 있는 물과 물 아래에 있는 물 — 그 사이에 하늘이 생겼는데, 그 장면이 어떻게 그려질까?','둘째 날에는 "좋았더라"는 말씀이 없어. 왜 빠진 걸까?'],
@@ -1016,7 +1061,7 @@ const SERIES_DB = [
         challenge:'오늘 하늘을 올려다보며 하나님께 한 문장 기도하기', challengeEn:'Look up at the sky today and pray one sentence to God.'
       },
 
-      { week:3, title:'셋째 날 — 땅과 식물', titleEn:'Day 3 — Land & Plants', ref:'창 1:9-13', verse:'땅은 풀과 씨 맺는 채소와 열매 맺는 나무를 내라',
+      { week:3, title:'셋째 날 — 땅과 식물', titleEn:'Day 3 — Land & Plants', ref:'창세기 1:9-13', verse:'땅은 풀과 씨 맺는 채소와 열매 맺는 나무를 내라',
         questions:{
           content:['하나님이 만드신 순서를 말해봐 — 왜 이 순서라고 생각해?','하나님이 나누고(v6) → 모으고(v9) → 드러내고(v9) → 싹 틔우는(v11) 순서로 창조하시는데 — 이게 하나님에 대해 뭘 말해주는 걸까?','하나님이 씨 맺는 식물을 강조하신 이유가 뭘까?'],
           imagine:['처음 풀이 돋아났을 때 — 하나님은 어떤 마음이셨을까?','태양이 없는데 식물이 먼저 생겼어 — 이게 말이 되는 걸까? 하나님이 왜 이 순서를 선택하셨을까?'],
@@ -1038,19 +1083,19 @@ const SERIES_DB = [
             challenge:'이번 주 내 재능으로 가족이나 친구를 한 번 섬겨보기'
           },
           middle:{
-            content:['창 1:6-13의 둘째·셋째 날 순서를 내 말로 설명해봐 — 왜 이 순서일까? 하나님이 일하시는 방식에 대해 뭘 보여주는 걸까?','하나님이 나누고 → 모으고 → 드러내고 → 싹 틔우시는 방식으로 창조하시는데 — 이게 하나님이 정체성과 목적을 만드시는 것과 어떻게 연결될까요?','셋째 날 식물이 생겼는데, 넷째 날에 태양이 생겼어 — 식물이 태양 없이 살 수 있었을까?'],
+            content:['창세기 1:6-13의 둘째·셋째 날 순서를 내 말로 설명해봐 — 왜 이 순서일까? 하나님이 일하시는 방식에 대해 뭘 보여주는 걸까?','하나님이 나누고 → 모으고 → 드러내고 → 싹 틔우시는 방식으로 창조하시는데 — 이게 하나님이 정체성과 목적을 만드시는 것과 어떻게 연결될까요?','셋째 날 식물이 생겼는데, 넷째 날에 태양이 생겼어 — 식물이 태양 없이 살 수 있었을까?'],
             imagine:['땅이 "드러났다(appeared)"와 식물이 "생산됐다(produced)"의 차이가 뭘까 — 이미 있던 게 드러난 건지, 새로 만들어진 건지?','하나님이 나를 설계하실 때 — 드러나게 하시는 부분과 새로 자라게 하시는 부분이 각각 뭘까?'],
             apply:['내 안에 하나님이 심어주신 것 중 아직 싹이 트지 않은 게 있다면?'],
             challenge:'매일 아침 거울 보며 "나는 세상에 하나뿐인 소중한 사람, 예수님이 날 사랑해" 선포하기'
           },
           high:{
-            content:['창 1:2의 "땅"과 1:10-11의 "땅/육지"는 같은 땅인가, 다른 땅인가 — 뭐가 바뀐 걸까? 정체성? 경계? 기능? 결실?','태양 없이 식물이 먼저 생겼다 — 하나님의 주권이 자연 법칙 위에 있다는 걸 말하는 걸까, 아니면 다른 뭔가가 있는 걸까?','씨 맺는 식물을 강조하신 이유 — 이게 청지기 사명과 어떻게 연결될까요?'],
+            content:['창세기 1:2의 "땅"과 1:10-11의 "땅/육지"는 같은 땅인가, 다른 땅인가 — 뭐가 바뀐 걸까? 정체성? 경계? 기능? 결실?','태양 없이 식물이 먼저 생겼다 — 하나님의 주권이 자연 법칙 위에 있다는 걸 말하는 걸까, 아니면 다른 뭔가가 있는 걸까?','씨 맺는 식물을 강조하신 이유 — 이게 청지기 사명과 어떻게 연결될까요?'],
             imagine:['v9에서 땅이 "드러났다(appear)" v11에서 식물이 "생산됐다(produced)" — 이미 있던 게 드러난 것과 새로 자란 것의 차이가 하나님이 우리 안에서 일하시는 방식에 대해 뭘 말해주는 걸까?','하나님이 분리→모음→드러남→결실의 패턴으로 창조하신다면 — 지금 내 삶에서 어느 단계에 있는 것 같아?'],
             apply:['이번 시즌 내 설계에 맞는 "열매"를 하나 꼽는다면?'],
             challenge:'매일 아침 거울 보며 "나는 세상에 하나뿐인 소중한 사람, 예수님이 날 사랑해서 목숨을 주셨어" 선포하기'
           },
           adult:{
-            content:['창 1:2의 "땅"과 1:10-11의 "땅"이 어떻게 다른가 — 정체성이 바뀐 건지, 기능이 바뀐 건지, 경계가 생긴 건지?','씨 맺는 식물의 강조 — 다음 세대 신앙 전수와 어떻게 연결될까요?','태양 없이 식물이 먼저 생겼다 — 이 순서가 하나님의 주권에 대해 뭘 말해주는 걸까?'],
+            content:['창세기 1:2의 "땅"과 1:10-11의 "땅"이 어떻게 다른가 — 정체성이 바뀐 건지, 기능이 바뀐 건지, 경계가 생긴 건지?','씨 맺는 식물의 강조 — 다음 세대 신앙 전수와 어떻게 연결될까요?','태양 없이 식물이 먼저 생겼다 — 이 순서가 하나님의 주권에 대해 뭘 말해주는 걸까?'],
             imagine:['드러남(appear)과 결실(produce)의 차이 — 하나님이 우리 가정 안에서 이미 드러내고 계신 것과 아직 자라게 하고 계신 것이 뭘까?','하나님이 우리 가정을 통해 맺기 원하시는 열매가 있다면 — 그게 뭔지 지금 보이나?'],
             apply:['지금 우리 가정에서 하나님이 결실을 기대하시는 한 영역을 함께 나눠봅시다.'],
             challenge:'오늘 가족에게 서로의 재능과 특별함을 한 가지씩 말해주기'
@@ -1059,7 +1104,7 @@ const SERIES_DB = [
         challenge:'오늘 식물에 물 주기, 또는 자연 속 5분 걷기', challengeEn:'Water a plant today, or take a 5-minute walk in nature.'
       },
 
-      { week:4, title:'넷째 날 — 해와 달과 별', titleEn:'Day 4 — Sun, Moon & Stars', ref:'창 1:14-19', verse:'하나님이 두 큰 광명체를 만드사 큰 광명체로 낮을 주관하게 하시고',
+      { week:4, title:'넷째 날 — 해와 달과 별', titleEn:'Day 4 — Sun, Moon & Stars', ref:'창세기 1:14-19', verse:'하나님이 두 큰 광명체를 만드사 큰 광명체로 낮을 주관하게 하시고',
         questions:{
           content:['첫째 날에 이미 빛이 있었는데, 왜 넷째 날에 해와 달을 또 만드셨을까?','하나님이 해와 달을 통해 "낮과 밤, 계절과 시간"을 주셨는데 — 이게 우리 삶에 어떤 선물일까?','왜 하나님은 하늘에 수많은 별을 만드셨을까?'],
           imagine:['별을 보고 있으면 무슨 생각이 떠올라?','처음 별들이 생겼을 때 — 하나님은 어떤 마음이셨을까?'],
@@ -1102,7 +1147,7 @@ const SERIES_DB = [
         challenge:'오늘 밤 가족과 함께 밤하늘 별 보기', challengeEn:'Tonight, go outside with your family and look at the stars together.'
       },
 
-      { week:5, title:'다섯째 날 — 새와 물고기', titleEn:'Day 5 — Birds & Fish', ref:'창 1:20-23', verse:'하나님이 큰 바다 짐승들과 물에서 번성하여 움직이는 생물들을 만드시고 복을 주셨더라',
+      { week:5, title:'다섯째 날 — 새와 물고기', titleEn:'Day 5 — Birds & Fish', ref:'창세기 1:20-23', verse:'하나님이 큰 바다 짐승들과 물에서 번성하여 움직이는 생물들을 만드시고 복을 주셨더라',
         questions:{
           content:['오늘 말씀을 읽으면서 어떤 질문이 떠올랐어?','하나님이 물고기와 새들에게 "복"을 주셨다는 걸 알고 있었어? 그 복은 어떤 복일까?','사람들이 바다와 하늘, 그곳의 생물들을 대하는 모습을 보면 — 하나님이 주신 복을 잘 지키고 있는 것 같아?'],
           imagine:['시편 148편에서 하늘과 바다도 하나님을 찬양한다고 했어 — 파도 소리, 고래 소리, 새 소리, 별들에서 나는 소리가 하나님께 어떤 찬양처럼 들릴까?','처음 하늘에 새가 날고 바다에 물고기가 헤엄칠 때 — 하나님은 어떤 마음이셨을까?'],
@@ -1145,7 +1190,7 @@ const SERIES_DB = [
         challenge:'오늘 하나님이 만드신 자연 사진 찍어 가족과 나누기', challengeEn:'Take a photo of something in nature God made and share it with your family.'
       },
 
-      { week:6, title:'여섯째 날 — 동물과 사람', titleEn:'Day 6 — Animals & Humans', ref:'창 1:24-31', verse:'하나님이 자기 형상 곧 하나님의 형상대로 사람을 창조하시되',
+      { week:6, title:'여섯째 날 — 동물과 사람', titleEn:'Day 6 — Animals & Humans', ref:'창세기 1:24-31', verse:'하나님이 자기 형상 곧 하나님의 형상대로 사람을 창조하시되',
         questions:{
           content:['하나님이 "우리의 형상을 따라"라고 하셨는데 — "우리"가 누구일까?','하나님의 형상(God\'s Image)에는 눈에 보이지 않는 어떤 부분이 있을까?','왜 남자를 여자보다 먼저 만드셨을까?'],
           imagine:['하나님이 처음 사람을 만드시던 그 순간 — 어떤 장면이 그려져?','"하나님의 형상"이 눈에 보이는 거라면 어떤 모습일까? 눈에 안 보이는 거라면?'],
@@ -1173,13 +1218,13 @@ const SERIES_DB = [
             challenge:'가족 서로에게 "너에게서 하나님의 OO이 보여" 구체적으로 말해주기'
           },
           high:{
-            content:['예수님은 하나님을 \'영\'(요 4:23)이라고 하셨어 — 영이 무엇일까? 영은 눈에 보일까?','하나님의 형상(God\'s Image)에는 눈에 보이지 않는 어떤 부분이 있을까?','왜 남자를 여자보다 먼저 만드셨을까?'],
-            imagine:['하나님이 \'우리\'(창 1:26)라고 하셨는데 — 이게 뭘 암시하는 걸까?','삼위일체 하나님이 서로를 100% 드리는 관계라면 — 그걸 닮은 관계가 어떤 모습일까?'],
+            content:['예수님은 하나님을 \'영\'(요한복음 4:23)이라고 하셨어 — 영이 무엇일까? 영은 눈에 보일까?','하나님의 형상(God\'s Image)에는 눈에 보이지 않는 어떤 부분이 있을까?','왜 남자를 여자보다 먼저 만드셨을까?'],
+            imagine:['하나님이 \'우리\'(창세기 1:26)라고 하셨는데 — 이게 뭘 암시하는 걸까?','삼위일체 하나님이 서로를 100% 드리는 관계라면 — 그걸 닮은 관계가 어떤 모습일까?'],
             apply:['나는 가족, 친구들에게 얼마나 희생하고, 용서하고, 자신을 내어주며 사는가?'],
             challenge:'우리 사역의 명칭이 \'갓스 이미지\'다 — 갓스이미지 멤버로서 내 안에 하나님의 형상을 개발하고 회복하기 위해 구체적인 계획을 세워보자'
           },
           adult:{
-            content:['하나님이 \'우리\'(창 1:26)라고 하셨는데 — 이게 뭘 가리키는 걸까?','하나님의 형상에는 눈에 보이지 않는 어떤 부분이 있을까?','왜 남자를 여자보다 먼저 만드셨을까?'],
+            content:['하나님이 \'우리\'(창세기 1:26)라고 하셨는데 — 이게 뭘 가리키는 걸까?','하나님의 형상에는 눈에 보이지 않는 어떤 부분이 있을까?','왜 남자를 여자보다 먼저 만드셨을까?'],
             imagine:['삼위일체 하나님이 서로를 완전히 드리는 관계라면 — 결혼과 가정이 그걸 어떻게 반영할 수 있을까?','우리 가정이 하나님의 형상을 세상에 보여주는 "작은 교회"라면 — 지금 어떤 모습일까?'],
             apply:['하나님의 형상이라는 정체성이 내 일상을 어떻게 바꿀 수 있을까?'],
             challenge:'가족과 함께 서로에게서 발견한 하나님의 형상 한 가지씩 나누기'
@@ -1188,7 +1233,7 @@ const SERIES_DB = [
         challenge:'가족 서로에게 "너는 하나님의 형상이야" 한 마디 해주기', challengeEn:'Say to each family member: "You are made in the image of God."'
       },
 
-      { week:7, title:'여섯째 날 — 하나님의 형상', titleEn:'Day 6 — Image of God', ref:'창 1:26-27', verse:'하나님이 자기 형상 곧 하나님의 형상대로 사람을 창조하시되 남자와 여자를 창조하시고',
+      { week:7, title:'여섯째 날 — 하나님의 형상', titleEn:'Day 6 — Image of God', ref:'창세기 1:26-27', verse:'하나님이 자기 형상 곧 하나님의 형상대로 사람을 창조하시되 남자와 여자를 창조하시고',
         questions:{
           content:['"형상(tselem)"과 "모양(demuth)" — 이 두 단어가 같은 의미일까, 다른 의미일까?','"우리의 형상"에서 "우리"가 누구인지 — 본문이 어떤 단서를 주고 있을까?','왜 남자를 여자보다 먼저 만드셨을까?'],
           imagine:['"우리의 형상을 따라" — 삼위일체 하나님이 서로 대화하며 사람을 만드신 그 장면이 어떻게 그려져?','하나님의 형상으로 만들어진 사람이 죄를 지었을 때 — 그 형상이 어떻게 달라졌을까?'],
@@ -1204,14 +1249,14 @@ const SERIES_DB = [
           },
           preschooler:{
             content:['하나님의 형상(God\'s Image)에는 눈에 보이지 않는 어떤 부분이 있을까?','하나님의 성품 중 — 사랑, 선, 인자, 성실, 자비 — 나는 어느 부분이 닮은 것 같아?','왜 남자를 여자보다 먼저 만드셨을까?'],
-            imagine:['하나님이 \'영\'이시라면(요 4:23) — 눈에 안 보이는 하나님의 형상은 어떤 모습일까?','내가 하나님을 가장 닮았다고 느낀 순간이 있었어?'],
+            imagine:['하나님이 \'영\'이시라면(요한복음 4:23) — 눈에 안 보이는 하나님의 형상은 어떤 모습일까?','내가 하나님을 가장 닮았다고 느낀 순간이 있었어?'],
             apply:['나는 가족, 친구들에게 얼마나 희생하고, 용서하고, 자신을 내어주며 사는가?'],
             activity:'가족 서로에게 "너한테서 하나님의 사랑/선함/인자함이 보여" 말해주기',
             challenge:'이번 주 매일 아침 "하나님, 오늘 제 안에 하나님의 형상이 드러나게 해주세요" 기도하기'
           },
           middle:{
             content:['하나님의 형상(God\'s Image)에는 눈에 보이지 않는 어떤 부분이 있을까?','하나님의 성품 중 — 사랑, 선, 인자, 성실, 자비 — 나는 어느 부분이 가장 닮은 것 같아? 어느 부분이 가장 개발되었으면 좋겠어?','왜 남자를 여자보다 먼저 만드셨을까?'],
-            imagine:['하나님이 \'영\'이시라면(요 4:23) — 눈에 안 보이는 하나님의 형상은 어떤 모습일까?','내가 하나님을 가장 닮았다고 느낀 순간이 있었어?'],
+            imagine:['하나님이 \'영\'이시라면(요한복음 4:23) — 눈에 안 보이는 하나님의 형상은 어떤 모습일까?','내가 하나님을 가장 닮았다고 느낀 순간이 있었어?'],
             apply:['나는 가족, 친구들에게 얼마나 희생하고, 용서하고, 자신을 내어주며 사는가?'],
             challenge:'이번 주 매일 아침 "하나님, 오늘 제 안에 하나님의 형상이 드러나게 해주세요" 기도하기'
           },
@@ -1237,21 +1282,21 @@ const SERIES_DB = [
     desc: '다윗의 기도와 찬양으로 하나님과 더 깊이 대화하는 법을 배웁니다.', descEn: 'Learn to dialogue more deeply with God through David\'s prayers and praise.',
     color: T.green, bg: T.greenBg, border: T.greenBorder,
     items: [
-      { week:1, title:'시편 1편 — 복 있는 사람', titleEn:'Psalm 1 — The Blessed', ref:'시 1:1-6', verse:'복 있는 사람은 악인들의 꾀를 따르지 않고',
+      { week:1, title:'시편 1편 — 복 있는 사람', titleEn:'Psalm 1 — The Blessed', ref:'시편 1:1-6', verse:'복 있는 사람은 악인들의 꾀를 따르지 않고',
         questions:{ content:['복 있는 사람의 특징이 무엇인가요?','나무와 시냇가 비유가 말해주는 것은?'], imagine:['시냇가에 심긴 나무처럼 사는 사람의 하루는 어떤 모습일까?','다윗이 이 시를 쓸 때 어떤 상황이었을까?'], apply:['내 삶에서 악인의 꾀를 따르고 싶은 유혹이 있다면?','말씀을 즐거워하는 습관을 어떻게 만들 수 있을까?'] }, challenge:'오늘 말씀 한 구절 소리 내어 읽기' },
-      { week:2, title:'시편 23편 — 여호와는 나의 목자', titleEn:'Psalm 23 — The Lord is My Shepherd', ref:'시 23:1-6', verse:'여호와는 나의 목자시니 내게 부족함이 없으리로다',
+      { week:2, title:'시편 23편 — 여호와는 나의 목자', titleEn:'Psalm 23 — The Lord is My Shepherd', ref:'시편 23:1-6', verse:'여호와는 나의 목자시니 내게 부족함이 없으리로다',
         questions:{ content:['목자와 양의 관계가 하나님과 우리의 관계와 어떻게 같나?','사망의 음침한 골짜기는 어떤 상황을 말할까?'], imagine:['다윗이 이 시를 쓸 때 어떤 경험을 했을까?','하나님이 우리의 목자라는 것을 실감한 순간이 있었나요?'], apply:['내 삶에서 하나님이 목자 되심을 믿기 어려운 부분이 있다면?','"내게 부족함이 없다"는 고백이 가능하려면 무엇이 필요할까요?'] }, challenge:'오늘 시편 23편 천천히 두 번 읽고 마음에 와닿는 구절 나누기' },
-      { week:3, title:'시편 46편 — 하나님은 우리의 피난처', titleEn:'Psalm 46 — God Our Refuge', ref:'시 46:1-3', verse:'하나님은 우리의 피난처시요 힘이시니',
+      { week:3, title:'시편 46편 — 하나님은 우리의 피난처', titleEn:'Psalm 46 — God Our Refuge', ref:'시편 46:1-3', verse:'하나님은 우리의 피난처시요 힘이시니',
         questions:{ content:['피난처와 힘이라는 표현이 같이 나온 이유는?','땅이 변하고 산이 흔들려도라는 표현이 의미하는 것은?'], imagine:['이 시를 쓸 당시 이스라엘은 어떤 위협을 받고 있었을까?','흔들리지 않는 피난처가 있다는 것이 어떤 느낌인가?'], apply:['지금 내 삶에서 가장 두려운 것이 무엇인가요?','하나님을 피난처로 삼는다는 것이 구체적으로 어떤 행동일까?'] }, challenge:'가족의 두려움 하나씩 나누고 함께 기도하기' },
-      { week:4, title:'시편 91편 — 지존자의 은밀한 곳', titleEn:'Psalm 91 — Shelter of the Most High', ref:'시 91:1-4', verse:'지존자의 은밀한 곳에 거주하며 전능자의 그늘 아래에 있는 자여',
+      { week:4, title:'시편 91편 — 지존자의 은밀한 곳', titleEn:'Psalm 91 — Shelter of the Most High', ref:'시편 91:1-4', verse:'지존자의 은밀한 곳에 거주하며 전능자의 그늘 아래에 있는 자여',
         questions:{ content:['은밀한 곳, 그늘, 날개, 방패 — 이 표현들의 공통점은?','천천히 닥치는 재앙과 갑자기 닥치는 재앙 모두를 말하는 이유는?'], imagine:['새의 날개 아래 있는 작은 새의 마음이 어떨까?','하나님의 날개 아래 있다고 느꼈던 순간이 있었나요?'], apply:['보호받는다는 느낌을 언제 받나?','가족이 서로에게 "피난처"가 될 수 있는 방법은?'] }, challenge:'가족이 서로를 위해 보호하는 기도 한 마디씩 하기' },
-      { week:5, title:'시편 103편 — 내 영혼아 여호와를 송축하라', titleEn:'Psalm 103 — Praise the Lord, My Soul', ref:'시 103:1-5', verse:'내 영혼아 여호와를 송축하라 그의 모든 은택을 잊지 말지어다',
+      { week:5, title:'시편 103편 — 내 영혼아 여호와를 송축하라', titleEn:'Psalm 103 — Praise the Lord, My Soul', ref:'시편 103:1-5', verse:'내 영혼아 여호와를 송축하라 그의 모든 은택을 잊지 말지어다',
         questions:{ content:['다윗이 나열한 하나님의 은혜가 몇 가지인가?','영혼에게 명령하는 표현이 독특하게 느껴지는 이유는?'], imagine:['다윗이 이 시를 쓸 때 어떤 마음이었을까?','우리가 잊고 살았던 하나님의 은택이 있다면?'], apply:['감사를 잊어버릴 때 어떤 일이 일어나나?','이번 주 하나님의 은혜 5가지를 가족이 함께 나눠봐요.'] }, challenge:'감사 목록 5개 함께 적고 벽에 붙이기' },
-      { week:6, title:'시편 119편 — 말씀의 등불', titleEn:'Psalm 119 — A Lamp for My Feet', ref:'시 119:105', verse:'주의 말씀은 내 발에 등이요 내 길에 빛이니이다',
+      { week:6, title:'시편 119편 — 말씀의 등불', titleEn:'Psalm 119 — A Lamp for My Feet', ref:'시편 119:105', verse:'주의 말씀은 내 발에 등이요 내 길에 빛이니이다',
         questions:{ content:['등불과 빛 비유가 말씀을 어떻게 설명하나?','발에 등, 길에 빛의 차이가 있나요?'], imagine:['어두운 길을 걷다가 등불이 생겼을 때 기분이 어떨까?','말씀이 없다면 내 삶이 어떤 모습일까?'], apply:['말씀이 내 삶의 결정에 영향을 준 적이 있나요?','우리 가족이 말씀을 더 가까이하는 방법이 있다면?'] }, challenge:'이번 주 말씀 한 구절 함께 암송하기' },
-      { week:7, title:'시편 139편 — 하나님의 전지하심', titleEn:'Psalm 139 — God Knows Me', ref:'시 139:1-6', verse:'여호와여 주께서 나를 살펴 보셨으므로 나를 아시나이다',
+      { week:7, title:'시편 139편 — 하나님의 전지하심', titleEn:'Psalm 139 — God Knows Me', ref:'시편 139:1-6', verse:'여호와여 주께서 나를 살펴 보셨으므로 나를 아시나이다',
         questions:{ content:['하나님이 안다고 표현되는 것들이 무엇인가요?','이 지식이 다윗에게 위로가 됐을까, 두려움이었을까?'], imagine:['하나님이 내 모든 것을 안다는 것이 어떤 느낌인가?','나를 가장 잘 아는 분이 하나님이라면?'], apply:['숨기고 싶은 것이 있는데 하나님이 이미 아신다면?','완전히 알려지면서도 완전히 사랑받는다는 것이 어떤 의미인가?'] }, challenge:'하나님께 솔직한 기도 편지 한 문단 쓰기' },
-      { week:8, title:'시편 150편 — 할렐루야', titleEn:'Psalm 150 — Hallelujah', ref:'시 150:1-6', verse:'호흡이 있는 자마다 여호와를 찬양할지어다',
+      { week:8, title:'시편 150편 — 할렐루야', titleEn:'Psalm 150 — Hallelujah', ref:'시편 150:1-6', verse:'호흡이 있는 자마다 여호와를 찬양할지어다',
         questions:{ content:['찬양의 장소, 이유, 방법, 대상이 각각 무엇인가요?','호흡이 있는 자마다라는 표현의 의미는?'], imagine:['모든 악기와 모든 사람이 함께 찬양하는 장면을 상상해보면?','하나님은 우리의 찬양을 들을 때 어떤 마음일까?'], apply:['우리 가족만의 찬양 방식이 있나요?','일상에서 찬양이 자연스럽게 나오려면 어떻게 해야 할까?'] }, challenge:'오늘 가족이 함께 좋아하는 찬양 한 곡 부르기' },
     ]
   },
@@ -1260,21 +1305,21 @@ const SERIES_DB = [
     desc: '예수님이 들려주신 이야기로 하나님 나라의 비밀을 함께 발견합니다.', descEn: 'Discover the secrets of God\'s Kingdom together through the stories Jesus told.',
     color: T.amber, bg: T.amberBg, border: T.amberBorder,
     items: [
-      { week:1, title:'씨 뿌리는 자', titleEn:'The Sower', ref:'마 13:3-9', verse:'씨를 뿌리는 자가 뿌리러 나가서',
+      { week:1, title:'씨 뿌리는 자', titleEn:'The Sower', ref:'마태복음 13:3-9', verse:'씨를 뿌리는 자가 뿌리러 나가서',
         questions:{ content:['네 가지 밭의 차이가 무엇인가요?','씨는 같은데 왜 결과가 다를까?'], imagine:['예수님이 이 비유를 처음 들려주실 때 청중의 반응은?','나는 어떤 밭인가?'], apply:['말씀이 내 마음에 잘 심겨지려면 어떤 조건이 필요할까요?','가족 중 누가 어떤 밭인지 솔직하게 나눠볼까?'] }, challenge:'이번 주 말씀 묵상 시간 하루 5분 갖기' },
-      { week:2, title:'탕자', titleEn:'The Prodigal Son', ref:'눅 15:11-24', verse:'아직도 거리가 먼데 아버지가 그를 보고 측은히 여겨',
+      { week:2, title:'탕자', titleEn:'The Prodigal Son', ref:'누가복음 15:11-24', verse:'아직도 거리가 먼데 아버지가 그를 보고 측은히 여겨',
         questions:{ content:['탕자가 집을 떠난 이유와 돌아온 이유는?','아버지가 달려가 안은 장면이 의미하는 것은?'], imagine:['아버지가 매일 문 앞에서 기다렸다면 어떤 마음이었을까?','탕자가 집으로 걸어오는 동안 무슨 생각을 했을까?'], apply:['하나님 아버지의 마음을 오해한 적이 있나요?','우리 가정에서 서로를 탕자처럼 품어준 경험이 있나요?'] }, challenge:'"돌아와서 다행이야" 가족 중 한 명에게 말하기' },
-      { week:3, title:'선한 사마리아인', titleEn:'The Good Samaritan', ref:'눅 10:30-37', verse:'어떤 사마리아 사람은 여행하는 중 거기 이르러 그를 보고 불쌍히 여겨',
+      { week:3, title:'선한 사마리아인', titleEn:'The Good Samaritan', ref:'누가복음 10:30-37', verse:'어떤 사마리아 사람은 여행하는 중 거기 이르러 그를 보고 불쌍히 여겨',
         questions:{ content:['제사장과 레위인이 지나친 이유가 뭘까?','사마리아인이 특별한 이유는 무엇인가요?'], imagine:['다친 사람을 보고 지나칠 때 제사장의 마음은?','사마리아인의 마음속에는 무엇이 있었을까?'], apply:['오늘 내 주변의 "강도 만난 자"는 누구인가?','우리 가족이 이웃에게 선한 사마리아인이 될 기회는?'] }, challenge:'이번 주 도움이 필요한 누군가에게 먼저 손 내밀기' },
-      { week:4, title:'잃은 양', titleEn:'The Lost Sheep', ref:'눅 15:4-7', verse:'잃은 양 한 마리를 찾아다니지 않겠느냐',
+      { week:4, title:'잃은 양', titleEn:'The Lost Sheep', ref:'누가복음 15:4-7', verse:'잃은 양 한 마리를 찾아다니지 않겠느냐',
         questions:{ content:['99마리를 두고 한 마리를 찾는 것이 합리적인가?','찾은 후 잔치를 여는 이유는?'], imagine:['잃어버린 양의 마음은 어떨까?','하나님이 나를 찾아다니신다면 어떤 느낌인가?'], apply:['내가 잃어버린 양처럼 느꼈던 순간이 있나요?','우리 가족 중 관계가 멀어진 사람이 있다면 먼저 찾아갈 수 있을까?'] }, challenge:'오늘 연락이 끊긴 가족이나 친구에게 먼저 연락하기' },
-      { week:5, title:'겨자씨와 누룩', titleEn:'Mustard Seed & Yeast', ref:'마 13:31-33', verse:'겨자씨 한 알을 가져다 밭에 심었더니',
+      { week:5, title:'겨자씨와 누룩', titleEn:'Mustard Seed & Yeast', ref:'마태복음 13:31-33', verse:'겨자씨 한 알을 가져다 밭에 심었더니',
         questions:{ content:['겨자씨와 누룩의 공통점은 무엇인가요?','작은 것에서 시작하는 이유가 있을까?'], imagine:['작은 겨자씨가 큰 나무가 되는 과정을 상상해보면?','하나님 나라가 우리 안에서 자라는 것이 보이나?'], apply:['내 삶에서 작은 씨앗 같은 것이 있다면?','우리 가정예배도 겨자씨처럼 자랄 수 있을까?'] }, challenge:'가정예배를 계속하기 위한 결단 한 가지 나누기' },
-      { week:6, title:'열 처녀', titleEn:'The Ten Virgins', ref:'마 25:1-13', verse:'그들이 예비하는 동안에 신랑이 오더니',
+      { week:6, title:'열 처녀', titleEn:'The Ten Virgins', ref:'마태복음 25:1-13', verse:'그들이 예비하는 동안에 신랑이 오더니',
         questions:{ content:['슬기로운 다섯과 미련한 다섯의 차이는 무엇인가요?','기름을 나눠주지 못한 이유는 무엇인가요?'], imagine:['기름이 다 된 것을 발견했을 때 다섯 처녀의 마음은?','신랑을 기다리는 기쁨과 긴장감이 어떤 것일까?'], apply:['내 신앙생활에서 준비되어 있지 않은 부분이 있다면?','매일의 작은 준비가 왜 중요한지 나눠볼까?'] }, challenge:'이번 주 매일 짧은 기도로 하루 시작하기' },
-      { week:7, title:'포도원 일꾼', titleEn:'Workers in the Vineyard', ref:'마 20:1-16', verse:'나중 온 이 사람들에게도 처음과 같이 주노니',
+      { week:7, title:'포도원 일꾼', titleEn:'Workers in the Vineyard', ref:'마태복음 20:1-16', verse:'나중 온 이 사람들에게도 처음과 같이 주노니',
         questions:{ content:['주인이 늦게 온 일꾼에게도 같은 삯을 준 이유는?','먼저 온 일꾼이 불평한 것이 이해되나?'], imagine:['하루 종일 일한 일꾼과 한 시간 일한 일꾼의 마음은?','포도원 주인이 되어보면 어떤 마음일까?'], apply:['하나님의 은혜가 공평하지 않다고 느낀 적이 있나요?','우리 가족 안에서 서로를 비교하는 경향이 있나요?'] }, challenge:'가족 중 한 명에게 "수고했어" 먼저 말하기' },
-      { week:8, title:'달란트', titleEn:'The Talents', ref:'마 25:14-30', verse:'잘하였도다 착하고 충성된 종아',
+      { week:8, title:'달란트', titleEn:'The Talents', ref:'마태복음 25:14-30', verse:'잘하였도다 착하고 충성된 종아',
         questions:{ content:['세 종이 받은 달란트가 다른 이유는?','한 달란트 받은 종이 땅에 묻은 이유는?'], imagine:['주인이 돌아왔을 때 각 종의 마음은?','내가 받은 달란트는 무엇일까?'], apply:['내가 땅에 묻어두고 있는 달란트가 있다면?','가족이 서로의 달란트를 발견해주는 시간을 갖는다면?'] }, challenge:'가족이 서로의 달란트 하나씩 말해주기' },
     ]
   },
@@ -1283,29 +1328,29 @@ const SERIES_DB = [
     desc: '예수님의 탄생부터 부활까지 함께 따라가며 복음의 깊이를 경험합니다.', descEn: 'Experience the depth of the Gospel by following Jesus from birth to resurrection.',
     color: T.blue, bg: T.blueBg, border: T.blueBorder,
     items: [
-      { week:1, title:'탄생 예고', titleEn:'The Announcement', ref:'눅 1:26-35', verse:'보라 네가 잉태하여 아들을 낳으리니 그 이름을 예수라 하라',
+      { week:1, title:'탄생 예고', titleEn:'The Announcement', ref:'누가복음 1:26-35', verse:'보라 네가 잉태하여 아들을 낳으리니 그 이름을 예수라 하라',
         questions:{ content:['천사가 마리아에게 전한 메시지의 핵심은?','마리아의 반응이 어떻게 달라졌나?'], imagine:['갑자기 천사가 나타났을 때 마리아의 마음은?','마리아가 "이루어지이다"고 말할 때 어떤 용기가 필요했을까?'], apply:['예상치 못한 하나님의 계획 앞에 순종하는 것이 가능한가요?','내 삶에 하나님이 뭔가를 맡기신다면 어떻게 반응할까?'] }, challenge:'"이루어지이다" 마리아처럼 기도로 하루 시작하기' },
-      { week:2, title:'탄생', titleEn:'The Birth', ref:'눅 2:1-7', verse:'첫아들을 낳아 강보로 싸서 구유에 뉘었으니',
+      { week:2, title:'탄생', titleEn:'The Birth', ref:'누가복음 2:1-7', verse:'첫아들을 낳아 강보로 싸서 구유에 뉘었으니',
         questions:{ content:['왜 예수님은 구유에서 태어나셨을까?','하나님이 마굿간을 탄생 장소로 선택하신 이유가 있을까?'], imagine:['마리아가 구유에 아기를 눕히는 장면을 상상해보면?','하나님이 이 초라한 장면을 보실 때 어떤 마음이었을까?'], apply:['가장 낮은 곳에 오신 하나님이 내게 어떤 의미인가?','우리 가정의 초라한 부분을 하나님이 어떻게 보실까?'] }, challenge:'오늘 가장 낮은 자리에서 섬기는 경험 해보기' },
-      { week:3, title:'세례', titleEn:'The Baptism', ref:'마 3:13-17', verse:'이는 내 사랑하는 아들이요 내 기뻐하는 자라',
+      { week:3, title:'세례', titleEn:'The Baptism', ref:'마태복음 3:13-17', verse:'이는 내 사랑하는 아들이요 내 기뻐하는 자라',
         questions:{ content:['예수님이 세례를 받으신 이유는?','하나님의 음성이 "이는 내 아들"이라고 한 의미는?'], imagine:['물에서 올라오는 예수님의 표정은?','하늘에서 음성을 듣는 세례 요한의 마음은?'], apply:['하나님이 나를 향해 "사랑하는 자녀"라고 하신다면?','내 정체성의 기초가 무엇인지 나눠봐요.'] }, challenge:'가족이 서로에게 "사랑해" 한 마디 먼저 하기' },
-      { week:4, title:'첫 제자들', titleEn:'The First Disciples', ref:'마 4:18-22', verse:'나를 따라오라 내가 너희를 사람을 낚는 어부가 되게 하리라',
+      { week:4, title:'첫 제자들', titleEn:'The First Disciples', ref:'마태복음 4:18-22', verse:'나를 따라오라 내가 너희를 사람을 낚는 어부가 되게 하리라',
         questions:{ content:['베드로와 안드레가 즉시 따라간 이유가 뭘까?','사람을 낚는 어부라는 표현의 의미는?'], imagine:['그물을 던지다가 예수님의 목소리를 들었을 때 어떤 느낌이었을까?','배와 아버지를 두고 따라가는 야고보와 요한의 마음은?'], apply:['예수님이 나를 부르신다면 지금 내가 두고 가야 할 것은?','우리 가정이 함께 예수님을 따르는 모습이 어떨지 그려봐요.'] }, challenge:'오늘 예수님을 따르는 한 가지 결단 나누기' },
-      { week:5, title:'산상수훈 — 팔복', titleEn:'Sermon on the Mount', ref:'마 5:3-10', verse:'심령이 가난한 자는 복이 있나니 천국이 그들의 것임이요',
+      { week:5, title:'산상수훈 — 팔복', titleEn:'Sermon on the Mount', ref:'마태복음 5:3-10', verse:'심령이 가난한 자는 복이 있나니 천국이 그들의 것임이요',
         questions:{ content:['팔복의 8가지가 우리의 상식과 어떻게 다른가요?','슬퍼하는 자, 온유한 자가 복 있는 이유는?'], imagine:['산 위에서 이 말씀을 듣는 군중의 반응은?','예수님이 이 말씀을 하실 때 어떤 표정이었을까?'], apply:['내 삶에서 세상의 복과 예수님의 복이 충돌하는 순간은?','팔복 중 나에게 가장 도전이 되는 것은 무엇인가요?'] }, challenge:'팔복 중 한 가지를 이번 주 실천해보기' },
-      { week:6, title:'오병이어', titleEn:'Feeding the 5000', ref:'요 6:5-13', verse:'예수께서 떡을 가져 축사하신 후에 앉아 있는 자들에게 나눠 주시고',
+      { week:6, title:'오병이어', titleEn:'Feeding the 5000', ref:'요한복음 6:5-13', verse:'예수께서 떡을 가져 축사하신 후에 앉아 있는 자들에게 나눠 주시고',
         questions:{ content:['소년의 도시락이 어떻게 5000명을 먹였을까?','남은 12바구니의 의미는?'], imagine:['소년이 도시락을 건네주는 장면을 상상해보면?','먹고 배부른 후 사람들의 표정은?'], apply:['내가 가진 작은 것을 하나님께 드린다면 어떤 일이 일어날까?','우리 가족이 가진 작은 것들로 나눌 수 있는 것은?'] }, challenge:'오늘 가진 것 중 하나를 나눠주기' },
-      { week:7, title:'물 위를 걷다', titleEn:'Walking on Water', ref:'마 14:28-32', verse:'주여 만일 주님이시거든 나를 명하사 물 위로 오라 하소서',
+      { week:7, title:'물 위를 걷다', titleEn:'Walking on Water', ref:'마태복음 14:28-32', verse:'주여 만일 주님이시거든 나를 명하사 물 위로 오라 하소서',
         questions:{ content:['베드로가 물 위로 걸을 수 있었던 이유와 빠진 이유는?','예수님이 즉시 손을 잡으신 의미는?'], imagine:['파도를 보며 무서워지는 베드로의 마음은?','손을 뻗어 잡으시는 예수님의 표정은?'], apply:['믿음으로 시작했다가 두려움에 빠진 경험이 있나요?','예수님의 손을 잡는다는 것이 내 삶에서 어떤 의미인가?'] }, challenge:'두려운 것 하나를 예수님께 맡기는 기도하기' },
-      { week:8, title:'변화산', titleEn:'The Transfiguration', ref:'마 17:1-5', verse:'이는 내 사랑하는 아들이요 내 기뻐하는 자니 너희는 그의 말을 들으라',
+      { week:8, title:'변화산', titleEn:'The Transfiguration', ref:'마태복음 17:1-5', verse:'이는 내 사랑하는 아들이요 내 기뻐하는 자니 너희는 그의 말을 들으라',
         questions:{ content:['변화산에서 일어난 일들을 순서대로 나열해볼까?','엘리야와 모세가 등장한 이유는?'], imagine:['갑자기 예수님이 변화되는 것을 본 제자들의 반응은?','하나님의 음성을 직접 들었을 때 어떤 기분이었을까?'], apply:['예수님이 누구인지 더 분명하게 알게 된 순간이 있나요?','그 말씀을 들으라는 명령이 내게 어떤 의미인가?'] }, challenge:'이번 주 말씀을 듣고 순종하는 경험 나누기' },
-      { week:9, title:'예루살렘 입성', titleEn:'The Triumphal Entry', ref:'마 21:1-11', verse:'호산나 다윗의 자손이여 찬송하리로다',
+      { week:9, title:'예루살렘 입성', titleEn:'The Triumphal Entry', ref:'마태복음 21:1-11', verse:'호산나 다윗의 자손이여 찬송하리로다',
         questions:{ content:['왜 예수님은 나귀를 타고 입성하셨을까?','군중이 환호한 이유와 그 며칠 후 외친 것의 차이는?'], imagine:['나귀를 타고 예루살렘에 들어가는 예수님의 마음은?','겉옷과 종려나무를 깔며 환호하는 군중을 보시는 예수님은?'], apply:['믿음이 열정에서 배신으로 바뀌는 이유가 뭘까?','내 신앙이 감정에 의존하지 않으려면 어떻게 해야 할까?'] }, challenge:'조용히 예수님을 예배하는 시간 5분 갖기' },
-      { week:10, title:'최후의 만찬', titleEn:'The Last Supper', ref:'눅 22:14-20', verse:'이것은 너희를 위하여 주는 내 몸이라',
+      { week:10, title:'최후의 만찬', titleEn:'The Last Supper', ref:'누가복음 22:14-20', verse:'이것은 너희를 위하여 주는 내 몸이라',
         questions:{ content:['예수님이 마지막 식사에서 하신 행동들은?','이것을 행하여 나를 기념하라는 뜻은?'], imagine:['제자들과 마지막 식사를 하는 예수님의 마음은?','빵과 포도주를 나누는 제자들의 표정은?'], apply:['가족이 함께 식사하는 것이 어떤 의미를 가질 수 있을까?','우리 가정예배의 식사가 성만찬과 연결된다면?'] }, challenge:'오늘 식사를 감사로 시작하며 예수님을 기억하기' },
-      { week:11, title:'십자가', titleEn:'The Cross', ref:'요 19:28-30', verse:'다 이루었다 하시고 머리를 숙이니 영혼이 떠나가시니라',
+      { week:11, title:'십자가', titleEn:'The Cross', ref:'요한복음 19:28-30', verse:'다 이루었다 하시고 머리를 숙이니 영혼이 떠나가시니라',
         questions:{ content:['다 이루었다는 말의 의미가 무엇인가요?','예수님이 십자가에서 마지막으로 하신 말씀들은?'], imagine:['십자가 아래에 있던 마리아의 마음은?','예수님의 마지막 순간을 제자들은 어떻게 기억했을까?'], apply:['십자가의 의미가 나에게 얼마나 현실감 있게 다가오나?','다 이루었다는 말이 내 죄와 연결된다면?'] }, challenge:'십자가 앞에 조용히 서는 묵상 시간 갖기' },
-      { week:12, title:'부활', titleEn:'The Resurrection', ref:'요 20:1-18', verse:'예수께서 이르시되 마리아야 하시거늘',
+      { week:12, title:'부활', titleEn:'The Resurrection', ref:'요한복음 20:1-18', verse:'예수께서 이르시되 마리아야 하시거늘',
         questions:{ content:['빈 무덤을 발견했을 때 각자의 반응이 어떻게 달랐나?','예수님이 마리아를 이름으로 부르신 의미는?'], imagine:['무덤이 비어있는 것을 발견했을 때 마리아의 마음은?','"마리아야" 한 마디에 눈물 흘리는 마리아를 상상해보면?'], apply:['예수님이 나를 이름으로 아신다는 것이 어떤 의미인가?','부활이 오늘 내 삶에 어떤 차이를 만드나?'] }, challenge:'내 이름 앞에 "부활의 주님이 아신다" 말하며 하루 시작하기' },
     ]
   },
@@ -1314,17 +1359,17 @@ const SERIES_DB = [
     desc: '고린도전서 13장을 절별로 깊이 묵상하며 사랑의 본질을 가족과 나눕니다.', descEn: 'Meditate verse by verse through 1 Corinthians 13 and discover the essence of love together as a family.',
     color: T.green, bg: T.greenBg, border: T.greenBorder,
     items: [
-      { week:1, title:'사랑 없으면', titleEn:'Without Love', ref:'고전 13:1-3', verse:'내가 사람의 방언과 천사의 말을 할지라도 사랑이 없으면 소리 나는 구리와 울리는 꽹과리가 되고',
+      { week:1, title:'사랑 없으면', titleEn:'Without Love', ref:'고린도전서 13:1-3', verse:'내가 사람의 방언과 천사의 말을 할지라도 사랑이 없으면 소리 나는 구리와 울리는 꽹과리가 되고',
         questions:{ content:['바울이 나열한 것들이 사랑 없이 어떻게 된다고 했나?','방언, 예언, 지식, 믿음, 희생 — 이것들보다 사랑이 더 중요한 이유는?'], imagine:['사랑 없이 모든 것을 가진 사람의 모습은?','하나님이 이 구절을 읽을 때 어떤 표정이실까?'], apply:['내가 사랑 없이 하고 있는 것이 있다면?','우리 가정예배도 사랑 없으면 꽹과리가 될 수 있을까?'] }, challenge:'오늘 하는 일 하나를 사랑으로 하기' },
-      { week:2, title:'사랑은 오래 참고', titleEn:'Love is Patient', ref:'고전 13:4-5상', verse:'사랑은 오래 참고 사랑은 온유하며 시기하지 아니하며',
+      { week:2, title:'사랑은 오래 참고', titleEn:'Love is Patient', ref:'고린도전서 13:4-5상', verse:'사랑은 오래 참고 사랑은 온유하며 시기하지 아니하며',
         questions:{ content:['오래 참음, 온유함, 시기하지 않음이 각각 어떤 모습인가?','이 세 가지가 한 문장에 함께 있는 이유는?'], imagine:['가족에게 진짜 온유한 사람의 하루는 어떤 모습일까?','예수님이 이 사랑을 우리에게 보여주신 장면은?'], apply:['가족 중 누구에게 오래 참기가 가장 어려운가요?','온유함을 연습하기 위해 오늘 할 수 있는 것은?'] }, challenge:'오늘 참고 싶지 않은 순간에 한 번 참아보기' },
-      { week:3, title:'사랑은 자랑하지 않고', titleEn:'Love Does Not Boast', ref:'고전 13:5하-6', verse:'사랑은 자기의 유익을 구하지 아니하며 성내지 아니하며',
+      { week:3, title:'사랑은 자랑하지 않고', titleEn:'Love Does Not Boast', ref:'고린도전서 13:5하-6', verse:'사랑은 자기의 유익을 구하지 아니하며 성내지 아니하며',
         questions:{ content:['자기 유익을 구하지 않는다는 것이 어떤 행동인가?','성내지 않고 악한 것을 생각하지 않는 것이 가능한가요?'], imagine:['자기 유익을 구하지 않는 부모의 하루는?','성내지 않고 공감하는 대화가 어떤 모습일까?'], apply:['내가 자주 성내는 상황이 있다면?','가족에게 내 유익보다 그들의 유익을 구하는 방법은?'] }, challenge:'오늘 가족 중 한 명의 유익을 먼저 생각하기' },
-      { week:4, title:'모든 것을 견디는 사랑', titleEn:'Love Bears All Things', ref:'고전 13:7', verse:'모든 것을 참으며 모든 것을 믿으며 모든 것을 바라며 모든 것을 견디느니라',
+      { week:4, title:'모든 것을 견디는 사랑', titleEn:'Love Bears All Things', ref:'고린도전서 13:7', verse:'모든 것을 참으며 모든 것을 믿으며 모든 것을 바라며 모든 것을 견디느니라',
         questions:{ content:['네 가지 "모든 것"이 무엇인가요?','참음과 견딤의 차이가 있을까?'], imagine:['"모든 것을 믿는다"는 신뢰가 가족 사이에 있다면 어떤 모습일까?','예수님이 우리에게 모든 것을 바라신다면?'], apply:['가족에 대한 희망을 포기하고 싶었던 순간이 있나요?','모든 것을 견디는 사랑이 내 가정에 있나요?'] }, challenge:'포기하고 싶었던 가족에 대한 소망을 기도로 드리기' },
-      { week:5, title:'사랑은 없어지지 않는다', titleEn:'Love Never Fails', ref:'고전 13:8-10', verse:'사랑은 언제까지나 떨어지지 아니하되',
+      { week:5, title:'사랑은 없어지지 않는다', titleEn:'Love Never Fails', ref:'고린도전서 13:8-10', verse:'사랑은 언제까지나 떨어지지 아니하되',
         questions:{ content:['예언, 방언, 지식이 없어지는 이유는?','온전한 것이 올 때 부분적인 것이 폐한다는 뜻은?'], imagine:['영원히 없어지지 않는 사랑이 있다면 어떤 느낌일까?','하나님의 사랑이 "언제까지나" 떨어지지 않는다는 것이?'], apply:['변하지 않는 것에 기반한 삶을 살고 있나요?','가정에서 사랑이 사라지지 않으려면 무엇이 필요할까요?'] }, challenge:'가족에게 변하지 않는 사랑을 표현하는 편지 한 줄 쓰기' },
-      { week:6, title:'믿음 소망 사랑', titleEn:'Faith, Hope & Love', ref:'고전 13:13', verse:'그런즉 믿음, 소망, 사랑, 이 세 가지는 항상 있을 것인데 그 중의 제일은 사랑이라',
+      { week:6, title:'믿음 소망 사랑', titleEn:'Faith, Hope & Love', ref:'고린도전서 13:13', verse:'그런즉 믿음, 소망, 사랑, 이 세 가지는 항상 있을 것인데 그 중의 제일은 사랑이라',
         questions:{ content:['믿음, 소망, 사랑이 항상 있어야 하는 이유는?','왜 사랑이 제일인가?'], imagine:['믿음, 소망, 사랑이 충만한 가정의 모습을 그려본다면?','하나님이 이 세 가지를 우리에게 주실 때 어떤 마음이었을까?'], apply:['우리 가정에 믿음, 소망, 사랑이 얼마나 있나요?','가정예배를 통해 이 세 가지가 자라고 있나요?'] }, challenge:'가족이 함께 믿음, 소망, 사랑으로 서약하기' },
     ]
   },
@@ -1349,18 +1394,18 @@ const DIAGNOSES = [
 ];
 
 const SAMPLES_3M = [
-  { week:1,  month:1, title:'감사', verse:'범사에 감사하라 이것이 그리스도 예수 안에서 너희를 향하신 하나님의 뜻이니라', ref:'살전 5:18', gatherQ:['이번 주 가장 작은 감사 한 가지를 나눠볼까?','감사하기 어려웠던 순간이 있었나?','오늘 우리 식탁에서 감사한 것 하나씩 말해봐요'], contentQ:['본문에서 바울은 어떤 상황에서 이 말씀을 썼을까?','범사(모든 일)란 어떤 상황들을 포함할까?','감사하라는 명령이 반복되는 이유가 있을까?'], imagineQ:['바울이 감옥에서 이 편지를 쓰면서 어떤 마음이었을까?','하나님이 우리에게 감사를 명령하신 이유는 무엇이라 생각하나?','감사할 수 없는 상황에서도 감사한 사람의 마음속에는 무엇이 있을까?'], applyQ:['오늘 하루 중 감사하기 가장 어려웠던 순간은 언제인가?','이 말씀을 이번 주 어떻게 살아낼 수 있을까?','우리 가족이 함께 감사를 훈련할 방법이 있을까?'], challenge:'오늘 하루 감사한 일 3가지 적어보기' },
-  { week:2,  month:1, title:'용서', verse:'서로 친절하게 하며 불쌍히 여기며 서로 용서하기를 하나님이 그리스도 안에서 너희를 용서하심과 같이 하라', ref:'엡 4:32', gatherQ:['누군가에게 미안했던 순간을 나눌 수 있나?','용서한다는 것이 나에게 어떤 의미인가?','가족 중에 서운한 마음이 있으면 지금 나눠봐요'], contentQ:['본문에서 용서의 기준이 무엇이라고 말하나?','친절, 불쌍히 여김, 용서 — 이 세 가지의 관계는?','바울은 왜 하나님의 용서를 근거로 들었을까?'], imagineQ:['하나님이 그리스도 안에서 우리를 용서하실 때 어떤 마음이었을까?','용서받은 사람과 용서받지 못한 사람의 마음은 어떻게 다를까?','예수님이라면 내가 용서하기 어려운 그 사람에게 어떻게 하셨을까?'], applyQ:['지금 내 마음속에 아직 용서하지 못한 사람이 있나?','이번 주 "미안해, 사랑해"를 먼저 말할 수 있는 순간이 있을까?','용서가 나를 자유롭게 한다는 말이 실감 날 때가 있었나?'], challenge:'이번 주 "미안해, 사랑해"를 먼저 말하기' },
-  { week:3,  month:1, title:'기도', verse:'아무것도 염려하지 말고 다만 모든 일에 기도와 간구로 너희 구할 것을 감사함으로 하나님께 아뢰라', ref:'빌 4:6', gatherQ:['요즘 마음속에 가장 큰 걱정이 있다면?','기도하고 나서 마음이 달라진 경험이 있나?','우리 가족을 위해 하나님께 부탁하고 싶은 것은?'], contentQ:['염려하지 말라고 하면서 바울은 무엇을 하라고 했나?','기도와 간구는 어떻게 다를까?','감사함으로 아뢰라는 말은 무슨 뜻일까?'], imagineQ:['바울은 빌립보 교인들의 어떤 염려를 보고 이 말씀을 썼을까?','하나님은 우리가 기도할 때 어떤 마음으로 들으실까?','염려하는 나를 보시는 하나님의 눈빛은 어떨까?'], applyQ:['지금 내가 가장 염려하는 것을 하나님께 솔직하게 말씀드릴 수 있나?','기도를 첫 번째 반응으로 만들기 위해 무엇을 바꿀 수 있을까?','우리 가족이 함께 기도하는 시간을 어떻게 만들 수 있을까?'], challenge:'매일 아침 가족을 위해 1분 기도하기' },
-  { week:4,  month:1, title:'사랑', verse:'사랑은 오래 참고 사랑은 온유하며 시기하지 아니하며', ref:'고전 13:4', gatherQ:['가족 중 누가 나를 가장 사랑한다고 느끼나?','사랑받는다고 느꼈던 순간은 언제인가?','오늘 누군가에게 사랑을 표현한 적이 있나?'], contentQ:['본문에서 사랑의 특징이 몇 가지 나오나?','오래 참는 것과 온유한 것은 어떻게 다를까?','시기하지 않는다는 것이 왜 사랑의 속성일까?'], imagineQ:['하나님이 우리를 오래 참으며 사랑하신다면 어떤 순간들이 있었을까?','예수님이 우리에게 온유하게 대하셨던 장면을 상상해보면?','사랑받은 경험이 충분한 사람과 그렇지 않은 사람은 어떻게 다를까?'], applyQ:['오늘 본문의 사랑을 가족 중 누구에게 가장 보여주기 어려운가요?','이번 주 "오래 참기"를 실천할 구체적인 상황이 생긴다면?','우리 가족이 서로에게 사랑을 표현하는 방식을 하나 정한다면?'], challenge:'가족 중 한 명에게 손편지 쓰기' },
-  { week:5,  month:2, title:'말씀', verse:'주의 말씀은 내 발에 등이요 내 길에 빛이니이다', ref:'시 119:105', gatherQ:['이번 주 성경 말씀이 생각난 적이 있었나?','말씀이 내 삶에 도움이 된 경험을 나눠봐요','성경에서 가장 좋아하는 구절이 있나?'], contentQ:['등과 빛은 각각 어떤 역할을 하나?','발에 등이라는 표현과 길에 빛이라는 표현의 차이는?','이 시편은 어떤 상황에서 쓰였을까?'], imagineQ:['칠흑같이 어두운 밤 길을 걷는 상황에서 등불이 생겼을 때 어떤 기분일까?','말씀 없이 살아가는 사람의 하루는 어떤 모습일까?','하나님은 왜 말씀을 등과 빛으로 표현하셨을까?'], applyQ:['최근 말씀이 내 삶에 빛을 비춰준 경험이 있나?','이번 주 어떤 말씀을 붙들고 살아갈 수 있을까?','말씀을 더 가까이하기 위해 우리 가족이 할 수 있는 것은?'], challenge:'이번 주 성경 한 구절 암송하기' },
-  { week:6,  month:2, title:'안식', verse:'안식일을 기억하여 거룩하게 지키라', ref:'출 20:8', gatherQ:['이번 주 진짜 쉬었다고 느낀 순간이 있었나?','우리 가족에게 쉼이 필요한 이유가 있다면?','스마트폰 없이 하루를 보낸다면 무엇을 하고 싶나?'], contentQ:['안식일 명령이 십계명에 포함된 이유가 무엇일까?','"기억하라"는 표현이 왜 쓰였을까?','거룩하게 지킨다는 것은 어떤 의미일까?'], imagineQ:['하나님이 창조를 마치고 쉬실 때 어떤 마음이었을까?','안식 없이 일만 하는 사람을 바라보시는 하나님의 마음은?','안식이 선물이라면, 우리는 그 선물을 어떻게 다루고 있을까?'], applyQ:['진짜 쉼과 그냥 지치는 것의 차이를 경험한 적이 있나?','이번 주 하나님이 주신 안식을 어떻게 누릴 수 있을까?','우리 가족만의 안식 루틴을 만든다면 어떤 모습일까?'], challenge:'이번 주 하루 스마트폰 없는 가족 시간 갖기' },
-  { week:7,  month:2, title:'믿음', verse:'믿음은 바라는 것들의 실상이요 보이지 않는 것들의 증거니', ref:'히 11:1', gatherQ:['하나님을 믿기 어려웠던 순간이 있었나?','믿음 때문에 용기를 낸 경험이 있나?','우리 가족의 믿음을 한 문장으로 표현한다면?'], contentQ:['실상과 증거라는 단어가 왜 믿음을 설명하는 데 쓰였을까?','히브리서 11장에는 어떤 믿음의 인물들이 나오나?','보이지 않는 것을 믿는다는 것이 어떤 의미인가?'], imagineQ:['아브라함이 고향을 떠날 때 어떤 마음으로 발걸음을 뗐을까?','믿음으로 살다가 결과를 보지 못하고 죽은 사람들(히 11장)의 마음은?','하나님은 믿음으로 사는 우리를 어떻게 바라보실까?'], applyQ:['지금 내 삶에서 믿음이 가장 필요한 부분은 어디인가?','믿음으로 한 걸음 내딛어야 할 상황이 있다면?','우리 가족이 함께 믿음을 키워가는 방법이 있을까?'], challenge:'믿음의 선조 한 명을 찾아 이야기 나누기' },
-  { week:8,  month:2, title:'소망', verse:'소망이 우리를 부끄럽게 하지 아니함은 우리에게 주신 성령으로 말미암아 하나님의 사랑이 우리 마음에 부은 바 됨이니', ref:'롬 5:5', gatherQ:['지금 가장 소망하는 것은 무엇인가?','절망스러웠던 순간에 소망을 찾은 경험이 있나?','우리 가족의 소망은 무엇인가?'], contentQ:['소망이 부끄럽게 하지 않는 이유가 무엇이라고 나오나?','성령과 소망은 어떤 관계인가?','이 구절 앞에 어떤 내용이 있는지 찾아볼까? (롬 5:3-4)'], imagineQ:['환난 중에도 소망을 가진 사람의 눈빛은 어떨까?','하나님의 사랑이 우리 마음에 부어진다면 어떤 느낌일까?','소망 없이 살아가는 사람의 하루는 어떤 빛깔일까?'], applyQ:['지금 나에게 소망이 있다면, 그 소망의 근거는 무엇인가?','세상이 주는 소망과 하나님이 주시는 소망의 차이를 경험한 적이 있나?','이번 주 소망을 품고 살아가기 위해 무엇을 붙들까?'], challenge:'가족의 소망 목록 함께 작성하기' },
-  { week:9,  month:3, title:'빛과 소금', verse:'너희는 세상의 소금이니 소금이 만일 그 맛을 잃으면 무엇으로 짜게 하리요', ref:'마 5:13', gatherQ:['오늘 주변에 빛을 비춘 경험이 있나?','학교나 직장에서 가장 힘들었던 순간을 나눠봐요','우리 가족이 세상에 어떤 영향을 주고 싶나?'], contentQ:['소금의 역할이 무엇인지 나열해볼까?','맛을 잃은 소금에 대한 경고가 왜 나왔을까?','이 말씀을 들은 당시 사람들에게 소금은 어떤 의미였을까?'], imagineQ:['예수님이 제자들에게 "너희는 소금이다"라고 하실 때 어떤 표정이었을까?','맛을 잃어가는 소금을 바라보시는 하나님의 마음은 어떨까?','우리 가족이 사는 동네에 빛과 소금이 된다면 어떤 모습일까?'], applyQ:['학교/직장에서 빛과 소금이 된다는 것은 구체적으로 어떤 모습인가?','내가 요즘 소금의 맛을 잃고 있다고 느끼는 부분이 있나?','이번 주 주변 한 사람에게 소금의 역할을 할 수 있는 기회가 있다면?'], challenge:'이번 주 주변의 누군가에게 친절한 행동 하나 하기' },
-  { week:10, month:3, title:'이웃 사랑', verse:'네 이웃을 네 자신 같이 사랑하라', ref:'막 12:31', gatherQ:['우리 이웃 중에 기억나는 사람이 있나?','최근 누군가를 도운 경험이 있나?','사회에서 소외된 사람들을 생각하면 어떤 마음이 드나?'], contentQ:['예수님은 가장 큰 계명이 무엇이라고 하셨나?','"네 자신 같이"라는 기준이 왜 의미 있을까?','선한 사마리아인 이야기에서 이웃은 누구였나?'], imagineQ:['예수님이 이 말씀을 하실 때 누구를 생각하고 계셨을까?','소외된 이웃을 지나쳐 가는 사람들을 보시는 예수님의 마음은?','내가 도움이 필요할 때 누군가 이웃이 되어준 순간을 떠올려보면?'], applyQ:['내 이웃은 누구인가? 가장 가까운 이웃 한 명을 생각해봐요','이웃을 사랑하는 것이 나에게 가장 어려운 이유는 무엇인가?','사회의 약자와 소외된 이들을 위해 우리 가족이 할 수 있는 것은?'], challenge:'이번 주 도움이 필요한 누군가를 위해 기도하기' },
-  { week:11, month:3, title:'섬김', verse:'인자가 온 것은 섬김을 받으려 함이 아니라 도리어 섬기려 하고 자기 목숨을 많은 사람의 대속물로 주려 함이니라', ref:'막 10:45', gatherQ:['이번 주 가족 중 누군가를 위해 한 일이 있나?','섬김을 받았을 때 가장 감사했던 순간은?','진짜 섬김과 억지 섬김의 차이를 느낀 적이 있나?'], contentQ:['예수님은 왜 이 말씀을 하셨을까? 앞 문맥을 살펴봐요','대속물이라는 단어의 의미가 무엇인가?','섬김과 희생의 관계는 무엇인가?'], imagineQ:['제자들이 서로 누가 크냐고 다툴 때 예수님은 어떤 마음이었을까?','예수님이 발을 씻어주실 때 베드로의 마음은 어떠했을까?','조용히 다른 사람을 섬기는 사람의 마음속에는 무엇이 있을까?'], applyQ:['우리 가정에서 서로를 어떻게 섬길 수 있을까?','섬기기 가장 어려운 사람이 내 주변에 있다면 누구인가?','이번 주 아무도 모르게 누군가를 섬길 수 있는 방법이 있다면?'], challenge:'이번 주 가족 중 한 명을 위해 조용히 심부름 하기' },
-  { week:12, month:3, title:'파송', verse:'그러므로 너희는 가서 모든 민족을 제자로 삼아', ref:'마 28:19', gatherQ:['3개월 예배를 돌아보며 가장 기억에 남는 순간은?','우리 가정이 지난 3개월 동안 어떻게 변했나?','앞으로 우리 가정 예배를 어떻게 이어가고 싶나?'], contentQ:['예수님이 "가라"고 하시기 전에 어떤 말씀을 하셨나?','제자로 삼는다는 것은 구체적으로 어떤 행동들을 포함하나?','이 말씀의 대상이 되는 "모든 민족"에 우리는 포함될까?'], imagineQ:['제자들이 이 말씀을 들었을 때 어떤 감정이었을까?','예수님이 승천하시기 전 마지막으로 이 말씀을 하실 때 어떤 마음이었을까?','파송받은 사람과 파송받지 못한 사람의 삶은 어떻게 다를까?'], applyQ:['하나님이 나를 어디로 보내셨다고 느끼나?','우리 가정이 세상에 어떤 영향을 미칠 수 있을까?','3개월 예배를 통해 배운 것을 한 문장으로 정리한다면?'], challenge:'3개월 예배 감사편지 하나님께 쓰기' },
+  { week:1,  month:1, title:'감사', verse:'범사에 감사하라 이것이 그리스도 예수 안에서 너희를 향하신 하나님의 뜻이니라', ref:'데살로니가전서 5:18', gatherQ:['이번 주 가장 작은 감사 한 가지를 나눠볼까?','감사하기 어려웠던 순간이 있었나?','오늘 우리 식탁에서 감사한 것 하나씩 말해봐요'], contentQ:['본문에서 바울은 어떤 상황에서 이 말씀을 썼을까?','범사(모든 일)란 어떤 상황들을 포함할까?','감사하라는 명령이 반복되는 이유가 있을까?'], imagineQ:['바울이 감옥에서 이 편지를 쓰면서 어떤 마음이었을까?','하나님이 우리에게 감사를 명령하신 이유는 무엇이라 생각하나?','감사할 수 없는 상황에서도 감사한 사람의 마음속에는 무엇이 있을까?'], applyQ:['오늘 하루 중 감사하기 가장 어려웠던 순간은 언제인가?','이 말씀을 이번 주 어떻게 살아낼 수 있을까?','우리 가족이 함께 감사를 훈련할 방법이 있을까?'], challenge:'오늘 하루 감사한 일 3가지 적어보기' },
+  { week:2,  month:1, title:'용서', verse:'서로 친절하게 하며 불쌍히 여기며 서로 용서하기를 하나님이 그리스도 안에서 너희를 용서하심과 같이 하라', ref:'에베소서 4:32', gatherQ:['누군가에게 미안했던 순간을 나눌 수 있나?','용서한다는 것이 나에게 어떤 의미인가?','가족 중에 서운한 마음이 있으면 지금 나눠봐요'], contentQ:['본문에서 용서의 기준이 무엇이라고 말하나?','친절, 불쌍히 여김, 용서 — 이 세 가지의 관계는?','바울은 왜 하나님의 용서를 근거로 들었을까?'], imagineQ:['하나님이 그리스도 안에서 우리를 용서하실 때 어떤 마음이었을까?','용서받은 사람과 용서받지 못한 사람의 마음은 어떻게 다를까?','예수님이라면 내가 용서하기 어려운 그 사람에게 어떻게 하셨을까?'], applyQ:['지금 내 마음속에 아직 용서하지 못한 사람이 있나?','이번 주 "미안해, 사랑해"를 먼저 말할 수 있는 순간이 있을까?','용서가 나를 자유롭게 한다는 말이 실감 날 때가 있었나?'], challenge:'이번 주 "미안해, 사랑해"를 먼저 말하기' },
+  { week:3,  month:1, title:'기도', verse:'아무것도 염려하지 말고 다만 모든 일에 기도와 간구로 너희 구할 것을 감사함으로 하나님께 아뢰라', ref:'빌립보서 4:6', gatherQ:['요즘 마음속에 가장 큰 걱정이 있다면?','기도하고 나서 마음이 달라진 경험이 있나?','우리 가족을 위해 하나님께 부탁하고 싶은 것은?'], contentQ:['염려하지 말라고 하면서 바울은 무엇을 하라고 했나?','기도와 간구는 어떻게 다를까?','감사함으로 아뢰라는 말은 무슨 뜻일까?'], imagineQ:['바울은 빌립보 교인들의 어떤 염려를 보고 이 말씀을 썼을까?','하나님은 우리가 기도할 때 어떤 마음으로 들으실까?','염려하는 나를 보시는 하나님의 눈빛은 어떨까?'], applyQ:['지금 내가 가장 염려하는 것을 하나님께 솔직하게 말씀드릴 수 있나?','기도를 첫 번째 반응으로 만들기 위해 무엇을 바꿀 수 있을까?','우리 가족이 함께 기도하는 시간을 어떻게 만들 수 있을까?'], challenge:'매일 아침 가족을 위해 1분 기도하기' },
+  { week:4,  month:1, title:'사랑', verse:'사랑은 오래 참고 사랑은 온유하며 시기하지 아니하며', ref:'고린도전서 13:4', gatherQ:['가족 중 누가 나를 가장 사랑한다고 느끼나?','사랑받는다고 느꼈던 순간은 언제인가?','오늘 누군가에게 사랑을 표현한 적이 있나?'], contentQ:['본문에서 사랑의 특징이 몇 가지 나오나?','오래 참는 것과 온유한 것은 어떻게 다를까?','시기하지 않는다는 것이 왜 사랑의 속성일까?'], imagineQ:['하나님이 우리를 오래 참으며 사랑하신다면 어떤 순간들이 있었을까?','예수님이 우리에게 온유하게 대하셨던 장면을 상상해보면?','사랑받은 경험이 충분한 사람과 그렇지 않은 사람은 어떻게 다를까?'], applyQ:['오늘 본문의 사랑을 가족 중 누구에게 가장 보여주기 어려운가요?','이번 주 "오래 참기"를 실천할 구체적인 상황이 생긴다면?','우리 가족이 서로에게 사랑을 표현하는 방식을 하나 정한다면?'], challenge:'가족 중 한 명에게 손편지 쓰기' },
+  { week:5,  month:2, title:'말씀', verse:'주의 말씀은 내 발에 등이요 내 길에 빛이니이다', ref:'시편 119:105', gatherQ:['이번 주 성경 말씀이 생각난 적이 있었나?','말씀이 내 삶에 도움이 된 경험을 나눠봐요','성경에서 가장 좋아하는 구절이 있나?'], contentQ:['등과 빛은 각각 어떤 역할을 하나?','발에 등이라는 표현과 길에 빛이라는 표현의 차이는?','이 시편은 어떤 상황에서 쓰였을까?'], imagineQ:['칠흑같이 어두운 밤 길을 걷는 상황에서 등불이 생겼을 때 어떤 기분일까?','말씀 없이 살아가는 사람의 하루는 어떤 모습일까?','하나님은 왜 말씀을 등과 빛으로 표현하셨을까?'], applyQ:['최근 말씀이 내 삶에 빛을 비춰준 경험이 있나?','이번 주 어떤 말씀을 붙들고 살아갈 수 있을까?','말씀을 더 가까이하기 위해 우리 가족이 할 수 있는 것은?'], challenge:'이번 주 성경 한 구절 암송하기' },
+  { week:6,  month:2, title:'안식', verse:'안식일을 기억하여 거룩하게 지키라', ref:'출애굽기 20:8', gatherQ:['이번 주 진짜 쉬었다고 느낀 순간이 있었나?','우리 가족에게 쉼이 필요한 이유가 있다면?','스마트폰 없이 하루를 보낸다면 무엇을 하고 싶나?'], contentQ:['안식일 명령이 십계명에 포함된 이유가 무엇일까?','"기억하라"는 표현이 왜 쓰였을까?','거룩하게 지킨다는 것은 어떤 의미일까?'], imagineQ:['하나님이 창조를 마치고 쉬실 때 어떤 마음이었을까?','안식 없이 일만 하는 사람을 바라보시는 하나님의 마음은?','안식이 선물이라면, 우리는 그 선물을 어떻게 다루고 있을까?'], applyQ:['진짜 쉼과 그냥 지치는 것의 차이를 경험한 적이 있나?','이번 주 하나님이 주신 안식을 어떻게 누릴 수 있을까?','우리 가족만의 안식 루틴을 만든다면 어떤 모습일까?'], challenge:'이번 주 하루 스마트폰 없는 가족 시간 갖기' },
+  { week:7,  month:2, title:'믿음', verse:'믿음은 바라는 것들의 실상이요 보이지 않는 것들의 증거니', ref:'히브리서 11:1', gatherQ:['하나님을 믿기 어려웠던 순간이 있었나?','믿음 때문에 용기를 낸 경험이 있나?','우리 가족의 믿음을 한 문장으로 표현한다면?'], contentQ:['실상과 증거라는 단어가 왜 믿음을 설명하는 데 쓰였을까?','히브리서 11장에는 어떤 믿음의 인물들이 나오나?','보이지 않는 것을 믿는다는 것이 어떤 의미인가?'], imagineQ:['아브라함이 고향을 떠날 때 어떤 마음으로 발걸음을 뗐을까?','믿음으로 살다가 결과를 보지 못하고 죽은 사람들(히 11장)의 마음은?','하나님은 믿음으로 사는 우리를 어떻게 바라보실까?'], applyQ:['지금 내 삶에서 믿음이 가장 필요한 부분은 어디인가?','믿음으로 한 걸음 내딛어야 할 상황이 있다면?','우리 가족이 함께 믿음을 키워가는 방법이 있을까?'], challenge:'믿음의 선조 한 명을 찾아 이야기 나누기' },
+  { week:8,  month:2, title:'소망', verse:'소망이 우리를 부끄럽게 하지 아니함은 우리에게 주신 성령으로 말미암아 하나님의 사랑이 우리 마음에 부은 바 됨이니', ref:'로마서 5:5', gatherQ:['지금 가장 소망하는 것은 무엇인가?','절망스러웠던 순간에 소망을 찾은 경험이 있나?','우리 가족의 소망은 무엇인가?'], contentQ:['소망이 부끄럽게 하지 않는 이유가 무엇이라고 나오나?','성령과 소망은 어떤 관계인가?','이 구절 앞에 어떤 내용이 있는지 찾아볼까? (로마서 5:3-4)'], imagineQ:['환난 중에도 소망을 가진 사람의 눈빛은 어떨까?','하나님의 사랑이 우리 마음에 부어진다면 어떤 느낌일까?','소망 없이 살아가는 사람의 하루는 어떤 빛깔일까?'], applyQ:['지금 나에게 소망이 있다면, 그 소망의 근거는 무엇인가?','세상이 주는 소망과 하나님이 주시는 소망의 차이를 경험한 적이 있나?','이번 주 소망을 품고 살아가기 위해 무엇을 붙들까?'], challenge:'가족의 소망 목록 함께 작성하기' },
+  { week:9,  month:3, title:'빛과 소금', verse:'너희는 세상의 소금이니 소금이 만일 그 맛을 잃으면 무엇으로 짜게 하리요', ref:'마태복음 5:13', gatherQ:['오늘 주변에 빛을 비춘 경험이 있나?','학교나 직장에서 가장 힘들었던 순간을 나눠봐요','우리 가족이 세상에 어떤 영향을 주고 싶나?'], contentQ:['소금의 역할이 무엇인지 나열해볼까?','맛을 잃은 소금에 대한 경고가 왜 나왔을까?','이 말씀을 들은 당시 사람들에게 소금은 어떤 의미였을까?'], imagineQ:['예수님이 제자들에게 "너희는 소금이다"라고 하실 때 어떤 표정이었을까?','맛을 잃어가는 소금을 바라보시는 하나님의 마음은 어떨까?','우리 가족이 사는 동네에 빛과 소금이 된다면 어떤 모습일까?'], applyQ:['학교/직장에서 빛과 소금이 된다는 것은 구체적으로 어떤 모습인가?','내가 요즘 소금의 맛을 잃고 있다고 느끼는 부분이 있나?','이번 주 주변 한 사람에게 소금의 역할을 할 수 있는 기회가 있다면?'], challenge:'이번 주 주변의 누군가에게 친절한 행동 하나 하기' },
+  { week:10, month:3, title:'이웃 사랑', verse:'네 이웃을 네 자신 같이 사랑하라', ref:'마가복음 12:31', gatherQ:['우리 이웃 중에 기억나는 사람이 있나?','최근 누군가를 도운 경험이 있나?','사회에서 소외된 사람들을 생각하면 어떤 마음이 드나?'], contentQ:['예수님은 가장 큰 계명이 무엇이라고 하셨나?','"네 자신 같이"라는 기준이 왜 의미 있을까?','선한 사마리아인 이야기에서 이웃은 누구였나?'], imagineQ:['예수님이 이 말씀을 하실 때 누구를 생각하고 계셨을까?','소외된 이웃을 지나쳐 가는 사람들을 보시는 예수님의 마음은?','내가 도움이 필요할 때 누군가 이웃이 되어준 순간을 떠올려보면?'], applyQ:['내 이웃은 누구인가? 가장 가까운 이웃 한 명을 생각해봐요','이웃을 사랑하는 것이 나에게 가장 어려운 이유는 무엇인가?','사회의 약자와 소외된 이들을 위해 우리 가족이 할 수 있는 것은?'], challenge:'이번 주 도움이 필요한 누군가를 위해 기도하기' },
+  { week:11, month:3, title:'섬김', verse:'인자가 온 것은 섬김을 받으려 함이 아니라 도리어 섬기려 하고 자기 목숨을 많은 사람의 대속물로 주려 함이니라', ref:'마가복음 10:45', gatherQ:['이번 주 가족 중 누군가를 위해 한 일이 있나?','섬김을 받았을 때 가장 감사했던 순간은?','진짜 섬김과 억지 섬김의 차이를 느낀 적이 있나?'], contentQ:['예수님은 왜 이 말씀을 하셨을까? 앞 문맥을 살펴봐요','대속물이라는 단어의 의미가 무엇인가?','섬김과 희생의 관계는 무엇인가?'], imagineQ:['제자들이 서로 누가 크냐고 다툴 때 예수님은 어떤 마음이었을까?','예수님이 발을 씻어주실 때 베드로의 마음은 어떠했을까?','조용히 다른 사람을 섬기는 사람의 마음속에는 무엇이 있을까?'], applyQ:['우리 가정에서 서로를 어떻게 섬길 수 있을까?','섬기기 가장 어려운 사람이 내 주변에 있다면 누구인가?','이번 주 아무도 모르게 누군가를 섬길 수 있는 방법이 있다면?'], challenge:'이번 주 가족 중 한 명을 위해 조용히 심부름 하기' },
+  { week:12, month:3, title:'파송', verse:'그러므로 너희는 가서 모든 민족을 제자로 삼아', ref:'마태복음 28:19', gatherQ:['3개월 예배를 돌아보며 가장 기억에 남는 순간은?','우리 가정이 지난 3개월 동안 어떻게 변했나?','앞으로 우리 가정 예배를 어떻게 이어가고 싶나?'], contentQ:['예수님이 "가라"고 하시기 전에 어떤 말씀을 하셨나?','제자로 삼는다는 것은 구체적으로 어떤 행동들을 포함하나?','이 말씀의 대상이 되는 "모든 민족"에 우리는 포함될까?'], imagineQ:['제자들이 이 말씀을 들었을 때 어떤 감정이었을까?','예수님이 승천하시기 전 마지막으로 이 말씀을 하실 때 어떤 마음이었을까?','파송받은 사람과 파송받지 못한 사람의 삶은 어떻게 다를까?'], applyQ:['하나님이 나를 어디로 보내셨다고 느끼나?','우리 가정이 세상에 어떤 영향을 미칠 수 있을까?','3개월 예배를 통해 배운 것을 한 문장으로 정리한다면?'], challenge:'3개월 예배 감사편지 하나님께 쓰기' },
 ];
 
 // ── 공통 UI 컴포넌트 ──────────────────────────────────────────
@@ -1816,7 +1861,7 @@ export default function App() {
       {children}
       {lang && <BottomTab/>}
       {GlobalOverlays()}
-      <Analytics/>
+      <SafeAnalytics/>
     </div>
   );
 
@@ -1906,6 +1951,13 @@ export default function App() {
     // 메인화면1 — 시작하기 표지판 클릭 → 온보딩
     if(!onboardingDone && onboardingStep === -1) return (
       <div style={{maxWidth:480, margin:'0 auto', position:'relative', background:'#fff'}}>
+        {/* 상단 언어 토글 — 온보딩 시작 전부터 한/영 선택 가능 */}
+        <div style={{position:'fixed', top:12, right:16, zIndex:991}}>
+          <button onClick={()=>setLang(lang==='ko'?'en':'ko')}
+            style={{background:'white', border:`1.5px solid ${T.border}`, borderRadius:99, padding:'5px 12px', fontSize:14, fontWeight:700, color:T.green, cursor:'pointer', boxShadow:T.shadowSm, display:'flex', alignItems:'center', gap:5}}>
+            <span>{lang==='ko'?'KO':'EN'}</span>
+          </button>
+        </div>
         <div style={{
           width:'100%', paddingBottom:'177%',
           backgroundImage:`url(${MAIN_START_SRC})`,
@@ -1983,6 +2035,13 @@ export default function App() {
           pointer-events: none;
           touch-action: none;
         }`}</style>
+          {/* 상단 언어 토글 — 온보딩 카드 3장 모두에서 한/영 전환 가능 */}
+          <div style={{position:'fixed', top:12, right:16, zIndex:991}}>
+            <button onClick={()=>setLang(lang==='ko'?'en':'ko')}
+              style={{background:'white', border:`1.5px solid ${T.border}`, borderRadius:99, padding:'5px 12px', fontSize:14, fontWeight:700, color:T.green, cursor:'pointer', boxShadow:T.shadowSm, display:'flex', alignItems:'center', gap:5}}>
+              <span>{lang==='ko'?'KO':'EN'}</span>
+            </button>
+          </div>
           <div style={{display:'flex', justifyContent:'center', gap:8, padding:'14px 0 6px', flexShrink:0}}>
             {ONBOARDING.map((_, i) => (
               <div key={i} style={{width:i===onboardingStep?28:8, height:7, borderRadius:4, background:i===onboardingStep?T.green:'rgba(0,100,0,0.15)', transition:'all 0.3s'}}/>
@@ -3923,7 +3982,7 @@ export default function App() {
         )}
       <BottomTab/>
       {GlobalOverlays()}
-      <Analytics/>
+      <SafeAnalytics/>
       </div>
     );
   }
